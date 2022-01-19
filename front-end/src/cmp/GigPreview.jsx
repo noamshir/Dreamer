@@ -32,7 +32,7 @@ export function GigPreview({ gig }) {
                 </div>
                 <p>{gig.title}</p>
                 <div className='rate-wrapper'>
-                    <span className='gig-rating'><StarIcon /> {gig.owner.rate}</span>
+                    <span className='gig-rating'><StarIcon /> {gig.owner.rate} <span>(+1k)</span></span>
                 </div>
             </div>
         </section>
