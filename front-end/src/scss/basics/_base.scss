@@ -6,7 +6,7 @@ body {
   padding: 0;
   color: #62646a;
   position: relative;
-  background-color: green;
+  background-color: white;
 }
 
 #root {
@@ -26,6 +26,6 @@ body {
   padding: 0 $layoutPadding;
 }
 
-.max-width-container{
+.max-width-container {
   width: padded-break-narrow;
 }
