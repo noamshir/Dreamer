@@ -89,17 +89,17 @@ function _createUsers() {
             "username": "BaadurL",
             "password": "BaadurLomidze",
             "sellerInfo": {
+                //cut level from rate
                 "level": "level 1",
-                "rate": 4,
+                // "rate": 4,
                 "origin": "Israel",
-                "languages": ["en", "heb"],
+                "languages": ["en", "he"],
                 "skills": [
                     "logo-design",
                     "programming"
                 ]
             },
-            //should we seperate the reviews to a different json
-            //and include here only a reviews id array???????
+
             "reviews":
                 [
                     {

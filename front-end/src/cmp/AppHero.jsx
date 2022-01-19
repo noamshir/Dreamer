@@ -8,10 +8,12 @@ export function AppHero(props) {
     return (
         <div className="hero-container">
             <div className='background-images'></div>
-            <div className='hero-content'>
-                <h1>Find the perfect <i>freelance</i> services for your business</h1>
-                <SearchBar />
-                <HeroPopularCategory />
+            <div className="hero-content-container main-container">
+                <div className='hero-content'>
+                    <h1>Find the perfect <i>freelance</i> services for your business</h1>
+                    <SearchBar />
+                    <HeroPopularCategory />
+                </div>
             </div>
         </div>
     )
