@@ -4,7 +4,7 @@ import StarIcon from '@mui/icons-material/Star';
 
 export function GigPreview({ gig }) {
 
-    console.log('gig', gig.owner.imgUrl);
+    console.log('gig', gig.imgUrls[0]);
 
     return (
         <section className='gig-preview'>
