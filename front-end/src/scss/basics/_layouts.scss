@@ -1,63 +1,49 @@
-.main-cards-container {
-    display: grid;
-    grid-template-columns: $layoutPadding 1fr $layoutPadding;
 
-    > * {
-        grid-column: 2;
-    }
 
-    > *.full {
-        grid-column: 1 / -1;
-    }
 
-    @include for-narrow-layout {
-        @include layoutWidth($break-narrow);
-    }
 
-    @include for-normal-layout {
-        @include layoutWidth($break-normal);
-    }
 
-    @include for-wide-layout {
-        @include layoutWidth($break-wide);
-    }
-}
+ 
+
+
 
 .max-width-container {
-    @include for-narrow-layout {
-        @include layoutWidth(460px);
+  @include for-narrow-layout {
+    @include layoutWidth();
+  }
+ @include for-normal-header-layout {
+    @include layoutWidth();
+    .display-from-size-medium {
+      display: inline-block;
     }
-
-    @include for-normal-layout {
-        @include layoutWidth(720px);
-        .display-from-size-medium {
-            display: inline-block;
-        }
+  }
+  @include for-wide-header-layout {
+    @include layoutWidth();
+    .display-from-size-large {
+      display: inline-block;
     }
-
-    @include for-wide-layout {
-        @include layoutWidth(980px);
-        .display-from-size-large {
-            display: inline-block;
-        }
+  }
+  @include for-extra-wide-header-layout {
+    @include layoutWidth();
+    .display-from-size-large {
+      display: inline-block;
     }
-    @include for-wide-layout {
-        @include layoutWidth(980px);
-        .display-from-size-large {
-            display: inline-block;
-        }
-    }
+  }
+  @include for-large-screen-header-layout {
+    @include layoutMaxWidth();
+  }
 }
+  
 // Main Header Layout
 
-.card-grid {
-    display: grid;
-    grid-auto-flow: dense;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 20px;
-    // grid-auto-rows: 300px;
+// .card-grid {
+//     display: grid;
+//     grid-auto-flow: dense;
+//     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+//     gap: 20px;
+//     // grid-auto-rows: 300px;
 
-    > * {
-        @include aspect-ratio(1, 1);
-    }
-}
+//     > * {
+//         @include aspect-ratio(1, 1);
+//     }
+// }
