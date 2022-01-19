@@ -2,6 +2,7 @@
 
 $clr1: #1dbf73;
 $clr2: #404145;
+$clr2: #757575;
 
 // Padding
 $layoutPadding: 24px;
@@ -22,5 +23,5 @@ $padded-break-wide: $break-wide + $layoutPadding * 2;
 $padded-break-extra-wide: $break-extra-wide + $layoutPadding * 2;
 
 @media (max-width: $padded-break-narrow) {
-    $layoutPadding: 32px;
-  }
+  $layoutPadding: 32px;
+}

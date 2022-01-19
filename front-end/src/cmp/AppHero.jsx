@@ -19,7 +19,7 @@ export function AppHero(props) {
             <div className="hero-content-container">
                 <div className='hero-content'>
                     <h1>Find the perfect <i>freelance</i> services for your business</h1>
-                    <SearchBar />
+                    <SearchBar placeholder='Try "designing business logo"' />
                     <HeroPopularCategory />
                 </div>
             </div>

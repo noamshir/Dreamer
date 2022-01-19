@@ -1,10 +1,10 @@
 import { connect } from 'react-redux'
 import { useState } from 'react'
 import { onSetFilterBy } from '../store/gig.action'
+import SearchIcon from '@mui/icons-material/Search';
 
 
-
-function _SearchBar(props) {
+function _SearchBar({ placeholder }) {
     const [txt, setTxt] = useState('');
 
     const handleChange = ({ target }) => {
@@ -18,16 +18,19 @@ function _SearchBar(props) {
     }
 
     return (
-        <form onSubmit={onSubmit}>
+        <form
+            onSubmit={onSubmit}>
+            <div className='search-icon'><SearchIcon /></div>
             <input
+                className='search-bar'
                 type="search"
-                placeholder={`Try "designing business logo"`}
+                placeholder={placeholder}
                 autoComplete='off'
                 value={txt}
                 name='txt'
                 onChange={handleChange}
             />
-            <button>Search</button>
+            <button className='search-btn'>Search</button>
         </form>
     )
 }
