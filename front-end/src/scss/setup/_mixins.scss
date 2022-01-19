@@ -12,6 +12,7 @@
   }
 }
 
+
 @mixin for-normal-layout {
   @media (min-width: $padded-break-normal) {
     @content;
@@ -30,8 +31,27 @@
   }
 }
 
+
+@mixin for-normal-header-layout {
+  @media (min-width: $padded-break-normal) {
+    @content;
+  }
+}
+
+@mixin for-wide-header-layout {
+  @media (min-width: $padded-break-wide) {
+    @content;
+  }
+}
+
+@mixin for-extra-wide-header-layout {
+  @media (min-width: $padded-break-extra-wide) {
+    @content;
+  }
+}
+
 @mixin layoutWidth($max) {
-  max-width: $max + $layoutPadding * 2;
+  width: 100%;
   margin: auto;
 }
 
