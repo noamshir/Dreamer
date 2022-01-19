@@ -55,6 +55,60 @@ async function save(gig) {
 //     return data
 // }
 
+
+"logo-design",
+    "wordpress",
+    "voice-over",
+    "video-explainer",
+    "social-media",
+    "programming",
+    "translation",
+    "illustration",
+
+
+    function _createGigs() {
+        return [
+            {
+                "_id": "i101",
+                "title": "I will design your logo",
+                "price": 12,
+                "owner": {
+                    "_id": "u107",
+                    "fullname": "Dwayne Loony",
+                    "imgUrl": "assets/imgs/user107.jpg",
+                    "level": "Level 1",
+                    "rate": 4
+                },
+                "daysToMake": 3,
+                "description": "Make unique logo...",
+                "imgUrls": ["url1", "url2"],
+                "categories": [
+                    "logo-design",
+                    "illustration",
+                ]
+            },
+            {
+                "_id": "i102",
+                "title": "I will design your illustration",
+                "price": 120,
+                "owner": {
+                    "_id": "u108",
+                    "fullname": "Baadur Lomidzey",
+                    "imgUrl": "assets/imgs/user108.jpg",
+                    "level": "Level 1",
+                    "rate": 4
+                },
+                "daysToMake": 3,
+                "description": "aquire my services for unique illustration...",
+                "imgUrls": ["url1", "url2"],
+                "categories": [
+                    "programming",
+                    "illustration",
+                ]
+            },
+        ]
+    }
+
 // TEST DATA
 // storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))
 
