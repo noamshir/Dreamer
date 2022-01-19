@@ -18,10 +18,11 @@ export const gigService = {
     // toggleInStock,
 };
 
-async function query() {
+async function query(filterBy) {
     // filterBy = { name: '', type: 'all', selectedLabels: 'all', sortBy: 'name' }
     // return httpService.get('gig')
-    return storageService.query(STORAGE_KEY, filterBy);
+    return storageService.query(STORAGE_KEY);
+    // return storageService.query(STORAGE_KEY, filterBy);
 }
 async function getById(gigId) {
     // return httpService.get(`gig/${gigId}`)
@@ -39,8 +40,7 @@ async function save(gig) {
     } else {
         // return httpService.post('gig', gig)
         // const user = userService.getLoggedinUser()
-        // console.log(user);
-        gig.owner = user;
+        // gig.owner = user;
         return storageService.post(STORAGE_KEY, gig);
     }
 }
@@ -51,17 +51,6 @@ async function save(gig) {
 //     const data = await save(gig)
 //     return data
 // }
-
-const categories = [
-    "logo-design",
-    "wordpress",
-    "voice-over",
-    "video-explainer",
-    "social-media",
-    "programming",
-    "translation",
-    "illustration",
-]
 
 function _createGigs() {
     return [

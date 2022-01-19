@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./assets/scss/styles.scss";
+import "./scss/styles.scss";
 import { App } from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
-import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+// import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 
