@@ -17,7 +17,7 @@ export function AppHeader() {
                         </div>
                         <nav className="dreamer-nav dreamer-nav-right flex">
                             <ul className="flex">
-                                <li className="display-from-size-medium">  <NavLink className="clean-link" to="/explore">Explore</NavLink></li>
+                                <li className="display-from-size-large">  <NavLink className="clean-link" to="/explore">Explore</NavLink></li>
                                 <li className="display-from-size-large"><NavLink className="clean-link" to="/addSeller">Add Seller</NavLink></li>
                                 <li className="display-from-size-medium"><a href="" className="clean-link">Sign in</a></li>
                                 <li className="display-from-size-small"><a href="" className="clean-link join-a">Join</a></li>

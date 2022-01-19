@@ -1,23 +1,82 @@
 .hero-container {
-    background-color: rgb(0, 89, 255);
+    background-color: rgb(78, 140, 255);
+    .background-images {
+        height: 680px;
+        right: 32px;
+        bottom: 0;
+        position: absolute;
+        .background .seller-name {
+            position: absolute;
+            bottom: 30px;
+            right: 0;
+            color: white;
+        }
+        .background .seller-skill {
+            font-weight: 700;
+        }
+        .background img {
+            bottom: 0;
+            position: absolute;
+            height: 85%;
+        }
+        @include for-extra-wide-layout {
+            width: 680px;
+        }
+    }
 }
 .hero-content-container {
     color: white;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    .hero-content {
+        font-family: roboto-bold;
+    }
     .hero-content i {
+        font-weight: 400;
         font-family: lobster;
+        margin-inline-start: em(5px);
     }
 
-    @include for-extra-wide-layout {
+    @include for-wide-layout {
         height: 680px;
-        width: 1300px;
+        width: 900px;
         margin: 0 auto;
         .hero-content {
             width: 650px;
+            font-size: rem(42px);
+        }
+    }
+    @include for-extra-wide-layout {
+        width: 1300px;
+    }
+    form {
+        height: 48px;
+        margin-block-end: 20px;
+        svg {
+            position: absolute;
+            top: -0.1em;
+        }
+    }
 
-            font-size: 48px;
+    .hero-popular-category {
+        display: flex;
+        gap: 10px;
+
+        font-size: 1.2rem;
+
+        button {
+            padding: 4px 8px;
+            background-color: inherit;
+            border: 1px solid white;
+            border-radius: 2em;
+            color: white;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: white;
+            color: #404145;
         }
     }
 }

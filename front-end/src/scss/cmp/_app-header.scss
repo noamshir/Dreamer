@@ -98,11 +98,11 @@
 }
 
 .dreamer-header-search-animated {
-  // display: none;
+  display: none;
   flex-grow: 3;
   @include for-normal-header-layout {
-    // display: block;
-    // visibility: hidden;
+    display: block;
+    visibility: hidden;
   }
 }
 
