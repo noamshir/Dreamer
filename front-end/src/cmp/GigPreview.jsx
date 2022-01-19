@@ -2,10 +2,14 @@ import StarIcon from '@mui/icons-material/Star';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useState } from 'react';
 
+import { Carousel } from "./Carousel";
+import { CarouselItem } from "./CarouselItem";
+
 
 
 export function GigPreview({ gig }) {
     const [likeMsgClass, setClass] = useState(false)
+
 
     function getUserLevel() {
         if (gig.owner.rate === 1 || gig.owner.rate < 3) {
@@ -21,9 +25,13 @@ export function GigPreview({ gig }) {
     return (
         <section className='gig-preview'>
             <div className='card'>
-                <div className="gig-img" >
-                    <img src={`${gig.imgUrls[0]}`} alt="image" />
+                {/* <div className="" > */}
+                <div className="gig-img">
+                    <Carousel>
+                        {gig.imgUrls.map((imgUrl, idx) => <CarouselItem key={idx} imgUrl={imgUrl}></CarouselItem>)}
+                    </Carousel>
                 </div>
+                {/* </div> */}
                 <div className="owner-info">
                     <div className='owner-pic' style={{ backgroundImage: `url(${gig.owner.imgUrl})` }}></div>
                     <div className="owner-level-name">
@@ -43,13 +51,13 @@ export function GigPreview({ gig }) {
                         setClass(true)
                     }}><FavoriteIcon />
                         <span className={likeMsgClass ? 'popuptext show' : 'popuptext'}> add to favorite</span>
-                </span>
-                <ul className='clean-list'>
-                    <li className='starting-price'>Starting At</li>
-                    <li>{gig.price.toLocaleString("ILS", { style: "currency", currency: "ILS" })}</li>
-                </ul>
+                    </span>
+                    <ul className='clean-list'>
+                        <li className='starting-price'>Starting At</li>
+                        <li>{gig.price.toLocaleString("ILS", { style: "currency", currency: "ILS" })}</li>
+                    </ul>
+                </div>
             </div>
-        </div>
         </section >
     )
 }

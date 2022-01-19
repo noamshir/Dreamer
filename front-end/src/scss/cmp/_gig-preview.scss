@@ -1,12 +1,12 @@
 .gig-preview {
-  border: 1px solid #efeff0;
+  border: 1px solid #e4e5e7;
   &:hover {
     .gig-title {
       color: $clr1;
     }
   }
   .rate-wrapper {
-    padding: 10px 0;
+    padding: 10px 12px;
   }
   h5 {
     margin: 0;
@@ -36,7 +36,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    padding-top: 10px ;
+    padding: 10px 0 12px 12px;
     .owner-level-name {
       display: flex;
       flex-direction: column;
@@ -45,7 +45,7 @@
         font-weight: 600;
         font-family: work-sans, sans-serif, serif;
       }
-      .owner-level{
+      .owner-level {
         font-family: work-sans, sans-serif, serif;
         font-weight: 400;
         font-size: 12px;
@@ -62,7 +62,6 @@
   }
   .gig-img {
     width: 100%;
-    height: 197px;
     cursor: pointer;
     img {
       width: 100%;
@@ -77,8 +76,7 @@
     font-family: work-sans;
     text-align: left;
     color: #222325;
-    padding-top: 15px;
-    padding-bottom: 20px;
+    padding: 15px 20px 12px 12px;
     cursor: pointer;
     transition: 0.3s all;
   }
@@ -90,13 +88,13 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    .like{
-      transition: color .3s;
+    .like {
+      transition: color 0.3s;
     }
 
     .like:hover {
       cursor: pointer;
-      color:rgba(218,95,95,.829);
+      color: rgba(218, 95, 95, 0.829);
     }
     ul {
       cursor: pointer;
