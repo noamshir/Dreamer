@@ -15,6 +15,7 @@ export const gigService = {
     getById,
     save,
     remove,
+    createGigs
     // toggleInStock,
 };
 
@@ -52,7 +53,7 @@ async function save(gig) {
 //     return data
 // }
 
-function _createGigs() {
+function createGigs() {
     return [
         {
             "_id": "g101",
@@ -61,7 +62,7 @@ function _createGigs() {
             "owner": {
                 "_id": "u107",
                 "fullname": "Dwayne Loony",
-                "imgUrl": "assets/imgs/user/user107.jpg",
+                "imgUrl": "https://media.istockphoto.com/photos/portrait-of-handsome-smiling-young-man-with-crossed-arms-picture-id1200677760?k=20&m=1200677760&s=612x612&w=0&h=JCqytPoHb6bQqU9bq6gsWT2EX1G5chlW5aNK81Kh4Lg=",
                 "level": "Level 1",
                 "rate": 4
             },
@@ -80,7 +81,7 @@ function _createGigs() {
             "owner": {
                 "_id": "u107",
                 "fullname": "Dwayne Loony",
-                "imgUrl": "assets/imgs/user/user107.jpg",
+                "imgUrl": "https://media.istockphoto.com/photos/portrait-of-handsome-smiling-young-man-with-crossed-arms-picture-id1200677760?k=20&m=1200677760&s=612x612&w=0&h=JCqytPoHb6bQqU9bq6gsWT2EX1G5chlW5aNK81Kh4Lg=",
                 "level": "Level 1",
                 "rate": 4
             },
@@ -98,7 +99,7 @@ function _createGigs() {
             "owner": {
                 "_id": "u108",
                 "fullname": "Baadur Lomidze",
-                "imgUrl": "assets/imgs/user/user108.jpg",
+                "imgUrl": "https://media.istockphoto.com/photos/smiling-man-outdoors-in-the-city-picture-id1179420343?k=20&m=1179420343&s=612x612&w=0&h=G2UGMVSzAXGAQs3pFZpvWlHNRAzwPIWIVtSOxZHsEuc=",
                 "level": "Level 1",
                 "rate": 4,
             },
@@ -114,7 +115,7 @@ function _createGigs() {
             "owner": {
                 "_id": "u108",
                 "fullname": "Baadur Lomidze",
-                "imgUrl": "assets/imgs/user/user108.jpg",
+                "imgUrl": "https://media.istockphoto.com/photos/smiling-man-outdoors-in-the-city-picture-id1179420343?k=20&m=1179420343&s=612x612&w=0&h=G2UGMVSzAXGAQs3pFZpvWlHNRAzwPIWIVtSOxZHsEuc=",
                 "level": "Level 1",
                 "rate": 4,
             },
@@ -125,6 +126,5 @@ function _createGigs() {
         },
     ]
 }
-
 // TEST DATA
 // storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))
