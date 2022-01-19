@@ -2,6 +2,7 @@
 
 $clr1: #1dbf73;
 $clr2: #404145;
+$clr2: #757575;
 
 // Padding
 $layoutPadding: 24px;
@@ -15,6 +16,7 @@ $break-extra-wide: 1300px;
 $header-break-normal: 600px;
 $header-break-wide: 900px;
 $header-break-extra-wide: 1160px;
+$header-break-large-screen: 1564px;
 
 $padded-break-narrow: $break-narrow + $layoutPadding * 2;
 $padded-break-normal: $break-normal + $layoutPadding * 2;
@@ -22,5 +24,5 @@ $padded-break-wide: $break-wide + $layoutPadding * 2;
 $padded-break-extra-wide: $break-extra-wide + $layoutPadding * 2;
 
 @media (max-width: $padded-break-narrow) {
-    $layoutPadding: 32px;
-  }
+  $layoutPadding: 32px;
+}
