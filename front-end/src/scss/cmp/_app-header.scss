@@ -1,0 +1,65 @@
+.main-header {
+  background-color: green;
+  &.sticky {
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+  }
+  .dreamer-header {
+    width: 100%;
+    background-color: #fff;
+    transition: background-color 0.5s ease;
+    &.header-transparent {
+      background-color: transparent;
+    }
+  }
+}
+
+.logged-out-homepage-header {
+  .header-row-wrapper {
+    width: 100%;
+    flex-wrap: nowrap;
+    .header-row {
+      align-items: center;
+      justify-content: space-between;
+      &.row-main {
+        height: 80px;
+        align-content: center;
+        flex-wrap: nowrap;
+      }
+      button {
+        color: #fff;
+        cursor: pointer;
+        background-color: inherit;
+        border: 0;
+        align-items: flex-start;
+      }
+      .dreamer-logo {
+        align-self: auto;
+        color: #fff;
+        &::after {
+          content: ".";
+          color: #1dbf73;
+        }
+      }
+    }
+  }
+}
+
+.dreamer-nav {
+  justify-self: flex-end;
+  width: 30%;
+  color: #fff;
+  ul {
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    -webkit-box-align: center;
+    li {
+      margin: 0;
+      list-style: none;
+      list-style-image: none;
+    }
+  }
+}
