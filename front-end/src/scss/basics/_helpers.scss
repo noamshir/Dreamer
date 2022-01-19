@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-.flex {
-  display: flex;
-=======
 .fs12 {
   font-size: rem(12px);
 }
@@ -46,22 +42,14 @@
 .clean-link {
   text-decoration: none;
   color: inherit;
-  font-size: 0.8rem;
->>>>>>> 588e95596a2077a58b1964616ab271bccff4fd76
+  padding: 0;
 }
 
 .clean-list {
   list-style: none;
-<<<<<<< HEAD
   list-style-image: none;
 }
 
-.clean-link {
-  color: inherit;
-  text-decoration: none;
-=======
-  padding: 0;
-}
 // Media helpers
 
 .square-ratio {
@@ -72,5 +60,4 @@
 }
 .portrait-ratio {
   @include aspect-ratio(9, 16);
->>>>>>> 588e95596a2077a58b1964616ab271bccff4fd76
 }
