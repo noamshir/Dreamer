@@ -66,32 +66,32 @@ const categories = [
 function _createGigs() {
     return [
         {
-            "_id": "i101",
+            "_id": "g101",
             "title": "I will design your logo",
             "price": 12,
             "owner": {
                 "_id": "u107",
                 "fullname": "Dwayne Loony",
-                "imgUrl": "assets/imgs/user107.jpg",
+                "imgUrl": "assets/imgs/user/user107.jpg",
                 "level": "Level 1",
                 "rate": 4
             },
             "daysToMake": 3,
             "description": "Make unique logo...",
-            "imgUrls": ["url1", "url2"],
+            "imgUrls": ["assets/imgs/gig/g101-1.jpeg", "assets/imgs/gig/g101-2.jpeg"],
             "categories": [
                 "logo-design",
                 "illustration",
             ]
         },
         {
-            "_id": "i102",
+            "_id": "g102",
             "title": "I will design your illustration",
             "price": 120,
             "owner": {
                 "_id": "u108",
                 "fullname": "Baadur Lomidzey",
-                "imgUrl": "assets/imgs/user108.jpg",
+                "imgUrl": ["assets/imgs/gig/g102-1.jpeg", "assets/imgs/gig/g102-2.jpeg"],
                 "level": "Level 1",
                 "rate": 4
             },
@@ -104,7 +104,7 @@ function _createGigs() {
             ]
         },
         {
-            "_id": "i103",
+            "_id": "g103",
             "title": "I will teach you js",
             "price": 200,
             "owner": {
@@ -116,11 +116,11 @@ function _createGigs() {
             },
             "daysToMake": 1,
             "description": "Teaching JavaScript",
-            "imgUrls": ["url1", "url2"],
+            "imgUrls": ["assets/imgs/gig/g103-1.jpeg", "assets/imgs/gig/g103-2.jpeg"],
             "categories": ["Programming", "proffesional"],
         },
         {
-            "_id": "i104",
+            "_id": "g104",
             "title": "I will design your website",
             "price": 150,
             "owner": {
@@ -132,7 +132,7 @@ function _createGigs() {
             },
             "daysToMake": 7,
             "description": "The best design for your website...",
-            "imgUrls": ["url1", "url2"],
+            "imgUrls": ["assets/imgs/gig/g104-1.jpeg", "assets/imgs/gig/g104-2.jpeg"],
             "categories": ["Design", "Programming", "proffesional"],
         },
     ]

@@ -84,7 +84,7 @@ function _createUsers() {
         {
             "_id": "u108",
             "fullname": "Baadur Lomidze",
-            "imgUrl": "assets/img/user108.jpg",
+            "imgUrl": "assets/img/user/user108.jpg",
             "isAdmin": false,
             "username": "BaadurL",
             "password": "BaadurLomidze",
@@ -125,7 +125,7 @@ function _createUsers() {
         {
             "_id": "u107",
             "fullname": "Dwayne Loony",
-            "imgUrl": "assets/imgs/user107.jpg",
+            "imgUrl": "assets/imgs/user/user107.jpg",
             "isAdmin": false,
             "username": "BestSellerXo",
             "password": "secret",
