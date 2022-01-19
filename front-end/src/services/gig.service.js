@@ -68,7 +68,7 @@ function createGigs() {
             },
             "daysToMake": 3,
             "description": "Make unique logo...",
-            "imgUrls": ["assets/imgs/gig/g101-1.jpeg", "assets/imgs/gig/g101-2.jpeg"],
+            "imgUrls": ["https://images.pexels.com/photos/2235130/pexels-photo-2235130.jpeg", "https://images.pexels.com/photos/1162361/pexels-photo-1162361.jpeg"],
             "categories": [
                 "logo-design",
                 "illustration",
@@ -87,7 +87,7 @@ function createGigs() {
             },
             "daysToMake": 3,
             "description": "aquire my services for unique illustration...",
-            "imgUrls": ["assets/imgs/gig/g102-1.jpeg", "assets/imgs/gig/g102-2.jpeg"],
+            "imgUrls": ["https://images.pexels.com/photos/3631430/pexels-photo-3631430.jpeg", "https://images.pexels.com/photos/1569002/pexels-photo-1569002.jpeg"],
             "categories": [
                 "illustration",
             ]
@@ -105,7 +105,7 @@ function createGigs() {
             },
             "daysToMake": 1,
             "description": "Teaching JavaScript",
-            "imgUrls": ["assets/imgs/gig/g103-1.jpeg", "assets/imgs/gig/g103-2.jpeg"],
+            "imgUrls": ["https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg", "https://images.pexels.com/photos/177598/pexels-photo-177598.jpeg"],
             "categories": ["Programming"],
         },
         {
@@ -121,7 +121,7 @@ function createGigs() {
             },
             "daysToMake": 7,
             "description": "The best design for your website...",
-            "imgUrls": ["assets/imgs/gig/g104-1.jpeg", "assets/imgs/gig/g104-2.jpeg"],
+            "imgUrls": ["https://images.pexels.com/photos/4348404/pexels-photo-4348404.jpeg", "https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg"],
             "categories": ["Programming"],
         },
     ]
