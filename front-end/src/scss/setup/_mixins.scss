@@ -23,10 +23,16 @@
     @content;
   }
 }
+
 @mixin for-extra-wide-layout {
   @media (min-width: $padded-break-extra-wide) {
     @content;
   }
+}
+
+@mixin layoutWidth($max) {
+  max-width: $max + $layoutPadding * 2;
+  margin: auto;
 }
 
 @mixin layoutGTC($max) {
