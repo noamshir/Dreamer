@@ -21,6 +21,15 @@ export function add(gig) {
         return Promise.resolve(savedGig)
     }
 }
+export function onSetFilterBy(filterBy, field) {
+    return (dispatch) => {
+        let action
+        if (field) action = { type: 'SET_FILTERBY_FIELD', filterBy: { field, filterBy } }
+        else action = { type: 'SET_FILTERBY', filterBy }
+        dispatch(action)
+        return Promise.resolve();
+    }
+}
 
 export function remove(gigId) {
     return async (dispatch) => {

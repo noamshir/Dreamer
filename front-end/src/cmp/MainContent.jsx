@@ -1,12 +1,11 @@
-// import { AppHero } from '../cmp/AppHero.jsx'
+import { AppHero } from '../cmp/AppHero.jsx'
 
-export function MainContent()
-{
- return <section className="main-content">
+export function MainContent() {
+     return <section className="main-content">
 
-<div className="sidebar"></div>
-<div className="logged-out-homepage">
-     {/* <AppHero/> */}
-</div>
- </section>
+          <div className="sidebar"></div>
+          <div className="homepage">
+               <AppHero />
+          </div>
+     </section>
 }

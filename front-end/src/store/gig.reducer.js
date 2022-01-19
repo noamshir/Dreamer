@@ -1,5 +1,16 @@
 const initialState = {
     gigs: [],
+    categories: [
+        "logo-design",
+        "wordpress",
+        "voice-over",
+        "video-explainer",
+        "social-media",
+        "programming",
+        "translation",
+        "illustration",
+    ],
+    filterBy: {}
 }
 
 export function gigReducer(state = initialState, action) {
@@ -22,6 +33,12 @@ export function gigReducer(state = initialState, action) {
             break;
         case 'REMOVE_GIG':
             newState = { ...state, gigs: state.gigs.filter(gig => gig._id !== action.gigId) }
+            break;
+        case 'SET_FILTERBY':
+            newState = { ...state, filterBy: { ...action.filterBy } }
+            break;
+        case 'SET_FILTERBY_FIELD':
+            newState = { ...state, filterBy: { ...state.filterBy, [action.filterBy.field]: action.filterBy.value } }
             break;
         default:
     }
