@@ -16,8 +16,9 @@ class _Explore extends React.Component {
         this.props.loadGigs()
     }
 
+
     render() {
-        const {gigs} = this.props
+        const { gigs } = this.props
         return (
             <section className='explore'>
                 <div className="explore-hero">
@@ -26,7 +27,7 @@ class _Explore extends React.Component {
                         talent at your fingertips
                     </p>
                 </div>
-                <GigList gigs={gigs}/>
+                <GigList gigs={gigs}  />
             </section>
         )
     }

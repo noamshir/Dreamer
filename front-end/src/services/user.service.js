@@ -89,7 +89,6 @@ function _createUsers() {
             "username": "BaadurL",
             "password": "BaadurLomidze",
             "sellerInfo": {
-                "level": "level 1",
                 "rate": 4,
                 "origin": "Israel",
                 "languages": ["en", "heb"],
@@ -113,15 +112,6 @@ function _createUsers() {
                         }
                     }
                 ]
-            ,
-            likedGigs: [
-                {
-                    "_id": "i101",
-                    "name": "Design Logo",
-                    "imgUrl": "url1",
-                    "price": 20
-                }
-            ]
         },
         {
             "_id": "u107",
@@ -131,7 +121,6 @@ function _createUsers() {
             "username": "BestSellerXo",
             "password": "secret",
             "sellerInfo": {
-                "level": "level 1",
                 "rate": 4,
                 "origin": "Israel",
                 "languages": ["eng", "heb"],
@@ -151,14 +140,6 @@ function _createUsers() {
                         "imgUrl": "assets/imgs/user/user108.jpg",
                     }
                 }
-            ],
-            likedGigs: [
-                {
-                    "_id": "i101",
-                    "name": "Design Logo",
-                    "imgUrl": "url1",
-                    "price": 20
-                },
             ]
         },
     ]

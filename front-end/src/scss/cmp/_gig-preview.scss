@@ -1,18 +1,49 @@
-.gig-preview{
+.gig-preview {
+  .rate-wrapper {
+    padding: 10px 0;
+  }
+  h5 {
+    margin: 0;
+  }
+  .gig-rating {
+    display: flex;
+    align-items: center;
+    height: 15px;
+    color: rgb(255, 217, 0);
+  }
+  .star {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+    vertical-align: -0.16em;
+  }
 
-    .rate-wrapper{
-        padding: 10px 0;
+  .owner-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .owner-level-name {
+      display: flex;
+      flex-direction: column;
+      .owner-name {
+        color: #222325;
+        font-weight: 600;
+        font-family: work-sans, sans-serif, serif;
+      }
     }
-    .gig-rating{
-        display: flex;
-        align-items: center;
-        height: 15px;
-        color: rgb(255, 217, 0);
+    .owner-pic {
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
     }
-    .star{
-        width: 15px;
-        height: 15px;
-        margin-right: 5px;
-        vertical-align: -0.16em;
+  }
+  .gig-img {
+    width: 100%;
+    img {
+      width: 100%;
+      object-fit: cover;
     }
+  }
 }

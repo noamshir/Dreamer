@@ -63,7 +63,6 @@ function createGigs() {
                 "_id": "u107",
                 "fullname": "Dwayne Loony",
                 "imgUrl": "https://media.istockphoto.com/photos/portrait-of-handsome-smiling-young-man-with-crossed-arms-picture-id1200677760?k=20&m=1200677760&s=612x612&w=0&h=JCqytPoHb6bQqU9bq6gsWT2EX1G5chlW5aNK81Kh4Lg=",
-                "level": "Level 1",
                 "rate": 4
             },
             "daysToMake": 3,
@@ -72,7 +71,12 @@ function createGigs() {
             "categories": [
                 "logo-design",
                 "illustration",
-            ]
+            ],
+            "likedByUser": [{
+                "userId": "u107",
+                "fullname": "Dwayne Loony",
+                "imgUrl": "https://media.istockphoto.com/photos/portrait-of-handsome-smiling-young-man-with-crossed-arms-picture-id1200677760?k=20&m=1200677760&s=612x612&w=0&h=JCqytPoHb6bQqU9bq6gsWT2EX1G5chlW5aNK81Kh4Lg="
+            }]
         },
         {
             "_id": "g102",
@@ -82,7 +86,6 @@ function createGigs() {
                 "_id": "u107",
                 "fullname": "Dwayne Loony",
                 "imgUrl": "https://media.istockphoto.com/photos/portrait-of-handsome-smiling-young-man-with-crossed-arms-picture-id1200677760?k=20&m=1200677760&s=612x612&w=0&h=JCqytPoHb6bQqU9bq6gsWT2EX1G5chlW5aNK81Kh4Lg=",
-                "level": "Level 1",
                 "rate": 4
             },
             "daysToMake": 3,
@@ -90,7 +93,12 @@ function createGigs() {
             "imgUrls": ["https://images.pexels.com/photos/3631430/pexels-photo-3631430.jpeg", "https://images.pexels.com/photos/1569002/pexels-photo-1569002.jpeg"],
             "categories": [
                 "illustration",
-            ]
+            ],
+            "likedByUser": [{
+                "userId": "u107",
+                "fullname": "Dwayne Loony",
+                "imgUrl": "https://media.istockphoto.com/photos/portrait-of-handsome-smiling-young-man-with-crossed-arms-picture-id1200677760?k=20&m=1200677760&s=612x612&w=0&h=JCqytPoHb6bQqU9bq6gsWT2EX1G5chlW5aNK81Kh4Lg="
+            }]
         },
         {
             "_id": "g103",
@@ -100,13 +108,17 @@ function createGigs() {
                 "_id": "u108",
                 "fullname": "Baadur Lomidze",
                 "imgUrl": "https://media.istockphoto.com/photos/smiling-man-outdoors-in-the-city-picture-id1179420343?k=20&m=1179420343&s=612x612&w=0&h=G2UGMVSzAXGAQs3pFZpvWlHNRAzwPIWIVtSOxZHsEuc=",
-                "level": "Level 1",
-                "rate": 4,
+                "rate": 5,
             },
             "daysToMake": 1,
             "description": "Teaching JavaScript",
             "imgUrls": ["https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg", "https://images.pexels.com/photos/177598/pexels-photo-177598.jpeg"],
             "categories": ["Programming"],
+            "likedByUser": [{
+                "userId": "u107",
+                "fullname": "Dwayne Loony",
+                "imgUrl": "https://media.istockphoto.com/photos/portrait-of-handsome-smiling-young-man-with-crossed-arms-picture-id1200677760?k=20&m=1200677760&s=612x612&w=0&h=JCqytPoHb6bQqU9bq6gsWT2EX1G5chlW5aNK81Kh4Lg="
+            }]
         },
         {
             "_id": "g104",
@@ -116,13 +128,17 @@ function createGigs() {
                 "_id": "u108",
                 "fullname": "Baadur Lomidze",
                 "imgUrl": "https://media.istockphoto.com/photos/smiling-man-outdoors-in-the-city-picture-id1179420343?k=20&m=1179420343&s=612x612&w=0&h=G2UGMVSzAXGAQs3pFZpvWlHNRAzwPIWIVtSOxZHsEuc=",
-                "level": "Level 1",
-                "rate": 4,
+                "rate": 5,
             },
             "daysToMake": 7,
             "description": "The best design for your website...",
             "imgUrls": ["https://images.pexels.com/photos/4348404/pexels-photo-4348404.jpeg", "https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg"],
             "categories": ["Programming"],
+            "likedByUser": [{
+                "userId": "u107",
+                "fullname": "Dwayne Loony",
+                "imgUrl": "https://media.istockphoto.com/photos/portrait-of-handsome-smiling-young-man-with-crossed-arms-picture-id1200677760?k=20&m=1200677760&s=612x612&w=0&h=JCqytPoHb6bQqU9bq6gsWT2EX1G5chlW5aNK81Kh4Lg="
+            }]
         },
     ]
 }
