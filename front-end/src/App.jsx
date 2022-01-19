@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom'
+import { AppFooter } from './cmp/AppFooter.jsx';
 import routes from './routes.js'
 
 export class App extends React.Component {
@@ -12,6 +13,7 @@ export class App extends React.Component {
                         {routes.map(route => <Route key={route.path} exact component={route.component} path={route.path} />)}
                     </Switch>
                 </main>
+                <AppFooter />
             </div>
         )
     }
