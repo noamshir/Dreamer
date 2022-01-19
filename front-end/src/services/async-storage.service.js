@@ -1,3 +1,4 @@
+import { gigService } from "./gig.service"
 
 export const storageService = {
     query,
@@ -8,16 +9,17 @@ export const storageService = {
 }
 
 function query(entityType, filterBy, delay = 300) {
-    var entities = JSON.parse(localStorage.getItem(entityType)) || []
+    var entities = JSON.parse(localStorage.getItem(entityType)) || gigService.createGigs()
+    if (entities) _save(entityType, entities)
 
-    const sortBy = filterBy ? filterBy.sortBy : 'name'
-    const sortedEntities = getSortedEntities(entities, sortBy)
-    const filteredEntities = getFilteredEntities(sortedEntities, filterBy)
+    // const sortBy = filterBy ? filterBy.sortBy : 'name'
+    // const sortedEntities = getSortedEntities(entities, sortBy)
+    // const filteredEntities = getFilteredEntities(sortedEntities, filterBy)
 
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             // reject('OOOOPs')
-            resolve(filteredEntities)
+            resolve(entities)
         }, delay)
     })
 }

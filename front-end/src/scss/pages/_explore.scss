@@ -1,5 +1,5 @@
 .explore {
-  .explore-hero {
+  &-hero {
     background-image: url("../../assets/img/explore-hero.jpg");
     height: 70vh;
     background-size: cover;
@@ -9,7 +9,7 @@
     justify-content: flex-end;
     align-items: center;
   }
-  p {
+   &-hero-p{
     margin: 0;
     display: flex;
     line-height: 1.5;
