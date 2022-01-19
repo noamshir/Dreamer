@@ -1,7 +1,7 @@
 /* Media queries Breakpoint mixins */
 
-@mixin for-mobile-layout {
-  @media (max-width: $padded-break-narrow) {
+@mixin for-normal-max-layout {
+  @media (max-width: $header-break-normal) {
     @content;
   }
 }
@@ -12,7 +12,6 @@
   }
 }
 
-
 @mixin for-normal-layout {
   @media (min-width: $padded-break-normal) {
     @content;
@@ -20,38 +19,48 @@
 }
 
 @mixin for-wide-layout {
-  @media (min-width: $padded-break-wide) {
+  @media (min-width: $header-break-wide) {
     @content;
   }
 }
 
 @mixin for-extra-wide-layout {
-  @media (min-width: $padded-break-extra-wide) {
+  @media (min-width: $header-break-extra-wide) {
     @content;
   }
 }
 
-
 @mixin for-normal-header-layout {
-  @media (min-width: $padded-break-normal) {
+  @media (min-width: $header-break-normal) {
     @content;
   }
 }
 
 @mixin for-wide-header-layout {
-  @media (min-width: $padded-break-wide) {
+  @media (min-width: $header-break-wide) {
     @content;
   }
 }
 
 @mixin for-extra-wide-header-layout {
-  @media (min-width: $padded-break-extra-wide) {
+  @media (min-width: $header-break-extra-wide) {
     @content;
   }
 }
 
-@mixin layoutWidth($max) {
+@mixin for-large-screen-header-layout {
+  @media (min-width: $header-break-extra-wide) {
+    @content;
+  }
+}
+
+@mixin layoutWidth() {
   width: 100%;
+  margin: auto;
+}
+
+@mixin layoutMaxWidth() {
+  max-width: 1500px;
   margin: auto;
 }
 

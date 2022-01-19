@@ -9,7 +9,9 @@
     background-color: #fff;
     transition: background-color 0.5s ease;
     &.header-transparent {
-      background-color: transparent;
+      @include for-normal-header-layout {
+        background-color: transparent;
+      }
     }
   }
 }
@@ -20,24 +22,33 @@
     flex-wrap: nowrap;
     .header-row {
       align-items: center;
-      justify-content: space-between;
+      @include for-normal-max-layout {
+        justify-content: space-between;
+      }
       &.row-main {
         height: 80px;
         align-content: center;
         flex-wrap: nowrap;
       }
       button {
-        color: #fff;
+        @include for-normal-header-layout {
+          color: #fff;
+        }
         cursor: pointer;
         background-color: inherit;
         border: 0;
-        align-items: flex-start;
+        display: flex;
+        align-items: center;
       }
       .dreamer-logo {
         align-self: auto;
-        color: #fff;
+        @include for-normal-header-layout {
+          color: #fff;
+          margin-inline-start: 20px;
+          margin-inline-end: 50px;
+        }
         font-family: Arial, Helvetica, sans-serif;
-        font-size: 27px;
+        font-size: 2rem;
         &::after {
           content: ".";
           color: #1dbf73;
@@ -49,7 +60,9 @@
 
 .dreamer-nav {
   justify-self: flex-end;
-  color: #fff;
+  @include for-normal-header-layout {
+    color: #fff;
+  }
   ul {
     justify-content: space-between;
     align-items: center;
@@ -64,14 +77,39 @@
       list-style-image: none;
       font-family: Arial, Helvetica, sans-serif;
       line-height: 24px;
+      &:hover {
+        color: #95979d;
+      }
+      .join-a {
+        @include for-normal-header-layout {
+          border: 1px solid #fff;
+          padding: 7px 20px;
+          transition: all 0.2s ease;
+          border-radius: 4px;
+          &:hover {
+            background-color: $clr1;
+            border: 1px solid transparent;
+            color: #fff;
+          }
+        }
+      }
     }
   }
 }
 
-.display-from-size-medium{
+.dreamer-header-search-animated {
+  // display: none;
+  flex-grow: 3;
+  @include for-normal-header-layout {
+    // display: block;
+    // visibility: hidden;
+  }
+}
+
+.display-from-size-medium {
   display: none;
 }
 
-.display-from-size-large{
+.display-from-size-large {
   display: none;
 }
