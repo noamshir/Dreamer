@@ -11,76 +11,38 @@ import { storageService } from "./async-storage.service.js";
 const STORAGE_KEY = "gig_db";
 
 export const gigService = {
-  query,
-  getById,
-  save,
-  remove,
-  // toggleInStock,
+    query,
+    getById,
+    save,
+    remove,
+    // toggleInStock,
 };
 
 async function query() {
-  // filterBy = { name: '', type: 'all', selectedLabels: 'all', sortBy: 'name' }
-  // return httpService.get('gig')
-  return storageService.query(STORAGE_KEY, filterBy);
+    // filterBy = { name: '', type: 'all', selectedLabels: 'all', sortBy: 'name' }
+    // return httpService.get('gig')
+    return storageService.query(STORAGE_KEY, filterBy);
 }
 async function getById(gigId) {
-  // return httpService.get(`gig/${gigId}`)
-  return storageService.get(STORAGE_KEY, gigId);
+    // return httpService.get(`gig/${gigId}`)
+    return storageService.get(STORAGE_KEY, gigId);
 }
 async function remove(gigId) {
-  // return httpService.delete(`gig/${gigId}`)
-  // return Promise.reject('Not now!');
-  return storageService.remove(STORAGE_KEY, gigId);
+    // return httpService.delete(`gig/${gigId}`)
+    // return Promise.reject('Not now!');
+    return storageService.remove(STORAGE_KEY, gigId);
 }
 async function save(gig) {
-  if (gig._id) {
-    // return httpService.put(`gig/${gig._id}`, gig)
-    return storageService.put(STORAGE_KEY, gig);
-  } else {
-    // return httpService.post('gig', gig)
-    // const user = userService.getLoggedinUser()
-    // console.log(user);
-    gig.owner = user;
-    return storageService.post(STORAGE_KEY, gig);
-  }
-}
-
-function _createGigs() {
-  const gigs = [
-    {
-      _id: "i103",
-      title: "I will teach you js",
-      price: 200,
-      owner: {
-        _id: "id",
-        fullname: "Dan Haimon",
-        imgUrl: "url",
-        level: "Level 2",
-        rate: 4.2,
-      },
-      daysToMake: 1,
-      description: "Teaching JavaScript",
-      imgUrls: ["url1", "url2"],
-      categories: ["Programming", "proffesional"],
-    },
-    {
-      _id: "i104",
-      title: "I will design your website",
-      price: 150,
-      owner: {
-        _id: "u101",
-        fullname: "Lee Chang",
-        imgUrl: "url",
-        level: "Level 1",
-        rate: 3,
-      },
-      daysToMake: 7,
-      description: "The best design for your website...",
-      imgUrls: ["url1", "url2"],
-      categories: ["Design", "Programming", "proffesional"],
-    },
-  ];
-  return gigs;
+    if (gig._id) {
+        // return httpService.put(`gig/${gig._id}`, gig)
+        return storageService.put(STORAGE_KEY, gig);
+    } else {
+        // return httpService.post('gig', gig)
+        // const user = userService.getLoggedinUser()
+        // console.log(user);
+        gig.owner = user;
+        return storageService.post(STORAGE_KEY, gig);
+    }
 }
 
 // async function toggleInStock(gigId) {
@@ -90,8 +52,8 @@ function _createGigs() {
 //     return data
 // }
 
-
-"logo-design",
+const categories = [
+    "logo-design",
     "wordpress",
     "voice-over",
     "video-explainer",
@@ -99,50 +61,82 @@ function _createGigs() {
     "programming",
     "translation",
     "illustration",
+]
 
-
-    function _createGigs() {
-        return [
-            {
-                "_id": "i101",
-                "title": "I will design your logo",
-                "price": 12,
-                "owner": {
-                    "_id": "u107",
-                    "fullname": "Dwayne Loony",
-                    "imgUrl": "assets/imgs/user107.jpg",
-                    "level": "Level 1",
-                    "rate": 4
-                },
-                "daysToMake": 3,
-                "description": "Make unique logo...",
-                "imgUrls": ["url1", "url2"],
-                "categories": [
-                    "logo-design",
-                    "illustration",
-                ]
+function _createGigs() {
+    return [
+        {
+            "_id": "i101",
+            "title": "I will design your logo",
+            "price": 12,
+            "owner": {
+                "_id": "u107",
+                "fullname": "Dwayne Loony",
+                "imgUrl": "assets/imgs/user107.jpg",
+                "level": "Level 1",
+                "rate": 4
             },
-            {
-                "_id": "i102",
-                "title": "I will design your illustration",
-                "price": 120,
-                "owner": {
-                    "_id": "u108",
-                    "fullname": "Baadur Lomidzey",
-                    "imgUrl": "assets/imgs/user108.jpg",
-                    "level": "Level 1",
-                    "rate": 4
-                },
-                "daysToMake": 3,
-                "description": "aquire my services for unique illustration...",
-                "imgUrls": ["url1", "url2"],
-                "categories": [
-                    "programming",
-                    "illustration",
-                ]
+            "daysToMake": 3,
+            "description": "Make unique logo...",
+            "imgUrls": ["url1", "url2"],
+            "categories": [
+                "logo-design",
+                "illustration",
+            ]
+        },
+        {
+            "_id": "i102",
+            "title": "I will design your illustration",
+            "price": 120,
+            "owner": {
+                "_id": "u108",
+                "fullname": "Baadur Lomidzey",
+                "imgUrl": "assets/imgs/user108.jpg",
+                "level": "Level 1",
+                "rate": 4
             },
-        ]
-    }
+            "daysToMake": 3,
+            "description": "aquire my services for unique illustration...",
+            "imgUrls": ["url1", "url2"],
+            "categories": [
+                "programming",
+                "illustration",
+            ]
+        },
+        {
+            "_id": "i103",
+            "title": "I will teach you js",
+            "price": 200,
+            "owner": {
+                "_id": "id",
+                "fullname": "Dan Haimon",
+                "imgUrl": "url",
+                "level": "Level 2",
+                "rate": 4.2,
+            },
+            "daysToMake": 1,
+            "description": "Teaching JavaScript",
+            "imgUrls": ["url1", "url2"],
+            "categories": ["Programming", "proffesional"],
+        },
+        {
+            "_id": "i104",
+            "title": "I will design your website",
+            "price": 150,
+            "owner": {
+                "_id": "u101",
+                "fullname": "Lee Chang",
+                "imgUrl": "url",
+                "level": "Level 1",
+                "rate": 3,
+            },
+            "daysToMake": 7,
+            "description": "The best design for your website...",
+            "imgUrls": ["url1", "url2"],
+            "categories": ["Design", "Programming", "proffesional"],
+        },
+    ]
+}
 
 // TEST DATA
 // storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))
