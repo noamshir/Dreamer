@@ -91,7 +91,7 @@ function _createUsers() {
             "sellerInfo": {
                 "level": "level 1",
                 "origin": "Israel",
-                "languages": ["eng", "heb"],
+                "languages": ["en", "heb"],
                 "skills": [
                     "logo-design",
                     "programming"
