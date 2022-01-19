@@ -2,6 +2,7 @@
 @import "./setup/variables";
 @import "./setup/functions";
 @import "./setup/mixins";
+@import "./setup/typography";
 
 // BASICS
 @import "./basics/base.scss";
@@ -9,5 +10,6 @@
 @import "./basics/layouts.scss";
 
 // CMP
+@import "./cmp/_app-footer.scss";
 
 // PAGES
