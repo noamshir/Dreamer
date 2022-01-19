@@ -90,6 +90,7 @@ function _createUsers() {
             "password": "BaadurLomidze",
             "sellerInfo": {
                 "level": "level 1",
+                "rate": 4,
                 "origin": "Israel",
                 "languages": ["en", "heb"],
                 "skills": [
@@ -106,9 +107,9 @@ function _createUsers() {
                         "txt": "Very kind and works fast",
                         "rate": 4,
                         "by": {
-                            "_id": "u102",
-                            "fullname": "user2",
-                            "imgUrl": "/img/img2.jpg"
+                            "_id": "u107",
+                            "fullname": "Dwayne Loony",
+                            "imgUrl": "assets/imgs/user/user107.jpg",
                         }
                     }
                 ]
@@ -131,6 +132,7 @@ function _createUsers() {
             "password": "secret",
             "sellerInfo": {
                 "level": "level 1",
+                "rate": 4,
                 "origin": "Israel",
                 "languages": ["eng", "heb"],
                 "skills": [
@@ -144,9 +146,9 @@ function _createUsers() {
                     "txt": "Very kind and works fast",
                     "rate": 4,
                     "by": {
-                        "_id": "u102",
-                        "fullname": "shay gilceous",
-                        "imgUrl": "assets/imgs/user102.jpg"
+                        "_id": "u108",
+                        "fullname": "Baadur Lomidze",
+                        "imgUrl": "assets/imgs/user/user108.jpg",
                     }
                 }
             ],
