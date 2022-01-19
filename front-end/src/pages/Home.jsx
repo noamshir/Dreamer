@@ -1,9 +1,12 @@
-
+import { AppHeader } from '../cmp/AppHeader.jsx'
+import { MainContent } from "../cmp/MainContent.jsx"
 export function Home() {
-    
+
     return (
         <section className="home-page">
-            <h1>Hello Fiverr</h1>
+            <AppHeader />
+            <MainContent />
+        //AppFotter
         </section>
     )
 }
