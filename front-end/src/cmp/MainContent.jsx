@@ -1,7 +1,7 @@
 import { AppHero } from '../cmp/AppHero.jsx'
 
 export function MainContent() {
-     return <section className="main-content">
+     return <section className="homepage">
 
           <div className="sidebar"></div>
           <div className="homepage">
