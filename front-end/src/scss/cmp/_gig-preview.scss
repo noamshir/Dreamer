@@ -1,15 +1,29 @@
 .gig-preview {
+  border: 1px solid #efeff0;
+  &:hover {
+    .gig-title {
+      color: $clr1;
+    }
+  }
   .rate-wrapper {
     padding: 10px 0;
   }
   h5 {
     margin: 0;
   }
+
   .gig-rating {
     display: flex;
     align-items: center;
     height: 15px;
-    color: rgb(255, 217, 0);
+    color: #ffbe5b;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .review-number {
+    color: #b5b6ba;
+    font-weight: 400;
+    margin-inline-start: 2px;
   }
   .star {
     width: 15px;
@@ -22,6 +36,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    padding-top: 10px ;
     .owner-level-name {
       display: flex;
       flex-direction: column;
@@ -29,6 +44,12 @@
         color: #222325;
         font-weight: 600;
         font-family: work-sans, sans-serif, serif;
+      }
+      .owner-level{
+        font-family: work-sans, sans-serif, serif;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 1.5;
       }
     }
     .owner-pic {
@@ -41,9 +62,59 @@
   }
   .gig-img {
     width: 100%;
+    height: 197px;
+    cursor: pointer;
     img {
       width: 100%;
+      height: 100%;
       object-fit: cover;
+    }
+  }
+
+  .gig-title {
+    margin: 0;
+    font-size: 18px;
+    font-family: work-sans;
+    text-align: left;
+    color: #222325;
+    padding-top: 15px;
+    padding-bottom: 20px;
+    cursor: pointer;
+    transition: 0.3s all;
+  }
+
+  .price-like-container {
+    border-top: 1px solid #efeff0;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    .like{
+      transition: color .3s;
+    }
+
+    .like:hover {
+      cursor: pointer;
+      color:rgba(218,95,95,.829);
+    }
+    ul {
+      cursor: pointer;
+    }
+
+    & ul li:first-child {
+      text-transform: uppercase;
+      color: #7a7d85;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 2px 0 0;
+    }
+    & ul li:not(:first-child) {
+      font-size: 18px;
+      line-height: 20px;
+      color: #404145;
     }
   }
 }

@@ -1,10 +1,11 @@
 import StarIcon from '@mui/icons-material/Star';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useState } from 'react';
 
 
 
 export function GigPreview({ gig }) {
-
-    console.log('gig', gig.imgUrls[0]);
+    const [likeMsgClass, setClass] = useState(false)
 
     function getUserLevel() {
         if (gig.owner.rate === 1 || gig.owner.rate < 3) {
@@ -27,14 +28,28 @@ export function GigPreview({ gig }) {
                     <div className='owner-pic' style={{ backgroundImage: `url(${gig.owner.imgUrl})` }}></div>
                     <div className="owner-level-name">
                         <h5 className='owner-name'>{gig.owner.fullname}</h5>
-                        <h5>{getUserLevel()}</h5>
+                        <h5 className='owner-level'>{getUserLevel()}</h5>
                     </div>
                 </div>
-                <p>{gig.title}</p>
+                <p className='gig-title'>{gig.title}</p>
                 <div className='rate-wrapper'>
-                    <span className='gig-rating'><StarIcon /> {gig.owner.rate} <span>(+1k)</span></span>
+                    <span className='gig-rating'><StarIcon /> {gig.owner.rate}<span className='review-number'>(1k+)</span></span>
                 </div>
+                <div className="price-like-container">
+
+                    <span className='popup like' onMouseLeave={() => {
+                        setClass(false)
+                    }} onMouseEnter={() => {
+                        setClass(true)
+                    }}><FavoriteIcon />
+                        <span className={likeMsgClass ? 'popuptext show' : 'popuptext'}> add to favorite</span>
+                </span>
+                <ul className='clean-list'>
+                    <li className='starting-price'>Starting At</li>
+                    <li>{gig.price.toLocaleString("ILS", { style: "currency", currency: "ILS" })}</li>
+                </ul>
             </div>
-        </section>
+        </div>
+        </section >
     )
 }
