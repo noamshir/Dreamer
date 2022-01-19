@@ -16,7 +16,7 @@ export function AppHero(props) {
                     <span className='seller-name'>Mark, <span className='seller-skill'>Illustrator</span></span>
                 </div>
             </div>
-            <div className="hero-content-container">
+            <div className="hero-content-container max-width-container">
                 <div className='hero-content'>
                     <h1>Find the perfect <i>freelance</i> services for your business</h1>
                     <SearchBar placeholder='Try "designing business logo"' />
