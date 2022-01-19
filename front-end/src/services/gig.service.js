@@ -15,6 +15,7 @@ export const gigService = {
     getById,
     save,
     remove,
+    createGigs
     // toggleInStock,
 };
 
@@ -52,7 +53,7 @@ async function save(gig) {
 //     return data
 // }
 
-function _createGigs() {
+function createGigs() {
     return [
         {
             "_id": "g101",
@@ -61,13 +62,13 @@ function _createGigs() {
             "owner": {
                 "_id": "u107",
                 "fullname": "Dwayne Loony",
-                "imgUrl": "assets/imgs/user/user107.jpg",
+                "imgUrl": "https://media.istockphoto.com/photos/portrait-of-handsome-smiling-young-man-with-crossed-arms-picture-id1200677760?k=20&m=1200677760&s=612x612&w=0&h=JCqytPoHb6bQqU9bq6gsWT2EX1G5chlW5aNK81Kh4Lg=",
                 "level": "Level 1",
                 "rate": 4
             },
             "daysToMake": 3,
             "description": "Make unique logo...",
-            "imgUrls": ["assets/imgs/gig/g101-1.jpeg", "assets/imgs/gig/g101-2.jpeg"],
+            "imgUrls": ["https://images.pexels.com/photos/2235130/pexels-photo-2235130.jpeg", "https://images.pexels.com/photos/1162361/pexels-photo-1162361.jpeg"],
             "categories": [
                 "logo-design",
                 "illustration",
@@ -80,13 +81,13 @@ function _createGigs() {
             "owner": {
                 "_id": "u107",
                 "fullname": "Dwayne Loony",
-                "imgUrl": "assets/imgs/user/user107.jpg",
+                "imgUrl": "https://media.istockphoto.com/photos/portrait-of-handsome-smiling-young-man-with-crossed-arms-picture-id1200677760?k=20&m=1200677760&s=612x612&w=0&h=JCqytPoHb6bQqU9bq6gsWT2EX1G5chlW5aNK81Kh4Lg=",
                 "level": "Level 1",
                 "rate": 4
             },
             "daysToMake": 3,
             "description": "aquire my services for unique illustration...",
-            "imgUrls": ["assets/imgs/gig/g102-1.jpeg", "assets/imgs/gig/g102-2.jpeg"],
+            "imgUrls": ["https://images.pexels.com/photos/3631430/pexels-photo-3631430.jpeg", "https://images.pexels.com/photos/1569002/pexels-photo-1569002.jpeg"],
             "categories": [
                 "illustration",
             ]
@@ -98,13 +99,13 @@ function _createGigs() {
             "owner": {
                 "_id": "u108",
                 "fullname": "Baadur Lomidze",
-                "imgUrl": "assets/imgs/user/user108.jpg",
+                "imgUrl": "https://media.istockphoto.com/photos/smiling-man-outdoors-in-the-city-picture-id1179420343?k=20&m=1179420343&s=612x612&w=0&h=G2UGMVSzAXGAQs3pFZpvWlHNRAzwPIWIVtSOxZHsEuc=",
                 "level": "Level 1",
                 "rate": 4,
             },
             "daysToMake": 1,
             "description": "Teaching JavaScript",
-            "imgUrls": ["assets/imgs/gig/g103-1.jpeg", "assets/imgs/gig/g103-2.jpeg"],
+            "imgUrls": ["https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg", "https://images.pexels.com/photos/177598/pexels-photo-177598.jpeg"],
             "categories": ["Programming"],
         },
         {
@@ -114,17 +115,16 @@ function _createGigs() {
             "owner": {
                 "_id": "u108",
                 "fullname": "Baadur Lomidze",
-                "imgUrl": "assets/imgs/user/user108.jpg",
+                "imgUrl": "https://media.istockphoto.com/photos/smiling-man-outdoors-in-the-city-picture-id1179420343?k=20&m=1179420343&s=612x612&w=0&h=G2UGMVSzAXGAQs3pFZpvWlHNRAzwPIWIVtSOxZHsEuc=",
                 "level": "Level 1",
                 "rate": 4,
             },
             "daysToMake": 7,
             "description": "The best design for your website...",
-            "imgUrls": ["assets/imgs/gig/g104-1.jpeg", "assets/imgs/gig/g104-2.jpeg"],
+            "imgUrls": ["https://images.pexels.com/photos/4348404/pexels-photo-4348404.jpeg", "https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg"],
             "categories": ["Programming"],
         },
     ]
 }
-
 // TEST DATA
 // storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))
