@@ -91,14 +91,13 @@ function _createUsers() {
             "sellerInfo": {
                 "rate": 4,
                 "origin": "Israel",
-                "languages": ["en", "heb"],
+                "languages": ["en", "he"],
                 "skills": [
                     "logo-design",
                     "programming"
                 ]
             },
-            //should we seperate the reviews to a different json
-            //and include here only a reviews id array???????
+
             "reviews":
                 [
                     {

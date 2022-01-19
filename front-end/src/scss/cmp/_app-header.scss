@@ -37,6 +37,8 @@
       .dreamer-logo {
         align-self: auto;
         color: #fff;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 27px;
         &::after {
           content: ".";
           color: #1dbf73;
@@ -48,7 +50,6 @@
 
 .dreamer-nav {
   justify-self: flex-end;
-  width: 30%;
   color: #fff;
   ul {
     justify-content: space-between;
@@ -56,10 +57,22 @@
     width: 100%;
     margin: 0;
     -webkit-box-align: center;
+    font-weight: 600;
     li {
+      padding: 0 10px;
       margin: 0;
       list-style: none;
       list-style-image: none;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 24px;
     }
   }
+}
+
+.display-from-size-medium{
+  display: none;
+}
+
+.display-from-size-large{
+  display: none;
 }

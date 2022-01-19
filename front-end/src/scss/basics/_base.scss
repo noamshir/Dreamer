@@ -1,4 +1,4 @@
-*{
+* {
   box-sizing: border-box;
 }
 body {
@@ -6,6 +6,7 @@ body {
   padding: 0;
   color: #62646a;
   position: relative;
+  background-color: green;
 }
 
 #root {
@@ -21,4 +22,10 @@ body {
   }
 }
 
+.equal-padding {
+  padding: 0 $layoutPadding;
+}
 
+.max-width-container{
+  width: padded-break-narrow;
+}
