@@ -1,10 +1,13 @@
-// Basics
+// SETUP
+@import "./setup/variables";
+@import "./setup/functions";
+@import "./setup/mixins";
+
+// BASICS
 @import "./basics/base.scss";
 @import "./basics/helpers.scss";
 @import "./basics/layouts.scss";
 
 // CMP
 
-// Pages
-
-// Setup
+// PAGES
