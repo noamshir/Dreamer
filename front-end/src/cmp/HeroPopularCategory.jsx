@@ -9,9 +9,9 @@ function _HeroPopularCategory({ categories }) {
     return (
         <ul className="clean-list hero-popular-category">
             Popular:
-            {popularCategories.map(category => {
+            {popularCategories.map((category, idx) => {
                 return (
-                    <li>
+                    <li key={idx}>
                         <button className="btn-popular-category">{category}</button>
                     </li>
                 )

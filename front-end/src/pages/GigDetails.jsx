@@ -3,6 +3,7 @@ import React from 'react'
 
 import { onSetFilterBy } from '../store/gig.action'
 import { DetailsHeader } from '../cmp/Details/DetailsHeader'
+import { OrderModal } from '../cmp/Details/OrderModal'
 import { gigService } from '../services/gig.service'
 
 
@@ -27,9 +28,12 @@ class _GigDetails extends React.Component {
         const { gig } = this.state
         if (!gig) return <React.Fragment></React.Fragment>
         return (
-            <section className='gig-details'>
-                <DetailsHeader gig={gig} />
-            </section>
+            <React.Fragment>
+                <OrderModal gig={gig} />
+                <section className='gig-details'>
+                    <DetailsHeader gig={gig} />
+                </section>
+            </React.Fragment>
         )
 
     }
