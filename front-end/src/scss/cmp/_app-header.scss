@@ -2,7 +2,12 @@
   &.sticky {
     position: fixed;
     width: 100%;
-    z-index: 10;
+    z-index: 9;
+  }
+  &.not-sticky {
+    width: 100%;
+    z-index: 9;
+    border-bottom: 1px solid #e4e5e7;
   }
   .dreamer-header {
     width: 100%;
@@ -30,7 +35,7 @@
         align-content: center;
         flex-wrap: nowrap;
       }
-      button {
+      .btn-nav {
         &.home-header-color {
           @include for-normal-header-layout {
             color: #fff;
@@ -74,6 +79,7 @@
   justify-self: flex-end;
   display: flex;
   color: #7a7d85;
+  font-size: 1.1rem;
   @include for-normal-header-layout {
     &.home-header-color {
       color: #fff;
@@ -105,6 +111,26 @@
         }
         &.home-header-color {
           &:hover {
+            color: #fff;
+          }
+        }
+      }
+      button {
+        font-size: 1.1rem;
+        transition: color 0.2s;
+        font-weight: 400;
+        cursor: pointer;
+        background-color: inherit;
+        border: 0;
+        display: flex;
+        align-items: center;
+        color: $clr2;
+        line-height: 24px;
+        &:hover {
+          color: $clr1;
+        }
+        @include for-normal-header-layout {
+          &.home-header-color {
             color: #fff;
           }
         }
@@ -152,6 +178,16 @@
   @include for-normal-header-layout {
     display: block;
     visibility: hidden;
+  }
+  &.show-bar {
+    display: none;
+    .display-for-header {
+      display: none !important;
+    }
+    @include for-normal-header-layout {
+      display: block;
+      visibility: visible;
+    }
   }
 }
 

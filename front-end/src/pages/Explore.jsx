@@ -4,9 +4,7 @@ import { Route, Link } from 'react-router-dom'
 import { Button } from "@mui/material";
 import { loadGigs } from '../store/gig.action'
 import { GigList } from "../cmp/GigList";
-import { setHome, setExplore } from '../store/scss.action.js';
-
-// import { loadToys, remove, toggleType } from '../store/toy.action'
+import { setHome, setExplore, setDetails } from '../store/scss.action.js';
 
 
 class _Explore extends React.Component {
@@ -20,6 +18,7 @@ class _Explore extends React.Component {
         if (this.props.isExplore) return;
         this.props.setExplore(true);
         this.props.setHome(false);
+        this.props.setDetails(false)
     }
 
     onGoToDetails = (gigId) => {
@@ -59,7 +58,8 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
     loadGigs,
     setExplore,
-    setHome
+    setHome,
+    setDetails
 };
 
 
