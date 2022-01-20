@@ -15,8 +15,8 @@ export const gigService = {
     getById,
     save,
     remove,
-    createGigs
-    // toggleInStock,
+    createGigs,
+    toggleLike,
 };
 
 async function query(filterBy) {
@@ -46,12 +46,22 @@ async function save(gig) {
     }
 }
 
-// async function toggleInStock(gigId) {
-//     const gig = await httpService.get(`gig/${gigId}`)
-//     gig.inStock = !gig.inStock
-//     const data = await save(gig)
-//     return data
-// }
+async function toggleLike(gigId, user) {
+    // const gig = await httpService.get(`gig/${gigId}`)
+    const gig = await getById(gigId)
+    if (user) {
+        const miniUser = {
+            fullname: user.fullname,
+            imgUrl: user.imgUrl,
+            _id: user._id
+        }
+        gig.likedByUser = [...gig.likedByUser, miniUser]
+    } else {
+        storageService.saveGuestGigs(gig)
+    }
+    const data = await save(gig)
+    return data
+}
 
 function createGigs() {
     return [

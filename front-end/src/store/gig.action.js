@@ -39,10 +39,10 @@ export function remove(gigId) {
     }
 }
 
-// export function toggleType(gigId) {
-//     return async (dispatch) => {
-//         const gig = await gigService.toggleInStock(gigId)
-//         dispatch({ type: 'UPDATE_GIG', gig })
+export function setLikedGig(gig, user) {
+    return async (dispatch) => {
+        const savedGig = await gigService.toggleLike(gig._id, user)
+        dispatch({ type: 'UPDATE_GIG', gig: savedGig })
 
-//     }
-// }
+    }
+}

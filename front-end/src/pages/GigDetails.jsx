@@ -1,26 +1,50 @@
 import { connect } from 'react-redux'
-import { useState } from 'react'
+import React from 'react'
+
 import { onSetFilterBy } from '../store/gig.action'
+import { DetailsHeader } from '../cmp/Details/DetailsHeader'
+import { gigService } from '../services/gig.service'
 
-function _GigDetails(props) {
 
-    return (
-        <div>Details</div>
-    )
+class _GigDetails extends React.Component {
+    state = {
+        gig: null
+    }
+
+    async componentDidMount() {
+        const { gigId } = this.props.match.params
+        this.loadGig(gigId)
+    }
+
+    loadGig = async (gigId) => {
+        const gig = await gigService.getById(gigId)
+        // console.log('gig in details', gig);
+        this.setState(prevState => ({ ...prevState, gig }))
+    }
+
+
+    render() {
+        const { gig } = this.state
+        if (!gig) return <React.Fragment></React.Fragment>
+        return (
+            <section className='gig-details'>
+                <DetailsHeader gig={gig} />
+            </section>
+        )
+
+    }
 }
 
 
 function mapStateToProps(state) {
-    return {}
+    return {
+        gigs: state.gigModule.gigs,
+        user: state.userModule.user
+    }
 }
 
 const mapDispatchToProps = {
-    onSetFilterBy
+    onSetFilterBy,
 }
 
 export const GigDetails = connect(mapStateToProps, mapDispatchToProps)(_GigDetails)
-
-// loadToy() {
-//     const toyId = this.props.match.params.toyId
-//     return toyService.getById(toyId)
-// }

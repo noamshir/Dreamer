@@ -90,6 +90,10 @@
     padding: 10px;
     .like {
       transition: color 0.3s;
+
+      &.active {
+        color: rgba(218, 95, 95, 0.829);
+      }
     }
 
     .like:hover {

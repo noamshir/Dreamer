@@ -1,0 +1,39 @@
+.gig-details {
+  font-family: work-sans;
+  h1 {
+    color: #404145;
+    padding-top: 10px;
+    padding-bottom: 16px;
+  }
+
+  h1,
+  h5,
+  h3,
+  h2,
+  h4,
+  h6 {
+    margin: 0;
+  }
+  .owner-info {
+    .owner-img {
+      background-size: cover;
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+    }
+    .owner-name {
+      color: #404145;
+    }
+    .owner-level{
+        color: #62646a;
+        font-weight: 400;
+    }
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .star.active{
+      color: yellow;
+  }
+}
