@@ -30,7 +30,7 @@ function _SearchBar({ placeholder }) {
                 name='txt'
                 onChange={handleChange}
             />
-            <button className='search-btn display-for-header'>Search</button>
+            <button className='btn search-btn display-for-header'>Search</button>
         </form>
     )
 }
