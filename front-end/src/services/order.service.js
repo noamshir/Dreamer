@@ -49,8 +49,17 @@ function createOrders() {
         {
             "_id": "o101",
             "createdAt": 9898989,
-            // "buyer": { miniUser },
-            // "seller": { miniUser },
+            "buyer": {
+                "userId": "u107",
+                "fullname": "Dwayne Loony",
+                "imgUrl": "https://media.istockphoto.com/photos/portrait-of-handsome-smiling-young-man-with-crossed-arms-picture-id1200677760?k=20&m=1200677760&s=612x612&w=0&h=JCqytPoHb6bQqU9bq6gsWT2EX1G5chlW5aNK81Kh4Lg="
+            },
+            "seller": {
+                "_id": "u108",
+                "fullname": "Baadur Lomidze",
+                "imgUrl": "https://media.istockphoto.com/photos/smiling-man-outdoors-in-the-city-picture-id1179420343?k=20&m=1179420343&s=612x612&w=0&h=G2UGMVSzAXGAQs3pFZpvWlHNRAzwPIWIVtSOxZHsEuc=",
+                "rate": 5,
+            },
             "order": {
                 "_id": "g101",
                 "name": "I will design your logo",

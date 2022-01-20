@@ -14,7 +14,8 @@ export const storageService = {
 var guestGigs = JSON.parse(localStorage.getItem('guestGigs_db')) || []
 
 function query(entityType, filterBy, delay = 300) {
-    orderService.createOrders();
+
+    // _save("order_db", orderService.createOrders())
     var entities = JSON.parse(localStorage.getItem(entityType)) || gigService.createGigs()
     if (entities) _save(entityType, entities)
 
