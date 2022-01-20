@@ -4,10 +4,39 @@
     padding-bottom: 25px;
   }
 
+  .seller-stats{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+    border: 1px solid #dadbdd;
+    padding: 24px;
+
+    .seller-desc{
+      padding-top: 15px;
+      border-top: 1px solid #dadbdd;
+    }
+
+    .card{
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding-bottom: 20px;
+      & > *:first-child{
+        color: #82858c;
+        font-weight: 500;
+        line-height: 1.6875em;
+      }
+    }
+  }
+
   .seller-info {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    line-height: 130%;
+    padding-bottom: 24px;
     .owner-img {
       height: 110px;
       width: 110px;

@@ -2,6 +2,14 @@
   font-family: work-sans;
   display: flex;
   align-items: flex-start;
+  & > *:first-child{
+    margin-inline-end: 100px;
+    margin-inline-start: 40px;
+  }
+  & > *:last-child{
+    margin-inline-start: 100px;
+    margin-inline-end: 40px;
+  }
   h1,
   h5,
   h3,
