@@ -6,7 +6,10 @@ export const storageService = {
     post,
     put,
     remove,
+    saveGuestGigs,
+    isLikedByGuest
 }
+var guestGigs = JSON.parse(localStorage.getItem('guestGigs_db')) || []
 
 function query(entityType, filterBy, delay = 300) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || gigService.createGigs()
@@ -119,4 +122,16 @@ function _makeId(length = 5) {
         text += possible.charAt(Math.floor(Math.random() * possible.length))
     }
     return text
+}
+
+
+function saveGuestGigs(gig) {
+    const gigIdx = guestGigs.findIndex(guestGig => guestGig._id === gig._id)
+    if (gigIdx !== -1) guestGigs.splice(gigIdx, 1)
+    else guestGigs = [...guestGigs, gig]
+    localStorage.setItem('guestGigs_db', JSON.stringify(guestGigs))
+}
+
+function isLikedByGuest(gigId) {
+    return guestGigs.some(guestGig => guestGig._id === gigId)
 }

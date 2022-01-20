@@ -2,10 +2,10 @@ import React from "react";
 import { connect } from 'react-redux'
 import { Route, Link } from 'react-router-dom'
 import { Button } from "@mui/material";
-import { loadGigs } from '../store/gig.action'
 
 
 import { GigList } from "../cmp/GigList";
+import { loadGigs } from '../store/gig.action'
 
 // import { loadToys, remove, toggleType } from '../store/toy.action'
 
@@ -16,6 +16,10 @@ class _Explore extends React.Component {
         this.props.loadGigs()
     }
 
+    onGoToDetails = (gigId) => {
+        console.log(gigId);
+        this.props.history.push(`/explore/${gigId}`)
+    }
 
     render() {
         const { gigs } = this.props
@@ -27,7 +31,7 @@ class _Explore extends React.Component {
                         talent at your fingertips
                     </p>
                 </div>
-                <GigList gigs={gigs}  />
+                <GigList gigs={gigs}  onGoToDetails={this.onGoToDetails}/>
             </section>
         )
     }

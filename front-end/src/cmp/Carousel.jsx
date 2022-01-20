@@ -4,11 +4,12 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 
-export function Carousel({ children }) {
+export function Carousel({ gig, onGoToDetails, children }) {
     const [activeIndex, setActiveIndex] = useState(0);
-    const [paused, setPaused] = useState(false);
+    const [isArrows, setArrows] = useState(false);
 
-    const updateIndex = (newIndex) => {
+    const updateIndex = (newIndex, ev) => {
+        ev.stopPropagation()
         if (newIndex < 0) {
             newIndex = React.Children.count(children) - 1;
         } else if (newIndex >= React.Children.count(children)) {
@@ -27,8 +28,11 @@ export function Carousel({ children }) {
         <div
             {...handlers}
             className="carousel"
-            onMouseEnter={() => setPaused(true)}
-            onMouseLeave={() => setPaused(false)}
+            onMouseEnter={() => setArrows(true)}
+            onMouseLeave={() => setArrows(false)}
+            onClick={() => {
+                onGoToDetails(gig._id)
+            }}
         >
             <div
                 className="inner"
@@ -43,25 +47,25 @@ export function Carousel({ children }) {
                     return (
                         <button
                             className={`${index === activeIndex ? "active" : ""}`}
-                            onClick={() => {
-                                updateIndex(index);
+                            onClick={(ev) => {
+                                updateIndex(index, ev);
                             }}
                         >
                         </button>
                     );
                 })}
             </div>
-            <div className="indicators">
+            <div className={isArrows ? 'indicators show' : 'indicators'}>
                 <span
-                    onClick={() => {
-                        updateIndex(activeIndex - 1);
+                    onClick={(ev) => {
+                        updateIndex(activeIndex - 1, ev);
                     }}
                 >
                     <ArrowBackIosNewIcon />
                 </span>
                 <span
-                    onClick={() => {
-                        updateIndex(activeIndex + 1);
+                    onClick={(ev) => {
+                        updateIndex(activeIndex + 1, ev);
                     }}
                 >
                     <ArrowForwardIosIcon />
