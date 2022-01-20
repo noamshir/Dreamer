@@ -1,6 +1,7 @@
 const initialState = {
   isHome: true,
   isExplore: false,
+  isDetails: false,
 };
 
 export function scssReducer(state = initialState, action) {
@@ -12,6 +13,9 @@ export function scssReducer(state = initialState, action) {
 
     case "SetExplore":
       newState = { ...state, isExplore: action.isExplore };
+      break;
+    case "SetDetails":
+      newState = { ...state, isDetails: action.isDetails };
       break;
   }
   return newState;
