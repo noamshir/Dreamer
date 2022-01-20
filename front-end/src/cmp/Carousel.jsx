@@ -4,7 +4,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 
-export function Carousel({ gig, onGoToDetails, children }) {
+export function Carousel({ gig, onGoToDetails, isDetails, children }) {
     const [activeIndex, setActiveIndex] = useState(0);
     const [isArrows, setArrows] = useState(false);
 
@@ -23,7 +23,7 @@ export function Carousel({ gig, onGoToDetails, children }) {
         onSwipedLeft: () => updateIndex(activeIndex + 1),
         onSwipedRight: () => updateIndex(activeIndex - 1)
     });
-
+    console.log(isDetails)
     return (
         <div
             {...handlers}
@@ -31,7 +31,7 @@ export function Carousel({ gig, onGoToDetails, children }) {
             onMouseEnter={() => setArrows(true)}
             onMouseLeave={() => setArrows(false)}
             onClick={() => {
-                onGoToDetails(gig._id)
+                if (onGoToDetails) onGoToDetails(gig._id)
             }}
         >
             <div
@@ -46,11 +46,13 @@ export function Carousel({ gig, onGoToDetails, children }) {
                 {React.Children.map(children, (child, index) => {
                     return (
                         <button
+                            style={{backgroundImage: isDetails ? `url(${child.props.imgUrl})` : '' }}
                             className={`${index === activeIndex ? "active" : ""}`}
                             onClick={(ev) => {
                                 updateIndex(index, ev);
                             }}
                         >
+
                         </button>
                     );
                 })}

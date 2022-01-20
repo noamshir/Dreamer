@@ -23,7 +23,6 @@ class _Explore extends React.Component {
     }
 
     onGoToDetails = (gigId) => {
-        console.log(gigId);
         this.props.history.push(`/explore/${gigId}`)
     }
 

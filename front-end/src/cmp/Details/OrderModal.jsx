@@ -12,7 +12,7 @@ export function OrderModal({ gig }) {
 
 
     return (
-        <div>
+        <div className='order-modal'>
             <h3 className='order-title'>{title}</h3>
             <h4 className='order-Subtitle'>{gig.title}</h4>
             <h3 className='order-price'>${gig.price}</h3>

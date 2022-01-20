@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 function _AppHeader({ isHome, isExplore }) {
     var headerTransparent = "";
     var color = "";
-    console.log("explore", isExplore)
     if (isHome) {
         headerTransparent = "header-transparent";
         color = "home-header-color"

@@ -1,18 +1,7 @@
 import React from 'react'
 import { UserStarRate } from './UserStarRate'
 
-export function DetailsHeader({ gig }) {
-
-    function getUserLevel() {
-        if (gig.owner.rate === 1 || gig.owner.rate < 3) {
-            return gig.owner.level = 'New Seller'
-        } else if (gig.owner.rate < 4) {
-            return gig.owner.level = 'Level 1'
-        } else if (gig.owner.rate < 4.5) {
-            return gig.owner.level = 'Level 2'
-        }
-        return gig.owner.level = 'Top Rated Seller'
-    }
+export function DetailsHeader({ gig, getUserLevel, owner }) {
 
     return (
         <div className='details-header'>
@@ -22,7 +11,7 @@ export function DetailsHeader({ gig }) {
                 <h5 className='owner-name'>{gig.owner.fullname}</h5>
                 <h5 className='owner-level'>{getUserLevel()}</h5>
                 <span>|</span>
-                <UserStarRate owner={gig.owner} />
+                <UserStarRate gig={gig} owner={owner} />
             </div>
         </div>
     )
