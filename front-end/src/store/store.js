@@ -3,13 +3,13 @@ import thunk from "redux-thunk";
 
 import { userReducer } from "./user.reducer.js";
 import { gigReducer } from "./gig.reducer.js";
-
+import { scssReducer } from "./scss.reducer.js";
 const rootReducer = combineReducers({
   userModule: userReducer,
   gigModule: gigReducer,
+  scssModule: scssReducer,
 });
 
-// export default createStore(rootReducer, applyMiddleware(thunk));
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export const store = createStore(
