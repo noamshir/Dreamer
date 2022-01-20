@@ -2,9 +2,9 @@ import Axios from 'axios'
 import { storageService } from './async-storage.service.js'
 import { httpService } from './http.service.js'
 
-var axios = Axios.create({
-    withCredentials: true
-})
+// var axios = Axios.create({
+//     withCredentials: true
+// })
 
 const STORAGE_KEY = 'user_db'
 const STORAGE_KEY_LOGGEDIN = 'loggedinUser'
@@ -16,7 +16,8 @@ export const userService = {
     getLoggedinUser,
     update,
     getUsers,
-    getById
+    getById,
+    createUsers,
 }
 window.us = userService
 
@@ -69,9 +70,15 @@ async function getUsers() {
 }
 
 async function getById(userId) {
-    const user = await httpService.get(`user/${userId}`)
+    // const user = await httpService.get(`user/${userId}`)
+    // return user
+    const user = await storageService.get(STORAGE_KEY, userId)
     return user
 }
+
+// async function loadUsers() {
+//     storageService.query(STORAGE_KEY)
+// }
 
 // Test Data
 // userService.signup({username: 'muki', password: 'muki1', fullname: 'Muki Noya', score: 22})
@@ -79,7 +86,7 @@ async function getById(userId) {
 
 
 
-function _createUsers() {
+function createUsers() {
     return [
         {
             "_id": "u108",

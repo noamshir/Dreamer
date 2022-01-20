@@ -1,26 +1,20 @@
-.details-header{
+.details-header {
+  position: relative;
+  z-index: 10;
   h1 {
     color: #404145;
     padding-top: 10px;
     padding-bottom: 16px;
   }
   .owner-info {
-    font-size: 16px;
-    .owner-img {
-      background-size: cover;
-      height: 40px;
-      width: 40px;
-      border-radius: 50%;
-    }
-    .owner-name {
-      color: #404145;
-    }
-    .owner-level {
-      color: #62646a;
-      font-weight: 400;
-    }
     display: flex;
     align-items: center;
-    gap: 10px;
+    flex-wrap: wrap;
+    gap: 7px;
+    font-size: 16px;
+    .owner-img {
+      height: 40px;
+      width: 40px;
+    }
   }
 }

@@ -4,31 +4,58 @@ import React from 'react'
 import { onSetFilterBy } from '../store/gig.action'
 import { DetailsHeader } from '../cmp/Details/DetailsHeader'
 import { gigService } from '../services/gig.service'
+import { Carousel } from '../cmp/Carousel'
+import { CarouselItem } from '../cmp/CarouselItem'
+import { AboutSeller } from '../cmp/Details/AboutSeller'
+import { userService } from '../services/user.service'
 
 
 class _GigDetails extends React.Component {
     state = {
-        gig: null
+        gig: null,
+        owner: null
     }
 
     async componentDidMount() {
         const { gigId } = this.props.match.params
-        this.loadGig(gigId)
+        await this.loadGig(gigId)
+        this.loadOwner(this.state.gig.owner._id)
     }
 
     loadGig = async (gigId) => {
         const gig = await gigService.getById(gigId)
-        // console.log('gig in details', gig);
         this.setState(prevState => ({ ...prevState, gig }))
+    }
+    loadOwner = async (userId) => {
+        const owner = await userService.getById(userId)
+        this.setState(prevState => ({ ...prevState, owner }))
+    }
+
+    getUserLevel = () => {
+        const { gig } = this.state
+        if (gig.owner.rate === 1 || gig.owner.rate < 3) {
+            return gig.owner.level = 'New Seller'
+        } else if (gig.owner.rate < 4) {
+            return gig.owner.level = 'Level 1'
+        } else if (gig.owner.rate < 4.5) {
+            return gig.owner.level = 'Level 2'
+        }
+        return gig.owner.level = 'Top Rated Seller'
     }
 
 
     render() {
-        const { gig } = this.state
+        const { gig, owner } = this.state
         if (!gig) return <React.Fragment></React.Fragment>
         return (
             <section className='gig-details'>
-                <DetailsHeader gig={gig} />
+                <div className="details-main-container">
+                    <DetailsHeader gig={gig} getUserLevel={this.getUserLevel} owner={owner}/>
+                    <Carousel gig={gig} isDetails={true}>
+                        {gig.imgUrls.map((imgUrl, idx) => <CarouselItem key={idx} imgUrl={imgUrl}></CarouselItem>)}
+                    </Carousel>
+                    <AboutSeller gig={gig} getUserLevel={this.getUserLevel} owner={owner} />
+                </div>
             </section>
         )
 

@@ -119,4 +119,69 @@
       color: #404145;
     }
   }
+
+  .btn-by-idx {
+    justify-content: center;
+    button {
+      border-radius: 50%;
+      height: 10px;
+      width: 10px;
+      padding: 0 2px;
+      border: 1px solid rgb(99, 98, 98);
+      background-color: rgb(241, 238, 238);
+      transition: transform 0.3s;
+    }
+  }
+
+  .indicators {
+    top: 50%;
+    justify-content: space-between;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: 0.4s all;
+
+    &.show {
+      opacity: 1;
+    }
+  }
+  .indicators > span {
+    background-color: #363535;
+    color: white;
+    svg {
+      font-size: 18px;
+    }
+    &:first-child {
+      padding: 2px 5px 2px 2px;
+      border-end-end-radius: 50%;
+      border-top-right-radius: 50%;
+    }
+    &:last-child {
+      padding: 2px 2px 2px 5px;
+      border-top-left-radius: 50%;
+      border-bottom-left-radius: 50%;
+    }
+  }
+
+  .carousel-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 197px;
+    background-size: cover;
+    color: #fff;
+  }
+  button.active {
+    background-color: rgb(58, 59, 58);
+    transform: scale(1.5);
+    color: #fff;
+  }
+
+  .btn-by-idx {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
 }
