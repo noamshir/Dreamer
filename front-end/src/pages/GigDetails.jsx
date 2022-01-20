@@ -29,9 +29,9 @@ class _GigDetails extends React.Component {
         if (!gig) return <React.Fragment></React.Fragment>
         return (
             <React.Fragment>
-                <OrderModal gig={gig} />
                 <section className='gig-details'>
                     <DetailsHeader gig={gig} />
+                    <OrderModal gig={gig} />
                 </section>
             </React.Fragment>
         )

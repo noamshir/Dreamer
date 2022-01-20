@@ -1,6 +1,9 @@
 import { connect } from 'react-redux'
+import { gigService } from '../services/gig.service'
 
-function _HeroPopularCategory({ categories }) {
+
+function _HeroPopularCategory() {
+    const categories = gigService.getCategories();
     var popularCategories = categories.slice(0, 4);
 
     popularCategories = popularCategories.map(category => {

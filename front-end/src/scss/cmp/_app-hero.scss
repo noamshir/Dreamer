@@ -1,5 +1,5 @@
 .hero-container {
-    background-color: rgb(78, 140, 255);
+    background-color: rgb(66, 132, 255);
     .background-images {
         width: 50%;
         right: 0;
@@ -37,7 +37,7 @@
     justify-content: center;
     align-items: center;
     font-family: roboto-bold;
-    height: 320px;
+    height: 35vh;
     transition: 0.5s;
 
     .hero-content {
@@ -46,6 +46,7 @@
         font-size: rem(34px);
     }
     .hero-content h1 {
+        font-size: rem(40px);
         width: 500px;
         margin-block-start: rem(80px);
         margin-block-end: rem(15px);
@@ -58,7 +59,9 @@
 
     @include for-wide-layout {
         justify-content: space-between;
-        height: 500px;
+        // height: 500px;
+        height: 55vh;
+
         .hero-content {
             width: 550px;
         }
@@ -69,7 +72,8 @@
         }
     }
     @include for-extra-wide-layout {
-        height: 680px;
+        // height: 680px;
+        height: 72vh;
         .hero-content {
             width: 680px;
         }

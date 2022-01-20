@@ -1,15 +1,5 @@
 const initialState = {
     gigs: [],
-    categories: [
-        "logo-design",
-        "wordpress",
-        "voice-over",
-        "video-explainer",
-        "social-media",
-        "programming",
-        "translation",
-        "illustration",
-    ],
     filterBy: {}
 }
 

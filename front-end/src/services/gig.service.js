@@ -9,6 +9,16 @@ import { storageService } from "./async-storage.service.js";
 // })
 
 const STORAGE_KEY = "gig_db";
+const categories = [
+    { "category": "logo-design", "features": ['1 Concept Included', 'Logo Transparency', 'Vector File', 'Printable File', '3D Mockup', 'Source File'] },
+    { "category": "wordpress", "features": ['1 Page', 'Design Customization', 'Content Upload', 'Responsive Design'] },
+    { "category": "voice-over", "features": ['HQ Audio File (WAV format)', 'Number Of Words: 150'] },
+    { "category": "video-explainer", "features": ['Background Music', 'Add Logo', '60 Seconds Running Time'] },
+    { "category": "social-media", "features": ['1 Platform', 'Page Setup', 'Profile Image & Cover', 'Website Integration'] },
+    { "category": "programming", "features": ['Include Source Code', 'Database Integration', 'Setup File', 'Detailed Code Comments', '3D Mockup', 'Source File'] },
+    { "category": "translation", "features": ['Proofreading', 'Document Formatting', 'Number od words: 300'] },
+    { "category": "illustration", "features": ['Source File', 'High Resolution', 'Background/Scene', 'Color', 'Full Body', 'Commercial Use', '1 Figure'] }
+]
 
 export const gigService = {
     query,
@@ -17,6 +27,8 @@ export const gigService = {
     remove,
     createGigs,
     toggleLike,
+    getCategories,
+    getFeaturesByCategory
 };
 
 async function query(filterBy) {
@@ -61,6 +73,16 @@ async function toggleLike(gigId, user) {
     }
     const data = await save(gig)
     return data
+}
+
+function getCategories() {
+    return categories.map(category => category.category);
+}
+function getFeaturesByCategory(categoryName) {
+    console.log('categoryName:', categoryName);
+    const category = categories.find(category => category.category === categoryName);
+    console.log('category:', category);
+    return category.features;
 }
 
 function createGigs() {
@@ -123,7 +145,7 @@ function createGigs() {
             "daysToMake": 1,
             "description": "Teaching JavaScript",
             "imgUrls": ["https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg", "https://images.pexels.com/photos/177598/pexels-photo-177598.jpeg"],
-            "categories": ["Programming"],
+            "categories": ["programming"],
             "likedByUser": [{
                 "userId": "u107",
                 "fullname": "Dwayne Loony",
@@ -143,7 +165,7 @@ function createGigs() {
             "daysToMake": 7,
             "description": "The best design for your website...",
             "imgUrls": ["https://images.pexels.com/photos/4348404/pexels-photo-4348404.jpeg", "https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg"],
-            "categories": ["Programming"],
+            "categories": ["programming"],
             "likedByUser": [{
                 "userId": "u107",
                 "fullname": "Dwayne Loony",
