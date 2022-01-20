@@ -23,7 +23,7 @@ function _AppHeader({ isHome, isExplore, openSignUpModal, openSignInModal }) {
                         <button className={`btn-nav ${color}`}><MenuIcon></MenuIcon></button>
                         <NavLink to="/" className={`dreamer-logo ${color} clean-link`}>Dreamer</NavLink>
                         <div className={`dreamer-header-search-animated ${searchBar}`}>
-                            <SearchBar />
+                            <SearchBar placeholder="Try Logo..." />
                         </div>
                         <nav className={`dreamer-nav ${color} dreamer-nav-right flex`}>
                             <div className="nav-helper"></div>

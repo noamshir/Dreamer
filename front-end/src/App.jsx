@@ -36,8 +36,8 @@ export class App extends React.Component {
                     </Switch>
                 </main>
                 <AppFooter />
-                {this.state.isSignUpModalOpen && <SignUp closeModal={this.toggleSignUp} />}
-                {this.state.isSignInModalOpen && <SignIn closeModal={this.toggleSignIn} />}
+                {this.state.isSignUpModalOpen && <SignUp closeModal={this.toggleSignUp} openSignIn={this.toggleSignIn} />}
+                {this.state.isSignInModalOpen && <SignIn closeModal={this.toggleSignIn} openJoin={this.toggleSignUp} />}
             </div>
         )
     }
