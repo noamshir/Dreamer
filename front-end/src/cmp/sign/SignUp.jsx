@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { signUp } from '../../store/user.action.js';
 
 
-function _SignUp({ signUp, closeModal }) {
+function _SignUp({ signUp, closeModal, openSignIn }) {
 
     const [user, setUser] = useState({ fullname: "", username: "", password: "" });
 
@@ -20,6 +20,10 @@ function _SignUp({ signUp, closeModal }) {
         setUser({ ...user, [field]: value });
     }
 
+    const onSignIn = () => {
+        closeModal();
+        openSignIn();
+    }
     return (
         <section className="sign-modal">
 
@@ -44,7 +48,7 @@ function _SignUp({ signUp, closeModal }) {
             <footer>
                 <div className="sign-in-footer flex">
                     <p>Already a member?</p>
-                    <button>Sign in</button>
+                    <button onClick={() => onSignIn()}>Sign in</button>
                 </div>
             </footer>
 

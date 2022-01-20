@@ -187,6 +187,18 @@
     @include for-normal-header-layout {
       display: block;
       visibility: visible;
+      padding-left: 15px;
+      input {
+        border: 1px solid #dadbda;
+      }
+    }
+    @include for-wide-header-layout {
+      padding-left: 20px;
+    }
+    @include for-extra-wide-header-layout {
+      .display-for-header {
+        display: block !important;
+      }
     }
   }
 }

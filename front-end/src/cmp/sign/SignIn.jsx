@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { useState } from 'react'
 import { signIn } from '../../store/user.action.js';
 
-function _SignIn({ closeModal, signIn }) {
+function _SignIn({ closeModal, signIn, openJoin }) {
 
     const [user, setUser] = useState({ username: "", password: "" });
 
@@ -16,6 +16,11 @@ function _SignIn({ closeModal, signIn }) {
         const field = target.name;
         const value = target.value;
         setUser({ ...user, [field]: value });
+    }
+
+    const onJoin = () => {
+        closeModal();
+        openJoin();
     }
 
     return (
@@ -37,7 +42,7 @@ function _SignIn({ closeModal, signIn }) {
             <footer>
                 <div className="sign-in-footer flex">
                     <p>No member yet?</p>
-                    <button>Join now</button>
+                    <button onClick={() => { onJoin() }}>Join now</button>
                 </div>
             </footer>
 
