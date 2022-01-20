@@ -5,9 +5,18 @@ export function setHome(isHome) {
   };
 }
 
+export function setDetails(isDetails) {
+  return (dispatch) => {
+    const action = { type: "SetDetails", isDetails };
+    dispatch(action);
+  };
+}
+
 export function setExplore(isExplore) {
   return (dispatch) => {
     const action = { type: "SetExplore", isExplore };
     dispatch(action);
   };
 }
+
+

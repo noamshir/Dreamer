@@ -9,6 +9,7 @@ import { Carousel } from '../cmp/Carousel'
 import { CarouselItem } from '../cmp/CarouselItem'
 import { AboutSeller } from '../cmp/Details/AboutSeller'
 import { userService } from '../services/user.service'
+import { setHome, setExplore, setDetails } from '../store/scss.action.js';
 
 
 class _GigDetails extends React.Component {
@@ -19,8 +20,16 @@ class _GigDetails extends React.Component {
 
     async componentDidMount() {
         const { gigId } = this.props.match.params
+        this.onSetDetails();
         await this.loadGig(gigId)
         this.loadOwner(this.state.gig.owner._id)
+    }
+
+    onSetDetails = () => {
+        if (this.props.isDetails) return;
+        this.props.setExplore(false);
+        this.props.setHome(false);
+        this.props.setDetails(true)
     }
 
     loadGig = async (gigId) => {
@@ -77,6 +86,9 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
     onSetFilterBy,
+    setDetails,
+    setExplore,
+    setHome
 }
 
 export const GigDetails = connect(mapStateToProps, mapDispatchToProps)(_GigDetails)

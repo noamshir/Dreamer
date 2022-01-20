@@ -4,6 +4,11 @@
     width: 100%;
     z-index: 9;
   }
+  &.not-sticky {
+    width: 100%;
+    z-index: 9;
+    border-bottom: 1px solid #e4e5e7;
+  }
   .dreamer-header {
     width: 100%;
     background-color: #fff;
@@ -125,10 +130,10 @@
           color: $clr1;
         }
         @include for-normal-header-layout {
-        &.home-header-color {
-          color: #fff;
+          &.home-header-color {
+            color: #fff;
+          }
         }
-      }
       }
       .join-a {
         @include for-normal-header-layout {
@@ -173,6 +178,16 @@
   @include for-normal-header-layout {
     display: block;
     visibility: hidden;
+  }
+  &.show-bar {
+    display: none;
+    .display-for-header {
+      display: none !important;
+    }
+    @include for-normal-header-layout {
+      display: block;
+      visibility: visible;
+    }
   }
 }
 

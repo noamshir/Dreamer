@@ -1,8 +1,8 @@
 import { AppHero } from '../cmp/AppHero.jsx'
 import { connect } from 'react-redux'
-import { setExplore, setHome } from '../store/scss.action.js';
+import { setExplore, setHome, setDetails } from '../store/scss.action.js';
 import { useEffect } from 'react'
-function _Home({ isHome,setExplore,setHome }) {
+function _Home({ isHome, setExplore, setHome }) {
 
   useEffect(() => {
     onSetHome();
@@ -13,6 +13,7 @@ function _Home({ isHome,setExplore,setHome }) {
     if (isHome) return;
     setExplore(false);
     setHome(true);
+    setDetails(false);
   }
 
   return (
@@ -34,7 +35,8 @@ function mapStateToProps({ scssModule }) {
 
 const mapDispatchToProps = {
   setExplore,
-  setHome
+  setHome,
+  setDetails
 }
 
 export const Home = connect(mapStateToProps, mapDispatchToProps)(_Home);
