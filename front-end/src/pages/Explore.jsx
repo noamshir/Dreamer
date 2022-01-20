@@ -2,10 +2,9 @@ import React from "react";
 import { connect } from 'react-redux'
 import { Route, Link } from 'react-router-dom'
 import { Button } from "@mui/material";
-
-
-import { GigList } from "../cmp/GigList";
 import { loadGigs } from '../store/gig.action'
+import { GigList } from "../cmp/GigList";
+import { setHome, setExplore } from '../store/scss.action.js';
 
 // import { loadToys, remove, toggleType } from '../store/toy.action'
 
@@ -14,6 +13,13 @@ class _Explore extends React.Component {
 
     componentDidMount() {
         this.props.loadGigs()
+        this.onSetExplore()
+    }
+
+    onSetExplore = () => {
+        if (this.props.isExplore) return;
+        this.props.setExplore(true);
+        this.props.setHome(false);
     }
 
     onGoToDetails = (gigId) => {
@@ -31,8 +37,11 @@ class _Explore extends React.Component {
                         talent at your fingertips
                     </p>
                 </div>
-                <GigList gigs={gigs}  onGoToDetails={this.onGoToDetails}/>
-            </section>
+                <section className="explore-main  max-width-container equal-padding">
+                    <GigList gigs={gigs} onGoToDetails={this.onGoToDetails} />
+
+                </section>
+            </section >
         )
     }
 }
@@ -42,12 +51,16 @@ class _Explore extends React.Component {
 function mapStateToProps(state) {
     return {
         gigs: state.gigModule.gigs,
-        user: state.userModule.user
+        user: state.userModule.user,
+        isHome: state.scssModule.isHome,
+        isExplore: state.scssModule.isExplore
     }
 }
 
 const mapDispatchToProps = {
-    loadGigs
+    loadGigs,
+    setExplore,
+    setHome
 };
 
 

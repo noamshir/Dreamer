@@ -9,7 +9,7 @@ export function AppFooter() {
 
 
     return (
-        <section className='app-footer'>
+        <section className='app-footer max-width-container equal-padding'>
             <div className="main-info">
                 <div className="logo-small-container">
                     <h2>Dreamer<span>®</span></h2>
