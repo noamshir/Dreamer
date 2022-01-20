@@ -1,17 +1,8 @@
-
-
-
-
-
- 
-
-
-
 .max-width-container {
   @include for-narrow-layout {
     @include layoutWidth();
   }
- @include for-normal-header-layout {
+  @include for-normal-header-layout {
     @include layoutWidth();
     .display-from-size-medium {
       display: inline-block;
@@ -33,7 +24,7 @@
     @include layoutMaxWidth();
   }
 }
-  
+
 // Main Header Layout
 
 // .card-grid {
@@ -47,3 +38,4 @@
 //         @include aspect-ratio(1, 1);
 //     }
 // }
+
