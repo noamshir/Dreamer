@@ -1,8 +1,8 @@
 .hero-container {
     background-color: rgb(78, 140, 255);
     .background-images {
-        width: 100%;
-
+        width: 50%;
+        right: 0;
         height: 680px;
         bottom: 0;
         position: absolute;
@@ -11,24 +11,22 @@
             height: 100%;
             display: flex;
             justify-content: flex-end;
-        }
-        .background .seller-name {
-            color: white;
-            align-self: flex-end;
-            z-index: 5;
-            margin-block-end: em(20px);
-        }
-        .background .seller-skill {
-            font-weight: 700;
+            pointer-events: none;
         }
         .background img {
-            right: $layoutPadding;
-            bottom: 0;
-            position: absolute;
-            height: 85%;
-        }
-        @include for-extra-wide-layout {
-            // width: 680px;
+            display: none;
+            @include for-wide-layout {
+                display: inline;
+                right: 0;
+                bottom: 0;
+                position: absolute;
+                height: 60%;
+            }
+
+            @include for-extra-wide-layout {
+                left: 0;
+                height: 85%;
+            }
         }
     }
 }
@@ -36,10 +34,21 @@
     padding: 0 $layoutPadding;
     color: white;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
+    font-family: roboto-bold;
+    height: 320px;
+    transition: 0.5s;
+
     .hero-content {
-        font-family: roboto-bold;
+        width: 700px;
+        height: 300px;
+        font-size: rem(34px);
+    }
+    .hero-content h1 {
+        width: 500px;
+        margin-block-start: rem(80px);
+        margin-block-end: rem(15px);
     }
     .hero-content i {
         font-weight: 400;
@@ -48,15 +57,27 @@
     }
 
     @include for-wide-layout {
+        justify-content: space-between;
+        height: 500px;
+        .hero-content {
+            width: 550px;
+        }
+        .hero-content h1 {
+            width: 100%;
+            font-size: rem(48px);
+            margin-block: rem(40px);
+        }
+    }
+    @include for-extra-wide-layout {
         height: 680px;
         .hero-content {
-            width: 650px;
-            font-size: rem(42px);
+            width: 680px;
         }
     }
     form {
-        height: 48px;
         margin-block-end: 20px;
+        height: 48px;
+
         svg {
             position: absolute;
             top: -0.1em;
@@ -64,12 +85,14 @@
     }
 
     .hero-popular-category {
-        display: flex;
-        gap: 10px;
-
+        display: none;
         font-size: 1.2rem;
+        @include for-wide-layout {
+            display: flex;
+            gap: 10px;
+        }
 
-        button {
+        .btn-popular-category {
             padding: 4px 8px;
             background-color: inherit;
             border: 1px solid white;
@@ -78,9 +101,20 @@
             transition: 0.2s;
             cursor: pointer;
         }
-        button:hover {
+        .btn-popular-category:hover {
             background-color: white;
             color: #404145;
+        }
+    }
+    .seller-name {
+        display: none;
+        color: white;
+        font-size: 1rem;
+        align-self: flex-end;
+        z-index: 5;
+        margin-block-end: em(20px);
+        @include for-wide-layout {
+            display: inline;
         }
     }
 }

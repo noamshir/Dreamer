@@ -12,7 +12,7 @@ function _HeroPopularCategory({ categories }) {
             {popularCategories.map(category => {
                 return (
                     <li>
-                        <button>{category}</button>
+                        <button className="btn-popular-category">{category}</button>
                     </li>
                 )
             })}
