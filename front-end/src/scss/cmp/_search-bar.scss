@@ -20,15 +20,7 @@ form {
     }
 }
 form .search-btn {
-    border: none;
     border-radius: 0 4px 4px 0;
-    background-color: $clr1;
-    color: white;
-    font-size: 1rem;
-    flex-grow: 4;
-    cursor: pointer;
-    transition: 0.1s;
-    &:hover {
-        background-color: darken($clr1, 5%);
-    }
+    flex-grow: 2;
+    font-weight: 600;
 }

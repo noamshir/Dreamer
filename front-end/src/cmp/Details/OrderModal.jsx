@@ -13,23 +13,26 @@ export function OrderModal({ gig }) {
 
     return (
         <div className='order-modal'>
-            <h3 className='order-title'>{title}</h3>
-            <h4 className='order-Subtitle'>{gig.title}</h4>
-            <h3 className='order-price'>${gig.price}</h3>
+            <div className='order-title-wrapper'>
+                <h3 className='order-title'>{title}</h3>
+                <span className='order-price'>${gig.price}</span>
+            </div>
+            <p className='order-subtitle'>{gig.title}</p>
             <div className='order-delivery'>
-                <AccessTimeIcon />
+                <AccessTimeIcon className="clock-icon" />
                 {gig.daysToMake} Days Delivery
             </div>
             <div className='order-features'>
-                <ul>
+                <ul className='clean-list'>
                     {features.map((feature, idx) => {
                         return (<li key={idx}>
-                            <CheckIcon />
+                            <CheckIcon className="check-icon" />
                             {feature}
                         </li>)
                     })}
                 </ul>
             </div>
+            <button className='btn'>Continue (${gig.price})</button>
         </div>
 
     )

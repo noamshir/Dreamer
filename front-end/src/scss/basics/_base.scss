@@ -9,7 +9,7 @@ body {
   background-color: rgb(255, 255, 255);
 }
 
-ul{
+ul {
   margin: 0;
   padding: 0;
 }
@@ -34,4 +34,23 @@ ul{
 
 .max-width-container {
   width: padded-break-narrow;
+}
+
+.btn {
+  cursor: pointer;
+  background-color: $clr1;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 4px;
+  padding: 0.8em 0.8em;
+  transition: 0.1s;
+
+  &:hover {
+    background-color: darken($clr1, 5%);
+  }
+  &:active {
+    background-color: darken($clr1, 10%);
+  }
 }

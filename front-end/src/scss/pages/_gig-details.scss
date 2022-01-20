@@ -2,6 +2,14 @@
   font-family: work-sans;
   display: flex;
   align-items: flex-start;
+  & > *:first-child {
+    margin-inline-end: 100px;
+    margin-inline-start: 40px;
+  }
+  & > *:last-child {
+    margin-inline-start: 100px;
+    margin-inline-end: 40px;
+  }
   h1,
   h5,
   h3,
@@ -12,7 +20,53 @@
   }
 }
 .order-modal {
+  border: 1px solid #e4e5e7;
+  padding: 2em 1.5em;
   flex-grow: 1;
+  font-family: Arial, Helvetica, sans-serif;
+  .order-title-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .order-title {
+    font-size: 1.1rem;
+  }
+  .order-subtitle {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .order-price {
+    font-size: 1.4em;
+  }
+  .order-delivery {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-block-end: 8px;
+
+    .clock-icon {
+      transform: scale(0.8);
+      color: $clr2;
+    }
+  }
+  .order-features {
+    margin-block-end: 10px;
+    li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      .check-icon {
+        transform: scale(0.8);
+        color: $clr1;
+      }
+    }
+  }
+  .btn {
+    width: 100%;
+    font-weight: 600;
+  }
 }
 .details-main-container {
   flex-grow: 2;
