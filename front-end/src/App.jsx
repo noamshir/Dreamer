@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom'
-import { AppHeader } from './cmp/AppHeader.jsx';
+import { AppHeader } from './cmp/header/AppHeader.jsx';
+import { AppSubHeader } from "./cmp/header/AppSubHeader.jsx";
 import { AppFooter } from './cmp/AppFooter.jsx';
 import routes from './routes.js'
 import { SignUp } from './cmp/sign/SignUp.jsx';
@@ -30,6 +31,7 @@ export class App extends React.Component {
                 {this.state.isSignUpModalOpen && <div onClick={this.toggleSignUp} className="main-screen"></div>}
                 {this.state.isSignInModalOpen && <div onClick={this.toggleSignIn} className="main-screen"></div>}
                 <AppHeader openSignUpModal={this.toggleSignUp} openSignInModal={this.toggleSignIn} />
+                <AppSubHeader />
                 <main className="main-content">
                     <Switch>
                         {routes.map(route => <Route key={route.path} exact component={route.component} path={route.path} />)}

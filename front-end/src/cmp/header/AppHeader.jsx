@@ -1,6 +1,6 @@
 import MenuIcon from '@mui/icons-material/Menu';
-import { SearchBar } from './SearchBar.jsx';
-import { Logo } from './Logo.jsx';
+import { SearchBar } from '../SearchBar.jsx';
+import { Logo } from '../Logo.jsx';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux'
 function _AppHeader({ isHome, isExplore, openSignUpModal, openSignInModal }) {
