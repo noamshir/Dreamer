@@ -35,6 +35,7 @@ export const gigService = {
     createGigs,
     toggleLike,
     getCategories,
+    getPopularCategories,
     getFeaturesByCategory
 };
 
@@ -84,6 +85,13 @@ async function toggleLike(gigId, user) {
 
 function getCategories() {
     return categories.map(category => category.category);
+}
+
+function getPopularCategories(numOfCategories) {
+    var popularCategories = categories.slice(0, numOfCategories);
+    return popularCategories.map(category => {
+        return `${category.category.charAt(0).toUpperCase()}${category.category.slice(1)}`
+    })
 }
 function getFeaturesByCategory(categoryName) {
     console.log('categoryName:', categoryName);
