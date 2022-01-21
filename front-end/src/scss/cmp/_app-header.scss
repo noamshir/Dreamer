@@ -50,27 +50,6 @@
         display: flex;
         align-items: center;
       }
-      .dreamer-logo {
-        height: 100%;
-        color: #404145;
-        font-weight: 800;
-        display: flex;
-        align-items: center;
-        &.home-header-color {
-          @include for-normal-header-layout {
-            color: #fff;
-          }
-        }
-        @include for-wide-header-layout {
-          margin-inline-end: 40px;
-        }
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 2rem;
-        &::after {
-          content: ".";
-          color: #1dbf73;
-        }
-      }
     }
   }
 }

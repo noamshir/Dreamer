@@ -5,6 +5,7 @@
   flex-direction: column;
   max-width: 81rem;
   min-width: rem(290px);
+  padding-block-start: 32px;
   @include for-normal-layout {
     flex-direction: row;
   }
@@ -136,7 +137,6 @@
     display: flex;
     align-items: center;
     padding-block: 5px;
-    // padding-inline: 3px;
     button {
       height: 70px;
       width: 100px;

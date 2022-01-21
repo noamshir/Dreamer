@@ -1,5 +1,6 @@
 import MenuIcon from '@mui/icons-material/Menu';
 import { SearchBar } from './SearchBar.jsx';
+import { Logo } from './Logo.jsx';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux'
 function _AppHeader({ isHome, isExplore, openSignUpModal, openSignInModal }) {
@@ -21,7 +22,7 @@ function _AppHeader({ isHome, isExplore, openSignUpModal, openSignInModal }) {
                 <div className="header-row-wrapper">
                     <div className="header-row max-width-container equal-padding row-main flex">
                         <button className={`btn-nav ${color}`}><MenuIcon></MenuIcon></button>
-                        <NavLink to="/" className={`dreamer-logo ${color} clean-link`}>Dreamer</NavLink>
+                        <NavLink to="/" className={`dreamer-logo ${color} clean-link`}> <Logo /> </NavLink>
                         <div className={`dreamer-header-search-animated ${searchBar}`}>
                             <SearchBar placeholder="Try Logo..." />
                         </div>
