@@ -8,6 +8,7 @@
 @import "./basics/base.scss";
 @import "./basics/helpers.scss";
 @import "./basics/layouts.scss";
+@import "./basics/animations.scss";
 
 // PAGES
 @import "./pages/explore.scss";
@@ -30,3 +31,4 @@
 @import "./cmp/app-footer.scss";
 @import "./cmp/app-hero.scss";
 @import "./cmp/sign-up.scss";
+@import "./cmp/home-category.scss";

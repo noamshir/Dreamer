@@ -1,5 +1,8 @@
 .hero-container {
-    background-color: rgb(66, 132, 255);
+    position: relative;
+    animation-name: change-background-color;
+    animation-iteration-count: infinite;
+    animation-duration: 28s;
     .background-images {
         width: 50%;
         right: 0;
@@ -13,8 +16,37 @@
             justify-content: flex-end;
             pointer-events: none;
         }
+        .back1 {
+            opacity: 0;
+            animation-name: change-background;
+            animation-duration: 28s;
+            animation-delay: 0s;
+            animation-iteration-count: infinite;
+        }
+        .back2 {
+            opacity: 0;
+            animation-name: change-background;
+            animation-duration: 28s;
+            animation-delay: 7s;
+            animation-iteration-count: infinite;
+        }
+        .back3 {
+            opacity: 0;
+            animation-name: change-background;
+            animation-duration: 28s;
+            animation-delay: 14s;
+            animation-iteration-count: infinite;
+        }
+        .back4 {
+            opacity: 0;
+            animation-name: change-background;
+            animation-duration: 28s;
+            animation-delay: 21s;
+            animation-iteration-count: infinite;
+        }
         .background img {
             display: none;
+            filter: drop-shadow(0rem 0rem 8rem rgba(255, 255, 255, 0.2));
             @include for-wide-layout {
                 display: inline;
                 right: 0;
@@ -123,6 +155,56 @@
         margin-block-end: em(20px);
         @include for-wide-layout {
             display: inline;
+            position: relative;
+        }
+
+        .seller1 {
+            position: absolute;
+            width: 12rem;
+            text-align: right;
+            right: 0;
+            bottom: 0px;
+            opacity: 0;
+            animation-name: change-background;
+            animation-duration: 28s;
+            animation-delay: 0s;
+            animation-iteration-count: infinite;
+        }
+        .seller2 {
+            position: absolute;
+            width: 12rem;
+            text-align: right;
+            right: 0;
+            bottom: 0px;
+            opacity: 0;
+            animation-name: change-background;
+            animation-duration: 28s;
+            animation-delay: 7s;
+            animation-iteration-count: infinite;
+        }
+        .seller3 {
+            position: absolute;
+            width: 12rem;
+            text-align: right;
+            right: 0;
+            bottom: 0px;
+            opacity: 0;
+            animation-name: change-background;
+            animation-duration: 28s;
+            animation-delay: 14s;
+            animation-iteration-count: infinite;
+        }
+        .seller4 {
+            position: absolute;
+            width: 12rem;
+            text-align: right;
+            right: 0;
+            bottom: 0px;
+            opacity: 0;
+            animation-name: change-background;
+            animation-duration: 28s;
+            animation-delay: 21s;
+            animation-iteration-count: infinite;
         }
     }
 }

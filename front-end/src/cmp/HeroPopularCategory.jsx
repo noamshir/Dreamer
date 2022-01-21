@@ -3,12 +3,7 @@ import { gigService } from '../services/gig.service'
 
 
 function _HeroPopularCategory() {
-    const categories = gigService.getCategories();
-    var popularCategories = categories.slice(0, 4);
-
-    popularCategories = popularCategories.map(category => {
-        return `${category.charAt(0).toUpperCase()}${category.slice(1)}`
-    })
+    var popularCategories = gigService.getPopularCategories(4);
     return (
         <ul className="clean-list hero-popular-category">
             Popular:

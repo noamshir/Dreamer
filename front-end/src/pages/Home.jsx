@@ -1,7 +1,10 @@
-import { AppHero } from '../cmp/AppHero.jsx'
 import { connect } from 'react-redux'
-import { setExplore, setHome, setDetails } from '../store/scss.action.js';
+import { setExplore, setHome, setDetails } from '../store/scss.action';
 import { useEffect } from 'react'
+
+import { AppHero } from '../cmp/AppHero'
+import { HomeCategory } from '../cmp/HomeCategory'
+
 function _Home({ isHome, setExplore, setHome }) {
 
   useEffect(() => {
@@ -21,6 +24,7 @@ function _Home({ isHome, setExplore, setHome }) {
       <div className="sidebar"></div>
       <div className="homepage">
         <AppHero />
+        <HomeCategory />
       </div>
     </section>
   )
