@@ -29,7 +29,7 @@ function _AppSubHeader({ isHome }) {
                     var className;
                     if (idx >= 0 && idx < 5) className = `medium`;
                     else if (idx >= 5 && idx < 8) className = 'large';
-                    return <li className={className}><a className="clean-link" href="">{categorie}</a></li>
+                    return <li key={idx} className={className}><a className="clean-link categorie-nav" href="">{categorie}</a></li>
                 })}
             </ul>
         </nav>
