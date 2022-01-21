@@ -11,11 +11,11 @@ import { utilService } from "./util.service.js";
 
 const STORAGE_KEY = "gig_db";
 const categories = [
-    { "category": "logo-design", "features": ['1 Concept Included', 'Logo Transparency', 'Vector File', 'Printable File', '3D Mockup', 'Source File'] },
+    { "category": "logo design", "features": ['1 Concept Included', 'Logo Transparency', 'Vector File', 'Printable File', '3D Mockup', 'Source File'] },
     { "category": "wordpress", "features": ['1 Page', 'Design Customization', 'Content Upload', 'Responsive Design'] },
-    { "category": "voice-over", "features": ['HQ Audio File (WAV format)', 'Number Of Words: 150'] },
-    { "category": "video-explainer", "features": ['Background Music', 'Add Logo', '60 Seconds Running Time'] },
-    { "category": "social-media", "features": ['1 Platform', 'Page Setup', 'Profile Image & Cover', 'Website Integration'] },
+    { "category": "voice over", "features": ['HQ Audio File (WAV format)', 'Number Of Words: 150'] },
+    { "category": "video explainer", "features": ['Background Music', 'Add Logo', '60 Seconds Running Time'] },
+    { "category": "social media", "features": ['1 Platform', 'Page Setup', 'Profile Image & Cover', 'Website Integration'] },
     { "category": "programming", "features": ['Include Source Code', 'Database Integration', 'Setup File', 'Detailed Code Comments', '3D Mockup', 'Source File'] },
     { "category": "translation", "features": ['Proofreading', 'Document Formatting', 'Number od words: 300'] },
     { "category": "illustration", "features": ['Source File', 'High Resolution', 'Background/Scene', 'Color', 'Full Body', 'Commercial Use', '1 Figure'] }
