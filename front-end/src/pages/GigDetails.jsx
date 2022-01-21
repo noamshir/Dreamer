@@ -1,14 +1,18 @@
 import { connect } from 'react-redux'
 import React from 'react'
 
-import { onSetFilterBy } from '../store/gig.action'
 import { DetailsHeader } from '../cmp/Details/DetailsHeader'
 import { OrderModal } from '../cmp/Details/OrderModal'
-import { gigService } from '../services/gig.service'
 import { Carousel } from '../cmp/Carousel'
 import { CarouselItem } from '../cmp/CarouselItem'
 import { AboutSeller } from '../cmp/Details/AboutSeller'
+import { AboutGig } from '../cmp/Details/AboutGig'
+import { ReviewList } from '../cmp/Details/ReviewList'
+
 import { userService } from '../services/user.service'
+import { gigService } from '../services/gig.service'
+
+import { onSetFilterBy } from '../store/gig.action'
 import { setHome, setExplore, setDetails } from '../store/scss.action.js';
 
 
@@ -67,7 +71,9 @@ class _GigDetails extends React.Component {
                             {gig.imgUrls.map((imgUrl, idx) => <CarouselItem key={idx} imgUrl={imgUrl}></CarouselItem>)}
                         </Carousel>
                         <OrderModal modalClass="in-details" gig={gig} />
+                        <AboutGig gig={gig} owner={owner} />
                         <AboutSeller gig={gig} getUserLevel={this.getUserLevel} owner={owner} />
+                        <ReviewList />
                     </div>
                     <OrderModal modalClass="aside" gig={gig} />
                 </section>

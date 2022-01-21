@@ -4,6 +4,7 @@
   align-items: flex-start;
   flex-direction: column;
   max-width: 81rem;
+  padding-top: 32px;
   min-width: rem(290px);
   @include for-normal-layout {
     flex-direction: row;
@@ -108,18 +109,25 @@
   .star {
     font-size: 4px;
     color: #ffb33e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  .carousel .inner {
-    height: 220px;
-    padding: 0 auto;
-    background-color: $clr4;
-    @include for-normal-carousel-layout {
-      height: 427px;
+  .carousel {
+    margin-bottom: 64px;
+    & .inner {
+      height: 220px;
+      padding: 0 auto;
+      background-color: $clr4;
+      @include for-normal-carousel-layout {
+        height: 427px;
+      }
+      // @include for-wide-carousel-layout {
+      //   height: 427px;
+      // }
     }
-    // @include for-wide-carousel-layout {
-    //   height: 427px;
-    // }
   }
+
   .carousel-item {
     display: inline-flex;
     align-items: center;
@@ -136,7 +144,6 @@
     display: flex;
     align-items: center;
     padding-block: 5px;
-    // padding-inline: 3px;
     button {
       height: 70px;
       width: 100px;

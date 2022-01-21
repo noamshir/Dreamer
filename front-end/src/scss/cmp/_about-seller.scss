@@ -2,6 +2,8 @@
   &-header {
     color: #404145;
     padding-bottom: 25px;
+    font-size: 20px;
+    line-height: 28px;
   }
 
   .seller-stats{
@@ -11,6 +13,7 @@
     flex-wrap: wrap;
     border: 1px solid #dadbdd;
     padding: 24px;
+    margin-bottom: 64px;
 
     .seller-desc{
       padding-top: 15px;
@@ -33,7 +36,6 @@
 
   .seller-info {
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
     line-height: 130%;
     padding-bottom: 24px;

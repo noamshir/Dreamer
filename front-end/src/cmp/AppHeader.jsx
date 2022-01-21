@@ -17,15 +17,15 @@ function _AppHeader({ isHome, isExplore, openSignUpModal, openSignInModal }) {
 
     return <section className={`main-header ${sticky}`}>
         <div id="Header">
-            <header className={`header-package dreamer-header ${headerTransparent} logged-out-homepage-header`}>
+            <header className={`header-package dimerr-header ${headerTransparent} logged-out-homepage-header`}>
                 <div className="header-row-wrapper">
                     <div className="header-row max-width-container equal-padding row-main flex">
                         <button className={`btn-nav ${color}`}><MenuIcon></MenuIcon></button>
-                        <NavLink to="/" className={`dreamer-logo ${color} clean-link`}>Dreamer</NavLink>
-                        <div className={`dreamer-header-search-animated ${searchBar}`}>
+                        <NavLink to="/" className={`dimerr-logo ${color} clean-link`}>dimerr</NavLink>
+                        <div className={`dimerr-header-search-animated ${searchBar}`}>
                             <SearchBar placeholder="Try Logo..." />
                         </div>
-                        <nav className={`dreamer-nav ${color} dreamer-nav-right flex`}>
+                        <nav className={`dimerr-nav ${color} dimerr-nav-right flex`}>
                             <div className="nav-helper"></div>
                             <ul className="flex">
                                 <li className="display-from-size-large">  <NavLink className={`clean-link ${color}`} to="/explore">Explore</NavLink></li>
