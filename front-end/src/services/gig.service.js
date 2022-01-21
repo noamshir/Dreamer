@@ -86,9 +86,7 @@ function getCategories() {
     return categories.map(category => category.category);
 }
 function getFeaturesByCategory(categoryName) {
-    console.log('categoryName:', categoryName);
     const category = categories.find(category => category.category === categoryName);
-    console.log('category:', category);
     return category.features;
 }
 

@@ -5,7 +5,6 @@ import React from "react"
 export function AboutGig({ gig }) {
 
 
-    console.log(gig);
 
     return (
         <div className='about-gig'>

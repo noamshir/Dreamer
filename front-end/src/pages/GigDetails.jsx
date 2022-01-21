@@ -60,10 +60,9 @@ class _GigDetails extends React.Component {
 
     render() {
         const { gig, owner } = this.state
-        if (!gig) return <React.Fragment></React.Fragment>
+        if (!gig || !owner) return <React.Fragment></React.Fragment>
         return (
             <React.Fragment>
-                {/* <div style={{ height: "80px" }}></div> */}
                 <section className='gig-details max-width-container equal-padding'>
                     <div className="details-main-container">
                         <DetailsHeader gig={gig} getUserLevel={this.getUserLevel} owner={owner} />
@@ -73,7 +72,7 @@ class _GigDetails extends React.Component {
                         <OrderModal modalClass="in-details" gig={gig} />
                         <AboutGig gig={gig} owner={owner} />
                         <AboutSeller gig={gig} getUserLevel={this.getUserLevel} owner={owner} />
-                        <ReviewList />
+                        <ReviewList owner={owner} gig={gig}/>
                     </div>
                     <OrderModal modalClass="aside" gig={gig} />
                 </section>
