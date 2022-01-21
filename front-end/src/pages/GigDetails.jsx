@@ -59,16 +59,17 @@ class _GigDetails extends React.Component {
         if (!gig) return <React.Fragment></React.Fragment>
         return (
             <React.Fragment>
-                <div style={{ height: "80px" }}></div>
+                {/* <div style={{ height: "80px" }}></div> */}
                 <section className='gig-details max-width-container equal-padding'>
                     <div className="details-main-container">
                         <DetailsHeader gig={gig} getUserLevel={this.getUserLevel} owner={owner} />
                         <Carousel gig={gig} isDetails={true}>
                             {gig.imgUrls.map((imgUrl, idx) => <CarouselItem key={idx} imgUrl={imgUrl}></CarouselItem>)}
                         </Carousel>
+                        <OrderModal modalClass="in-details" gig={gig} />
                         <AboutSeller gig={gig} getUserLevel={this.getUserLevel} owner={owner} />
                     </div>
-                    <OrderModal gig={gig} />
+                    <OrderModal modalClass="aside" gig={gig} />
                 </section>
             </React.Fragment>
         )

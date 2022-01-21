@@ -3,6 +3,7 @@
 $clr1: #1dbf73;
 $clr2: #404145;
 $clr3: #757575;
+$clr4: #f5f5f5;
 
 // Padding
 $layoutPadding: 24px;
@@ -11,6 +12,9 @@ $break-narrow: 460px;
 $break-normal: 720px;
 $break-wide: 960px;
 $break-extra-wide: 1300px;
+// Carousel Breakpoints
+$carousel-break-normal: 600px;
+$carousel-break-wide: 960px;
 
 //Header-breakpoint
 $header-break-normal: 630px;

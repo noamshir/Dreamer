@@ -2,14 +2,13 @@
   font-family: work-sans;
   display: flex;
   align-items: flex-start;
-  & > *:first-child {
-    margin-inline-end: 100px;
-    margin-inline-start: 40px;
+  flex-direction: column;
+  max-width: 81rem;
+  min-width: rem(290px);
+  @include for-normal-layout {
+    flex-direction: row;
   }
-  & > *:last-child {
-    margin-inline-start: 100px;
-    margin-inline-end: 40px;
-  }
+
   h1,
   h5,
   h3,
@@ -22,8 +21,27 @@
 .order-modal {
   border: 1px solid #e4e5e7;
   padding: 2em 1.5em;
-  flex-grow: 1;
   font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  &.aside {
+    display: none;
+  }
+  @include for-normal-layout {
+    &.in-details {
+      display: none;
+    }
+    &.aside {
+      display: block;
+    }
+    // max-width: 400px;
+    min-width: 265px;
+  }
+  @include for-wide-layout {
+    min-width: 340px;
+  }
+  @include for-extra-wide-layout {
+    max-width: 400px;
+  }
   .order-title-wrapper {
     display: flex;
     justify-content: space-between;
@@ -69,7 +87,16 @@
   }
 }
 .details-main-container {
-  flex-grow: 2;
+  margin-right: 0;
+  @include for-normal-layout {
+    margin-right: 5%;
+  }
+  @include for-wide-layout {
+    margin-right: 10%;
+  }
+  h1 {
+    font-size: rem(28px);
+  }
   .stars {
     display: flex;
     justify-content: center;
@@ -82,19 +109,34 @@
     font-size: 4px;
     color: #ffb33e;
   }
-
+  .carousel .inner {
+    height: 220px;
+    padding: 0 auto;
+    background-color: $clr4;
+    @include for-normal-carousel-layout {
+      height: 427px;
+    }
+    // @include for-wide-carousel-layout {
+    //   height: 427px;
+    // }
+  }
   .carousel-item {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 300px;
-    background-size: cover;
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
     color: #fff;
   }
 
   .btn-by-idx {
     display: flex;
     align-items: center;
+    padding-block: 5px;
+    // padding-inline: 3px;
     button {
       height: 70px;
       width: 100px;

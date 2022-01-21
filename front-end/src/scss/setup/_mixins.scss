@@ -30,6 +30,22 @@
   }
 }
 
+//carousel layout mixins
+
+@mixin for-normal-carousel-layout {
+  @media (min-width: $carousel-break-normal) {
+    @content;
+  }
+}
+
+@mixin for-wide-carousel-layout {
+  @media (min-width: $carousel-break-wide) {
+    @content;
+  }
+}
+
+//header layout mixins
+
 @mixin for-normal-header-layout {
   @media (min-width: $header-break-normal) {
     @content;

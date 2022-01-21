@@ -4,7 +4,7 @@ import React from 'react'
 import { gigService } from '../../services/gig.service'
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import CheckIcon from '@mui/icons-material/Check';
-export function OrderModal({ gig }) {
+export function OrderModal({ gig, modalClass }) {
 
     const features = gigService.getFeaturesByCategory(gig.categories[0])
     var { title } = gig
@@ -12,7 +12,7 @@ export function OrderModal({ gig }) {
 
 
     return (
-        <div className='order-modal'>
+        <div className={`order-modal ${modalClass}`}>
             <div className='order-title-wrapper'>
                 <h3 className='order-title'>{title}</h3>
                 <span className='order-price'>${gig.price}</span>
