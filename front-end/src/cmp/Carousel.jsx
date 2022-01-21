@@ -23,7 +23,6 @@ export function Carousel({ gig, onGoToDetails, isDetails, children }) {
         onSwipedLeft: () => updateIndex(activeIndex + 1),
         onSwipedRight: () => updateIndex(activeIndex - 1)
     });
-    console.log(isDetails)
     return (
         <div
             {...handlers}

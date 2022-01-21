@@ -1,0 +1,55 @@
+.review-preview {
+  padding: 52px;
+  position: relative;
+  border-top: 1px solid #dadbdd;
+  
+  .reviewer-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .reviewer-img {
+    border-radius: 50%;
+    background-size: cover;
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    left: 0;
+    top: 46px;
+  }
+  .star-rate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .origin-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .reviewer-origin {
+      color: #62646a;
+      font-size: 14px;
+    }
+  }
+
+  .flag {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    object-fit: cover;
+  }
+
+  .review-desc {
+    padding: 8px 0;
+    p {
+      line-height: 22px;
+      color: #404145;
+      font-weight: 400;
+      font-size: 14px;
+      word-wrap: break-word;
+    }
+  }
+}

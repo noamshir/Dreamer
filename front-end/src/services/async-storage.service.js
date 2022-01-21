@@ -16,7 +16,7 @@ var guestGigs = JSON.parse(localStorage.getItem('guestGigs_db')) || []
 function query(entityType, filterBy, delay = 300) {
 
     // _save("order_db", orderService.createOrders())
-    var entities = JSON.parse(localStorage.getItem(entityType)) || gigService.createGigs()
+    var entities = JSON.parse(localStorage.getItem(entityType)) || userService.createUsers()
     if (entities) _save(entityType, entities)
 
     // const sortBy = filterBy ? filterBy.sortBy : 'name'

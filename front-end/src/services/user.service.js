@@ -64,7 +64,6 @@ function update(UpdatedUser) {
         ...loggedinUser,
         ...UpdatedUser
     }
-    console.log(newUser);
     storageService.put(STORAGE_KEY, newUser)
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(newUser))
     return Promise.resolve(newUser)
@@ -116,13 +115,15 @@ function createUsers() {
             "reviews":
                 [
                     {
-                        "id": "r101",
+                        "_id": "r101",
                         "txt": "Very kind and works fast",
                         "rate": 4,
+                        "createdAt": 19834823429,
                         "by": {
                             "_id": "u107",
                             "fullname": "Dwayne Loony",
-                            "imgUrl": "assets/imgs/user/user107.jpg",
+                            "origin": "Israel",
+                            "imgUrl": "https://media.istockphoto.com/photos/portrait-of-handsome-smiling-young-man-with-crossed-arms-picture-id1200677760?k=20&m=1200677760&s=612x612&w=0&h=JCqytPoHb6bQqU9bq6gsWT2EX1G5chlW5aNK81Kh4Lg=",
                         }
                     }
                 ]
@@ -146,13 +147,15 @@ function createUsers() {
             },
             "reviews": [
                 {
-                    "id": "madeId",
+                    "_id": "madeId123",
                     "txt": "Very kind and works fast",
+                    "createdAt": Date.now(),
                     "rate": 4,
                     "by": {
                         "_id": "u108",
                         "fullname": "Baadur Lomidze",
-                        "imgUrl": "assets/imgs/user/user108.jpg",
+                        "origin": "Israel",
+                        "imgUrl": "https://media.istockphoto.com/photos/smiling-man-outdoors-in-the-city-picture-id1179420343?k=20&m=1179420343&s=612x612&w=0&h=G2UGMVSzAXGAQs3pFZpvWlHNRAzwPIWIVtSOxZHsEuc=",
                     }
                 }
             ]
