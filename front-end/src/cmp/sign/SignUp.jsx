@@ -29,7 +29,7 @@ function _SignUp({ signUp, closeModal, openSignIn }) {
 
             <div className="modal-content">
                 <header >
-                    <h1 className="modal-title">Join Dreamer</h1>
+                    <h1 className="modal-title">Join dimerr</h1>
                 </header>
                 <form action="" className="sign-form" onSubmit={handleSubmit}>
                     <div className="form-input-div">
@@ -42,7 +42,7 @@ function _SignUp({ signUp, closeModal, openSignIn }) {
                         <input type="text" name="password" placeholder="Choose a Password" onChange={handleChange} className="user-input" />
                     </div>
                     <button className="continue-btn" type="submit">Continue</button>
-                    <p className="siginig-agree">By joining I agree to receive dreams from Dreamer.</p>
+                    <p className="siginig-agree">By joining I agree to receive dreams from dimerr.</p>
                 </form>
             </div>
             <footer>

@@ -27,7 +27,7 @@ function _SignIn({ closeModal, signIn, openJoin }) {
         <section className="sign-modal">
             <div className="modal-content">
                 <header >
-                    <h1 className="modal-title">Sign in to Dreamer</h1>
+                    <h1 className="modal-title">Sign in to dimerr</h1>
                 </header>
                 <form action="" className="sign-form" onSubmit={handleSubmit}>
                     <div className="form-input-div">

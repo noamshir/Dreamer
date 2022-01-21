@@ -1,4 +1,5 @@
 import { storageService } from "./async-storage.service.js";
+import { utilService } from "./util.service.js";
 // import Axios from 'axios'
 // import { httpService } from './http.service.js'
 // import { utilService } from './util.service.js'
@@ -18,6 +19,12 @@ const categories = [
     { "category": "programming", "features": ['Include Source Code', 'Database Integration', 'Setup File', 'Detailed Code Comments', '3D Mockup', 'Source File'] },
     { "category": "translation", "features": ['Proofreading', 'Document Formatting', 'Number od words: 300'] },
     { "category": "illustration", "features": ['Source File', 'High Resolution', 'Background/Scene', 'Color', 'Full Body', 'Commercial Use', '1 Figure'] }
+]
+const descriptions = [
+    'Internet is taking over our lives, companies need a website design to promote their business online, this helps them reach out more customers, people tend to think that all the websites get the same results but in fact, Google doesn\'t like prebuilt websites.I started alone in 2016 and currently I\'m leading a team of 5 WordPress developers to work together on current and future projects here on Dimerr.We are specialist in WordPress and best coding practices and we focus on the quality of our work.',
+    'I am a WordPress Pro who has worked on various Woocommerce Stores. My Experiences Include: Complete Woocommerce Configuration & Setup. Woocommerce Social Logins. Minor & Common Bug Fixes.Woocommerce Plugin Customization & Custom Development. Page Design For Cart, Checkout, & Shop Pages. Creating Product Grids & Attractive Widgets. Setup WPML with Woocommerce. Products and Theme Based Sliders using Slider Revolution. Theme Customization according to your requirements. and much more!  Basic Benefits Of My Service I PROMISE to deliver within 24 hours.Being a business owner, I understand The Importance of your business.By keeping that in mind, I make sure I value your Time & Cash, as much as I can.If I take an Order, It\'s my responsibility to provide a Quick & Quality Service.I\'ve done hours of research on WC Tasks & I\'m an Expert at what I do. Discussing the issue with me in Inbox & getting a Custom Offer is much better & appreciated than making an Order directly.',
+    'I will be your Professional Social Media Manager!  Nowadays, social media plays an important role in business growth. But do we use them properly? SMM is the most important service for each company worldwide. I provide natural and organic Management for your Online Business Accounts. I strongly believe in what I can offer and I strongly believe in what I can make you reach.',
+    'I\'m your voice for your project right here on Dimerr.com. I am a Professional voice narrator with 3 Years of Experience. I\'ll narrate an upload, your voiceover project, whatever it might be. I do audio books, children\'s books, YouTube videos, narrations whiteboards, sales presentations, you name it.  Do you need a HIGHLY EXPERIENCED, PROFESSIONAL NARRATOR for your audiobook?  I will professionally narrate your audiobook to industry standards. I\'ll do it quickly professionally and make sure it\'s of the highest quality. Hey, it\'s your project. It deserves to be done. Right. So go ahead and check out my gigs, check out my samples. And if you have any questions, go ahead and send me a message and I\'ll make sure to respond back with a custom offer. Thanks so much. And I look forward to working with you.'
 ]
 
 export const gigService = {
@@ -98,7 +105,7 @@ function createGigs() {
                 "rate": 4
             },
             "daysToMake": 3,
-            "description": "Make unique logo...",
+            "description": descriptions[utilService.getRandomIntInclusive(0, descriptions.length - 1)],
             "imgUrls": ["https://images.pexels.com/photos/2235130/pexels-photo-2235130.jpeg", "https://images.pexels.com/photos/1162361/pexels-photo-1162361.jpeg"],
             "categories": [
                 "logo-design",
@@ -108,7 +115,7 @@ function createGigs() {
                 "userId": "u107",
                 "fullname": "Dwayne Loony",
                 "imgUrl": "https://media.istockphoto.com/photos/portrait-of-handsome-smiling-young-man-with-crossed-arms-picture-id1200677760?k=20&m=1200677760&s=612x612&w=0&h=JCqytPoHb6bQqU9bq6gsWT2EX1G5chlW5aNK81Kh4Lg="
-            
+
             }]
         },
         {
@@ -122,7 +129,7 @@ function createGigs() {
                 "rate": 4
             },
             "daysToMake": 3,
-            "description": "aquire my services for unique illustration...",
+            "description": descriptions[utilService.getRandomIntInclusive(0, descriptions.length - 1)],
             "imgUrls": ["https://images.pexels.com/photos/3631430/pexels-photo-3631430.jpeg", "https://images.pexels.com/photos/1569002/pexels-photo-1569002.jpeg"],
             "categories": [
                 "illustration",
@@ -144,7 +151,7 @@ function createGigs() {
                 "rate": 5,
             },
             "daysToMake": 1,
-            "description": "Teaching JavaScript",
+            "description": descriptions[utilService.getRandomIntInclusive(0, descriptions.length - 1)],
             "imgUrls": ["https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg", "https://images.pexels.com/photos/177598/pexels-photo-177598.jpeg"],
             "categories": ["programming"],
             "likedByUser": [{
@@ -164,7 +171,7 @@ function createGigs() {
                 "rate": 5,
             },
             "daysToMake": 7,
-            "description": "The best design for your website...",
+            "description": descriptions[utilService.getRandomIntInclusive(0, descriptions.length - 1)],
             "imgUrls": ["https://images.pexels.com/photos/4348404/pexels-photo-4348404.jpeg", "https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg"],
             "categories": ["programming"],
             "likedByUser": [{

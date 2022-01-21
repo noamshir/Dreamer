@@ -10,7 +10,7 @@ export function DetailsHeader({ gig, getUserLevel, owner }) {
                 <div className='owner-img' style={{ backgroundImage: `url(${gig.owner.imgUrl})` }}></div>
                 <h5 className='owner-name'>{gig.owner.fullname}</h5>
                 <h5 className='owner-level'>{getUserLevel()}</h5>
-                <span>|</span>
+                <span className='spacer'>|</span>
                 <UserStarRate gig={gig} owner={owner} />
             </div>
         </div>
