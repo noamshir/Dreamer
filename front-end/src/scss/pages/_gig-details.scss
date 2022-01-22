@@ -25,9 +25,6 @@
   padding: 2em 1.5em;
   font-family: Arial, Helvetica, sans-serif;
   width: 100%;
-  position: sticky;
-  top: 70px;
-  right: 32px;
   &.aside {
     display: none;
   }
@@ -35,6 +32,9 @@
     margin-bottom: 64px;
   }
   @include for-normal-layout {
+    position: sticky;
+    top: 70px;
+    right: 32px;
     &.in-details {
       display: none;
     }
@@ -128,7 +128,9 @@
 
     .inner-wrapper {
       position: relative;
+      overflow: hidden;
     }
+
     .inner {
       height: 220px;
       padding: 0 auto;
@@ -149,6 +151,10 @@
     background-repeat: no-repeat;
     color: #fff;
     background-color: $clr4;
+    transition: 0.4s;
+  }
+  .carousel-item:hover {
+    transform: scale(1.04);
   }
 
   .btn-by-idx {
@@ -162,6 +168,11 @@
       opacity: 0.6;
       border: 1px solid rgb(99, 98, 98);
       transition: opacity 0.3s;
+    }
+
+    button.active {
+      opacity: 1;
+      // color: #fff;
     }
   }
 
@@ -191,11 +202,6 @@
     &:last-child {
       margin-inline-end: 10px;
     }
-  }
-
-  button.active {
-    opacity: 1;
-    color: #fff;
   }
 
   .owner-img {
