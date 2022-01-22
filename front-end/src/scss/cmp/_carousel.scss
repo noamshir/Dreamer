@@ -1,7 +1,7 @@
 .carousel {
   overflow: hidden;
   position: relative;
-  
+
   .indicators {
     position: absolute;
     left: 50%;
@@ -12,10 +12,15 @@
   .btn-by-idx {
     bottom: 0%;
     gap: 5px;
+    flex-wrap: wrap;
   }
 
   .inner {
     white-space: nowrap;
     transition: transform 0.3s;
+  }
+  .carousel-item:hover {
+    // transform: scale(1.05);
+    // overflow: hidden;
   }
 }
