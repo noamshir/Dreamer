@@ -38,6 +38,9 @@
     &.in-details {
       display: none;
     }
+    position: sticky;
+    top: 70px;
+    right: 32px;
     &.aside {
       display: block;
     }
