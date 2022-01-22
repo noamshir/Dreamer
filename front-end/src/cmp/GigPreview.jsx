@@ -17,6 +17,7 @@ function _GigPreview({ gig, onGoToDetails, user, setLikedGig }) {
     checkIfLiked()
 
     async function checkIfLiked() {
+        if (user) return
         const isGuestLiked = await storageService.isLikedByGuest(gig._id)
         setLiked(isGuestLiked)
     }
@@ -33,8 +34,9 @@ function _GigPreview({ gig, onGoToDetails, user, setLikedGig }) {
     }
 
     async function toggleLike() {
-        setLikedGig(gig, user)
+        console.log(isLiked);
         setLiked(!isLiked)
+        setLikedGig(gig, user)
     }
 
     return (

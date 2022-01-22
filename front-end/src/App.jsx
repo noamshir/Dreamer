@@ -6,8 +6,9 @@ import { AppFooter } from './cmp/AppFooter.jsx';
 import routes from './routes.js'
 import { SignUp } from './cmp/sign/SignUp.jsx';
 import { SignIn } from './cmp/sign/SignIn.jsx';
-
-export class App extends React.Component {
+import { connect } from 'react-redux';
+import { setScroll, setSearchDisplay } from './store/scss.action.js';
+class _App extends React.Component {
 
     state = {
         isSignUpModalOpen: false,
@@ -23,6 +24,22 @@ export class App extends React.Component {
         var { isSignInModalOpen } = this.state;
         isSignInModalOpen = !isSignInModalOpen
         this.setState({ isSignInModalOpen });
+    }
+    componentDidMount() {
+        window.addEventListener('scroll', this.handleScroll)
+    }
+
+
+    handleScroll = (ev) => {
+        if (document.documentElement.scrollTop > 30) {
+            this.props.setScroll(true);
+            if (document.documentElement.scrollTop >= 255)
+                this.props.setSearchDisplay(true);
+            else this.props.setSearchDisplay(false);
+        }
+        else {
+            this.props.setScroll(false);
+        }
     }
 
     render() {
@@ -44,3 +61,14 @@ export class App extends React.Component {
         )
     }
 }
+
+function mapStateToProps({ scssModule }) {
+    return {
+    }
+}
+
+const mapDispatchToProps = {
+    setScroll,
+    setSearchDisplay
+}
+export const App = connect(mapStateToProps, mapDispatchToProps)(_App);

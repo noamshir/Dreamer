@@ -4,10 +4,13 @@ import StarIcon from '@mui/icons-material/Star';
 
 export function ReviewPreview({ review }) {
 
-    console.log('review', review);
     return (
         <div className='review-preview'>
-            <div className="reviewer-img" style={{ backgroundImage: `url(${review.by.imgUrl})` }}></div>
+            {review.by.imgUrl ? <div className="reviewer-img" style={{ backgroundImage: `url(${review.by.imgUrl})` }}></div>
+                : <div style={{ backgroundColor: '#' + Math.floor(Math.random() * 16777215).toString(16)}} className="reviewer-img">
+                    <span>{review.by.fullname.charAt(0)}</span>
+                </div>}
+
             <header>
                 <div className="reviewer-info">
                     <span className="reviewer-name">{review.by.fullname}</span>

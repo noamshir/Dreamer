@@ -29,12 +29,12 @@ class _Explore extends React.Component {
         const { gigs } = this.props
         return (
             <section className='explore'>
-                <div className="explore-hero">
+                {/* <div className="explore-hero">
                     <p className='explore-hero-p'>
                         A whole world of freelance
                         talent at your fingertips
                     </p>
-                </div>
+                </div> */}
                 <section className="explore-main  max-width-container equal-padding">
                     <GigList gigs={gigs} onGoToDetails={this.onGoToDetails} />
 

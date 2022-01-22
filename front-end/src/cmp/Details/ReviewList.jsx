@@ -1,12 +1,24 @@
 import StarIcon from '@mui/icons-material/Star';
+import { useState } from 'react'
 
 import { UserStarRate } from "./UserStarRate";
 import { ProgressBar } from "./ProgressBar";
 import { ReviewPreview } from "./ReviewPreview";
+import { ReviewAdd } from "./ReviewAdd";
 
 
-export function ReviewList({ owner, gig }) {
+export function ReviewList({ owner, gig, loadOwner }) {
+    const [isToggleReviewAdd, setReviewAdd] = useState(false)
+    const avgRate = getAvgRate()
 
+    function getAvgRate() {
+        const acc = owner.reviews.reduce((acc, review) => {
+            acc += +review.rate
+            return acc
+        }, 0)
+        gig.owner.rate = (acc / owner.reviews.length).toFixed(1)
+        return (acc / owner.reviews.length).toFixed(1)
+    }
 
     return (
         <section className='review-section'>
@@ -19,7 +31,7 @@ export function ReviewList({ owner, gig }) {
                         </div>
                         <div className='stars'>
                             <UserStarRate owner={owner.reviews} gig={gig} isReviews={true} />
-                            <span className='num-of-rating'>{gig.owner.rate}</span>
+                            <span className='num-of-rating'>{avgRate}</span>
                         </div>
                     </div>
                     <ProgressBar reviews={owner.reviews} />
@@ -51,7 +63,11 @@ export function ReviewList({ owner, gig }) {
                     </ul>
                 </div>
             </div>
-            <button className='add-review-btn'>Add Review</button>
+            <button onClick={() => {
+                setReviewAdd(!isToggleReviewAdd)
+            }} className='add-review-btn'>{isToggleReviewAdd ? 'Close' : 'Add Review'}</button>
+            {isToggleReviewAdd && <ReviewAdd owner={owner} loadOwner={loadOwner} setReviewAdd={setReviewAdd} />}
+
             <div className="list-of-reviews">
                 {owner.reviews.map(review => <ReviewPreview key={review._id} review={review} />)}
             </div>

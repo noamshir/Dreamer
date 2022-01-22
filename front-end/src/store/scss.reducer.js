@@ -2,6 +2,8 @@ const initialState = {
   isHome: true,
   isExplore: false,
   isDetails: false,
+  isScroll: false,
+  isSearchBar:false
 };
 
 export function scssReducer(state = initialState, action) {
@@ -16,6 +18,12 @@ export function scssReducer(state = initialState, action) {
       break;
     case "SetDetails":
       newState = { ...state, isDetails: action.isDetails };
+      break;
+    case "SetScroll":
+      newState = { ...state, isScroll: action.isScroll };
+      break;
+    case "SetHomeSearchBar":
+      newState = { ...state, isSearchBar: action.isSearchBar };
       break;
   }
   return newState;

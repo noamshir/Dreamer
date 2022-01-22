@@ -12,7 +12,7 @@ export function UserStarRate({ gig, isSeller, isReviews, owner }) {
                 if (idx < (gig.owner.rate)) return <span key={idx} className='star'>{star}</span>
                 else return <span key={idx} className='star'><StarOutlineIcon /></span>
             })}
-            {!isReviews && <span className='rate-num'>{!isSeller ? `(${owner.reviews.length})` : '(1k+)'}</span>}
+            {!isReviews && <span className='rate-num'>{'(1k+)'}</span>}
         </div>
     )
 }
