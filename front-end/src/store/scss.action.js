@@ -19,4 +19,16 @@ export function setExplore(isExplore) {
   };
 }
 
+export function setScroll(isScroll) {
+  return (dispatch) => {
+    const action = { type: "SetScroll", isScroll };
+    dispatch(action);
+  };
+}
 
+export function setSearchDisplay(isSearchBar) {
+  return (dispatch) => {
+    const action = { type: "SetHomeSearchBar", isSearchBar };
+    dispatch(action);
+  };
+}

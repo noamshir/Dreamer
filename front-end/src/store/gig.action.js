@@ -41,6 +41,7 @@ export function remove(gigId) {
 
 export function setLikedGig(gig, user) {
     return async (dispatch) => {
+        console.log("got here")
         const savedGig = await gigService.toggleLike(gig._id, user)
         dispatch({ type: 'UPDATE_GIG', gig: savedGig })
 

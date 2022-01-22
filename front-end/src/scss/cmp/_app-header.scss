@@ -7,7 +7,6 @@
   &.not-sticky {
     width: 100%;
     z-index: 9;
-    border-bottom: 1px solid #e4e5e7;
   }
   .dimerr-header {
     width: 100%;
@@ -16,6 +15,7 @@
     &.header-transparent {
       @include for-normal-header-layout {
         background-color: transparent;
+        border-bottom: none;
       }
     }
   }
@@ -151,6 +151,8 @@
 
 .dimerr-header-search-animated {
   display: none;
+  transition: visibility 0s, opacity 0.5s linear;
+
   .display-for-header {
     display: none !important;
   }

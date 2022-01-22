@@ -14,6 +14,8 @@ import { gigService } from '../services/gig.service'
 
 import { onSetFilterBy } from '../store/gig.action'
 import { setHome, setExplore, setDetails } from '../store/scss.action.js';
+import { GigHeader } from '../cmp/header/GigHeader'
+
 
 
 class _GigDetails extends React.Component {
@@ -59,10 +61,11 @@ class _GigDetails extends React.Component {
 
 
     render() {
-        const { gig, owner } = this.state
+        const { gig, owner} = this.state
         if (!gig || !owner) return <React.Fragment></React.Fragment>
         return (
             <React.Fragment>
+                <GigHeader gig={gig} />
                 <section className='gig-details max-width-container equal-padding'>
                     <div className="details-main-container">
                         <DetailsHeader gig={gig} getUserLevel={this.getUserLevel} owner={owner} />
@@ -72,7 +75,7 @@ class _GigDetails extends React.Component {
                         <OrderModal modalClass="in-details" gig={gig} />
                         <AboutGig gig={gig} owner={owner} />
                         <AboutSeller gig={gig} getUserLevel={this.getUserLevel} owner={owner} />
-                        <ReviewList owner={owner} gig={gig}/>
+                        <ReviewList owner={owner} gig={gig} />
                     </div>
                     <OrderModal modalClass="aside" gig={gig} />
                 </section>

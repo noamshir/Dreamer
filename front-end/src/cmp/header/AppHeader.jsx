@@ -3,16 +3,21 @@ import { SearchBar } from '../SearchBar.jsx';
 import { Logo } from '../Logo.jsx';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux'
-function _AppHeader({ isHome, isExplore, openSignUpModal, openSignInModal }) {
+function _AppHeader({ isHome, isScroll, isSearchBar, openSignUpModal, openSignInModal }) {
     var headerTransparent = "";
     var color = "";
     var sticky = "not-sticky";
     var searchBar = "show-bar"
-    if (isHome) {
+    if (isHome && (!isScroll)) {
         headerTransparent = "header-transparent";
         color = "home-header-color"
         sticky = "sticky"
         searchBar = ""
+    }
+    if (isHome && isScroll) {
+        sticky = "sticky";
+        searchBar = ""
+        if (isSearchBar) searchBar = "show-bar"
     }
 
 
@@ -47,7 +52,9 @@ function _AppHeader({ isHome, isExplore, openSignUpModal, openSignInModal }) {
 function mapStateToProps({ scssModule }) {
     return {
         isHome: scssModule.isHome,
-        isExplore: scssModule.isExplore
+        isExplore: scssModule.isExplore,
+        isScroll: scssModule.isScroll,
+        isSearchBar: scssModule.isSearchBar
     }
 }
 
