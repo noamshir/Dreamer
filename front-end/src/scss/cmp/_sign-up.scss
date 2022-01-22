@@ -8,7 +8,7 @@
   opacity: 1;
   pointer-events: auto;
   transition: opacity 0.6s;
-  z-index: 10;
+  z-index: 20;
 }
 
 .sign-modal {
@@ -16,7 +16,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 11;
+  z-index: 21;
   background-color: #fff;
   width: 400px;
   border-radius: 4px;
