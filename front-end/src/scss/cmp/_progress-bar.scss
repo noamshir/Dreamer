@@ -8,14 +8,14 @@
     justify-content: flex-start;
     gap: 10px;
     align-items: center;
-    
+
     :first-child {
       color: #4a73e8;
       font-weight: 600;
       font-size: 16px;
       line-height: 100%;
     }
-    
+
     &-1 {
       padding-inline-end: 10px;
     }
@@ -26,11 +26,17 @@
       position: relative;
     }
   }
-  .star-name{
+  .star-name {
     width: 80px;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    span {
+      padding-inline-start: 5px;
+      display: inline-block;
+    }
   }
-  
+
   .first-span,
   .second-span {
     position: absolute;
@@ -39,7 +45,7 @@
     background-color: #e4e5e7;
     border-radius: 50px;
   }
-  
+
   .second-span {
     background-color: #ffb33e;
   }

@@ -67,9 +67,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
   }
-  
+
   .num-of-rating {
     color: #ffb33e;
     font-weight: 700;
@@ -87,6 +86,21 @@
     &:hover {
       background-color: #7a7d85;
       color: white;
+    }
+  }
+
+  .review-add-header {
+    h2 {
+      color: #404145;
+      line-height: 2.5rem;
+      padding: 5px 0;
+    }
+    .title {
+      line-height: 140%;
+      padding-bottom: 0.9375rem;
+      border-bottom: 1px solid #cdcad1;
+      font-size: 16px;
+      font-weight: 400;
     }
   }
 }

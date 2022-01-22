@@ -25,6 +25,7 @@ export const userService = {
     getUsers,
     getById,
     createUsers,
+    saveReview
 }
 window.us = userService
 
@@ -80,6 +81,36 @@ async function getById(userId) {
     // return user
     const user = await storageService.get(STORAGE_KEY, userId)
     return user
+}
+
+async function saveReview(rate, txt, user, owner) {
+    const review = {
+        "_id": utilService.makeId(),
+        txt,
+        rate,
+        "createdAt": Date.now(),
+        "by": {
+            "_id": user._id,
+            "fullname": user.fullname,
+            "origin": user.origin || 'Israel',
+            "imgUrl": user.imgUrl || null,
+        }
+    }
+
+    owner.reviews = [...owner.reviews, review]
+    return await _saveUser(owner)
+}
+
+async function _saveUser(user) {
+    if (user._id) {
+        // return httpService.put(`gig/${gig._id}`, gig)
+        return storageService.put(STORAGE_KEY, user);
+    } else {
+        // return httpService.post('gig', gig)
+        // const user = userService.getLoggedinUser()
+        // gig.owner = user;
+        return storageService.post(STORAGE_KEY, user);
+    }
 }
 
 // async function loadUsers() {
