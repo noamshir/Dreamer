@@ -96,9 +96,11 @@ async function saveReview(rate, txt, user, owner) {
             "imgUrl": user.imgUrl || null,
         }
     }
-
+    console.log('service', review);
     owner.reviews = [...owner.reviews, review]
-    return await _saveUser(owner)
+    console.log('OWNER IN SERVICE', owner);
+    const updatedOwner = await _saveUser(owner)
+    return updatedOwner
 }
 
 async function _saveUser(user) {

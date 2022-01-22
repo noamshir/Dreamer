@@ -44,6 +44,7 @@ class _GigDetails extends React.Component {
     }
     loadOwner = async (userId) => {
         const owner = await userService.getById(userId)
+        console.log('owner' ,owner);
         this.setState(prevState => ({ ...prevState, owner }))
     }
 

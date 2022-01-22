@@ -12,6 +12,7 @@ export function ReviewList({ owner, gig, loadOwner }) {
     const avgRate = getAvgRate()
 
     function getAvgRate() {
+        if (!owner.reviews.length) return ''
         const acc = owner.reviews.reduce((acc, review) => {
             acc += +review.rate
             return acc
