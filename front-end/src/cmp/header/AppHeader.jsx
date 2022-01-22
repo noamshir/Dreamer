@@ -1,9 +1,14 @@
+import React from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import { SearchBar } from '../SearchBar.jsx';
-import { Logo } from '../Logo.jsx';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux'
-function _AppHeader({ isHome, isScroll, isSearchBar, openSignUpModal, openSignInModal }) {
+
+import { SearchBar } from '../SearchBar.jsx';
+import { Logo } from '../Logo.jsx';
+import { logout } from '../../store/user.action'
+
+
+function _AppHeader({ isHome, isScroll, isSearchBar, openSignUpModal, openSignInModal, user, logout }) {
     var headerTransparent = "";
     var color = "";
     var sticky = "not-sticky";
@@ -18,6 +23,10 @@ function _AppHeader({ isHome, isScroll, isSearchBar, openSignUpModal, openSignIn
         sticky = "sticky";
         searchBar = ""
         if (isSearchBar) searchBar = "show-bar"
+    }
+
+    function onLogout() {
+        logout()
     }
 
 
@@ -36,8 +45,21 @@ function _AppHeader({ isHome, isScroll, isSearchBar, openSignUpModal, openSignIn
                             <ul className="flex">
                                 <li className="display-from-size-large">  <NavLink className={`clean-link ${color}`} to="/explore">Explore</NavLink></li>
                                 <li className="display-from-size-large"><NavLink className={`clean-link ${color}`} to="/addSeller">Become Seller</NavLink></li>
-                                <li className="display-from-size-medium"><button className={`clean-btn ${color}`} onClick={() => openSignInModal()}>Sign in</button></li>
-                                <li className="display-from-size-small"><button className={`clean-btn join-a ${color}`} onClick={() => openSignUpModal()}>Join</button></li>
+                                {!user ?
+                                    <React.Fragment>
+                                        <li className="display-from-size-medium"><button className={`clean-btn ${color}`} onClick={() => openSignInModal()}>Sign in</button></li>
+                                        <li className="display-from-size-small"><button className={`clean-btn join-a ${color}`} onClick={() => openSignUpModal()}>Join</button></li>
+                                    </React.Fragment> :
+                                    <React.Fragment>
+                                        <li className="display-from-size-medium"><button className={`clean-btn ${color}`} onClick={onLogout}>Logout</button></li>
+                                        <li className="display-from-size-small">{user.imgUrl ?
+                                            <div className="user-img" style={{ backgroundImage: `url(${user.imgUrl})` }}></div>
+                                            : <div style={{ backgroundColor: '#1dbf73' }} className="user-img">
+                                                <span>{user.fullname.charAt(0)}</span>
+                                            </div>}
+                                        </li>
+                                    </React.Fragment>
+                                }
                             </ul>
                         </nav>
                     </div>
@@ -49,14 +71,19 @@ function _AppHeader({ isHome, isScroll, isSearchBar, openSignUpModal, openSignIn
 
 }
 
-function mapStateToProps({ scssModule }) {
+function mapStateToProps(state) {
     return {
-        isHome: scssModule.isHome,
-        isExplore: scssModule.isExplore,
-        isScroll: scssModule.isScroll,
-        isSearchBar: scssModule.isSearchBar
+        isHome: state.scssModule.isHome,
+        isExplore: state.scssModule.isExplore,
+        isScroll: state.scssModule.isScroll,
+        isSearchBar: state.scssModule.isSearchBar,
+        user: state.userModule.user
     }
 }
 
+const mapDispatchToProps = {
+    logout
+};
 
-export const AppHeader = connect(mapStateToProps)(_AppHeader)
+
+export const AppHeader = connect(mapStateToProps, mapDispatchToProps)(_AppHeader)

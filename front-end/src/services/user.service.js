@@ -34,7 +34,7 @@ async function login(credentials) {
     // if (user) sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
     // return user
 
-    const users = storageService.query(STORAGE_KEY)
+    const users = await storageService.query(STORAGE_KEY)
     const user = users.find(user => user.username === credentials.username &&
         user.password === credentials.password)
     if (user) sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
