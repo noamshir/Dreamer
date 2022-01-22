@@ -33,19 +33,38 @@ export function Carousel({ gig, onGoToDetails, isDetails, children }) {
                 if (onGoToDetails) onGoToDetails(gig._id)
             }}
         >
-            <div
-                className="inner"
-                style={{ transform: `translateX(-${activeIndex * 100}%)` }}
-            >
-                {React.Children.map(children, (child, index) => {
-                    return React.cloneElement(child, { width: "100%" });
-                })}
+            <div className="inner-wrapper">
+                <div className={isArrows ? 'indicators show' : 'indicators'}>
+                    <span
+                        onClick={(ev) => {
+                            updateIndex(activeIndex - 1, ev);
+                        }}
+                    >
+                        <ArrowBackIosNewIcon />
+                    </span>
+                    <span
+                        onClick={(ev) => {
+                            updateIndex(activeIndex + 1, ev);
+                        }}
+                    >
+                        <ArrowForwardIosIcon />
+                    </span>
+                </div>
+                <div
+                    className="inner"
+                    style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+                >
+
+                    {React.Children.map(children, (child, index) => {
+                        return React.cloneElement(child, { width: "100%" });
+                    })}
+                </div>
             </div>
             <div className="btn-by-idx">
                 {React.Children.map(children, (child, index) => {
                     return (
                         <button
-                            style={{backgroundImage: isDetails ? `url(${child.props.imgUrl})` : '' }}
+                            style={{ backgroundImage: isDetails ? `url(${child.props.imgUrl})` : '' }}
                             className={`${index === activeIndex ? "active" : ""}`}
                             onClick={(ev) => {
                                 updateIndex(index, ev);
@@ -56,22 +75,7 @@ export function Carousel({ gig, onGoToDetails, isDetails, children }) {
                     );
                 })}
             </div>
-            <div className={isArrows ? 'indicators show' : 'indicators'}>
-                <span
-                    onClick={(ev) => {
-                        updateIndex(activeIndex - 1, ev);
-                    }}
-                >
-                    <ArrowBackIosNewIcon />
-                </span>
-                <span
-                    onClick={(ev) => {
-                        updateIndex(activeIndex + 1, ev);
-                    }}
-                >
-                    <ArrowForwardIosIcon />
-                </span>
-            </div>
+
         </div>
     );
 };
