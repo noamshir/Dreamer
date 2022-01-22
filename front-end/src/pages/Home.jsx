@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 
 import { AppHero } from '../cmp/AppHero'
 import { HomeCategory } from '../cmp/HomeCategory'
+import { HomePageInfo } from '../cmp/HomePageInfo'
 
 function _Home({ isHome, setExplore, setHome }) {
 
@@ -25,6 +26,7 @@ function _Home({ isHome, setExplore, setHome }) {
       <div className="homepage">
         <AppHero />
         <HomeCategory />
+        <HomePageInfo />
       </div>
     </section>
   )
