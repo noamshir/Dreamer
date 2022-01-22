@@ -30,7 +30,7 @@ export function AppHero(props) {
                 <div className="seller-name">
                     <span className='seller1'>Elton, <span className='seller-skill'>Programmer</span></span>
                     <span className='seller2'>Cabra, <span className='seller-skill'>Tattoo Artist</span></span>
-                    <span className='seller3'>Maya, <span className='seller-skill'>Fashion Designer</span></span>
+                    <span className='seller3'>Sasha, <span className='seller-skill'>Fashion Designer</span></span>
                     <span className='seller4'>Mark, <span className='seller-skill'>Illustrator</span></span>
                 </div>
             </div>

@@ -7,30 +7,48 @@ export function HomeCategory(props) {
         <div className='proffesional-services max-width-container equal-padding'>
             <div className='img-container'>
                 <span className="on-click"></span>
-                <div className="category">{popularCategories[0]}</div>
+                <div className="category-container">
+                    <div className="subtitle">Brand your business </div>
+                    <div className="title">{popularCategories[0]}</div>
+                </div>
                 <img src="https://res.cloudinary.com/drdfrwt1d/image/upload/v1642781888/logo-starbucks_w8plcz.jpg" />
             </div>
             <div className='img-container'>
                 <span className="on-click"></span>
-                <div className="category">{popularCategories[1]}</div>
+                <div className="category-container">
+                    <div className="subtitle">Level up your site</div>
+                    <div className="title">{popularCategories[1]}</div>
+                </div>
                 <img src="https://res.cloudinary.com/drdfrwt1d/image/upload/v1642781889/wordpress_dofxal.jpg" />
             </div>
             <div className='img-container'>
                 <span className="on-click"></span>
+                <div className="category-container">
 
-                <div className="category">{popularCategories[2]}</div>
+                    <div className="subtitle">Share your message</div>
+                    <div className="title">{popularCategories[2]}</div>
+                </div>
+
                 <img src="https://res.cloudinary.com/drdfrwt1d/image/upload/v1642781889/voice-over_ilnzmy.jpg" />
             </div>
             <div className='img-container'>
                 <span className="on-click"></span>
+                <div className="category-container">
 
-                <div className="category">{popularCategories[3]}</div>
+                    <div className="subtitle">Capture your audience</div>
+                    <div className="title">{popularCategories[3]}</div>
+                </div>
+
                 <img src="https://res.cloudinary.com/drdfrwt1d/image/upload/v1642781888/video-explainer_gjzhjs.jpg" />
             </div>
             <div className='img-container'>
                 <span className="on-click"></span>
+                <div className="category-container">
 
-                <div className="category">{popularCategories[4]}</div>
+                    <div className="subtitle">Extend your reach</div>
+                    <div className="title">{popularCategories[4]}</div>
+                </div>
+
                 <img src="https://res.cloudinary.com/drdfrwt1d/image/upload/v1642781888/social-media_ihqmul.jpg" />
             </div>
         </div>

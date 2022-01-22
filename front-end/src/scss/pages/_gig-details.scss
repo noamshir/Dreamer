@@ -25,6 +25,9 @@
   padding: 2em 1.5em;
   font-family: Arial, Helvetica, sans-serif;
   width: 100%;
+  position: sticky;
+  top: 70px;
+  right: 32px;
   &.aside {
     display: none;
   }
