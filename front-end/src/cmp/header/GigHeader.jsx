@@ -4,7 +4,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useState } from 'react';
 import { storageService } from '../../services/async-storage.service';
 import { setLikedGig } from '../../store/gig.action';
-function _GigHeader({ gig, user, gigs,setLikedGig }) {
+function _GigHeader({ gig, user,setLikedGig }) {
   var sticky = "";
   const [isLiked, setLiked] = useState(false)
   checkIfLiked()
