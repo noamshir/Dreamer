@@ -98,7 +98,6 @@ async function saveReview(rate, txt, user, owner) {
     }
     owner.reviews = [...owner.reviews, review]
     const updatedOwner = await _saveUser(owner)
-    console.log({ updatedOwner })
     return updatedOwner
 }
 

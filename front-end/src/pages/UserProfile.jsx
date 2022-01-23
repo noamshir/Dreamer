@@ -20,7 +20,6 @@ function _UserProfile({ setHome, setExplore, setDetails, setProfile, user }) {
         setProfile(true);
     }, [])
 
-    console.log('user.fullName:', user.fullname);
 
     return (
         <div className="profile-details-container">

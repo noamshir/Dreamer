@@ -1,30 +1,35 @@
-
 import { connect } from 'react-redux';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { storageService } from '../../services/async-storage.service';
-import { setLikedGig } from '../../store/gig.action';
-function _GigHeader({ gig, user,setLikedGig }) {
+import { setLikedGig, loadGigs } from '../../store/gig.action';
+import { gigService } from '../../services/gig.service';
+
+function _GigHeader({ gig, loadGig, user, setLikedGig, loadGigs }) {
   var sticky = "";
   const [isLiked, setLiked] = useState(false)
-  checkIfLiked()
 
-
-
-
+  useEffect(() => {
+    checkIfLiked()
+    loadGigs()
+  }, [])
 
   async function checkIfLiked() {
-    if (user) return;
-    const isGuestLiked = await storageService.isLikedByGuest(gig._id)
-    console.log(isGuestLiked)
-    setLiked(isGuestLiked)
+    if (user) {
+      const isUserLiked = await gigService.isLikedByUser(gig)
+      setLiked(isUserLiked)
+    } else {
+      const isGuestLiked = await storageService.isLikedByGuest(gig._id)
+      setLiked(isGuestLiked)
+    }
   }
   async function toggleLike() {
-    setLikedGig(gig, user)
+    await setLikedGig(gig, user)
+    loadGig(gig._id)
     setLiked(!isLiked)
   }
+
   var activeLike = (isLiked) ? "active" : "";
-  console.log(isLiked);
   return (
     <header className={`gig-details-header ${sticky}`}>
       <div className="header-content max-width-container equal-padding flex">
@@ -38,7 +43,7 @@ function _GigHeader({ gig, user,setLikedGig }) {
         </nav>
         <div className="like-header flex">
           <button className={`like-btn-header ${activeLike}`} onClick={() => toggleLike()}><FavoriteIcon /></button>
-          <span className="likes-count">12</span>
+          <span className="likes-count">{gig.likedByUser.length}</span>
         </div>
       </div>
     </header>
@@ -52,7 +57,8 @@ const mapsStateToprops = (state) => {
   }
 }
 const mapDispatchToProps = {
-  setLikedGig
+  setLikedGig,
+  loadGigs
 };
 
 export const GigHeader = connect(mapsStateToprops, mapDispatchToProps)(_GigHeader);

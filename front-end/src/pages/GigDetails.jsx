@@ -62,11 +62,10 @@ class _GigDetails extends React.Component {
 
     render() {
         const { gig, owner } = this.state
-        console.log(owner)
         if (!gig || !owner) return <React.Fragment></React.Fragment>
         return (
             <React.Fragment>
-                <GigHeader gig={gig} />
+                <GigHeader gig={gig} loadGig={this.loadGig}/>
                 <section className='gig-details max-width-container equal-padding'>
                     <div className="details-main-container">
                         <DetailsHeader gig={gig} getUserLevel={this.getUserLevel} owner={owner} />

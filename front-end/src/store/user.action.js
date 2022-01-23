@@ -27,7 +27,6 @@ export function logout() {
 export function saveSellerInfo(sellerInfo) {
   return async (dispatch) => {
     const updatedUser = await userService.saveSellerInfo(sellerInfo)
-    console.log('action', updatedUser);
     const action = { type: "SET_USER", user: updatedUser };
     dispatch(action);
   };
