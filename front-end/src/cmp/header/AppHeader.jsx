@@ -1,6 +1,6 @@
 import React from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 
 import { SearchBar } from '../SearchBar.jsx';
@@ -52,11 +52,15 @@ function _AppHeader({ isHome, isScroll, isSearchBar, openSignUpModal, openSignIn
                                     </React.Fragment> :
                                     <React.Fragment>
                                         <li className="display-from-size-medium"><button className={`clean-btn ${color}`} onClick={onLogout}>Logout</button></li>
-                                        <li className="display-from-size-small">{user.imgUrl ?
-                                            <div className="user-img" style={{ backgroundImage: `url(${user.imgUrl})` }}></div>
-                                            : <div style={{ backgroundColor: '#1dbf73' }} className="user-img">
-                                                <span>{user.fullname.charAt(0)}</span>
-                                            </div>}
+                                        <li className="display-from-size-small">
+                                            <Link to={`/profile/${user._id}`}>
+                                                {user.imgUrl ?
+                                                    <div className="user-img" style={{ backgroundImage: `url(${user.imgUrl})` }}></div>
+                                                    : <div style={{ backgroundColor: '#1dbf73' }} className="user-img">
+                                                        <span>{user.fullname.charAt(0)}</span>
+                                                    </div>}
+                                            </Link>
+
                                         </li>
                                     </React.Fragment>
                                 }
