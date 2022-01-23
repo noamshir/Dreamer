@@ -10,7 +10,7 @@ import { saveSellerInfo } from '../store/user.action'
 import { initialService } from '../initials/initial.service';
 
 
-export class _BecomeSeller extends React.Component {
+class _BecomeSeller extends React.Component {
     state = {
         sellerInfo: {
             imgUrl: '',
