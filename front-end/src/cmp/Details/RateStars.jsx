@@ -38,7 +38,10 @@ export class _RateStars extends React.Component {
     submit = async (ev) => {
         ev.preventDefault()
         const { user, owner } = this.props
-        if (!user) return console.log('login first!')
+        if (!user) {
+            
+            return;
+        }
         const avgRate = this.sumRate()
         await userService.saveReview(avgRate, this.state.txt, user, owner)
         this.props.setReviewAdd(false)

@@ -62,6 +62,7 @@ class _GigDetails extends React.Component {
 
     render() {
         const { gig, owner } = this.state
+        console.log(owner)
         if (!gig || !owner) return <React.Fragment></React.Fragment>
         return (
             <React.Fragment>
