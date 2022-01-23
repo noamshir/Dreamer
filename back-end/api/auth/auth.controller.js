@@ -1,8 +1,7 @@
 const authService = require("./auth.service");
 
 async function login(req, res) {
-  var { user } = req.query;
-  user = JSON.parse(user);
+  var  user  = req.body;
   const { username, password } = user;
   try {
     const user = await authService.login(username, password);
@@ -14,9 +13,9 @@ async function login(req, res) {
 }
 
 async function signUp(req, res) {
-  var signedUser = req.body;
+  var newUser = req.body;
   try {
-    const user = await authService.signUp(signedUser);
+    const user = await authService.signUp(newUser);
     req.session.user = user;
     res.json(user);
   } catch (err) {
