@@ -14,14 +14,10 @@
       transition: transform 0.3s;
     }
   }
-  .review-img {
+  .review {
     width: 100%;
     cursor: pointer;
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    max-height: 300px;
     .indicators {
       top: 50%;
       justify-content: space-between;
@@ -51,33 +47,40 @@
       }
     }
 
-    .carousel-item {
+    .review-item {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      height: 300px;
-      width: 100%;
-      background-size: cover;
+      height: 100%;
       color: #fff;
+      overflow: hidden;
+      position: relative;
+      img {
+        flex-grow: 1;
+        width: 50%;
+        height: 300px;
+      }
+      .review-content {
+        flex-grow: 1;
+        height: 300px;
+        white-space: pre;
+        display: flex;
+        flex-direction: column;
+      }
     }
     button.active {
       background-color: rgb(58, 59, 58);
       transform: scale(1.5);
       color: #fff;
     }
-
-    .btn-by-idx {
-      position: absolute;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%;
-      display: flex;
-      align-items: center;
-    }
   }
 }
 
 .review-content {
+  .wrap-text {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
   h5,
   h4 {
     margin: 0;
@@ -97,5 +100,7 @@
     color: #003912;
     font-size: 24px;
     line-height: 36px;
+    display: block;
+    height: 100%;
   }
 }
