@@ -30,10 +30,10 @@ function _GigHeader({ gig, user,setLikedGig }) {
       <div className="header-content max-width-container equal-padding flex">
         <nav className="gig-header-nav flex">
           <ul className="clean-list flex">
-            <li><a className="clean-link" href="">Overview</a></li>
-            <li><a className="clean-link" href="">About this gig</a></li>
-            <li><a className="clean-link" href="">About the seller</a></li>
-            <li><a className="clean-link" href="">Reviews</a></li>
+            <li><a className="clean-link" href="#Overview">Overview</a></li>
+            <li><a className="clean-link" href="#AboutThisGig">About this gig</a></li>
+            <li><a className="clean-link" href="#AboutSeller">About the seller</a></li>
+            <li><a className="clean-link" href="#Reviews">Reviews</a></li>
           </ul>
         </nav>
         <div className="like-header flex">

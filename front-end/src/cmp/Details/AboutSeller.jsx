@@ -7,7 +7,7 @@ export function AboutSeller({ gig, getUserLevel, owner }) {
 
     if (!owner) return <React.Fragment></React.Fragment>
     return (
-        <div className='about-seller'>
+        <div className='about-seller' id="AboutSeller">
             <h2 className='about-seller-header'>About the Seller</h2>
             <div className="seller-info">
                 <div className='owner-img' style={{ backgroundImage: `url(${gig.owner.imgUrl})` }}></div>

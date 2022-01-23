@@ -44,7 +44,7 @@ function _AppHeader({ isHome, isScroll, isSearchBar, openSignUpModal, openSignIn
                             <div className="nav-helper"></div>
                             <ul className="flex">
                                 <li className="display-from-size-large">  <NavLink className={`clean-link ${color}`} to="/explore">Explore</NavLink></li>
-                                <li className="display-from-size-large"><NavLink className={`clean-link ${color}`} to="/addSeller">Become Seller</NavLink></li>
+                                <li className="display-from-size-large"><NavLink className={`clean-link ${color}`} to="/becomeSeller">Become a Seller</NavLink></li>
                                 {!user ?
                                     <React.Fragment>
                                         <li className="display-from-size-medium"><button className={`clean-btn ${color}`} onClick={() => openSignInModal()}>Sign in</button></li>
