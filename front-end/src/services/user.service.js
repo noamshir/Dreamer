@@ -30,27 +30,17 @@ export const userService = {
 window.us = userService
 
 async function login(credentials) {
-    // const user = await httpService.post('auth/login', credentials)
-    // if (user) sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
-    // return user
-
-    const users = await storageService.query(STORAGE_KEY)
-    const user = users.find(user => user.username === credentials.username &&
-        user.password === credentials.password)
+    const user = await httpService.post('auth/login', credentials)
+    if (user) sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
+    return user;
+}
+async function signUp(userInfo) {
+    const user = await httpService.post('auth/signup', userInfo)
     if (user) sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
     return user
 }
-async function signUp(userInfo) {
-    // const user = await httpService.post('auth/signup', userInfo)
-    // if (user) sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
-    // return user
-    const user = await storageService.post(STORAGE_KEY, userInfo)
-    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
-    return user
-}
 async function logout() {
-    // const data = await httpService.post('auth/logout')
-    // return data
+    await httpService.post('auth/logout')
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, null)
     return Promise.resolve()
 }
@@ -77,9 +67,9 @@ async function getUsers() {
 }
 
 async function getById(userId) {
-    // const user = await httpService.get(`user/${userId}`)
+    const user = await httpService.get(`user/${userId}`)
     // return user
-    const user = await storageService.get(STORAGE_KEY, userId)
+    // const user = await storageService.get(STORAGE_KEY, userId)
     return user
 }
 
@@ -96,17 +86,16 @@ async function saveReview(rate, txt, user, owner) {
             "imgUrl": user.imgUrl || null,
         }
     }
-    console.log('service', review);
     owner.reviews = [...owner.reviews, review]
-    console.log('OWNER IN SERVICE', owner);
     const updatedOwner = await _saveUser(owner)
+    console.log({updatedOwner})
     return updatedOwner
 }
 
 async function _saveUser(user) {
     if (user._id) {
-        // return httpService.put(`gig/${gig._id}`, gig)
-        return storageService.put(STORAGE_KEY, user);
+        return httpService.put(`user/${user._id}`, user)
+        // return storageService.put(STORAGE_KEY, user);
     } else {
         // return httpService.post('gig', gig)
         // const user = userService.getLoggedinUser()

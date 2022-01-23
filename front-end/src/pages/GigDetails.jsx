@@ -60,7 +60,8 @@ class _GigDetails extends React.Component {
     }
 
     render() {
-        const { gig, owner} = this.state
+        const { gig, owner } = this.state
+        console.log(owner)
         if (!gig || !owner) return <React.Fragment></React.Fragment>
         return (
             <React.Fragment>
@@ -73,8 +74,8 @@ class _GigDetails extends React.Component {
                         </Carousel>
                         <OrderModal modalClass="in-details" gig={gig} />
                         <AboutGig gig={gig} owner={owner} />
-                        <AboutSeller gig={gig} getUserLevel={this.getUserLevel} owner={owner}/>
-                        <ReviewList owner={owner} gig={gig} loadOwner={this.loadOwner}/>
+                        <AboutSeller gig={gig} getUserLevel={this.getUserLevel} owner={owner} />
+                        <ReviewList owner={owner} gig={gig} loadOwner={this.loadOwner} />
                     </div>
                     <OrderModal modalClass="aside" gig={gig} />
                 </section>
