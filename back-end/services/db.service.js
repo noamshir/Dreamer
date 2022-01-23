@@ -1,13 +1,16 @@
 const MongoClient = require("mongodb").MongoClient;
 
-const config = { dbURL: "mongodb://localhost:27017" };
+const config = {
+  dbURL:
+    "mongodb+srv://noam:kasha123@noamcluster.sj9xo.mongodb.net/Dimerr?retryWrites=true&w=majority",
+};
 
 module.exports = {
   getCollection,
 };
 
 // Database Name
-const dbName = "toy_db";
+const dbName = "Dimerr";
 
 var dbConn = null;
 
