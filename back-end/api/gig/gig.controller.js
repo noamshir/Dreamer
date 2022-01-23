@@ -35,7 +35,7 @@ async function updateGig(req, res) {
   const updatedGig = req.body;
   console.log(updatedGig)
   try {
-    const savedGig = gigService.update(updatedGig);
+    const savedGig = await gigService.update(updatedGig);
     res.send(savedGig);
   } catch (err) {
     logger.error("Failed to update gig", err);
