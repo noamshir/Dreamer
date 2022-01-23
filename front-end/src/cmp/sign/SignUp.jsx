@@ -39,7 +39,7 @@ function _SignUp({ signUp, closeModal, openSignIn }) {
                         <input type="text" name="username" placeholder="Choose a Username" onChange={handleChange} className="user-input" />
                     </div>
                     <div className="form-input-div">
-                        <input type="text" name="password" placeholder="Choose a Password" onChange={handleChange} className="user-input" />
+                        <input type="password" name="password" placeholder="Choose a Password" onChange={handleChange} className="user-input" />
                     </div>
                     <button className="continue-btn" type="submit">Continue</button>
                     <p className="siginig-agree">By joining I agree to receive dreams from dimerr.</p>

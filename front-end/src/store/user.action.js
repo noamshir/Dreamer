@@ -16,6 +16,14 @@ export function signIn(user) {
   };
 }
 
+export function logout() {
+  return async (dispatch) => {
+    await userService.logout();
+    const action = { type: "SET_USER", user: null };
+    dispatch(action);
+  };
+}
+
 // export function onSaveReview(rate, txt) {
 //   return async (dispatch) => {
 //     const action = { type: "SET_USER", loggedUser: updatedUser };

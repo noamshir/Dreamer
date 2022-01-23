@@ -3,6 +3,7 @@
   position: relative;
 
   .indicators {
+    z-index: 10;
     position: absolute;
     left: 50%;
     width: 100%;
@@ -18,9 +19,5 @@
   .inner {
     white-space: nowrap;
     transition: transform 0.3s;
-  }
-  .carousel-item:hover {
-    // transform: scale(1.05);
-    // overflow: hidden;
   }
 }
