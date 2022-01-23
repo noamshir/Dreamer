@@ -9,7 +9,7 @@
     }
   }
   .rate-wrapper {
-    padding: 10px 12px;
+    padding: 8px 12px;
   }
   h5 {
     margin: 0;
@@ -39,7 +39,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 10px 0 12px 12px;
+    padding: 8px 0 8px 12px;
     .owner-level-name {
       display: flex;
       flex-direction: column;
@@ -79,7 +79,7 @@
     font-family: work-sans;
     text-align: left;
     color: #222325;
-    padding: 15px 20px 12px 12px;
+    padding: 8px 20px 8px 12px;
     cursor: pointer;
     transition: 0.3s all;
     height: 4em;
@@ -91,8 +91,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 8px;
     .like {
+      color: lighten($clr3, 20%);
       transition: color 0.3s;
 
       &.active {
@@ -103,6 +104,9 @@
     .like:hover {
       cursor: pointer;
       color: rgba(218, 95, 95, 0.829);
+    }
+    .like svg {
+      height: 20px;
     }
     ul {
       cursor: pointer;
@@ -149,20 +153,33 @@
     }
   }
   .indicators > span {
-    background-color: #363535;
-    color: white;
+    background-color: white;
+    color: $clr3;
+    border: 1px solid darken($clr4, 15%);
+
     svg {
-      font-size: 18px;
+      font-size: 14px;
+      position: relative;
     }
     &:first-child {
-      padding: 2px 5px 2px 2px;
+      position: relative;
+      left: 0;
+      padding: 5px 5px 5px 5px;
       border-end-end-radius: 50%;
       border-top-right-radius: 50%;
     }
+    &:first-child svg {
+      top: 2px;
+      bottom: 2px;
+      right: 3px;
+    }
     &:last-child {
-      padding: 2px 2px 2px 5px;
+      padding: 5px 5px 5px 5px;
       border-top-left-radius: 50%;
       border-bottom-left-radius: 50%;
+    }
+    &:last-child svg {
+      inset: 2px 3px;
     }
   }
 
