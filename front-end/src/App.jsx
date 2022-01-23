@@ -7,24 +7,10 @@ import routes from './routes.js'
 import { SignUp } from './cmp/sign/SignUp.jsx';
 import { SignIn } from './cmp/sign/SignIn.jsx';
 import { connect } from 'react-redux';
-import { setScroll, setSearchDisplay } from './store/scss.action.js';
+import { setScroll, setSearchDisplay, toggleJoinModal, toggleSignInModal } from './store/scss.action.js';
 class _App extends React.Component {
 
-    state = {
-        isSignUpModalOpen: false,
-        isSignInModalOpen: false
-    }
 
-    toggleSignUp = () => {
-        var { isSignUpModalOpen } = this.state;
-        isSignUpModalOpen = !isSignUpModalOpen
-        this.setState({ isSignUpModalOpen });
-    }
-    toggleSignIn = () => {
-        var { isSignInModalOpen } = this.state;
-        isSignInModalOpen = !isSignInModalOpen
-        this.setState({ isSignInModalOpen });
-    }
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll)
     }
@@ -41,22 +27,25 @@ class _App extends React.Component {
             this.props.setScroll(false);
         }
     }
-
+    toggleModals = () => {
+        toggleJoinModal();
+        toggleSignInModal();
+    }
     render() {
         return (
             <div className="main-wrapper">
-                {this.state.isSignUpModalOpen && <div onClick={this.toggleSignUp} className="main-screen"></div>}
-                {this.state.isSignInModalOpen && <div onClick={this.toggleSignIn} className="main-screen"></div>}
-                <AppHeader openSignUpModal={this.toggleSignUp} openSignInModal={this.toggleSignIn} />
-                <AppSubHeader />
+                {this.props.isJoinModal && <div onClick={() => this.props.toggleJoinModal()} className="main-screen"></div>}
+                {this.props.isModalSign && <div onClick={() => this.props.toggleSignInModal()} className="main-screen"></div>}
+                <AppHeader />
+                {!this.props.isBecomeSeller && <AppSubHeader />}
                 <main className="main-content">
                     <Switch>
                         {routes.map(route => <Route key={route.path} exact component={route.component} path={route.path} />)}
                     </Switch>
                 </main>
                 <AppFooter />
-                {this.state.isSignUpModalOpen && <SignUp closeModal={this.toggleSignUp} openSignIn={this.toggleSignIn} />}
-                {this.state.isSignInModalOpen && <SignIn closeModal={this.toggleSignIn} openJoin={this.toggleSignUp} />}
+                {this.props.isJoinModal && <SignUp/>}
+                {this.props.isModalSign && <SignIn/>}
             </div>
         )
     }
@@ -64,11 +53,16 @@ class _App extends React.Component {
 
 function mapStateToProps({ scssModule }) {
     return {
+        isBecomeSeller: scssModule.isBecomeSeller,
+        isJoinModal: scssModule.isJoinModal,
+        isModalSign: scssModule.isModalSign
     }
 }
 
 const mapDispatchToProps = {
     setScroll,
-    setSearchDisplay
+    setSearchDisplay,
+    toggleJoinModal,
+    toggleSignInModal
 }
 export const App = connect(mapStateToProps, mapDispatchToProps)(_App);

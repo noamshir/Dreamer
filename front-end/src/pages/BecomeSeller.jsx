@@ -7,7 +7,7 @@ import video from '../assets/img/video.mp4'
 import { gigService } from '../services/gig.service';
 import { saveSellerInfo } from '../store/user.action'
 import { initialService } from '../initials/initial.service';
-
+import { setExplore, setDetails, setHome, setBecomeSeller } from '../store/scss.action';
 
 class _BecomeSeller extends React.Component {
     state = {
@@ -23,6 +23,15 @@ class _BecomeSeller extends React.Component {
 
     async componentDidMount() {
         await this.makeOptions()
+        this.onSetSellerPage();
+    }
+
+    onSetSellerPage = () => {
+        if (this.props.isSellerDetails) return;
+        this.props.setExplore(false);
+        this.props.setHome(false);
+        this.props.setDetails(false);
+        this.props.setBecomeSeller(true);
     }
 
     handleChange = (ev) => {
@@ -143,11 +152,16 @@ class _BecomeSeller extends React.Component {
 function mapStateToProps(state) {
     return {
         user: state.userModule.user,
+        isBecomeSeller: state.scssModule.isBecomeSeller
     }
 }
 
 const mapDispatchToProps = {
-    saveSellerInfo
+    saveSellerInfo,
+    setExplore,
+    setHome,
+    setDetails,
+    setBecomeSeller
 };
 
 

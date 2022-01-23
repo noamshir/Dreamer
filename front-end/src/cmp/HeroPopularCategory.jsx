@@ -7,7 +7,6 @@ function _HeroPopularCategory() {
     const [popularCategories, setCategories] = useState([]);
     useEffect(async () => {
         var ans = await getCategories();
-        console.log(ans)
         setCategories(ans);
         return () => {
         }

@@ -21,7 +21,7 @@ function _AppSubHeader({ isHome, isSearchBar }) {
     }, [])
     const getCategories = async () => {
         return await gigService.getCategories();
-       
+
     }
 
     if (!categories.length) return <span></span>;
@@ -43,7 +43,7 @@ function mapStateToProps({ scssModule }) {
     return {
         isHome: scssModule.isHome,
         isExplore: scssModule.isExplore,
-        isSearchBar: scssModule.isSearchBar
+        isSearchBar: scssModule.isSearchBar,
     }
 }
 

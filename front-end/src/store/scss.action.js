@@ -32,3 +32,28 @@ export function setSearchDisplay(isSearchBar) {
     dispatch(action);
   };
 }
+
+export function setBecomeSeller(isBecomeSeller)
+{
+  return (dispatch) => {
+    const action = { type: "setBecomeSeller", isBecomeSeller };
+    dispatch(action);
+  };
+}
+
+export function toggleSignInModal(isModalSign)
+{
+  return (dispatch) => {
+    const action = { type: "setSigninModal", isModalSign };
+    dispatch(action);
+  };
+}
+
+export function toggleJoinModal(isJoinModal)
+{
+  return (dispatch) => {
+    const action = { type: "setJoinModal", isJoinModal };
+    dispatch(action);
+  };
+}
+

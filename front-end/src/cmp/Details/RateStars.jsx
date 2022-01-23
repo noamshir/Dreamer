@@ -1,9 +1,8 @@
 import StarRatings from 'react-star-ratings';
 import React from 'react';
 import { connect } from 'react-redux'
-
-
 import { userService } from '../../services/user.service'
+import { toggleSignInModal } from '../../store/scss.action';
 // import { onSaveReview } from '../../store/user.action'
 
 
@@ -39,7 +38,7 @@ export class _RateStars extends React.Component {
         ev.preventDefault()
         const { user, owner } = this.props
         if (!user) {
-            
+            this.props.toggleSignInModal(true);
             return;
         }
         const avgRate = this.sumRate()
@@ -110,7 +109,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-    // onSaveReview
+    toggleSignInModal
 };
 
 
