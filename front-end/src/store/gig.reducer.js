@@ -1,6 +1,8 @@
 const initialState = {
-    gigs: [],
-    filterBy: {}
+    gigs: null,
+    filterBy: {
+        category: '',
+    }
 }
 
 export function gigReducer(state = initialState, action) {

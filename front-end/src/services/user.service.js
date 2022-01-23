@@ -25,7 +25,8 @@ export const userService = {
     getUsers,
     getById,
     createUsers,
-    saveReview
+    saveReview,
+    saveSellerInfo
 }
 window.us = userService
 
@@ -49,15 +50,24 @@ function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN))
 }
 
-function update(UpdatedUser) {
+async function update(sellerInfo) {
     const loggedinUser = getLoggedinUser()
+    const imgUrl = sellerInfo.imgUrl
+    sellerInfo = {
+        rate: 5,
+        sellerDesc: sellerInfo.sellerDesc,
+        origin: sellerInfo.origin,
+        skills: sellerInfo.skills
+    }
     const newUser = {
         ...loggedinUser,
-        ...UpdatedUser
+        imgUrl,
+        reviews: [],
+        sellerInfo
     }
-    storageService.put(STORAGE_KEY, newUser)
+    await storageService.put(STORAGE_KEY, newUser)
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(newUser))
-    return Promise.resolve(newUser)
+    return newUser
 
 }
 
@@ -102,6 +112,14 @@ async function _saveUser(user) {
         // gig.owner = user;
         return storageService.post(STORAGE_KEY, user);
     }
+}
+
+async function saveSellerInfo(sellerInfo) {
+    sellerInfo.skills = sellerInfo.skills.map(skill => {
+        return skill.value
+    })
+    return await update(sellerInfo)
+    
 }
 
 // async function loadUsers() {

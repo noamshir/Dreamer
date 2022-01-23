@@ -12,11 +12,16 @@ form {
         outline: none;
     }
     .search-icon {
+        display: flex;
+        // justify-content: center;
+        align-items: center;
         position: absolute;
-        width: 40px;
-        height: 100%;
-        top: 0.4em;
-        left: 0.3em;
+        width: 22px;
+        height: 22px;
+        // margin-top: auto;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0.4em;
         color: $clr2;
     }
 }

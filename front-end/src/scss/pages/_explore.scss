@@ -1,4 +1,18 @@
 .explore {
+  .services-count {
+    font-family: roboto-bold;
+    font-size: 0.9rem;
+    color: $clr3;
+    margin-top: 30px;
+  }
+
+  h1 {
+    font-family: roboto-bold;
+    font-size: 1.8rem;
+    color: $clr2;
+    margin-top: 30px;
+  }
+
   &-hero {
     background-image: url("../../assets/img/explore-hero.jpg");
     height: 70vh;

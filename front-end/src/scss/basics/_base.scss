@@ -1,17 +1,14 @@
 * {
   box-sizing: border-box;
 }
-
 html {
-  height: 100%;
-  width: 100%;
-  // overflow: hidden;
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
   padding: 0;
-  color: #62646a;
+  color: $clr5;
   position: relative;
   background-color: rgb(255, 255, 255);
   overflow-x: hidden;
@@ -44,6 +41,9 @@ ul {
   width: padded-break-narrow;
 }
 
+button {
+  cursor: pointer;
+}
 .btn {
   cursor: pointer;
   background-color: $clr1;
