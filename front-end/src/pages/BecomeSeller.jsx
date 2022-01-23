@@ -55,6 +55,7 @@ export class _BecomeSeller extends React.Component {
         const { sellerInfo } = this.state
         if (!user) return console.log('login first!')
         this.props.saveSellerInfo(sellerInfo)
+        this.props.history.push('/')
         this.setState({ sellerInfo: { imgUrl: '', sellerDesc: '', origin: '', skills: [] }, isImgInside: false })
     }
 
@@ -102,7 +103,7 @@ export class _BecomeSeller extends React.Component {
                     <p>Profile Picture (optional)</p>
                     <label className='file-image'>
                         {!isImgInside ? '+' :
-                            < CheckCircleOutlineIcon />
+                            <img src={`${sellerInfo.imgUrl}`} alt="img" />
                         }
                         <input className='file-input' type={'file'} name='imgUrl' value={''} onChange={this.handleChange} />
                     </label>

@@ -72,6 +72,13 @@
     text-align: center;
     cursor: pointer;
     transition: 0.3s;
+    
+    img{
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+    }
 
     &:hover {
       border: dotted 2px $clr1;
@@ -96,7 +103,7 @@
     border-radius: 4px;
     transition: .3s;
     font-family: work-sans;
-    
+
     &:focus{
         border: 1px solid $clr1;
     }
