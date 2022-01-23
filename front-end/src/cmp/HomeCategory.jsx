@@ -3,8 +3,9 @@ import { gigService } from '../services/gig.service'
 export function HomeCategory(props) {
     var popularCategories = gigService.getPopularCategories(5);
 
-    return (
-        <div className='proffesional-services max-width-container equal-padding'>
+    return (<div className='proffesional-services-container max-width-container equal-padding'>
+        <h1>Popular professional services</h1>
+        <div className='proffesional-services'>
             <div className='img-container'>
                 <span className="on-click"></span>
                 <div className="category-container">
@@ -52,5 +53,6 @@ export function HomeCategory(props) {
                 <img src="https://res.cloudinary.com/drdfrwt1d/image/upload/v1642781888/social-media_ihqmul.jpg" />
             </div>
         </div>
+    </div>
     )
 }

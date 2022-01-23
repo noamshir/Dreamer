@@ -14,9 +14,11 @@ form {
     .search-icon {
         position: absolute;
         width: 40px;
-        height: 100%;
-        top: 0.4em;
-        left: 0.3em;
+        height: 24px;
+        margin-top: auto;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0.4em;
         color: $clr2;
     }
 }
