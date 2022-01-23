@@ -1,15 +1,24 @@
 import { connect } from 'react-redux'
 import React from 'react'
-
+import { useState, useEffect } from 'react';
 import { gigService } from '../../services/gig.service'
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import CheckIcon from '@mui/icons-material/Check';
 export function OrderModal({ gig, modalClass }) {
 
-    const features = gigService.getFeaturesByCategory(gig.categories[0])
+
     var { title } = gig
     title = _trimIWill(title);
-
+    const [features, setFeatures] = useState([]);
+    useEffect(async () => {
+        var ans = await getCategories();
+        setFeatures(ans);
+        return () => {
+        }
+    }, [])
+    const getCategories = async () => {
+        return await gigService.getFeaturesByCategory(gig.categories[0]);
+    }
 
     return (
         <div className={`order-modal ${modalClass}`}>

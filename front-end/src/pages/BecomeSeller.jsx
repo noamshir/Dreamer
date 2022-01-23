@@ -2,8 +2,7 @@ import React from 'react'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Select from 'react-select'
 import { connect } from 'react-redux'
-
-
+import { Loader } from "../cmp/utils/Loader";
 import video from '../assets/img/video.mp4'
 import { gigService } from '../services/gig.service';
 import { saveSellerInfo } from '../store/user.action'
@@ -18,12 +17,12 @@ class _BecomeSeller extends React.Component {
             origin: '',
             skills: []
         },
-        isImgInside: false
+        isImgInside: false,
+        options: null
     }
 
-    options = []
-    componentDidMount() {
-        this.makeOptions()
+    async componentDidMount() {
+        await this.makeOptions()
     }
 
     handleChange = (ev) => {
@@ -42,11 +41,13 @@ class _BecomeSeller extends React.Component {
         this.setState((prevState) => ({ sellerInfo: { ...prevState.sellerInfo, skills } }))
     };
 
-    makeOptions = () => {
-        const categories = gigService.getCategories()
+    makeOptions = async () => {
+        const categories = await gigService.getCategories()
+        var arr = []
         categories.forEach(skill => {
-            this.options.push({ value: skill, label: skill })
+            arr.push({ value: skill, label: skill })
         })
+        this.setState({ options: arr });
     }
 
     submit = (ev) => {
@@ -80,7 +81,7 @@ class _BecomeSeller extends React.Component {
 
 
     render() {
-        if (!this.options) return
+        if (!this.state.options) return <Loader />
         const { sellerInfo, isImgInside } = this.state
         return (
             <section className='become-seller'>
@@ -117,7 +118,7 @@ class _BecomeSeller extends React.Component {
                         <Select isMulti
                             value={sellerInfo.skills}
                             onChange={this.handleSelectChange}
-                            options={this.options}
+                            options={this.state.options}
                         />
                     </div>
                     <div className="field">
