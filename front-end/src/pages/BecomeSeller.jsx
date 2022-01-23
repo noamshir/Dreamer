@@ -114,15 +114,18 @@ class _BecomeSeller extends React.Component {
                         </label>
                     </div>
                     <div className="field">
-                        <Select isMulti
-                            value={sellerInfo.skills}
-                            onChange={this.handleSelectChange}
-                            options={this.options}
-                        />
+                        <p>Skills</p>
+                        <div className="select-wrapper">
+                            <Select isMulti
+                                value={sellerInfo.skills}
+                                onChange={this.handleSelectChange}
+                                options={this.options}
+                            />
+                        </div>
                     </div>
                     <div className="field">
                         <p>Origin</p>
-                        <select value={sellerInfo.origin} name='origin' onChange={this.handleChange}>
+                        <select className='select-field' value={sellerInfo.origin} name='origin' onChange={this.handleChange}>
                             <option value=''>Origin</option>
                             <option value="israel">Israel</option>
                             <option value="USA">USA</option>
@@ -131,7 +134,7 @@ class _BecomeSeller extends React.Component {
                             <option value="pakistan">Pakistan</option>
                         </select>
                     </div>
-                    <button className='btn' type='submit'>Make me a Seller!</button>
+                    <button className='btn' type='submit'>Continue</button>
                 </form>
             </section>
         )
