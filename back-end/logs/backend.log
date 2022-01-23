@@ -18,3 +18,10 @@
 23.1.2022, 12:18:41 - ERROR - Failed to get users | {}
 23.1.2022, 12:18:41 - ERROR - cannot find users | {}
 23.1.2022, 12:18:41 - ERROR - Failed to get users | {}
+23.1.2022, 13:27:05 - ERROR - cannot insert user | {}
+23.1.2022, 13:27:48 - ERROR - cannot insert user | {}
+23.1.2022, 13:28:20 - ERROR - cannot insert user | {}
+23.1.2022, 13:36:16 - ERROR - while finding user noam | {"reason":{"type":"ReplicaSetNoPrimary","servers":{},"stale":false,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"setName":"atlas-14bqu2-shard-0","maxSetVersion":6,"maxElectionId":"7fffffff0000000000000057","commonWireVersion":9}}
+23.1.2022, 13:38:32 - ERROR - while finding user noam | {}
+23.1.2022, 16:16:10 - ERROR - cannot update user 61ed10c9539e75815ff210fd | {"index":0,"code":66}
+23.1.2022, 16:16:10 - ERROR - Failed to update user | {"index":0,"code":66}
