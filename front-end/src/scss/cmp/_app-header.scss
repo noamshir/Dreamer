@@ -22,7 +22,9 @@
       }
     }
   }
-
+  a {
+    text-decoration: none;
+  }
   .user-img {
     border-radius: 50%;
     background-size: cover;
@@ -36,7 +38,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      color: rgb(214, 213, 213);
+      color: white;
+      text-transform: capitalize;
     }
   }
 }

@@ -2,27 +2,31 @@ const initialState = {
   isHome: true,
   isExplore: false,
   isDetails: false,
+  isProfile: false,
   isScroll: false,
-  isSearchBar:false
+  isSearchBar: false
 };
 
 export function scssReducer(state = initialState, action) {
   let newState = state;
   switch (action.type) {
-    case "SetHome":
+    case "SET_HOME":
       newState = { ...state, isHome: action.isHome };
       break;
 
-    case "SetExplore":
+    case "SET_EXPLORE":
       newState = { ...state, isExplore: action.isExplore };
       break;
-    case "SetDetails":
+    case "SET_DETAILS":
       newState = { ...state, isDetails: action.isDetails };
       break;
-    case "SetScroll":
+    case "SET_PROFILE":
+      newState = { ...state, isProfile: action.isProfile };
+      break;
+    case "SET_SCROLL":
       newState = { ...state, isScroll: action.isScroll };
       break;
-    case "SetHomeSearchBar":
+    case "SET_HOME_SEARCH_BAR":
       newState = { ...state, isSearchBar: action.isSearchBar };
       break;
   }

@@ -13,7 +13,7 @@ import { userService } from '../services/user.service'
 import { gigService } from '../services/gig.service'
 
 import { onSetFilterBy } from '../store/gig.action'
-import { setHome, setExplore, setDetails } from '../store/scss.action.js';
+import { setHome, setExplore, setDetails, setProfile } from '../store/scss.action.js';
 import { GigHeader } from '../cmp/header/GigHeader'
 
 
@@ -33,6 +33,7 @@ class _GigDetails extends React.Component {
 
     onSetDetails = () => {
         if (this.props.isDetails) return;
+        this.props.setProfile(false);
         this.props.setExplore(false);
         this.props.setHome(false);
         this.props.setDetails(true)
@@ -60,7 +61,7 @@ class _GigDetails extends React.Component {
     }
 
     render() {
-        const { gig, owner} = this.state
+        const { gig, owner } = this.state
         if (!gig || !owner) return <React.Fragment></React.Fragment>
         return (
             <React.Fragment>
@@ -73,8 +74,8 @@ class _GigDetails extends React.Component {
                         </Carousel>
                         <OrderModal modalClass="in-details" gig={gig} />
                         <AboutGig gig={gig} owner={owner} />
-                        <AboutSeller gig={gig} getUserLevel={this.getUserLevel} owner={owner}/>
-                        <ReviewList owner={owner} gig={gig} loadOwner={this.loadOwner}/>
+                        <AboutSeller gig={gig} getUserLevel={this.getUserLevel} owner={owner} />
+                        <ReviewList owner={owner} gig={gig} loadOwner={this.loadOwner} />
                     </div>
                     <OrderModal modalClass="aside" gig={gig} />
                 </section>
@@ -96,6 +97,7 @@ const mapDispatchToProps = {
     onSetFilterBy,
     setDetails,
     setExplore,
+    setProfile,
     setHome
 }
 
