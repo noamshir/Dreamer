@@ -6,7 +6,7 @@ const app = express();
 const http = require("http").createServer(app);
 
 const session = expressSession({
-  secret: "dreamer is amazing",
+  secret: "dimerr is amazing",
   resave: false,
   saveUninitialized: true,
   cookie: { secure: false },
@@ -33,6 +33,13 @@ if (process.env.NODE_ENV === "production") {
   };
   app.use(cors(corsOptions));
 }
+const userRoutes = require("./api/user/user.routes");
+
+app.use("/api/user", userRoutes);
+
+app.get("/api", (req, res) => {
+  res.send("hello");
+});
 
 const port = process.env.PORT || 3030;
 http.listen(port, () => {
