@@ -13,7 +13,7 @@ import { userService } from '../services/user.service'
 import { gigService } from '../services/gig.service'
 
 import { onSetFilterBy } from '../store/gig.action'
-import { setHome, setExplore, setDetails } from '../store/scss.action.js';
+import { setHome, setExplore, setDetails, setProfile } from '../store/scss.action.js';
 import { GigHeader } from '../cmp/header/GigHeader'
 
 
@@ -33,6 +33,7 @@ class _GigDetails extends React.Component {
 
     onSetDetails = () => {
         if (this.props.isDetails) return;
+        this.props.setProfile(false);
         this.props.setExplore(false);
         this.props.setHome(false);
         this.props.setDetails(true)
@@ -97,6 +98,7 @@ const mapDispatchToProps = {
     onSetFilterBy,
     setDetails,
     setExplore,
+    setProfile,
     setHome
 }
 

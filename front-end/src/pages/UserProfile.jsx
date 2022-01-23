@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { setState, useEffect } from 'react'
 // import Select from 'react-select'
 import { connect } from 'react-redux'
 
@@ -6,13 +6,26 @@ import { connect } from 'react-redux'
 import { userService } from '../services/user.service';
 import { gigService } from '../services/gig.service';
 import { saveSellerInfo } from '../store/user.action'
+
+import { setHome, setExplore, setDetails, setProfile } from '../store/scss.action.js';
+
 // import { initialService } from '../initials/initial.service';
 
-function _UserProfile({ user }) {
-    // console.log('user.fullName:', user.fullName);
+function _UserProfile({ setHome, setExplore, setDetails, setProfile, user }) {
+    // const [count, setCount] = useState(0); 
+    useEffect(() => {
+        setExplore(false);
+        setHome(false);
+        setDetails(false)
+        setProfile(true);
+    }, [])
+
+    console.log('user.fullName:', user.fullname);
 
     return (
-        <div>!!</div>
+        <div className="profile-details-container">
+            <div>online</div>
+        </div>
         // <div>{user.fullName}</div>
     )
 }
@@ -24,7 +37,11 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-    saveSellerInfo
+    saveSellerInfo,
+    setDetails,
+    setExplore,
+    setHome,
+    setProfile,
 };
 
 

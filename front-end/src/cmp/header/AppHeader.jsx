@@ -53,7 +53,7 @@ function _AppHeader({ isHome, isScroll, isSearchBar, openSignUpModal, openSignIn
                                     <React.Fragment>
                                         <li className="display-from-size-medium"><button className={`clean-btn ${color}`} onClick={onLogout}>Logout</button></li>
                                         <li className="display-from-size-small">
-                                            <Link to={`/profile/${user._id}`}>
+                                            <Link className="clean-link" to={`/profile/${user._id}`}>
                                                 {user.imgUrl ?
                                                     <div className="user-img" style={{ backgroundImage: `url(${user.imgUrl})` }}></div>
                                                     : <div style={{ backgroundColor: '#1dbf73' }} className="user-img">
