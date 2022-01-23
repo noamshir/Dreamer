@@ -24,9 +24,11 @@ export function logout() {
   };
 }
 
-// export function onSaveReview(rate, txt) {
-//   return async (dispatch) => {
-//     const action = { type: "SET_USER", loggedUser: updatedUser };
-//     dispatch(action);
-//   };
-// }
+export function saveSellerInfo(sellerInfo) {
+  return async (dispatch) => {
+    const updatedUser = await userService.saveSellerInfo(sellerInfo)
+    console.log('action', updatedUser);
+    const action = { type: "SET_USER", user: updatedUser };
+    dispatch(action);
+  };
+}
