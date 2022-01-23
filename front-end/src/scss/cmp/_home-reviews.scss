@@ -1,0 +1,106 @@
+.home-reviews {
+  margin-top: 20px;
+  .home-reviews-content {
+  }
+  .btn-by-idx {
+    justify-content: center;
+    button {
+      border-radius: 50%;
+      height: 10px;
+      width: 10px;
+      padding: 0 2px;
+      border: 1px solid rgb(99, 98, 98);
+      background-color: rgb(241, 238, 238);
+      transition: transform 0.3s;
+    }
+  }
+  .review {
+    width: 100%;
+    cursor: pointer;
+    max-height: 300px;
+    .indicators {
+      top: 50%;
+      justify-content: space-between;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: 0.4s all;
+
+      &.show {
+        opacity: 1;
+      }
+    }
+    .indicators > span {
+      background-color: #363535;
+      color: white;
+      svg {
+        font-size: 18px;
+      }
+      &:first-child {
+        padding: 2px 5px 2px 2px;
+        border-end-end-radius: 50%;
+        border-top-right-radius: 50%;
+      }
+      &:last-child {
+        padding: 2px 2px 2px 5px;
+        border-top-left-radius: 50%;
+        border-bottom-left-radius: 50%;
+      }
+    }
+
+    .review-item {
+      display: inline-flex;
+      align-items: center;
+      height: 100%;
+      color: #fff;
+      overflow: hidden;
+      position: relative;
+      img {
+        flex-grow: 1;
+        width: 50%;
+        height: 300px;
+      }
+      .review-content {
+        flex-grow: 1;
+        height: 300px;
+        white-space: pre;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+    button.active {
+      background-color: rgb(58, 59, 58);
+      transform: scale(1.5);
+      color: #fff;
+    }
+  }
+}
+
+.review-content {
+  .wrap-text {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  h5,
+  h4 {
+    margin: 0;
+  }
+  h5 {
+    color: #7a7d85;
+    font-weight: 400;
+    font-size: 20px;
+  }
+  h4 {
+    font-size: 18px;
+    color: rgb(3, 104, 246);
+  }
+  p {
+    margin: 0;
+    font-weight: 500;
+    color: #003912;
+    font-size: 24px;
+    line-height: 36px;
+    display: block;
+    height: 100%;
+  }
+}
