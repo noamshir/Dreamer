@@ -2,17 +2,19 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 
-export function UserProfileImg({ user, isLink, closeMenu }) {
+export function UserProfileImg({ user, isLink, closeMenu, toggleMenu }) {
 
     if (!isLink) {
         return (
-            <React.Fragment>
+            <div className="container-user-img" onClick={() => {
+                if (toggleMenu) toggleMenu();
+            }}>
                 {user.imgUrl ?
                     <div className="user-img" style={{ backgroundImage: `url(${user.imgUrl})` }}></div>
                     : <div className="user-img">
                         <span>{user.fullname.charAt(0)}</span>
                     </div>}
-            </React.Fragment>
+            </div>
         )
     }
     return (

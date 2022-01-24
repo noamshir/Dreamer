@@ -31,6 +31,11 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
     function onLogout() {
         logout()
     }
+
+    const onToggleMenu = () => {
+        var flag = !isProfileMenu;
+        setMenu(flag);
+    }
     return <section className={`main-header ${sticky}`}>
         <div id="Header">
             <header className={`header-package dimerr-header ${headerTransparent} logged-out-homepage-header`}>
@@ -52,9 +57,9 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
                                         <li className="display-from-size-small"><button className={`clean-btn join-a ${color}`} onClick={() => openSignUpModal(true)}>Join</button></li>
                                     </React.Fragment> :
                                     <React.Fragment>
-                                        <li className="display-from-size-medium"><button className={`clean-btn ${color}`} onClick={onLogout}>Logout</button></li>
                                         <li className="display-from-size-small">
-                                            <UserProfileImg user={user} isLink={true} />
+                                            <UserProfileImg user={user} isLink={false} toggleMenu={onToggleMenu} ></UserProfileImg>
+                                            {isProfileMenu && <ProfileMenu onLogout={onLogout} user={user} closeMenu={onToggleMenu}/>}
                                         </li>
                                     </React.Fragment>
                                 }
