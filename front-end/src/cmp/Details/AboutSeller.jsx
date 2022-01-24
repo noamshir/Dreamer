@@ -1,6 +1,7 @@
 import React from "react";
 import { utilService } from "../../services/util.service";
 import { UserStarRate } from "./UserStarRate";
+import { UserProfileImg } from '../profile/UserProfileImg'
 
 
 export function AboutSeller({ gig, getUserLevel, owner }) {
@@ -10,7 +11,7 @@ export function AboutSeller({ gig, getUserLevel, owner }) {
         <div className='about-seller' id="AboutSeller">
             <h2 className='about-seller-header'>About the Seller</h2>
             <div className="seller-info">
-                <div className='owner-img' style={{ backgroundImage: `url(${gig.owner.imgUrl})` }}></div>
+                <UserProfileImg user={owner} isLink={true} />
                 <div className="seller-name-level-rate">
                     <h5 className='owner-name'>{gig.owner.fullname}</h5>
                     <h5 className='owner-level'>{getUserLevel()}</h5>

@@ -1,14 +1,15 @@
 import React from "react";
 import CheckIcon from '@mui/icons-material/Check';
 
+import { connect } from "react-redux";
 import { UserStarRate } from "../cmp/Details/UserStarRate";
-
 import { gigService } from "../services/gig.service";
 import { userService } from "../services/user.service";
+import { setExplore, setHome, setDetails, setBecomeSeller, setProfile } from '../store/scss.action';
 
 
 
-export class Checkout extends React.Component {
+class _Checkout extends React.Component {
     state = {
         gig: null,
         owner: null
@@ -18,10 +19,18 @@ export class Checkout extends React.Component {
         const { gigId } = this.props.match.params
         let urlParams = new URLSearchParams(this.props.location.search);
         this.features = urlParams.get("features")
-
         this.fixFeatures()
+        this.onSetProfile();
         await this.loadGig(gigId)
         this.loadOwner(this.state.gig.owner._id)
+    }
+    onSetProfile = () => {
+        if (this.props.isProfile) return;
+        this.props.setExplore(false);
+        this.props.setHome(false);
+        this.props.setDetails(false);
+        this.props.setBecomeSeller(false);
+        this.props.setProfile(true);
     }
 
     fixFeatures = () => {
@@ -127,3 +136,15 @@ export class Checkout extends React.Component {
         )
     }
 }
+
+function mapStateToProps({ scssModule }) {
+    return {
+        isProfile: scssModule.isProfile
+    }
+}
+
+const mapDispatchToProps = {
+    setExplore, setHome, setDetails, setBecomeSeller, setProfile
+}
+
+export const Checkout = connect(mapStateToProps, mapDispatchToProps)(_Checkout)

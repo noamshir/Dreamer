@@ -19,6 +19,21 @@
         padding: 12px 24px;
         font-size: 1rem;
       }
+      .user-content {
+        align-items: center;
+        gap: 20px;
+        color: #404145;
+        font-weight: 700;
+        font-size: 1.3rem;
+        font-family: sans-serif;
+        .user-img{
+          width: 60px;
+          height: 60px;
+          &:hover{
+            background-color: darken($clr1,1.2);
+          }
+        }
+      }
     }
   }
 

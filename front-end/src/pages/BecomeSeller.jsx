@@ -32,6 +32,7 @@ class _BecomeSeller extends React.Component {
         this.props.setHome(false);
         this.props.setDetails(false);
         this.props.setBecomeSeller(true);
+        this.props.setProfile(false);
     }
 
     handleChange = (ev) => {
