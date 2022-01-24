@@ -24,10 +24,15 @@ function _UserProfile(props) {
         setProfile(true);
         onSetGigs(await onSetUser());
     }, [])
+    useEffect(async () => {
+        if (!user) return;
+        if (user._id !== props.match.params.userId) onSetGigs(await onSetUser());
+    }, [props.match.params.userId])
+
+
 
     async function onSetUser() {
         const userToSet = await userService.getById(match.params.userId)
-        console.log('set user', userToSet);
         setUser(userToSet);
         return userToSet;
     }
@@ -37,13 +42,13 @@ function _UserProfile(props) {
     }
     if (!user) return <React.Fragment></React.Fragment>
     return (
-        <React.Fragment>
+        <div className="profile-main-container equal-padding">
             <div className="profile-details-container">
-                <UserDetails className="user-details" user={user} />
+                <UserDetails user={user} />
                 {user.sellerInfo && <SellerDetails user={user} />}
             </div>
-            <GigList gigs={gigs} />
-        </React.Fragment>
+            {user.sellerInfo && <GigList gigs={gigs} />}
+        </div>
     )
 }
 

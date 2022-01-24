@@ -1,0 +1,87 @@
+.profile-main-container {
+    display: flex;
+    gap: 30px;
+    .gig-list {
+        margin-inline-start: 20px;
+        padding-top: 0;
+        flex-grow: 2;
+        grid-auto-rows: 400px;
+    }
+    .profile-details-container {
+        max-width: 425px;
+        flex-grow: 1;
+    }
+}
+.profile-details-container .user-details {
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid $clr6;
+    padding-block: 32px;
+    margin-bottom: 30px;
+
+    .user-stats-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        border-bottom: 1px solid $clr6;
+        padding-bottom: 30px;
+    }
+    .online-status.online {
+        position: absolute;
+        right: 0;
+        color: $clr1;
+        font-size: 0.9rem;
+        text-transform: capitalize;
+        border-radius: 2rem;
+        border: 1px solid $clr1;
+        padding: 2px 5px;
+        font-family: Arial, Helvetica, sans-serif;
+        &::before {
+            content: "•";
+            margin-inline: 4px;
+        }
+    }
+    .user-img {
+        height: 150px;
+        width: 150px;
+        font-size: 48px;
+        margin-bottom: 30px;
+    }
+    .fullname {
+        font-size: rem(20px);
+        color: $clr2;
+        font-family: roboto-bold;
+    }
+}
+
+.profile-details-container .user-info-wrapper {
+    padding-top: 30px;
+    .origin {
+        display: flex;
+        justify-content: space-between;
+    }
+    .member-since {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+.profile-details-container .seller-details-container {
+    padding: 30px;
+    border: 1px solid $clr6;
+    font-family: Arial, Helvetica, sans-serif;
+    .description-wrapper {
+        border-bottom: 1px solid $clr6;
+        h2 {
+            color: $clr2;
+            font-size: 1.1rem;
+        }
+        p {
+            line-height: 1.4rem;
+            margin: 0;
+            margin-bottom: 30px;
+        }
+        .skills {
+            margin-top: 30px;
+        }
+    }
+}
