@@ -43,9 +43,22 @@ async function updateOrder(req, res) {
   }
 }
 
+async function addOrder(req, res) {
+  try {
+    const order = req.body;
+    const addedOrder = await orderService.add(order)
+    console.log('order in controller', addedOrder);
+    res.json(addedOrder)
+  } catch (err) {
+    logger.error('Failed to add order', err)
+    res.status(500).send({ err: 'Failed to add order' })
+  }
+}
+
 module.exports = {
   getOrders,
   getById,
   removeOrder,
   updateOrder,
+  addOrder
 };

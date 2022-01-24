@@ -5,7 +5,8 @@ module.exports = {
   query,
   getById,
   remove,
-  update
+  update,
+  add
 };
 async function query({ userId, type }) {
   try {
@@ -41,13 +42,30 @@ async function remove(id) {
   }
 }
 
-async function update(updatedOrder) {
+async function update(order) {
   try {
-    const collection = await dbService.getCollection("order");
-    await collection.updateOne({ _id: updatedOrder._id }, { $set: updatedOrder });
-    return updatedOrder;
+    order._id = ObjectId(order._id)
+    const collection = await dbService.getCollection('order')
+    await collection.updateOne({ "_id": order._id }, { $set: { ...order } })
+    return order
   } catch (err) {
-    logger.error(`cannot update order ${updatedOrder._id}`, err);
-    throw err;
+    logger.error(`cannot update order ${order._id}`, err)
+    throw err
+  }
+}
+
+
+async function add(order) {
+  order.createdAt = Date.now()
+  // order.inStock = true
+  // order.reviews = reviews
+
+  try {
+    const collection = await dbService.getCollection('order')
+    await collection.insertOne(order)
+    return order
+  } catch (err) {
+    logger.error('cannot insert order', err)
+    throw err
   }
 }
