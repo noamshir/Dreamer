@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { useState } from 'react'
 import { signIn } from '../../store/user.action.js';
-import {toggleSignInModal,toggleJoinModal} from "../../store/scss.action"
+import { toggleSignInModal, toggleJoinModal } from "../../store/scss.action"
 function _SignIn({ toggleSignInModal, signIn, toggleJoinModal }) {
 
     const [user, setUser] = useState({ username: "", password: "" });
@@ -31,10 +31,10 @@ function _SignIn({ toggleSignInModal, signIn, toggleJoinModal }) {
                 </header>
                 <form action="" className="sign-form" onSubmit={handleSubmit}>
                     <div className="form-input-div">
-                        <input type="text" name="username" placeholder="Choose a Username" onChange={handleChange} className="user-input" />
+                        <input required type="text" name="username" placeholder="Choose a Username" onChange={handleChange} className="user-input" />
                     </div>
                     <div className="form-input-div">
-                        <input type="password" name="password" placeholder="Choose a Password" onChange={handleChange} className="user-input" />
+                        <input required type="password" name="password" placeholder="Choose a Password" onChange={handleChange} className="user-input" />
                     </div>
                     <button className="continue-btn" type="submit">Continue</button>
                 </form>
@@ -57,8 +57,8 @@ function mapStateToProps({ userModule }) {
 }
 const mapDispatchToProps = {
     signIn,
-   toggleSignInModal,
-toggleJoinModal
+    toggleSignInModal,
+    toggleJoinModal
 }
 
 export const SignIn = connect(mapStateToProps, mapDispatchToProps)(_SignIn)

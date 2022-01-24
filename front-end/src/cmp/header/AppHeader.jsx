@@ -6,7 +6,7 @@ import { SearchBar } from '../SearchBar.jsx';
 import { UserProfileImg } from '../profile/UserProfileImg';
 import { Logo } from '../Logo.jsx';
 import { logout } from '../../store/user.action'
-import { toggleJoinModal, toggleSignInModal } from '../../store/scss.action.js';
+import { setProfile, toggleJoinModal, toggleSignInModal } from '../../store/scss.action.js';
 import { useState } from 'react';
 import { ProfileMenu } from './ProfileMenu.jsx';
 
@@ -31,7 +31,11 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
     function onLogout() {
         logout()
     }
-
+    window.addEventListener('click', (ev) => {
+        if (ev.target.className !== "clean-list profile-scroll" && ev.target.className !== "spanclass" && ev.target.className !== "user-img") {
+            setMenu(false);
+        }
+    })
     const onToggleMenu = () => {
         var flag = !isProfileMenu;
         setMenu(flag);
@@ -59,7 +63,7 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
                                     <React.Fragment>
                                         <li className="display-from-size-small">
                                             <UserProfileImg user={user} isLink={false} toggleMenu={onToggleMenu} ></UserProfileImg>
-                                            {isProfileMenu && <ProfileMenu onLogout={onLogout} user={user} closeMenu={onToggleMenu}/>}
+                                            {isProfileMenu && <ProfileMenu onLogout={onLogout} user={user} closeMenu={onToggleMenu} />}
                                         </li>
                                     </React.Fragment>
                                 }

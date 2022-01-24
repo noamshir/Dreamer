@@ -9,8 +9,8 @@ import { UserDetails } from '../cmp/profile/UserDetails'
 import { SellerDetails } from '../cmp/profile/SellerDetails'
 import { GigList } from '../cmp/GigList'
 import { withRouter } from 'react-router-dom';
-import { setHome, setExplore, setDetails, setProfile } from '../store/scss.action.js';
 
+import { setHome, setExplore, setDetails, setProfile } from '../store/scss.action.js';
 // import { initialService } from '../initials/initial.service';
 
 function _UserProfile(props) {
@@ -24,12 +24,16 @@ function _UserProfile(props) {
         setProfile(true);
         onSetGigs(await onSetUser());
     }, [])
+
+    // useEffect(() => {
+
+    // }, [])
+
+
     useEffect(async () => {
         if (!user) return;
         if (user._id !== props.match.params.userId) onSetGigs(await onSetUser());
     }, [props.match.params.userId])
-
-
 
     async function onSetUser() {
         const userToSet = await userService.getById(match.params.userId)

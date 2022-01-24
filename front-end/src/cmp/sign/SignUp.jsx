@@ -33,13 +33,13 @@ function _SignUp({ signUp, toggleSignInModal, toggleJoinModal }) {
                 </header>
                 <form action="" className="sign-form" onSubmit={handleSubmit}>
                     <div className="form-input-div">
-                        <input type="text" name="fullname" placeholder="Enter your full name" onChange={handleChange} className="user-input" />
+                        <input required type="text" name="fullname" placeholder="Enter your full name" onChange={handleChange} className="user-input" />
                     </div>
                     <div className="form-input-div">
-                        <input type="text" name="username" placeholder="Choose a Username" onChange={handleChange} className="user-input" />
+                        <input required type="text" name="username" placeholder="Choose a Username" onChange={handleChange} className="user-input" />
                     </div>
                     <div className="form-input-div">
-                        <input type="password" name="password" placeholder="Choose a Password" onChange={handleChange} className="user-input" />
+                        <input required type="password" name="password" placeholder="Choose a Password" onChange={handleChange} className="user-input" />
                     </div>
                     <button className="continue-btn" type="submit">Continue</button>
                     <p className="siginig-agree">By joining I agree to receive dreams from dimerr.</p>
