@@ -7,9 +7,11 @@ import { UserProfileImg } from '../profile/UserProfileImg';
 import { Logo } from '../Logo.jsx';
 import { logout } from '../../store/user.action'
 import { toggleJoinModal, toggleSignInModal } from '../../store/scss.action.js';
-
+import { useState } from 'react';
+import { ProfileMenu } from './ProfileMenu.jsx';
 
 function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpModal, openSignInModal, user, logout, openMenu }) {
+    const [isProfileMenu, setMenu] = useState(false);
     var headerTransparent = "";
     var color = "";
     var sticky = "not-sticky";
