@@ -8,9 +8,11 @@ module.exports = {
   update
 };
 async function query(filterBy = {}) {
+
+  const criteria = _buildCriteria(filterBy)
   try {
     const collection = await dbService.getCollection("gig");
-    const gigs = await collection.find({}).toArray();
+    const gigs = await collection.find(criteria).toArray();
     return gigs;
   } catch (err) {
     logger.error(`erorr while finding gigs`, err);
@@ -51,4 +53,17 @@ async function update(gig) {
     logger.error(`cannot update gig ${gig._id}`, err)
     throw err
   }
+}
+
+function _buildCriteria(filterBy) {
+  var criteria = {}
+
+  if (filterBy.userId) {
+    const _id = filterBy.userId
+    // console.log('if : ', _id);
+    criteria["owner._id"] = _id;
+    return criteria;
+  }
+  // var { txt, category } = filterBy
+  //  criteria .title= { $regex: txt, $options: 'i' }
 }
