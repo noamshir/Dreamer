@@ -4,7 +4,7 @@ import { GigDetails } from "./pages/GigDetails";
 import { BecomeSeller } from "./pages/BecomeSeller";
 import { UserProfile } from "./pages/UserProfile";
 import { Checkout } from "./pages/Checkout";
-
+import { DashBoard } from "./pages/Dashboard.jsx";
 const routes = [
   {
     path: "/",
@@ -29,6 +29,10 @@ const routes = [
   {
     path: "/becomeSeller",
     component: BecomeSeller,
+  },
+  {
+    path: "/dashboard/:id",
+    component: DashBoard,
   },
 ];
 
