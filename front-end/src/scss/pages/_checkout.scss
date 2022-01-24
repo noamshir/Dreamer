@@ -1,0 +1,72 @@
+.checkout {
+  font-family: work-sans;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin: 0;
+  }
+
+  .main-content-container {
+    display: flex;
+    justify-content: space-between;
+    .main{
+      display: flex;
+      flex-direction: column;
+    }
+    .img-container {
+      width: 150px;
+    }
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .star-rate-container {
+    display: flex;
+    align-items: center;
+    height: 28px;
+  }
+
+  .stars {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+      height: 20px;
+      width: 17px;
+    }
+  }
+  .num-of-rating {
+    height: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    padding-inline-start: 5px;
+  }
+
+  .review-length{
+    padding-inline-start: 2px;
+    font-weight: 400;
+    color: #95979d;
+  }
+
+  .star {
+    font-size: 4px;
+    color: #ffb33e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .price{
+    color: #62646a;
+    font-weight: 500;
+  }
+}
