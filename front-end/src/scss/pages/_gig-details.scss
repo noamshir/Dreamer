@@ -80,23 +80,25 @@
       color: $clr2;
     }
   }
-  .order-features {
-    margin-block-end: 10px;
-    li {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      .check-icon {
-        transform: scale(0.8);
-        color: $clr1;
-      }
-    }
-  }
+
   .btn {
     width: 100%;
     font-weight: 600;
   }
 }
+.order-features {
+  margin-block-end: 10px;
+  li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    .check-icon {
+      transform: scale(0.8);
+      color: $clr1;
+    }
+  }
+}
+
 .details-main-container {
   margin-right: 0;
   @include for-normal-layout {
