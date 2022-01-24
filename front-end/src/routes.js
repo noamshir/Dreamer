@@ -3,11 +3,16 @@ import { Home } from "./pages/Home.jsx";
 import { GigDetails } from "./pages/GigDetails";
 import { BecomeSeller } from "./pages/BecomeSeller";
 import { UserProfile } from "./pages/UserProfile";
+import { Checkout } from "./pages/Checkout";
 
 const routes = [
   {
     path: "/",
     component: Home,
+  },
+  {
+    path: "/checkout/:gigId",
+    component: Checkout,
   },
   {
     path: "/explore/:gigId",

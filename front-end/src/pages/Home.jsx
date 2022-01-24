@@ -24,7 +24,6 @@ function _Home({ isHome, setExplore, setHome }) {
 
   return (
     <section className="home-page-container">
-      <div className="sidebar"></div>
       <div className="homepage">
         <AppHero />
         <HomeCategory />

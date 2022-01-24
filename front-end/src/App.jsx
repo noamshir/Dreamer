@@ -8,6 +8,7 @@ import { SignUp } from './cmp/sign/SignUp.jsx';
 import { SignIn } from './cmp/sign/SignIn.jsx';
 import { connect } from 'react-redux';
 import { setScroll, setSearchDisplay, toggleJoinModal, toggleSignInModal } from './store/scss.action.js';
+import { Menu } from './cmp/Menu.jsx';
 class _App extends React.Component {
 
     state = {
@@ -48,6 +49,7 @@ class _App extends React.Component {
                 {isMenuOpen && <div onClick={this.toggleMenu} className="main-screen"></div>}
                 <AppHeader openMenu={this.toggleMenu} />
                 {!this.props.isBecomeSeller && <AppSubHeader />}
+                {isMenuOpen && <Menu closeMenu={this.toggleMenu}/>}
                 <main className="main-content">
                     <Switch>
                         {routes.map(route => <Route key={route.path} exact component={route.component} path={route.path} />)}
