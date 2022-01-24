@@ -1,5 +1,5 @@
+const logger = require("./logger.service");
 var gIo = null;
-
 function connectSockets(http, session) {
   gIo = require("socket.io")(http, {
     cors: {
@@ -10,10 +10,6 @@ function connectSockets(http, session) {
     console.log("New socket", socket.id);
     socket.on("disconnect", (socket) => {
       console.log("Someone disconnected");
-    });
-    socket.on("user typing", (username) => {
-      console.log({ username }, "is typing...");
-      socket.broadcast.to(socket.myToyId).emit("user addTyping", username);
     });
     socket.on("chat toy", (toyId) => {
       if (socket.myToyId === toyId) return;
@@ -28,13 +24,32 @@ function connectSockets(http, session) {
       // emits only to sockets in the same room
       gIo.to(socket.myToyId).emit("chat addMsg", msg);
     });
+    socket.on("join", (room) => {
+      console.log("user joined room", room);
+      socket.join(room);
+    })
+    socket.on("leave", (room) => {
+      console.log("user left room", room);
+      socket.leave(room);
+    })
+    socket.on("add-review", ({ review, ownerId }) => {
+      socket.to(ownerId).emit('add-review', review)
+    });
     socket.on("set-user-socket", (userId) => {
-      logger.debug(`Setting (${socket.id}) socket.userId = ${userId}`);
+      console.log("user logged in", userId);
       socket.userId = userId;
+      socket.to(userId).emit('user-online', true)
+
     });
     socket.on("unset-user-socket", () => {
+      console.log("user logged out");
+      socket.to(socket.userId).emit('user-offline', false)
       delete socket.userId;
     });
+    // socket.on("new-review", (review) => {
+    //   console.log("someone added review", review);
+    //   gIo.emit("add-review", review);
+    // });
   });
 }
 
