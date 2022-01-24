@@ -35,11 +35,13 @@ if (process.env.NODE_ENV === "production") {
 }
 const userRoutes = require("./api/user/user.routes");
 const gigRoutes = require("./api/gig/gig.routes");
+const orderRoutes = require("./api/order/order.routes");
 const authRoutes = require("./api/auth/auth.routes");
 const categorieRoutes = require("./api/categories/categories.routes");
 
 app.use("/api/user", userRoutes);
 app.use("/api/gig", gigRoutes);
+app.use("/api/order", orderRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/categorie", categorieRoutes);
 
