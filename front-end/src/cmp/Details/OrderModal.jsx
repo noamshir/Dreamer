@@ -1,9 +1,11 @@
-import { connect } from 'react-redux'
-import React from 'react'
-import { useState, useEffect } from 'react';
-import { gigService } from '../../services/gig.service'
+import React, { useState, useEffect }  from 'react'
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import CheckIcon from '@mui/icons-material/Check';
+import { Link } from 'react-router-dom';
+
+import { gigService } from '../../services/gig.service'
+
+
 export function OrderModal({ gig, modalClass }) {
 
 
@@ -41,7 +43,9 @@ export function OrderModal({ gig, modalClass }) {
                     })}
                 </ul>
             </div>
-            <button className='btn'>Continue ({gig.price.toLocaleString("USA", { style: "currency", currency: "USD" })})</button>
+            <Link to={`/checkout/${gig._id}`}>
+                <button className='btn'>Continue ({gig.price.toLocaleString("USA", { style: "currency", currency: "USD" })})</button>
+            </Link>
         </div>
 
     )

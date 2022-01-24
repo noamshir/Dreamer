@@ -1,6 +1,6 @@
 import React from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { SearchBar } from '../SearchBar.jsx';
 import { UserProfileImg } from '../profile/UserProfileImg';
@@ -54,9 +54,8 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
                                     <React.Fragment>
                                         <li className="display-from-size-medium"><button className={`clean-btn ${color}`} onClick={onLogout}>Logout</button></li>
                                         <li className="display-from-size-small">
-                                            <Link className="clean-link" to={`/profile/${user._id}`}>
-                                                <UserProfileImg user={user} />
-                                            </Link>
+                                            {console.log('user', user)}
+                                            <UserProfileImg user={user} isLink={true} />
                                         </li>
                                     </React.Fragment>
                                 }

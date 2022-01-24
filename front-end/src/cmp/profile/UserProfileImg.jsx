@@ -1,14 +1,29 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
-export function UserProfileImg({ user }) {
-    console.log('user profile img', user.imgUrl);
+
+export function UserProfileImg({ user, isLink }) {
+    console.log('user:', user);
+
+    if (!isLink) {
+        return (
+            <React.Fragment>
+                {user.imgUrl ?
+                    <div className="user-img" style={{ backgroundImage: `url(${user.imgUrl})` }}></div>
+                    : <div className="user-img">
+                        <span>{user.fullname.charAt(0)}</span>
+                    </div>}
+            </React.Fragment>
+        )
+    }
     return (
-        <React.Fragment>
+
+        <Link className="clean-link" to={`/profile/${user._id}`}>
             {user.imgUrl ?
                 <div className="user-img" style={{ backgroundImage: `url(${user.imgUrl})` }}></div>
                 : <div className="user-img">
                     <span>{user.fullname.charAt(0)}</span>
                 </div>}
-        </React.Fragment>
+        </Link>
     )
 }

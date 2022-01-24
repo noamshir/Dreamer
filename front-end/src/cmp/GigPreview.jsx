@@ -10,6 +10,7 @@ import { CarouselItem } from "./CarouselItem";
 import { setLikedGig } from '../store/gig.action.js'
 import { storageService } from '../services/async-storage.service';
 import { gigService } from '../services/gig.service';
+import { UserProfileImg } from './profile/UserProfileImg'
 
 
 function _GigPreview({ gig, onGoToDetails, user, setLikedGig }) {
@@ -61,7 +62,8 @@ function _GigPreview({ gig, onGoToDetails, user, setLikedGig }) {
                 </Carousel>
             </div>
             <div className="owner-info">
-                <div className='owner-pic' style={{ backgroundImage: `url(${gig.owner.imgUrl})` }}></div>
+                <UserProfileImg user={gig.owner} isLink={false} />
+                {/* <div className='owner-pic' style={{ backgroundImage: `url(${gig.owner.imgUrl})` }}></div> */}
                 <div className="owner-level-name">
                     <h5 className='owner-name'>{gig.owner.fullname}</h5>
                     <h5 className='owner-level'>{getUserLevel()}</h5>

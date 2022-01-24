@@ -6,7 +6,7 @@
     line-height: 28px;
   }
 
-  .seller-stats{
+  .seller-stats {
     display: flex;
     align-items: center;
     width: 100%;
@@ -15,18 +15,18 @@
     padding: 24px;
     margin-bottom: 64px;
 
-    .seller-desc{
+    .seller-desc {
       padding-top: 15px;
       border-top: 1px solid #dadbdd;
     }
 
-    .card{
+    .card {
       width: 50%;
       display: flex;
       flex-direction: column;
       gap: 5px;
       padding-bottom: 20px;
-      & > *:first-child{
+      & > *:first-child {
         color: #82858c;
         font-weight: 500;
         line-height: 1.6875em;
@@ -39,7 +39,7 @@
     flex-wrap: wrap;
     line-height: 130%;
     padding-bottom: 24px;
-    .owner-img {
+    .user-img {
       height: 110px;
       width: 110px;
     }

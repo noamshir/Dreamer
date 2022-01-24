@@ -2,41 +2,45 @@ import React, { useState, useEffect } from 'react'
 // import Select from 'react-select'
 import { connect } from 'react-redux'
 
-
 import { userService } from '../services/user.service';
 import { gigService } from '../services/gig.service';
 // import { saveSellerInfo } from '../store/user.action'
 import { UserDetails } from '../cmp/profile/UserDetails'
 import { SellerDetails } from '../cmp/profile/SellerDetails'
 import { GigList } from '../cmp/GigList'
-
+import { withRouter } from 'react-router-dom';
 import { setHome, setExplore, setDetails, setProfile } from '../store/scss.action.js';
 
 // import { initialService } from '../initials/initial.service';
 
-function _UserProfile({ setHome, setExplore, setDetails, setProfile, user }) {
+function _UserProfile(props) {
+    const { setHome, setExplore, setDetails, setProfile, match } = props
     const [gigs, setGigs] = useState([]);
-    useEffect(() => {
+    const [user, setUser] = useState(null);
+    useEffect(async () => {
         setExplore(false);
         setHome(false);
         setDetails(false)
         setProfile(true);
-        onSetGigs();
+        onSetGigs(await onSetUser());
     }, [])
 
-    // useEffect(() => {
-    //     onSetGigs()
-    // }, [gigs])
-    async function onSetGigs() {
+    async function onSetUser() {
+        const userToSet = await userService.getById(match.params.userId)
+        console.log('set user', userToSet);
+        setUser(userToSet);
+        return userToSet;
+    }
+    async function onSetGigs(user) {
         const gigs = await gigService.query({ userId: user._id })
         setGigs(gigs);
     }
-
+    if (!user) return <React.Fragment></React.Fragment>
     return (
         <React.Fragment>
             <div className="profile-details-container">
                 <UserDetails className="user-details" user={user} />
-                <SellerDetails user={user} />
+                {user.sellerInfo && <SellerDetails user={user} />}
             </div>
             <GigList gigs={gigs} />
         </React.Fragment>
@@ -45,9 +49,11 @@ function _UserProfile({ setHome, setExplore, setDetails, setProfile, user }) {
 
 function mapStateToProps(state) {
     return {
-        user: state.userModule.user,
+        // user: state.userModule.user,
     }
 }
+
+
 
 const mapDispatchToProps = {
     // saveSellerInfo,
@@ -57,5 +63,5 @@ const mapDispatchToProps = {
     setProfile,
 };
 
-
-export const UserProfile = connect(mapStateToProps, mapDispatchToProps)(_UserProfile)
+const _UserProfileWithRouter = withRouter(_UserProfile);
+export const UserProfile = connect(mapStateToProps, mapDispatchToProps)(_UserProfileWithRouter)
