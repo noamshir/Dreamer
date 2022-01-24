@@ -67,6 +67,7 @@ class _Explore extends React.Component {
         const { gigs, category } = this.props
         const { sortBy } = this.state
         if (!gigs) return <Loader />
+        
         return (
             <React.Fragment>
                 {!gigs.length ? 'No Services Found For Your Search' :
