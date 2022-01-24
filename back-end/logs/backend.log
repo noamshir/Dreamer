@@ -26,5 +26,12 @@
 23.1.2022, 16:16:10 - ERROR - cannot update user 61ed10c9539e75815ff210fd | {"index":0,"code":66}
 23.1.2022, 16:16:10 - ERROR - Failed to update user | {"index":0,"code":66}
 23/01/2022, 20:11:32 - ERROR - cannot update gig 61ed302b01d6a59611f2c498 | {"index":0,"code":66}
+<<<<<<< HEAD
+=======
+24/01/2022, 16:32:49 - ERROR - erorr while finding gigs | {"operationTime":{"$timestamp":"7056780586161012737"},"ok":0,"code":2,"codeName":"BadValue","$clusterTime":{"clusterTime":{"$timestamp":"7056780586161012737"},"signature":{"hash":"e9EeuqRQ7077p++Cbpjuw6hT364=","keyId":{"low":2,"high":1632169518,"unsigned":false}}}}
+24/01/2022, 16:37:15 - ERROR - erorr while finding gigs | {"operationTime":{"$timestamp":"7056781741507215362"},"ok":0,"code":2,"codeName":"BadValue","$clusterTime":{"clusterTime":{"$timestamp":"7056781741507215362"},"signature":{"hash":"TDRSb2JnyheFMZfm6TTnJQySDXU=","keyId":{"low":2,"high":1632169518,"unsigned":false}}}}
+24/01/2022, 16:38:14 - ERROR - erorr while finding gigs | {"operationTime":{"$timestamp":"7056781982025383938"},"ok":0,"code":2,"codeName":"BadValue","$clusterTime":{"clusterTime":{"$timestamp":"7056781982025383938"},"signature":{"hash":"PlTmOSbgg2Nj3XUB0qmxqKNa80w=","keyId":{"low":2,"high":1632169518,"unsigned":false}}}}
+24/01/2022, 16:39:24 - ERROR - erorr while finding gigs | {"operationTime":{"$timestamp":"7056782282673094657"},"ok":0,"code":2,"codeName":"BadValue","$clusterTime":{"clusterTime":{"$timestamp":"7056782282673094657"},"signature":{"hash":"yy+ubQy8qKRPB+cE1HlYwu2jzLc=","keyId":{"low":2,"high":1632169518,"unsigned":false}}}}
+>>>>>>> bb403bd0ade9c4babd0e5bc879ababa44bbaef86
 24.1.2022, 14:58:36 - DEBUG - Setting (gZVuoudyKgWdBw0CAAAB) socket.userId = 61ed3be34a3939f6b80a119b
 24.1.2022, 15:01:51 - DEBUG - Setting (Wmuzap0lLgOAdYDyAAAD) socket.userId = 61ed3be34a3939f6b80a119b

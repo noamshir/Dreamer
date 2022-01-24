@@ -12,6 +12,7 @@ async function query(filterBy = {}) {
   const criteria = _buildCriteria(filterBy)
   try {
     const collection = await dbService.getCollection("gig");
+    console.log('in service', criteria);
     const gigs = await collection.find(criteria).toArray();
     return gigs;
   } catch (err) {
@@ -60,10 +61,18 @@ function _buildCriteria(filterBy) {
 
   if (filterBy.userId) {
     const _id = filterBy.userId
-    // console.log('if : ', _id);
     criteria["owner._id"] = _id;
-    return criteria;
   }
+
+  if (filterBy.category) {
+    criteria["categories"] = { $in: [filterBy.category.toLowerCase()] }
+  }
+
+  if (filterBy.title) {
+    criteria["title"] = { $regex: filterBy.title }
+  }
+
+  return criteria
   // var { txt, category } = filterBy
   //  criteria .title= { $regex: txt, $options: 'i' }
 }
