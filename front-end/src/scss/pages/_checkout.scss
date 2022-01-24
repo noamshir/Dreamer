@@ -1,5 +1,76 @@
 .checkout {
   font-family: work-sans;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  @include for-normal-layout {
+    flex-direction: row;
+    gap: 60px;
+  }
+  .bold {
+    font-weight: 700;
+  }
+  gap: 30px;
+  padding-top: 40px;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .right-side-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    @include for-normal-layout {
+      width: 40%;
+    }
+    .order-modal {
+      width: 100%;
+      margin-bottom: 50px;
+
+      @include for-normal-layout {
+        margin-bottom: 0;
+        max-width: 340px;
+        top: 0;
+      }
+    }
+
+    h3 {
+      padding-bottom: 20px;
+    }
+    ul {
+      gap: 20px;
+
+      :nth-child(2) {
+        padding-bottom: 10px;
+      }
+      :nth-child(3) {
+        padding-top: 30px;
+        border-top: 1px solid #ddd;
+      }
+      li {
+        display: flex;
+        justify-content: space-between;
+        font-size: 15px;
+      }
+
+      .li-inner-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        span {
+          padding: 0;
+        }
+      }
+    }
+    button {
+      margin-top: 20px;
+    }
+  }
 
   h1,
   h2,
@@ -13,16 +84,19 @@
 
   .main-content-container {
     display: flex;
-    justify-content: space-between;
-    .main{
+    gap: 20px;
+    padding-bottom: 30px;
+    .main {
       display: flex;
       flex-direction: column;
     }
     .img-container {
       width: 150px;
+      height: 100px;
     }
     img {
       width: 100%;
+      height: inherit;
       object-fit: cover;
     }
   }
@@ -51,7 +125,7 @@
     padding-inline-start: 5px;
   }
 
-  .review-length{
+  .review-length {
     padding-inline-start: 2px;
     font-weight: 400;
     color: #95979d;
@@ -65,8 +139,35 @@
     align-items: center;
   }
 
-  .price{
+  .price {
     color: #62646a;
     font-weight: 500;
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+
+    h2 {
+      line-height: 140%;
+      color: #404145;
+      font-weight: 700;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    p {
+      padding-bottom: 20px;
+    }
+
+    ul {
+      gap: 5px;
+
+      li {
+        color: #95979d;
+        font-size: 14px;
+      }
+    }
   }
 }

@@ -43,7 +43,7 @@ export function OrderModal({ gig, modalClass }) {
                     })}
                 </ul>
             </div>
-            <Link to={`/checkout/${gig._id}`}>
+            <Link to={`/checkout/${gig._id}?features=${features}`}>
                 <button className='btn'>Continue ({gig.price.toLocaleString("USA", { style: "currency", currency: "USD" })})</button>
             </Link>
         </div>
