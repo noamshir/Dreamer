@@ -27,6 +27,7 @@ export const httpService = {
 async function ajax(endpoint, method = 'GET', data = null) {
     try {
         console.log("from server");
+        console.log('filterBy:', data);
         const res = await axios({
             url: `${BASE_URL}${endpoint}`,
             method,

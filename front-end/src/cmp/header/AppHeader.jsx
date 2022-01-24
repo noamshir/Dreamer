@@ -4,6 +4,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 
 import { SearchBar } from '../SearchBar.jsx';
+import { UserProfileImg } from '../profile/UserProfileImg';
 import { Logo } from '../Logo.jsx';
 import { logout } from '../../store/user.action'
 
@@ -54,13 +55,8 @@ function _AppHeader({ isHome, isScroll, isSearchBar, openSignUpModal, openSignIn
                                         <li className="display-from-size-medium"><button className={`clean-btn ${color}`} onClick={onLogout}>Logout</button></li>
                                         <li className="display-from-size-small">
                                             <Link className="clean-link" to={`/profile/${user._id}`}>
-                                                {user.imgUrl ?
-                                                    <div className="user-img" style={{ backgroundImage: `url(${user.imgUrl})` }}></div>
-                                                    : <div style={{ backgroundColor: '#1dbf73' }} className="user-img">
-                                                        <span>{user.fullname.charAt(0)}</span>
-                                                    </div>}
+                                                <UserProfileImg user={user} />
                                             </Link>
-
                                         </li>
                                     </React.Fragment>
                                 }

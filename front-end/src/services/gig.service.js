@@ -92,7 +92,7 @@ export const gigService = {
 
 async function query(filterBy) {
   // filterBy = { name: '', type: 'all', selectedLabels: 'all', sortBy: 'name' }
-  return httpService.get("gig");
+  return httpService.get("gig", { params: { filterBy } });
 }
 async function getById(gigId) {
   return httpService.get(`gig/${gigId}`);

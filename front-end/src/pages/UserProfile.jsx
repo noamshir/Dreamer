@@ -1,32 +1,45 @@
-import React, { setState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 // import Select from 'react-select'
 import { connect } from 'react-redux'
 
 
 import { userService } from '../services/user.service';
 import { gigService } from '../services/gig.service';
-import { saveSellerInfo } from '../store/user.action'
+// import { saveSellerInfo } from '../store/user.action'
+import { UserDetails } from '../cmp/profile/UserDetails'
+import { SellerDetails } from '../cmp/profile/SellerDetails'
+import { GigList } from '../cmp/GigList'
 
 import { setHome, setExplore, setDetails, setProfile } from '../store/scss.action.js';
 
 // import { initialService } from '../initials/initial.service';
 
 function _UserProfile({ setHome, setExplore, setDetails, setProfile, user }) {
-    // const [count, setCount] = useState(0); 
+    const [gigs, setGigs] = useState([]);
     useEffect(() => {
         setExplore(false);
         setHome(false);
         setDetails(false)
         setProfile(true);
+        onSetGigs();
     }, [])
 
-    console.log('user.fullName:', user.fullname);
+    // useEffect(() => {
+    //     onSetGigs()
+    // }, [gigs])
+    async function onSetGigs() {
+        const gigs = await gigService.query({ userId: user._id })
+        setGigs(gigs);
+    }
 
     return (
-        <div className="profile-details-container">
-            <div>online</div>
-        </div>
-        // <div>{user.fullName}</div>
+        <React.Fragment>
+            <div className="profile-details-container">
+                <UserDetails className="user-details" user={user} />
+                <SellerDetails user={user} />
+            </div>
+            <GigList gigs={gigs} />
+        </React.Fragment>
     )
 }
 
@@ -37,7 +50,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-    saveSellerInfo,
+    // saveSellerInfo,
     setDetails,
     setExplore,
     setHome,
