@@ -34,7 +34,7 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
             <header className={`header-package dimerr-header ${headerTransparent} logged-out-homepage-header`}>
                 <div className="header-row-wrapper">
                     <div className="header-row max-width-container equal-padding row-main flex">
-                        <button className={`btn-nav ${color}`} onClick={() => openMenu()}><MenuIcon></MenuIcon></button>
+                        <button className={`btn-nav ${color}`} onClick={() => openMenu()}><MenuIcon className="menu-icon"></MenuIcon></button>
                         <NavLink to="/" className={`dimerr-logo ${color} clean-link`}> <Logo /> </NavLink>
                         <div className={`dimerr-header-search-animated ${searchBar}`}>
                             <SearchBar placeholder="Try Logo..." />
