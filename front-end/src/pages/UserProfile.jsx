@@ -24,10 +24,15 @@ function _UserProfile(props) {
         setProfile(true);
         onSetGigs(await onSetUser());
     }, [])
+    useEffect(async () => {
+        if (!user) return;
+        if (user._id !== props.match.params.userId) onSetGigs(await onSetUser());
+    }, [props.match.params.userId])
+
+
 
     async function onSetUser() {
         const userToSet = await userService.getById(match.params.userId)
-        console.log('set user', userToSet);
         setUser(userToSet);
         return userToSet;
     }

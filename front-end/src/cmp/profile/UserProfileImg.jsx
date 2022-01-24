@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 
 export function UserProfileImg({ user, isLink }) {
-    console.log('user:', user);
 
     if (!isLink) {
         return (
