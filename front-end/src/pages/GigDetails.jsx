@@ -13,7 +13,7 @@ import { userService } from '../services/user.service'
 import { gigService } from '../services/gig.service'
 
 import { onSetFilterBy } from '../store/gig.action'
-import { setHome, setExplore, setDetails, setBecomeSeller } from '../store/scss.action.js';
+import { setHome, setExplore, setDetails, setBecomeSeller,setProfile } from '../store/scss.action.js';
 import { GigHeader } from '../cmp/header/GigHeader'
 
 
@@ -33,6 +33,7 @@ class _GigDetails extends React.Component {
 
     onSetDetails = () => {
         if (this.props.isDetails) return;
+        this.props.setProfile(false);
         this.props.setExplore(false);
         this.props.setHome(false);
         this.props.setDetails(true)
@@ -62,11 +63,10 @@ class _GigDetails extends React.Component {
 
     render() {
         const { gig, owner } = this.state
-        console.log(owner)
         if (!gig || !owner) return <React.Fragment></React.Fragment>
         return (
             <React.Fragment>
-                <GigHeader gig={gig} />
+                <GigHeader gig={gig} loadGig={this.loadGig}/>
                 <section className='gig-details max-width-container equal-padding'>
                     <div className="details-main-container">
                         <DetailsHeader gig={gig} getUserLevel={this.getUserLevel} owner={owner} />
@@ -99,7 +99,8 @@ const mapDispatchToProps = {
     setDetails,
     setExplore,
     setHome,
-    setBecomeSeller
+    setBecomeSeller,
+    setProfile,
 }
 
 export const GigDetails = connect(mapStateToProps, mapDispatchToProps)(_GigDetails)

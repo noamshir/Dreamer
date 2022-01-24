@@ -25,3 +25,4 @@
 23.1.2022, 13:38:32 - ERROR - while finding user noam | {}
 23.1.2022, 16:16:10 - ERROR - cannot update user 61ed10c9539e75815ff210fd | {"index":0,"code":66}
 23.1.2022, 16:16:10 - ERROR - Failed to update user | {"index":0,"code":66}
+23/01/2022, 20:11:32 - ERROR - cannot update gig 61ed302b01d6a59611f2c498 | {"index":0,"code":66}

@@ -29,25 +29,26 @@ async function getById(gigId) {
   }
 }
 
-async function remove(id){
-  try{
+async function remove(id) {
+  try {
     const collection = await dbService.getCollection("gig");
     await collection.deleteOne({ _id: ObjectId(id) });
     return;
   }
-  catch(err){
+  catch (err) {
     logger.error(`cannot remove gig ${id}`, err);
     throw err;
   }
 }
 
-async function update (updatedGig){
+async function update(gig) {
   try {
-    const collection = await dbService.getCollection("gig");
-    await collection.updateOne({ _id: updatedGig._id }, { $set: updatedGig });
-    return updatedGig;
+    gig._id = ObjectId(gig._id)
+    const collection = await dbService.getCollection('gig')
+    await collection.updateOne({ "_id": gig._id }, { $set: { ...gig } })
+    return gig
   } catch (err) {
-    logger.error(`cannot update gig ${updatedGig._id}`, err);
-    throw err;
+    logger.error(`cannot update gig ${gig._id}`, err)
+    throw err
   }
 }

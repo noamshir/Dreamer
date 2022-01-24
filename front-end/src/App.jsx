@@ -10,6 +10,9 @@ import { connect } from 'react-redux';
 import { setScroll, setSearchDisplay, toggleJoinModal, toggleSignInModal } from './store/scss.action.js';
 class _App extends React.Component {
 
+    state = {
+        isMenuOpen: false
+    }
 
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll)
@@ -31,12 +34,19 @@ class _App extends React.Component {
         toggleJoinModal();
         toggleSignInModal();
     }
+    toggleMenu = () => {
+        var { isMenuOpen } = this.state;
+        isMenuOpen = !isMenuOpen;
+        this.setState({ isMenuOpen });
+    }
     render() {
+        const { isMenuOpen } = this.state;
         return (
             <div className="main-wrapper">
                 {this.props.isJoinModal && <div onClick={() => this.props.toggleJoinModal()} className="main-screen"></div>}
                 {this.props.isModalSign && <div onClick={() => this.props.toggleSignInModal()} className="main-screen"></div>}
-                <AppHeader />
+                {isMenuOpen && <div onClick={this.toggleMenu} className="main-screen"></div>}
+                <AppHeader openMenu={this.toggleMenu} />
                 {!this.props.isBecomeSeller && <AppSubHeader />}
                 <main className="main-content">
                     <Switch>
@@ -44,8 +54,8 @@ class _App extends React.Component {
                     </Switch>
                 </main>
                 <AppFooter />
-                {this.props.isJoinModal && <SignUp/>}
-                {this.props.isModalSign && <SignIn/>}
+                {this.props.isJoinModal && <SignUp />}
+                {this.props.isModalSign && <SignIn />}
             </div>
         )
     }

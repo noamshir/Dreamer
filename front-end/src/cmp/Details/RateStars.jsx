@@ -18,7 +18,6 @@ export class _RateStars extends React.Component {
 
 
     changeRating = (newRating, name) => {
-        console.log('new rating', newRating);
         this.setState(prevState => ({ ratings: { ...prevState.ratings, [name]: newRating } }))
     }
 

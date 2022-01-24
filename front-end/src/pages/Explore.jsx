@@ -5,8 +5,7 @@ import { Button } from "@mui/material";
 
 
 import { loadGigs } from '../store/gig.action'
-import { setHome, setExplore, setDetails, setBecomeSeller } from '../store/scss.action.js';
-
+import { setHome, setExplore, setDetails, setBecomeSeller,setProfile } from '../store/scss.action.js';
 import { GigList } from "../cmp/GigList";
 import { Loader } from '../cmp/utils/Loader';
 
@@ -20,10 +19,11 @@ class _Explore extends React.Component {
 
     onSetExplore = () => {
         if (this.props.isExplore) return;
-        this.props.setExplore(true);
         this.props.setHome(false);
-        this.props.setDetails(false)
         this.props.setBecomeSeller(false);
+        this.props.setDetails(false);
+        this.props.setProfile(false);
+        this.props.setExplore(true);
     }
 
     onGoToDetails = (gigId) => {
@@ -66,7 +66,8 @@ const mapDispatchToProps = {
     setExplore,
     setHome,
     setDetails,
-    setBecomeSeller
+    setBecomeSeller,
+    setProfile
 };
 
 

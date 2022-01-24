@@ -65,11 +65,11 @@ async function update(sellerInfo) {
         reviews: [],
         sellerInfo
     }
-    await storageService.put(STORAGE_KEY, newUser)
+
+    await httpService.put(`user/${newUser._id}`, newUser)
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(newUser))
     return newUser
-
-}
+} 
 
 
 async function getUsers() {
@@ -98,7 +98,6 @@ async function saveReview(rate, txt, user, owner) {
     }
     owner.reviews = [...owner.reviews, review]
     const updatedOwner = await _saveUser(owner)
-    console.log({updatedOwner})
     return updatedOwner
 }
 
@@ -119,7 +118,7 @@ async function saveSellerInfo(sellerInfo) {
         return skill.value
     })
     return await update(sellerInfo)
-    
+
 }
 
 // async function loadUsers() {

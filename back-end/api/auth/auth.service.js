@@ -1,6 +1,6 @@
 const userService = require("../user/user.service");
 const bcrypt = require("bcrypt");
-const { has } = require("cheerio/lib/api/traversing");
+// const { has } = require("cheerio/lib/api/traversing");
 
 async function login(username, password) {
   const user = await userService.getByUsername(username);

@@ -24,7 +24,7 @@ export function OrderModal({ gig, modalClass }) {
         <div className={`order-modal ${modalClass}`}>
             <div className='order-title-wrapper'>
                 <h3 className='order-title'>{title}</h3>
-                <span className='order-price'>₪{gig.price}</span>
+                <span className='order-price'>{gig.price.toLocaleString("USA", { style: "currency", currency: "USD" })}</span>
             </div>
             <p className='order-subtitle'>{gig.title}</p>
             <div className='order-delivery'>
@@ -41,7 +41,7 @@ export function OrderModal({ gig, modalClass }) {
                     })}
                 </ul>
             </div>
-            <button className='btn'>Continue (₪{gig.price})</button>
+            <button className='btn'>Continue ({gig.price.toLocaleString("USA", { style: "currency", currency: "USD" })})</button>
         </div>
 
     )

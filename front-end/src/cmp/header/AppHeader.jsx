@@ -8,7 +8,7 @@ import { logout } from '../../store/user.action'
 import { toggleJoinModal, toggleSignInModal } from '../../store/scss.action.js';
 
 
-function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpModal, openSignInModal, user, logout }) {
+function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpModal, openSignInModal, user, logout, openMenu }) {
     var headerTransparent = "";
     var color = "";
     var sticky = "not-sticky";
@@ -33,7 +33,7 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
             <header className={`header-package dimerr-header ${headerTransparent} logged-out-homepage-header`}>
                 <div className="header-row-wrapper">
                     <div className="header-row max-width-container equal-padding row-main flex">
-                        <button className={`btn-nav ${color}`}><MenuIcon></MenuIcon></button>
+                        <button className={`btn-nav ${color}`} onClick={() => openMenu()}><MenuIcon></MenuIcon></button>
                         <NavLink to="/" className={`dimerr-logo ${color} clean-link`}> <Logo /> </NavLink>
                         <div className={`dimerr-header-search-animated ${searchBar}`}>
                             <SearchBar placeholder="Try Logo..." />
@@ -51,7 +51,7 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
                                     <React.Fragment>
                                         <li className="display-from-size-medium"><button className={`clean-btn ${color}`} onClick={onLogout}>Logout</button></li>
                                         <li className="display-from-size-small">
-                                            <Link to={`/profile/${user._id}`}>
+                                            <Link className="clean-link" to={`/profile/${user._id}`}>
                                                 {user.imgUrl ?
                                                     <div className="user-img" style={{ backgroundImage: `url(${user.imgUrl})` }}></div>
                                                     : <div style={{ backgroundColor: '#1dbf73' }} className="user-img">
