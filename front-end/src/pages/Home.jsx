@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { setExplore, setHome, setDetails } from '../store/scss.action';
+import { setExplore, setHome, setDetails,setBecomeSeller } from '../store/scss.action';
 import { useEffect } from 'react'
 
 import { AppHero } from '../cmp/AppHero'
@@ -13,12 +13,13 @@ function _Home({ isHome, setExplore, setHome }) {
     onSetHome();
     return () => {
     }
-  }, [])
+  })
   const onSetHome = () => {
     if (isHome) return;
     setExplore(false);
     setHome(true);
     setDetails(false);
+    setBecomeSeller(false);
   }
 
   return (
@@ -44,7 +45,8 @@ function mapStateToProps({ scssModule }) {
 const mapDispatchToProps = {
   setExplore,
   setHome,
-  setDetails
+  setDetails,
+  setBecomeSeller
 }
 
 export const Home = connect(mapStateToProps, mapDispatchToProps)(_Home);

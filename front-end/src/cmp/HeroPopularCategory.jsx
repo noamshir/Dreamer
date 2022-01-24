@@ -1,9 +1,19 @@
 import { connect } from 'react-redux'
 import { gigService } from '../services/gig.service'
+import { useState, useEffect } from 'react';
 
 
 function _HeroPopularCategory() {
-    var popularCategories = gigService.getPopularCategories(4);
+    const [popularCategories, setCategories] = useState([]);
+    useEffect(async () => {
+        var ans = await getCategories();
+        setCategories(ans);
+        return () => {
+        }
+    }, [])
+    const getCategories = async () => {
+        return await gigService.getPopularCategories(4);
+    }
     return (
         <ul className="clean-list hero-popular-category">
             Popular:

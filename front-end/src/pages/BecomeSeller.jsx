@@ -2,13 +2,12 @@ import React from 'react'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Select from 'react-select'
 import { connect } from 'react-redux'
-
-
+import { Loader } from "../cmp/utils/Loader";
 import video from '../assets/img/video.mp4'
 import { gigService } from '../services/gig.service';
 import { saveSellerInfo } from '../store/user.action'
 import { initialService } from '../initials/initial.service';
-
+import { setExplore, setDetails, setHome, setBecomeSeller,setProfile } from '../store/scss.action';
 
 class _BecomeSeller extends React.Component {
     state = {
@@ -18,12 +17,21 @@ class _BecomeSeller extends React.Component {
             origin: '',
             skills: []
         },
-        isImgInside: false
+        isImgInside: false,
+        options: null
     }
 
-    options = []
-    componentDidMount() {
-        this.makeOptions()
+    async componentDidMount() {
+        await this.makeOptions()
+        this.onSetSellerPage();
+    }
+
+    onSetSellerPage = () => {
+        if (this.props.isSellerDetails) return;
+        this.props.setExplore(false);
+        this.props.setHome(false);
+        this.props.setDetails(false);
+        this.props.setBecomeSeller(true);
     }
 
     handleChange = (ev) => {
@@ -42,11 +50,13 @@ class _BecomeSeller extends React.Component {
         this.setState((prevState) => ({ sellerInfo: { ...prevState.sellerInfo, skills } }))
     };
 
-    makeOptions = () => {
-        const categories = gigService.getCategories()
+    makeOptions = async () => {
+        const categories = await gigService.getCategories()
+        var arr = []
         categories.forEach(skill => {
-            this.options.push({ value: skill, label: skill })
+            arr.push({ value: skill, label: skill })
         })
+        this.setState({ options: arr });
     }
 
     submit = (ev) => {
@@ -80,7 +90,7 @@ class _BecomeSeller extends React.Component {
 
 
     render() {
-        if (!this.options) return
+        if (!this.state.options) return <Loader />
         const { sellerInfo, isImgInside } = this.state
         return (
             <section className='become-seller'>
@@ -114,15 +124,18 @@ class _BecomeSeller extends React.Component {
                         </label>
                     </div>
                     <div className="field">
-                        <Select isMulti
-                            value={sellerInfo.skills}
-                            onChange={this.handleSelectChange}
-                            options={this.options}
-                        />
+                        <p>Skills</p>
+                        <div className="select-wrapper">
+                            <Select isMulti
+                                value={sellerInfo.skills}
+                                onChange={this.handleSelectChange}
+                                options={this.options}
+                            />
+                        </div>
                     </div>
                     <div className="field">
                         <p>Origin</p>
-                        <select value={sellerInfo.origin} name='origin' onChange={this.handleChange}>
+                        <select className='select-field' value={sellerInfo.origin} name='origin' onChange={this.handleChange}>
                             <option value=''>Origin</option>
                             <option value="israel">Israel</option>
                             <option value="USA">USA</option>
@@ -131,7 +144,7 @@ class _BecomeSeller extends React.Component {
                             <option value="pakistan">Pakistan</option>
                         </select>
                     </div>
-                    <button className='btn' type='submit'>Make me a Seller!</button>
+                    <button className='btn' type='submit'>Continue</button>
                 </form>
             </section>
         )
@@ -142,11 +155,17 @@ class _BecomeSeller extends React.Component {
 function mapStateToProps(state) {
     return {
         user: state.userModule.user,
+        isBecomeSeller: state.scssModule.isBecomeSeller
     }
 }
 
 const mapDispatchToProps = {
-    saveSellerInfo
+    saveSellerInfo,
+    setExplore,
+    setHome,
+    setDetails,
+    setBecomeSeller,
+    setProfile
 };
 
 

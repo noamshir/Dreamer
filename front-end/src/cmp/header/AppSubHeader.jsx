@@ -1,11 +1,9 @@
 
 import { connect } from 'react-redux'
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { useState, useEffect } from 'react';
 import { gigService } from '../../services/gig.service.js';
 function _AppSubHeader({ isHome, isSearchBar }) {
     let sticky = "";
-    let current = 0;
     let display = "block"
     if (isHome) {
         display = "none";
@@ -14,8 +12,19 @@ function _AppSubHeader({ isHome, isSearchBar }) {
             display = "block"
         }
     }
-    const categories = gigService.getCategories();
+    const [categories, setCategories] = useState([]);
+    useEffect(async () => {
+        var ans = await getCategories();
+        setCategories(ans);
+        return () => {
+        }
+    }, [])
+    const getCategories = async () => {
+        return await gigService.getCategories();
 
+    }
+
+    if (!categories.length) return <span></span>;
     return <header className={`sub-header ${sticky} ${display}`}>
         <nav className={`sub-header-content max-width-container equal-padding flex`}>
             <ul className="categories flex clean-list">
@@ -34,7 +43,7 @@ function mapStateToProps({ scssModule }) {
     return {
         isHome: scssModule.isHome,
         isExplore: scssModule.isExplore,
-        isSearchBar: scssModule.isSearchBar
+        isSearchBar: scssModule.isSearchBar,
     }
 }
 

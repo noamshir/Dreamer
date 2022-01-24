@@ -1,15 +1,15 @@
 import { connect } from 'react-redux';
 import { useState } from 'react'
 import { signIn } from '../../store/user.action.js';
-
-function _SignIn({ closeModal, signIn, openJoin }) {
+import {toggleSignInModal,toggleJoinModal} from "../../store/scss.action"
+function _SignIn({ toggleSignInModal, signIn, toggleJoinModal }) {
 
     const [user, setUser] = useState({ username: "", password: "" });
 
     const handleSubmit = async (ev) => {
         ev.preventDefault();
         await signIn(user);
-        closeModal();
+        toggleSignInModal(false);
     }
 
     const handleChange = ({ target }) => {
@@ -19,8 +19,8 @@ function _SignIn({ closeModal, signIn, openJoin }) {
     }
 
     const onJoin = () => {
-        closeModal();
-        openJoin();
+        toggleSignInModal(false);
+        toggleJoinModal(true);
     }
 
     return (
@@ -56,7 +56,9 @@ function mapStateToProps({ userModule }) {
     }
 }
 const mapDispatchToProps = {
-    signIn
+    signIn,
+   toggleSignInModal,
+toggleJoinModal
 }
 
 export const SignIn = connect(mapStateToProps, mapDispatchToProps)(_SignIn)

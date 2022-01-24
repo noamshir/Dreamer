@@ -114,6 +114,7 @@
     align-items: center;
     .rate-num {
       font-size: 14px;
+      padding-inline-start: 3px;
     }
   }
   .star {
@@ -169,7 +170,7 @@
       width: 100px;
       background-size: cover;
       opacity: 0.6;
-      border: 1px solid rgb(99, 98, 98);
+      border: none;
       transition: opacity 0.3s;
     }
 

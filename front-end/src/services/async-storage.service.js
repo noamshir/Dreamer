@@ -103,7 +103,6 @@ function put(entityType, updatedEntity) {
       (entity) => entity._id === updatedEntity._id
     );
     entities.splice(idx, 1, updatedEntity);
-    console.log('entities!!!!!!!!111', entities);
     _save(entityType, entities);
     return updatedEntity;
   });

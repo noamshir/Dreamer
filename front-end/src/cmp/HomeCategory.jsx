@@ -1,8 +1,17 @@
 import { gigService } from '../services/gig.service'
+import { useState, useEffect } from 'react';
 
 export function HomeCategory(props) {
-    var popularCategories = gigService.getPopularCategories(5);
-
+    const [popularCategories, setCategories] = useState([]);
+    useEffect(async () => {
+        var ans = await getCategories();
+        setCategories(ans);
+        return () => {
+        }
+    }, [])
+    const getCategories = async () => {
+        return await gigService.getPopularCategories(5);
+    }
     return (<div className='proffesional-services-container max-width-container equal-padding'>
         <h1>Popular professional services</h1>
         <div className='proffesional-services'>

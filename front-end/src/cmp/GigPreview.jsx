@@ -1,6 +1,6 @@
 import StarIcon from '@mui/icons-material/Star';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 
@@ -9,17 +9,25 @@ import { Carousel } from "./Carousel";
 import { CarouselItem } from "./CarouselItem";
 import { setLikedGig } from '../store/gig.action.js'
 import { storageService } from '../services/async-storage.service';
+import { gigService } from '../services/gig.service';
 
 
 function _GigPreview({ gig, onGoToDetails, user, setLikedGig }) {
     const [likeMsgClass, setClass] = useState(false)
     const [isLiked, setLiked] = useState(false)
-    checkIfLiked()
+
+    useEffect(() => {
+        checkIfLiked()
+    }, [])
 
     async function checkIfLiked() {
-        if (user) return
-        const isGuestLiked = await storageService.isLikedByGuest(gig._id)
-        setLiked(isGuestLiked)
+        if (user) {
+            const isUserLiked = await gigService.isLikedByUser(gig)
+            setLiked(isUserLiked)
+        } else {
+            const isGuestLiked = await storageService.isLikedByGuest(gig._id)
+            setLiked(isGuestLiked)
+        }
     }
 
     function getUserLevel() {
@@ -34,14 +42,19 @@ function _GigPreview({ gig, onGoToDetails, user, setLikedGig }) {
     }
 
     async function toggleLike() {
-        console.log(isLiked);
         setLiked(!isLiked)
         setLikedGig(gig, user)
     }
 
+    function getTitleToShow() {
+        if (gig.title.length > 48) {
+            return `${gig.title.substring(0, 30)}...`
+        }
+        return gig.title
+    }
+
     return (
         <section className='gig-preview'>
-            {/* <div className='card'> */}
             <div className="gig-img">
                 <Carousel onGoToDetails={onGoToDetails} gig={gig}>
                     {gig.imgUrls.map((imgUrl, idx) => <CarouselItem key={idx} imgUrl={imgUrl}></CarouselItem>)}
@@ -56,7 +69,7 @@ function _GigPreview({ gig, onGoToDetails, user, setLikedGig }) {
             </div>
 
             <Link className='clean-link' to={`/explore/${gig._id}`}>
-                <p className='gig-title'>{gig.title}</p>
+                <p className='gig-title'>{getTitleToShow()}</p>
             </Link>
 
             <div className='card-end-wrapper'>
@@ -78,13 +91,12 @@ function _GigPreview({ gig, onGoToDetails, user, setLikedGig }) {
                     <Link className='clean-link' to={`/explore/${gig._id}`}>
                         <ul className='clean-list'>
                             <li className='starting-price'>Starting At</li>
-                            <li>{gig.price.toLocaleString("ILS", { style: "currency", currency: "ILS" })}</li>
+                            <li>{gig.price.toLocaleString("USA", { style: "currency", currency: "USD" })}</li>
                         </ul>
                     </Link>
                 </div>
             </div>
 
-            {/* </div> */}
         </section >
     )
 }
