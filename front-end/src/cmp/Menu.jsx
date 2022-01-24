@@ -18,9 +18,9 @@ function _Menu({ user, closeMenu, toggleJoinModal, toggleSignInModal }) {
         <div className="side-bar-content">
             <header className="menu-header">
                 {!user && <button className="btn" onClick={() => openJoin()} >Join Dimmer</button>}
-                {user && <div className="flex">
+                {user && <div className="user-content flex">
+                    <UserProfileImg closeMenu={()=>closeMenu()} user={user} isLink={true} />
                     <h5>{user.username}</h5>
-                    <UserProfileImg user={user} isLink={true} />
                 </div>}
             </header>
 

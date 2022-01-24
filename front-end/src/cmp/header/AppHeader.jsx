@@ -54,7 +54,6 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
                                     <React.Fragment>
                                         <li className="display-from-size-medium"><button className={`clean-btn ${color}`} onClick={onLogout}>Logout</button></li>
                                         <li className="display-from-size-small">
-                                            {console.log('user', user)}
                                             <UserProfileImg user={user} isLink={true} />
                                         </li>
                                     </React.Fragment>
