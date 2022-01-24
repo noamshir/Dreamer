@@ -9,6 +9,7 @@ import { SignIn } from './cmp/sign/SignIn.jsx';
 import { connect } from 'react-redux';
 import { setScroll, setSearchDisplay, toggleJoinModal, toggleSignInModal } from './store/scss.action.js';
 import { Menu } from './cmp/Menu.jsx';
+import { UserMsg } from './cmp/UserMsg.jsx';
 class _App extends React.Component {
 
     state = {
@@ -40,6 +41,7 @@ class _App extends React.Component {
         isMenuOpen = !isMenuOpen;
         this.setState({ isMenuOpen });
     }
+
     render() {
         const { isMenuOpen } = this.state;
         return (
@@ -56,6 +58,7 @@ class _App extends React.Component {
                     </Switch>
                 </main>
                 <AppFooter />
+                <UserMsg />
                 {this.props.isJoinModal && <SignUp />}
                 {this.props.isModalSign && <SignIn />}
             </div>

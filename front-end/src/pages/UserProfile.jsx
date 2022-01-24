@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 // import Select from 'react-select'
 import { connect } from 'react-redux'
-
 import { userService } from '../services/user.service';
 import { gigService } from '../services/gig.service';
 // import { saveSellerInfo } from '../store/user.action'
@@ -9,6 +8,11 @@ import { UserDetails } from '../cmp/profile/UserDetails'
 import { SellerDetails } from '../cmp/profile/SellerDetails'
 import { GigList } from '../cmp/GigList'
 import { withRouter } from 'react-router-dom';
+<<<<<<< HEAD
+=======
+import { setHome, setExplore, setDetails, setProfile } from '../store/scss.action.js';
+import { Loader } from '../cmp/utils/Loader';
+>>>>>>> bb403bd0ade9c4babd0e5bc879ababa44bbaef86
 
 import { setHome, setExplore, setDetails, setProfile } from '../store/scss.action.js';
 // import { initialService } from '../initials/initial.service';
@@ -44,7 +48,7 @@ function _UserProfile(props) {
         const gigs = await gigService.query({ userId: user._id })
         setGigs(gigs);
     }
-    if (!user) return <React.Fragment></React.Fragment>
+    if (!user) return <Loader></Loader>
     return (
         <div className="profile-main-container max-width-container equal-padding">
             <div className="profile-details-container">

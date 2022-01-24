@@ -13,7 +13,6 @@ function _Menu({ user, closeMenu, toggleJoinModal, toggleSignInModal }) {
         closeMenu();
         toggleSignInModal(true);
     }
-    console.log({user})
     return <section className="side-Bar">
         <div className="side-bar-content">
             <header className="menu-header">
@@ -29,7 +28,7 @@ function _Menu({ user, closeMenu, toggleJoinModal, toggleSignInModal }) {
                     {!user && <li onClick={() => openSignIn()} className="menu-item sign">Sign in</li>}
                     <li className="menu-item"><NavLink onClick={() => closeMenu()} className="clean-link" to="/">Home</NavLink></li>
                     <li className="menu-item"><NavLink onClick={() => closeMenu()} className="clean-link" to="/explore">Explore</NavLink></li>
-                    <li className="menu-item"><NavLink onClick={() => closeMenu()} className="clean-link" to="/becomeSeller">Become a Seller</NavLink></li>
+                    {!user?.sellerInfo && <li className="menu-item"><NavLink onClick={() => closeMenu()} className="clean-link" to="/becomeSeller">Become a Seller</NavLink></li>}
                 </ul>
             </nav>
         </div>

@@ -1,9 +1,11 @@
 import { connect } from 'react-redux'
-import { gigService } from '../services/gig.service'
 import { useState, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
+
+import { gigService } from '../services/gig.service'
 
 
-function _HeroPopularCategory() {
+function _HeroPopularCategory(props) {
     const [popularCategories, setCategories] = useState([]);
     useEffect(async () => {
         var ans = await getCategories();
@@ -20,7 +22,9 @@ function _HeroPopularCategory() {
             {popularCategories.map((category, idx) => {
                 return (
                     <li key={idx}>
-                        <button className="btn-popular-category">{category}</button>
+                        <button className="btn-popular-category" onClick={() => {
+                            props.history.push(`/explore?filterBy=${category}`)
+                        }}>{category}</button>
                     </li>
                 )
             })}
@@ -36,4 +40,5 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {}
 
-export const HeroPopularCategory = connect(mapStateToProps, mapDispatchToProps)(_HeroPopularCategory)
+const _HeroPopularCategoryWithRouter = withRouter(_HeroPopularCategory);
+export const HeroPopularCategory = connect(mapStateToProps, mapDispatchToProps)(_HeroPopularCategoryWithRouter)

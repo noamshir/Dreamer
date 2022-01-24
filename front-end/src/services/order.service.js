@@ -17,6 +17,7 @@ export const orderService = {
     save,
     remove,
     createOrders,
+    fixOrder
 };
 
 async function query({ userId, type }) {
@@ -44,6 +45,31 @@ async function save(order) {
         // order.owner = user;
         return storageService.post(STORAGE_KEY, order);
     }
+}
+
+
+async function fixOrder(gig, user, owner) {
+
+    const order = {
+        buyer: {
+            fullname: user.fullname,
+            imgUrl: user.imgUrl,
+            _id: user._id
+        },
+        seller: {
+            fullname: owner.fullname,
+            imgUrl: owner.imgUrl,
+            _id: owner._id
+        },
+        gig: {
+            _id: gig._id,
+            title: gig.title,
+            price: (gig.price + gig.price / 3)
+        },
+        status: 'pending'
+    }
+
+    return await save(order)
 }
 
 function createOrders() {

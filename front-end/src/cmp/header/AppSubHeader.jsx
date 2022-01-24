@@ -1,52 +1,79 @@
 
 import { connect } from 'react-redux'
 import { useState, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
+
 import { gigService } from '../../services/gig.service.js';
-function _AppSubHeader({ isHome, isSearchBar, isProfile }) {
+import { loadGigs, setCategory } from '../../store/gig.action.js';
+
+function _AppSubHeader(props) {
+    const [isWatched, setWatched] = useState('all')
+    const [categories, setCategories] = useState([]);
     let sticky = "";
     let display = "block"
-    if (isHome) {
+    if (props.isHome) {
         display = "none";
         sticky = "sticky"
-        if (isSearchBar) {
+        if (props.isSearchBar) {
             display = "block"
         }
     }
-    if (isProfile) display = "none"
-    const [categories, setCategories] = useState([]);
+    if (props.isProfile) display = "none"
     useEffect(async () => {
         var ans = await getCategories();
         setCategories(ans);
+        setWatched(props.category.toLowerCase())
         return () => {
         }
-    }, [])
-    const getCategories = async () => {
-        return await gigService.getCategories();
+    }, [props.category])
 
+    const getCategories = async () => {
+        const categories = await gigService.getCategories();
+        return categories
+    }
+
+    const onSetCategory = (category) => {
+        if (!category) category = 'all'
+        setCategory(category)
+        category === 'all' ? props.loadGigs({}) : props.loadGigs({ category })
+        setWatched(category)
+        props.history.push(`/explore?filterBy=${category}`)
     }
 
     if (!categories.length) return <span></span>;
     return <header className={`sub-header ${sticky} ${display}`}>
         <nav className={`sub-header-content max-width-container equal-padding flex`}>
             <ul className="categories flex clean-list">
-                {categories && categories.map((categorie, idx) => {
+                <li className={isWatched === 'all' ? `medium active` : 'medium'} onClick={() => {
+                    onSetCategory()
+                }}><span className="categorie-nav">All</span></li>
+                {categories && categories.map((category, idx) => {
                     var className;
                     if (idx >= 0 && idx < 5) className = `medium`;
-                    else if (idx >= 5 && idx < 7) className = 'large';
-                    return <li key={idx} className={className}><a className="clean-link categorie-nav" href="">{categorie}</a></li>
+                    else if (idx >= 5 && idx < 8) className = 'large';
+                    return <li key={idx} className={isWatched === category ? `${className} active` : className} onClick={() => {
+                        onSetCategory(category)
+                    }}><span className="categorie-nav">{category}</span></li>
                 })}
             </ul>
         </nav>
     </header>
 }
 
-function mapStateToProps({ scssModule }) {
+function mapStateToProps(state) {
     return {
-        isHome: scssModule.isHome,
-        isExplore: scssModule.isExplore,
-        isSearchBar: scssModule.isSearchBar,
-        isProfile: scssModule.isProfile
+        isHome: state.scssModule.isHome,
+        isExplore: state.scssModule.isExplore,
+        isSearchBar: state.scssModule.isSearchBar,
+        isProfile: state.scssModule.isProfile,
+        category: state.gigModule.category
     }
 }
 
-export const AppSubHeader = connect(mapStateToProps)(_AppSubHeader);
+const mapDispatchToProps = {
+    loadGigs,
+    setCategory
+};
+
+const _AppSubHeaderWithRouter = withRouter(_AppSubHeader)
+export const AppSubHeader = connect(mapStateToProps, mapDispatchToProps)(_AppSubHeaderWithRouter);
