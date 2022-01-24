@@ -1,0 +1,11 @@
+.side-Bar{
+    height: 100vh;
+    background-color: #fff;
+    color: $clr5;
+    z-index: 20;
+    width: 273px;
+    position: fixed;
+    top: 0;
+    transition: all .3s ease;
+    padding-top: 20px;
+}
