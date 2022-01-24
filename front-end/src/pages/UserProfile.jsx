@@ -42,7 +42,7 @@ function _UserProfile(props) {
     }
     if (!user) return <React.Fragment></React.Fragment>
     return (
-        <div className="profile-main-container equal-padding">
+        <div className="profile-main-container max-width-container equal-padding">
             <div className="profile-details-container">
                 <UserDetails user={user} />
                 {user.sellerInfo && <SellerDetails user={user} />}
