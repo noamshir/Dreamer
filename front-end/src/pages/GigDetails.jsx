@@ -8,13 +8,14 @@ import { CarouselItem } from '../cmp/CarouselItem'
 import { AboutSeller } from '../cmp/Details/AboutSeller'
 import { AboutGig } from '../cmp/Details/AboutGig'
 import { ReviewList } from '../cmp/Details/ReviewList'
-
 import { userService } from '../services/user.service'
 import { gigService } from '../services/gig.service'
+import { socketService } from '../services/socket.service'
 
 import { onSetFilterBy } from '../store/gig.action'
-import { setHome, setExplore, setDetails, setBecomeSeller,setProfile } from '../store/scss.action.js';
+import { setHome, setExplore, setDetails, setBecomeSeller, setProfile } from '../store/scss.action.js';
 import { GigHeader } from '../cmp/header/GigHeader'
+import { Loader } from '../cmp/utils/Loader'
 
 
 
@@ -29,6 +30,7 @@ class _GigDetails extends React.Component {
         this.onSetDetails();
         await this.loadGig(gigId)
         this.loadOwner(this.state.gig.owner._id)
+        this.setSockets();
     }
 
     onSetDetails = () => {
@@ -38,6 +40,14 @@ class _GigDetails extends React.Component {
         this.props.setHome(false);
         this.props.setDetails(true)
         this.props.setBecomeSeller(false);
+    }
+
+    setSockets = () => {
+        socketService.on("add-review", (review) => {
+            var { owner } = this.state;
+            owner.reviews = [...owner.reviews, review];
+            this.setState({ owner });
+        })
     }
 
     loadGig = async (gigId) => {
@@ -63,10 +73,10 @@ class _GigDetails extends React.Component {
 
     render() {
         const { gig, owner } = this.state
-        if (!gig || !owner) return <React.Fragment></React.Fragment>
+        if (!gig || !owner) return <Loader></Loader>
         return (
             <React.Fragment>
-                <GigHeader gig={gig} loadGig={this.loadGig}/>
+                <GigHeader gig={gig} loadGig={this.loadGig} />
                 <section className='gig-details max-width-container equal-padding'>
                     <div className="details-main-container">
                         <DetailsHeader gig={gig} getUserLevel={this.getUserLevel} owner={owner} />

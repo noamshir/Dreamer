@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 // import Select from 'react-select'
 import { connect } from 'react-redux'
-
 import { userService } from '../services/user.service';
 import { gigService } from '../services/gig.service';
 // import { saveSellerInfo } from '../store/user.action'
@@ -10,6 +9,7 @@ import { SellerDetails } from '../cmp/profile/SellerDetails'
 import { GigList } from '../cmp/GigList'
 import { withRouter } from 'react-router-dom';
 import { setHome, setExplore, setDetails, setProfile } from '../store/scss.action.js';
+import { Loader } from '../cmp/utils/Loader';
 
 // import { initialService } from '../initials/initial.service';
 
@@ -24,6 +24,12 @@ function _UserProfile(props) {
         setProfile(true);
         onSetGigs(await onSetUser());
     }, [])
+    useEffect(async () => {
+        if (!user) return;
+        if (user._id !== props.match.params.userId) onSetGigs(await onSetUser());
+    }, [props.match.params.userId])
+
+
 
     async function onSetUser() {
         const userToSet = await userService.getById(match.params.userId)
@@ -34,15 +40,15 @@ function _UserProfile(props) {
         const gigs = await gigService.query({ userId: user._id })
         setGigs(gigs);
     }
-    if (!user) return <React.Fragment></React.Fragment>
+    if (!user) return <Loader></Loader>
     return (
-        <React.Fragment>
+        <div className="profile-main-container equal-padding">
             <div className="profile-details-container">
-                <UserDetails className="user-details" user={user} />
+                <UserDetails user={user} />
                 {user.sellerInfo && <SellerDetails user={user} />}
             </div>
-            <GigList gigs={gigs} />
-        </React.Fragment>
+            {user.sellerInfo && <GigList gigs={gigs} />}
+        </div>
     )
 }
 

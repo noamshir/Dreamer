@@ -50,7 +50,7 @@ class _App extends React.Component {
                 {this.props.isModalSign && <div onClick={() => this.props.toggleSignInModal()} className="main-screen"></div>}
                 {isMenuOpen && <div onClick={this.toggleMenu} className="main-screen"></div>}
                 <AppHeader openMenu={this.toggleMenu} />
-                {!this.props.isBecomeSeller && <AppSubHeader goToExplore={this.goToExplore}/>}
+                {!this.props.isBecomeSeller && <AppSubHeader />}
                 {isMenuOpen && <Menu closeMenu={this.toggleMenu} />}
                 <main className="main-content">
                     <Switch>

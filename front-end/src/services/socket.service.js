@@ -3,7 +3,7 @@ import io from 'socket.io-client'
 export const SOCKET_EMIT_USER_WATCH = 'user-watch';
 export const SOCKET_EMIT_LOGIN = 'set-user-socket';
 export const SOCKET_EMIT_LOGOUT = 'unset-user-socket';
-
+export const SOCKET_EMIT_ADD_REVIEW='new-review'
 
 const baseUrl = (process.env.NODE_ENV === 'production')? '' : '//localhost:3030'
 export const socketService = createSocketService()

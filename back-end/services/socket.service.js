@@ -1,5 +1,6 @@
+const { data } = require("cheerio/lib/api/attributes");
+const logger = require("./logger.service");
 var gIo = null;
-
 function connectSockets(http, session) {
   gIo = require("socket.io")(http, {
     cors: {
@@ -10,10 +11,6 @@ function connectSockets(http, session) {
     console.log("New socket", socket.id);
     socket.on("disconnect", (socket) => {
       console.log("Someone disconnected");
-    });
-    socket.on("user typing", (username) => {
-      console.log({ username }, "is typing...");
-      socket.broadcast.to(socket.myToyId).emit("user addTyping", username);
     });
     socket.on("chat toy", (toyId) => {
       if (socket.myToyId === toyId) return;
@@ -29,11 +26,16 @@ function connectSockets(http, session) {
       gIo.to(socket.myToyId).emit("chat addMsg", msg);
     });
     socket.on("set-user-socket", (userId) => {
-      logger.debug(`Setting (${socket.id}) socket.userId = ${userId}`);
+      console.log("user logged in", userId);
       socket.userId = userId;
     });
     socket.on("unset-user-socket", () => {
+      console.log("user logged out");
       delete socket.userId;
+    });
+    socket.on("new-review", (review) => {
+      console.log("someone added review", review);
+      gIo.emit("add-review", review);
     });
   });
 }

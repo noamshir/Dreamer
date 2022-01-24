@@ -12,7 +12,7 @@ export function UserProfileImg({ user, isLink, closeMenu, toggleMenu }) {
                 {user.imgUrl ?
                     <div className="user-img" style={{ backgroundImage: `url(${user.imgUrl})` }}></div>
                     : <div className="user-img">
-                        <span>{user.fullname.charAt(0)}</span>
+                        <span className="spanclass">{user.fullname.charAt(0)}</span>
                     </div>}
             </div>
         )
