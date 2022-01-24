@@ -34,4 +34,30 @@
     font-size: 40px;
     text-shadow: 0 0 12px #5d5b5b;
   }
+
+  .inner-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: work-sans;
+
+    .sort-by,
+    label {
+      font-size: 16px;
+      line-height: 120%;
+      font-family: work-sans;
+    }
+    label{
+      font-weight: 400;
+    }
+
+    .sort-by {
+      border: none;
+      outline: none;
+      padding-inline-start: 4px;
+      font-weight: 700;
+      color: #222325;
+      cursor: pointer;
+    }
+  }
 }

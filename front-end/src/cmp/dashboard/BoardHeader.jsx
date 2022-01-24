@@ -1,16 +1,17 @@
 
 
-export function BoardHeader() {
+export function BoardHeader({ switchTo, user }) {
     return <section className="board-header">
-        <div className="board-content flex">
-            <nav>
-                <ul className="flex">
+        <div className="board-content flex max-width-container equal-padding">
+            <nav className="board-nav">
+                <ul className="flex clean-list">
                     <li>Dashboard</li>
                     <li>Analytics</li>
                     <li>Messeges</li>
                 </ul>
             </nav>
-            <button className="btn">Switch to</button>
+            <div className="flex-grow-helper"></div>
+            {user.sellerInfo && <button className="btn">Switch to {switchTo}</button>}
         </div>
     </section>
 }

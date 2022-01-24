@@ -9,6 +9,10 @@ import { Loader } from '../cmp/utils/Loader';
 
 class _Explore extends React.Component {
 
+    state = {
+        sortBy: ''
+    }
+
     componentDidMount() {
         let urlParams = new URLSearchParams(this.props.location.search);
         this.filterBy = {}
@@ -46,20 +50,41 @@ class _Explore extends React.Component {
         this.props.setExplore(true);
     }
 
+    handleChange = ({ target }) => {
+        const field = target.name
+        const value = target.value
+        this.filterBy.sortBy = value
+        this.setState(prevState => ({ ...prevState, [field]: value }), () => {
+            this.props.loadGigs(this.filterBy)
+        })
+    }
+
     onGoToDetails = (gigId) => {
         this.props.history.push(`/explore/${gigId}`)
     }
 
     render() {
-        const { gigs, filterBy } = this.props
+        const { gigs, category } = this.props
+        const { sortBy } = this.state
         if (!gigs) return <Loader />
+        
         return (
             <React.Fragment>
                 {!gigs.length ? 'No Services Found For Your Search' :
                     <section className='explore'>
                         <section className="explore-main  max-width-container equal-padding">
-                            {filterBy.category === '' ? <h1>All Categories</h1> : <h1>{filterBy.category}</h1>}
-                            <div className="services-count">{gigs.length} services available</div>
+                            {category === 'all' ? <h1>All Categories</h1> : <h1>{category}</h1>}
+                            <div className="inner-container">
+                                <div className="services-count">{gigs.length} services available</div>
+                                <label htmlFor="sort" className='sort-label'>
+                                    Sort by 
+                                    <select className='sort-by' name="sortBy" id="sort" value={sortBy} onChange={this.handleChange}>
+                                        <option value="best selling">Best Selling</option>
+                                        <option value="title">Title</option>
+                                        <option value="price">Price</option>
+                                    </select>
+                                </label>
+                            </div>
                             <GigList gigs={gigs} onGoToDetails={this.onGoToDetails} />
                         </section>
                     </section >
@@ -77,7 +102,8 @@ function mapStateToProps(state) {
         user: state.userModule.user,
         isHome: state.scssModule.isHome,
         isExplore: state.scssModule.isExplore,
-        filterBy: state.gigModule.filterBy
+        filterBy: state.gigModule.filterBy,
+        category: state.gigModule.category
     }
 }
 
