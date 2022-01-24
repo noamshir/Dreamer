@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 
-export function UserProfileImg({ user, isLink }) {
+export function UserProfileImg({ user, isLink, closeMenu }) {
 
     if (!isLink) {
         return (
@@ -16,8 +16,9 @@ export function UserProfileImg({ user, isLink }) {
         )
     }
     return (
-
-        <Link className="clean-link" to={`/profile/${user._id}`}>
+        <Link onClick={() => {
+            if (closeMenu) closeMenu();
+        }} className="clean-link" to={`/profile/${user._id}`}>
             {user.imgUrl ?
                 <div className="user-img" style={{ backgroundImage: `url(${user.imgUrl})` }}></div>
                 : <div className="user-img">

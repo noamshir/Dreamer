@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { setExplore, setHome, setDetails,setBecomeSeller } from '../store/scss.action';
+import { setExplore, setHome, setDetails,setBecomeSeller,setProfile } from '../store/scss.action';
 import { useEffect } from 'react'
 
 import { AppHero } from '../cmp/AppHero'
@@ -7,7 +7,7 @@ import { HomeCategory } from '../cmp/HomeCategory'
 import { HomePageInfo } from '../cmp/HomePageInfo'
 import { HomeReviews } from '../cmp/HomeReviews';
 
-function _Home({ isHome, setExplore, setHome }) {
+function _Home({ isHome, setExplore, setHome,setBecomeSeller,setProfile }) {
 
   useEffect(() => {
     onSetHome();
@@ -20,6 +20,7 @@ function _Home({ isHome, setExplore, setHome }) {
     setHome(true);
     setDetails(false);
     setBecomeSeller(false);
+    setProfile(false)
   }
 
   return (
@@ -45,7 +46,8 @@ const mapDispatchToProps = {
   setExplore,
   setHome,
   setDetails,
-  setBecomeSeller
+  setBecomeSeller,
+  setProfile
 }
 
 export const Home = connect(mapStateToProps, mapDispatchToProps)(_Home);

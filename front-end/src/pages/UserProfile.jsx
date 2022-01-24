@@ -42,13 +42,13 @@ function _UserProfile(props) {
     }
     if (!user) return <React.Fragment></React.Fragment>
     return (
-        <React.Fragment>
+        <div className="profile-main-container">
             <div className="profile-details-container">
-                <UserDetails className="user-details" user={user} />
+                <UserDetails user={user} />
                 {user.sellerInfo && <SellerDetails user={user} />}
             </div>
-            <GigList gigs={gigs} />
-        </React.Fragment>
+            {user.sellerInfo && <GigList gigs={gigs} />}
+        </div>
     )
 }
 

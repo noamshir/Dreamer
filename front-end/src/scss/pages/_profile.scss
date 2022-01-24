@@ -1,0 +1,19 @@
+.profile-main-container {
+    display: flex;
+}
+.profile-details-container .user-details {
+    border: 1px solid $clr6;
+    .online-status.online {
+        color: $clr1;
+        font-size: 0.9rem;
+        text-transform: capitalize;
+        border-radius: 2rem;
+        border: 1px solid $clr1;
+        padding: 2px 5px;
+        font-family: Arial, Helvetica, sans-serif;
+        &::before {
+            content: "•";
+            margin-inline: 4px;
+        }
+    }
+}

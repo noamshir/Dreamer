@@ -10,16 +10,16 @@ export function UserDetails({ user }) {
     var year = createdAt.getFullYear();
 
     return (
-        <div className="profile-details-container">
-            <div>online</div>
+        <div className="user-details">
+            <span className="online-status online">online</span>
             <UserProfileImg user={user} isLink={false} />
             <div className="fullname">{user.fullname}</div>
             <div className="user-stats-wrapper">
                 <div className="user-stats">
-                    <div className='origin'>
+                    {user.sellerInfo && <div className='origin'>
                         <div><LocationOnIcon /> From</div>
-                        <div className='origin'> {user.sellerInfo?.origin}</div>
-                    </div>
+                        <div className='origin'> {user.sellerInfo.origin}</div>
+                    </div>}
                     <div className='member-since'>
                         <div><PersonIcon /> Member since</div>
                         <div className='date'>{month} {year}</div>

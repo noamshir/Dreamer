@@ -2,7 +2,7 @@
 import { connect } from 'react-redux'
 import { useState, useEffect } from 'react';
 import { gigService } from '../../services/gig.service.js';
-function _AppSubHeader({ isHome, isSearchBar }) {
+function _AppSubHeader({ isHome, isSearchBar, isProfile }) {
     let sticky = "";
     let display = "block"
     if (isHome) {
@@ -12,6 +12,7 @@ function _AppSubHeader({ isHome, isSearchBar }) {
             display = "block"
         }
     }
+    if (isProfile) display = "none"
     const [categories, setCategories] = useState([]);
     useEffect(async () => {
         var ans = await getCategories();
@@ -44,6 +45,7 @@ function mapStateToProps({ scssModule }) {
         isHome: scssModule.isHome,
         isExplore: scssModule.isExplore,
         isSearchBar: scssModule.isSearchBar,
+        isProfile: scssModule.isProfile
     }
 }
 
