@@ -8,9 +8,11 @@ module.exports = {
   update
 };
 async function query(filterBy = {}) {
+
+  const criteria = _buildCriteria(filterBy)
   try {
     const collection = await dbService.getCollection("gig");
-    const gigs = await collection.find({}).toArray();
+    const gigs = await collection.find(criteria).toArray();
     return gigs;
   } catch (err) {
     logger.error(`erorr while finding gigs`, err);
@@ -29,19 +31,19 @@ async function getById(gigId) {
   }
 }
 
-async function remove(id){
-  try{
+async function remove(id) {
+  try {
     const collection = await dbService.getCollection("gig");
     await collection.deleteOne({ _id: ObjectId(id) });
     return;
   }
-  catch(err){
+  catch (err) {
     logger.error(`cannot remove gig ${id}`, err);
     throw err;
   }
 }
 
-async function update (updatedGig){
+async function update(updatedGig) {
   try {
     const collection = await dbService.getCollection("gig");
     await collection.updateOne({ _id: updatedGig._id }, { $set: updatedGig });
@@ -50,4 +52,17 @@ async function update (updatedGig){
     logger.error(`cannot update gig ${updatedGig._id}`, err);
     throw err;
   }
+}
+
+function _buildCriteria(filterBy) {
+  var criteria = {}
+
+  if (filterBy.userId) {
+    const _id = filterBy.userId
+    // console.log('if : ', _id);
+    criteria["owner._id"] = _id;
+    return criteria;
+  }
+  // var { txt, category } = filterBy
+  //  criteria .title= { $regex: txt, $options: 'i' }
 }

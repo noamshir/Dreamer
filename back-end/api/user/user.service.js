@@ -68,6 +68,7 @@ async function update(user) {
     console.log(user);
     const collection = await dbService.getCollection("user");
     await collection.updateOne({ _id: id }, { $set: { ...user } });
+    user.createdAt = ObjectId(user._id).getTimestamp();
     return user;
   } catch (err) {
     logger.error(`cannot update user ${user._id}`, err);
@@ -79,6 +80,7 @@ async function add(user) {
   try {
     const collection = await dbService.getCollection("user");
     await collection.insertOne(user);
+    user.createdAt = ObjectId(user._id).getTimestamp();
     return user;
   } catch (err) {
     logger.error("cannot insert user", err);

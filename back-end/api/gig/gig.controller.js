@@ -1,7 +1,9 @@
 const gigService = require("./gig.service");
 async function getGigs(req, res) {
+
   try {
-    var gigs = await gigService.query();
+    var { filterBy } = JSON.parse(req.query.params)
+    var gigs = await gigService.query(filterBy);
     res.send(gigs);
   } catch (err) {
     logger.error("Failed to get gigs", err);
