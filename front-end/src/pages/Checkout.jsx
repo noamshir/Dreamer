@@ -1,11 +1,14 @@
 import React from "react";
 import CheckIcon from '@mui/icons-material/Check';
-
 import { connect } from "react-redux";
+
 import { UserStarRate } from "../cmp/Details/UserStarRate";
 import { gigService } from "../services/gig.service";
 import { userService } from "../services/user.service";
+import { addOrder } from '../store/order.action';
+import { showSuccessMsg } from "../services/event-bus.service";
 import { setExplore, setHome, setDetails, setBecomeSeller, setProfile } from '../store/scss.action';
+import { toggleSignInModal } from '../store/scss.action';
 
 
 
@@ -68,8 +71,16 @@ class _Checkout extends React.Component {
         return title;
     }
 
-    onSetOrder = () => {
-
+    onSetOrder = async () => {
+        const { gig, owner } = this.state
+        const { user } = this.props
+        if (!user) {
+            this.props.toggleSignInModal(true);
+            return;
+        }
+        await this.props.addOrder(gig, user, owner)
+        showSuccessMsg('Order saved, check it out in your profile!')
+        this.props.history.push(`/profile/${user._id}`)
     }
 
     render() {
@@ -137,14 +148,23 @@ class _Checkout extends React.Component {
     }
 }
 
-function mapStateToProps({ scssModule }) {
+function mapStateToProps(state) {
     return {
-        isProfile: scssModule.isProfile
+        isProfile: state.scssModule.isProfile,
+        order: state.orderModule.order,
+        user: state.userModule.user
     }
 }
 
 const mapDispatchToProps = {
-    setExplore, setHome, setDetails, setBecomeSeller, setProfile
+    setExplore,
+    setHome,
+    setDetails,
+    setBecomeSeller,
+    setProfile,
+    addOrder,
+    toggleSignInModal
+
 }
 
 export const Checkout = connect(mapStateToProps, mapDispatchToProps)(_Checkout)

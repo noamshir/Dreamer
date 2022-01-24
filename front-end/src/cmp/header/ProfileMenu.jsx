@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom"
 
 
 export function ProfileMenu({ onLogout, user, closeMenu }) {
-    console.log("renderrr.")
     return <aside className="profile-menu">
         <div className="menu-pointer"></div>
         <ul className="clean-list">

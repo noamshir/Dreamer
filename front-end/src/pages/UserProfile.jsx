@@ -27,7 +27,6 @@ function _UserProfile(props) {
 
     async function onSetUser() {
         const userToSet = await userService.getById(match.params.userId)
-        console.log('set user', userToSet);
         setUser(userToSet);
         return userToSet;
     }

@@ -37,6 +37,7 @@
       padding: 12px 10px;
       height: 100%;
       display: none;
+      transition: .3s;
       &.medium {
         display: inline-block;
         height: 100%;
@@ -49,7 +50,6 @@
       }
     }
     & li:first-child {
-      padding-left: 0px;
       color: $clr5;
     }
     & li:last-child {
@@ -57,11 +57,16 @@
     }
     & li:hover {
       box-shadow: inset 0px -4px 0px $clr1;
+      cursor: pointer;
     }
-    a {
+    span {
       display: inline-block;
       height: 100%;
       text-transform: capitalize;
+      cursor: pointer;
     }
+  }
+  .active {
+    box-shadow: inset 0px -4px 0px $clr1;
   }
 }
