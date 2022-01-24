@@ -7,7 +7,6 @@ function connectSockets(http, session) {
     },
   });
   gIo.on("connection", (socket) => {
-    git
     console.log("New socket", socket.id);
     socket.on("disconnect", (socket) => {
       console.log("Someone disconnected");
