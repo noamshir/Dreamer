@@ -1,4 +1,3 @@
-const { data } = require("cheerio/lib/api/attributes");
 const logger = require("./logger.service");
 var gIo = null;
 function connectSockets(http, session) {
