@@ -1,5 +1,6 @@
 const initialState = {
     gigs: null,
+    category: 'all',
     filterBy: {
         txt: '',
         category: '',
@@ -28,6 +29,9 @@ export function gigReducer(state = initialState, action) {
             break;
         case 'SET_FILTERBY':
             newState = { ...state, filterBy: { ...action.filterBy } }
+            break;
+        case 'SET_CATEGORY':
+            newState = { ...state, category: action.category }
             break;
         case 'SET_FILTERBY_FIELD':
             newState = { ...state, filterBy: { ...state.filterBy, [action.filterBy.field]: action.filterBy.value } }

@@ -11,12 +11,19 @@ export function loadOrders() {
     }
 }
 
-export function add(order) {
+export function addOrder(gig, user, owner) {
+    return async (dispatch) => {
+        const savedOrder = await orderService.fixOrder(gig, user, owner)
+        const action = { type: 'ADD_ORDER', order: savedOrder }
+        dispatch(action)
+        return Promise.resolve(savedOrder)
+    }
+}
+
+export function updateOrder(order) {
     return async (dispatch) => {
         const savedOrder = await orderService.save(order)
-        let action
-        if (order._id) action = { type: 'UPDATE_ORDER', order: savedOrder };
-        else action = { type: 'ADD_ORDER', order: savedOrder }
+        const action = { type: 'UPDATE_ORDER', order: savedOrder };
         dispatch(action)
         return Promise.resolve(savedOrder)
     }

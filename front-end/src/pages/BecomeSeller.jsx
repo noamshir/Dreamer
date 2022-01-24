@@ -1,13 +1,14 @@
 import React from 'react'
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Select from 'react-select'
 import { connect } from 'react-redux'
+
+
 import { Loader } from "../cmp/utils/Loader";
 import video from '../assets/img/video.mp4'
 import { gigService } from '../services/gig.service';
 import { saveSellerInfo } from '../store/user.action'
 import { initialService } from '../initials/initial.service';
-import { setExplore, setDetails, setHome, setBecomeSeller,setProfile } from '../store/scss.action';
+import { setExplore, setDetails, setHome, setBecomeSeller, setProfile, toggleSignInModal } from '../store/scss.action';
 
 class _BecomeSeller extends React.Component {
     state = {
@@ -64,7 +65,10 @@ class _BecomeSeller extends React.Component {
         ev.preventDefault()
         const { user } = this.props
         const { sellerInfo } = this.state
-        if (!user) return console.log('login first!')
+        if (!user) {
+            this.props.toggleSignInModal(true);
+            return;
+        }
         this.props.saveSellerInfo(sellerInfo)
         this.props.history.push('/')
         this.setState({ sellerInfo: { imgUrl: '', sellerDesc: '', origin: '', skills: [] }, isImgInside: false })
@@ -166,7 +170,8 @@ const mapDispatchToProps = {
     setHome,
     setDetails,
     setBecomeSeller,
-    setProfile
+    setProfile,
+    toggleSignInModal
 };
 
 

@@ -31,6 +31,14 @@ export function onSetFilterBy(filterBy, field) {
     }
 }
 
+export function setCategory(category) {
+    return (dispatch) => {
+        const action = { type: 'SET_CATEGORY', category }
+        dispatch(action)
+        return Promise.resolve();
+    }
+}
+
 export function remove(gigId) {
     return async (dispatch) => {
         await gigService.remove(gigId)
@@ -42,7 +50,6 @@ export function remove(gigId) {
 export function setLikedGig(gig, user) {
     return async (dispatch) => {
         const savedGig = await gigService.toggleLike(gig._id, user)
-        console.log('saved-gig', savedGig);
         dispatch({ type: 'UPDATE_GIG', gig: savedGig })
     }
 }

@@ -3,7 +3,6 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { userService } from '../../services/user.service'
 import { toggleSignInModal } from '../../store/scss.action';
-// import { onSaveReview } from '../../store/user.action'
 
 
 export class _RateStars extends React.Component {

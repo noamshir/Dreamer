@@ -55,7 +55,6 @@ async function toggleLike(gigId, user) {
     storageService.saveGuestGigs(gig);
   }
   const data = await save(gig);
-  console.log('data in gig service: ', data);
   return data;
 }
 

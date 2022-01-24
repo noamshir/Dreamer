@@ -1,11 +1,8 @@
 import React from "react";
 import { connect } from 'react-redux'
-import { Route, Link } from 'react-router-dom'
-import { Button } from "@mui/material";
 
-
-import { loadGigs } from '../store/gig.action'
-import { setHome, setExplore, setDetails, setBecomeSeller,setProfile } from '../store/scss.action.js';
+import { loadGigs, setCategory } from '../store/gig.action'
+import { setHome, setExplore, setDetails, setBecomeSeller, setProfile } from '../store/scss.action.js';
 import { GigList } from "../cmp/GigList";
 import { Loader } from '../cmp/utils/Loader';
 
@@ -13,8 +10,31 @@ import { Loader } from '../cmp/utils/Loader';
 class _Explore extends React.Component {
 
     componentDidMount() {
-        this.props.loadGigs()
+        let urlParams = new URLSearchParams(this.props.location.search);
+        this.filterBy = {}
+        this.getFilterBy(urlParams)
         this.onSetExplore()
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.location.search !== this.props.location.search) {
+            let urlParams = new URLSearchParams(this.props.location.search);
+            this.filterBy = {}
+            this.getFilterBy(urlParams)
+        }
+    }
+
+    componentWillUnmount() {
+        this.props.setCategory('all')
+    }
+
+    getFilterBy = (urlParams) => {
+        if (urlParams.get('filterBy')) this.filterBy.category = urlParams.get('filterBy')
+        if (urlParams.get('title')) this.filterBy.title = urlParams.get('title')
+        if (this.filterBy.category) this.props.setCategory(this.filterBy.category)
+        else this.props.setCategory('all')
+
+        this.props.loadGigs(this.filterBy)
     }
 
     onSetExplore = () => {
@@ -67,7 +87,8 @@ const mapDispatchToProps = {
     setHome,
     setDetails,
     setBecomeSeller,
-    setProfile
+    setProfile,
+    setCategory
 };
 
 
