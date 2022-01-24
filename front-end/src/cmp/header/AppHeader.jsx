@@ -7,9 +7,11 @@ import { UserProfileImg } from '../profile/UserProfileImg';
 import { Logo } from '../Logo.jsx';
 import { logout } from '../../store/user.action'
 import { toggleJoinModal, toggleSignInModal } from '../../store/scss.action.js';
-
+import { useState } from 'react';
+import { ProfileMenu } from './ProfileMenu.jsx';
 
 function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpModal, openSignInModal, user, logout, openMenu }) {
+    const [isProfileMenu, setMenu] = useState(false);
     var headerTransparent = "";
     var color = "";
     var sticky = "not-sticky";
@@ -34,7 +36,7 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
             <header className={`header-package dimerr-header ${headerTransparent} logged-out-homepage-header`}>
                 <div className="header-row-wrapper">
                     <div className="header-row max-width-container equal-padding row-main flex">
-                        <button className={`btn-nav ${color}`} onClick={() => openMenu()}><MenuIcon></MenuIcon></button>
+                        <button className={`btn-nav ${color}`} onClick={() => openMenu()}><MenuIcon className="menu-icon"></MenuIcon></button>
                         <NavLink to="/" className={`dimerr-logo ${color} clean-link`}> <Logo /> </NavLink>
                         <div className={`dimerr-header-search-animated ${searchBar}`}>
                             <SearchBar placeholder="Try Logo..." />
