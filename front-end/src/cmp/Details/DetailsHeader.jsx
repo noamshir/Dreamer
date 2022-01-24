@@ -1,5 +1,7 @@
 import React from 'react'
 import { UserStarRate } from './UserStarRate'
+import { UserProfileImg } from '../profile/UserProfileImg'
+
 
 export function DetailsHeader({ gig, getUserLevel, owner }) {
 
@@ -7,7 +9,7 @@ export function DetailsHeader({ gig, getUserLevel, owner }) {
         <div className='details-header' id='Overview'>
             <h1>{gig.title}</h1>
             <div className="owner-info">
-                <div className='owner-img' style={{ backgroundImage: `url(${gig.owner.imgUrl})` }}></div>
+                <UserProfileImg user={owner} isLink={true} />
                 <h5 className='owner-name'>{gig.owner.fullname}</h5>
                 <h5 className='owner-level'>{getUserLevel()}</h5>
                 <span className='spacer'>|</span>
