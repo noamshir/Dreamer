@@ -12,6 +12,9 @@ import { withRouter } from 'react-router-dom';
 =======
 import { setHome, setExplore, setDetails, setProfile } from '../store/scss.action.js';
 import { Loader } from '../cmp/utils/Loader';
+<<<<<<< HEAD
+>>>>>>> bb403bd0ade9c4babd0e5bc879ababa44bbaef86
+=======
 >>>>>>> bb403bd0ade9c4babd0e5bc879ababa44bbaef86
 
 import { setHome, setExplore, setDetails, setProfile } from '../store/scss.action.js';

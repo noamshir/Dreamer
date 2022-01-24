@@ -26,6 +26,10 @@
     "redux-thunk": "^2.4.1",
     "socket.io-client": "^4.4.1",
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    "svgo": "^2.8.0",
+>>>>>>> bb403bd0ade9c4babd0e5bc879ababa44bbaef86
 =======
     "svgo": "^2.8.0",
 >>>>>>> bb403bd0ade9c4babd0e5bc879ababa44bbaef86

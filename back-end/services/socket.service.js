@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-const { data } = require("cheerio/lib/api/attributes");
->>>>>>> bb403bd0ade9c4babd0e5bc879ababa44bbaef86
 const logger = require("./logger.service");
 var gIo = null;
 function connectSockets(http, session) {
@@ -11,6 +7,7 @@ function connectSockets(http, session) {
     },
   });
   gIo.on("connection", (socket) => {
+    git
     console.log("New socket", socket.id);
     socket.on("disconnect", (socket) => {
       console.log("Someone disconnected");
@@ -47,22 +44,9 @@ function connectSockets(http, session) {
     });
     socket.on("unset-user-socket", () => {
       console.log("user logged out");
-<<<<<<< HEAD
       socket.to(socket.userId).emit('user-offline', false)
       delete socket.userId;
     });
-    // socket.on("new-review", (review) => {
-    //   console.log("someone added review", review);
-    //   gIo.emit("add-review", review);
-    // });
-=======
-      delete socket.userId;
-    });
-    socket.on("new-review", (review) => {
-      console.log("someone added review", review);
-      gIo.emit("add-review", review);
-    });
->>>>>>> bb403bd0ade9c4babd0e5bc879ababa44bbaef86
   });
 }
 
