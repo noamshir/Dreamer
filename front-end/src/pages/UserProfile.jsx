@@ -25,11 +25,6 @@ function _UserProfile(props) {
         onSetGigs(await onSetUser());
     }, [])
 
-    // useEffect(() => {
-
-    // }, [])
-
-
     useEffect(async () => {
         if (!user) return;
         if (user._id !== props.match.params.userId) onSetGigs(await onSetUser());

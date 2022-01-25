@@ -6,6 +6,8 @@ import {
   socketService,
   SOCKET_EMIT_LOGIN,
   SOCKET_EMIT_LOGOUT,
+  SOCKET_EMIT_USER_ONLINE,
+  SOCKET_EMIT_USER_OFFLINE,
   SOCKET_EMIT_ADD_REVIEW
 } from "./socket.service.js";
 // var axios = Axios.create({
