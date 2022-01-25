@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 
 import { gigService } from '../services/gig.service'
+import { onSetFilterBy, loadGigs } from '../store/gig.action';
 
 
 function _HeroPopularCategory(props) {
@@ -16,6 +17,12 @@ function _HeroPopularCategory(props) {
     const getCategories = async () => {
         return await gigService.getPopularCategories(4);
     }
+
+    const onSetFilter = (category) => {
+        props.loadGigs({ category })
+        props.onSetFilterBy({ category }, 'category')
+        props.history.push(`/explore?category=${category}`)
+    }
     return (
         <ul className="clean-list hero-popular-category">
             Popular:
@@ -23,7 +30,7 @@ function _HeroPopularCategory(props) {
                 return (
                     <li key={idx}>
                         <button className="btn-popular-category" onClick={() => {
-                            props.history.push(`/explore?filterBy=${category}`)
+                            onSetFilter(category)
                         }}>{category}</button>
                     </li>
                 )
@@ -34,11 +41,13 @@ function _HeroPopularCategory(props) {
 
 function mapStateToProps(state) {
     return {
-        categories: state.gigModule.categories
     }
 }
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = {
+    loadGigs,
+    onSetFilterBy
+}
 
 const _HeroPopularCategoryWithRouter = withRouter(_HeroPopularCategory);
 export const HeroPopularCategory = connect(mapStateToProps, mapDispatchToProps)(_HeroPopularCategoryWithRouter)

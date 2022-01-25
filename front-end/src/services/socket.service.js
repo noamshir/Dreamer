@@ -1,6 +1,7 @@
 import io from 'socket.io-client'
 
 export const SOCKET_EMIT_LEAVE = 'leave';
+export const SOCKET_EMIT_JOIN_IS_CONNECTED = 'join isConnected';
 export const SOCKET_EMIT_JOIN = 'join';
 export const SOCKET_EMIT_USER_OFFLINE = 'user-offline';
 export const SOCKET_EMIT_USER_ONLINE = 'user-online';

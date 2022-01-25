@@ -1,9 +1,9 @@
 import { connect } from 'react-redux'
 import React, { useState } from 'react'
-import { onSetFilterBy } from '../store/gig.action'
 import SearchIcon from '@mui/icons-material/Search';
 import { withRouter } from 'react-router-dom';
 
+import { onSetFilterBy } from '../store/gig.action'
 
 function _SearchBar(props) {
     const [txt, setTxt] = useState('');
@@ -14,9 +14,8 @@ function _SearchBar(props) {
     }
     const onSubmit = (ev) => {
         ev.preventDefault();
+        props.onSetFilterBy({ title: txt }, 'title');
         props.history.push(`/explore?title=${txt}`)
-        // onSetFilterBy(txt, 'txt');
-        // setTxt('');
     }
 
     return (
@@ -39,13 +38,15 @@ function _SearchBar(props) {
     )
 }
 
-// function mapStateToProps(state) {
-//     return {}
-// }
+function mapStateToProps(state) {
+    return {
+        
+    }
+}
 
-// const mapDispatchToProps = {
-//     onSetFilterBy
-// }
+const mapDispatchToProps = {
+    onSetFilterBy
+}
 
-export const SearchBar = withRouter(_SearchBar)
-// export const SearchBar = connect(mapStateToProps, mapDispatchToProps)(_SearchBar)
+const _SearchBarWithRoute = withRouter(_SearchBar)
+export const SearchBar = connect(mapStateToProps, mapDispatchToProps)(_SearchBarWithRoute)
