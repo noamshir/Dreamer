@@ -10,7 +10,12 @@ import { AboutGig } from '../cmp/Details/AboutGig'
 import { ReviewList } from '../cmp/Details/ReviewList'
 import { userService } from '../services/user.service'
 import { gigService } from '../services/gig.service'
-import { socketService } from '../services/socket.service'
+import {
+    socketService,
+    SOCKET_EMIT_JOIN,
+    SOCKET_EMIT_LEAVE,
+    SOCKET_EMIT_ADD_REVIEW
+} from '../services/socket.service'
 
 import { onSetFilterBy } from '../store/gig.action'
 import { setHome, setExplore, setDetails, setBecomeSeller, setProfile } from '../store/scss.action.js';
@@ -29,8 +34,12 @@ class _GigDetails extends React.Component {
         const { gigId } = this.props.match.params
         this.onSetDetails();
         await this.loadGig(gigId)
-        this.loadOwner(this.state.gig.owner._id)
+        await this.loadOwner(this.state.gig.owner._id)
         this.setSockets();
+    }
+    componentWillUnmount() {
+        socketService.emit(SOCKET_EMIT_LEAVE, this.props.match.params)
+
     }
 
     onSetDetails = () => {
@@ -43,7 +52,10 @@ class _GigDetails extends React.Component {
     }
 
     setSockets = () => {
-        socketService.on("add-review", (review) => {
+        socketService.emit(SOCKET_EMIT_JOIN, this.state.owner._id)
+        console.log('joined room:', this.state.owner._id);
+        socketService.on(SOCKET_EMIT_ADD_REVIEW, (review) => {
+            console.log('add review');
             var { owner } = this.state;
             owner.reviews = [...owner.reviews, review];
             this.setState({ owner });

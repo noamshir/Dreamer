@@ -92,6 +92,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 8px;
+    font-family: work-sans-regular;
     .like {
       color: lighten($clr3, 20%);
       transition: color 0.3s;
@@ -119,12 +120,14 @@
       font-size: 10px;
       font-weight: 700;
       letter-spacing: 0.5px;
-      padding: 2px 0 0;
+      padding: 2px 0;
     }
     & ul li:not(:first-child) {
+      margin-top: 2px;
       font-size: 18px;
       line-height: 20px;
       color: #404145;
+      text-align: right;
     }
   }
 

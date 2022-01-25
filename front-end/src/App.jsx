@@ -51,7 +51,7 @@ class _App extends React.Component {
                 {isMenuOpen && <div onClick={this.toggleMenu} className="main-screen"></div>}
                 <AppHeader openMenu={this.toggleMenu} />
                 {!this.props.isBecomeSeller && <AppSubHeader />}
-                {isMenuOpen ? <Menu className='open' closeMenu={this.toggleMenu} /> : <Menu className='' closeMenu={this.toggleMenu} />}
+                <Menu closeMenu={this.toggleMenu} menuOpen={isMenuOpen} />
                 <main className="main-content">
                     <Switch>
                         {routes.map(route => <Route key={route.path} exact component={route.component} path={route.path} />)}

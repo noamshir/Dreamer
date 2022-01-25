@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom"
 import { toggleJoinModal, toggleSignInModal } from "../store/scss.action";
 import { UserProfileImg } from "./profile/UserProfileImg";
 
-function _Menu({ user, closeMenu, toggleJoinModal, toggleSignInModal, className }) {
+function _Menu({ user, closeMenu, toggleJoinModal, toggleSignInModal, menuOpen }) {
 
     const openJoin = () => {
         closeMenu();
@@ -13,7 +13,8 @@ function _Menu({ user, closeMenu, toggleJoinModal, toggleSignInModal, className 
         closeMenu();
         toggleSignInModal(true);
     }
-    return <section className={`side-Bar ${className}`}>
+    const classname = (menuOpen) ? "open" : "";
+    return <section className={`side-Bar ${classname}`}>
         <div className="side-bar-content">
             <header className="menu-header">
                 {!user && <button className="btn" onClick={() => openJoin()} >Join Dimmer</button>}

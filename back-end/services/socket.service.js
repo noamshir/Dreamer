@@ -24,17 +24,38 @@ function connectSockets(http, session) {
       // emits only to sockets in the same room
       gIo.to(socket.myToyId).emit("chat addMsg", msg);
     });
-    socket.on("set-user-socket", (userId) => {
-      console.log("user logged in", userId);
+    socket.on("join", (room) => {
+      console.log("user joined room", room);
+      socket.join(room);
+    })
+    socket.on("join isConnected", (userId) => {
+      console.log("user joined room", userId);
+      socket.join(userId);
       socket.userId = userId;
+      console.log('emmiting user id', userId);
+      socket.to(userId).emit(userId)
+    })
+    socket.on("leave", (room) => {
+      console.log("user left room", room);
+      socket.leave(room);
+    })
+    socket.on("add-review", ({ review, ownerId }) => {
+      socket.to(ownerId).emit('add-review', review)
+    });
+    socket.on("set-user-socket", (userId) => {
+      socket.userId = userId;
+      console.log("user logged in", socket.userId);
+      socket.to(userId).emit('user-online', userId)
+    });
+    socket.on('user-online', (userId) => {
+      console.log("user reporting online", userId);
+      socket.userId = userId;
+      socket.to(userId).emit('user-online', userId)
     });
     socket.on("unset-user-socket", () => {
       console.log("user logged out");
+      socket.to(socket.userId).emit('user-offline')
       delete socket.userId;
-    });
-    socket.on("new-review", (review) => {
-      console.log("someone added review", review);
-      gIo.emit("add-review", review);
     });
   });
 }

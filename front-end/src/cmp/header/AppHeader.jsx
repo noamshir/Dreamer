@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux'
@@ -7,15 +7,35 @@ import { UserProfileImg } from '../profile/UserProfileImg';
 import { Logo } from '../Logo.jsx';
 import { logout } from '../../store/user.action'
 import { setProfile, toggleJoinModal, toggleSignInModal } from '../../store/scss.action.js';
-import { useState } from 'react';
 import { ProfileMenu } from './ProfileMenu.jsx';
 
+import {
+    socketService,
+    SOCKET_EMIT_LOGIN,
+    SOCKET_EMIT_JOIN,
+    SOCKET_EMIT_LEAVE,
+} from "../../services/socket.service";
+
+import { showSuccessMsg } from '../../services/event-bus.service'
 function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpModal, openSignInModal, user, logout, openMenu }) {
     const [isProfileMenu, setMenu] = useState(false);
     var headerTransparent = "";
     var color = "";
     var sticky = "not-sticky";
-    var searchBar = "show-bar"
+    var searchBar = "show-bar";
+
+    useEffect(() => {
+        if (!user) return;
+        socketService.emit(SOCKET_EMIT_JOIN, user._id)
+        socketService.on(user._id, () => {
+            console.log('app header emits user id:', user._id);
+            socketService.emit(SOCKET_EMIT_LOGIN, user._id);
+        });
+        return () => {
+            socketService.emit(SOCKET_EMIT_LEAVE, user._id)
+        }
+    }, [user])
+
     if ((isHome || isBecomeSeller) && (!isScroll)) {
         headerTransparent = "header-transparent";
         color = "home-header-color"
@@ -30,6 +50,7 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
 
     function onLogout() {
         logout()
+        showSuccessMsg("user logged out!");
     }
     window.addEventListener('click', (ev) => {
         if (ev.target.className !== "clean-list profile-scroll" && ev.target.className !== "spanclass" && ev.target.className !== "user-img") {
@@ -61,7 +82,7 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
                                         <li className="display-from-size-small"><button className={`clean-btn join-a ${color}`} onClick={() => openSignUpModal(true)}>Join</button></li>
                                     </React.Fragment> :
                                     <React.Fragment>
-                                        <li className="display-from-size-small">
+                                        <li className="display-from-size-small profile-container">
                                             <UserProfileImg user={user} isLink={false} toggleMenu={onToggleMenu} ></UserProfileImg>
                                             {isProfileMenu && <ProfileMenu onLogout={onLogout} user={user} closeMenu={onToggleMenu} />}
                                         </li>

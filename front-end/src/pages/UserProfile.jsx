@@ -14,7 +14,7 @@ import { Loader } from '../cmp/utils/Loader';
 // import { initialService } from '../initials/initial.service';
 
 function _UserProfile(props) {
-    const { setHome, setExplore, setDetails, setProfile, match } = props
+    const { setHome, setExplore, setDetails, setProfile, match, loggedInUser } = props
     const [gigs, setGigs] = useState([]);
     const [user, setUser] = useState(null);
     useEffect(async () => {
@@ -24,12 +24,11 @@ function _UserProfile(props) {
         setProfile(true);
         onSetGigs(await onSetUser());
     }, [])
+
     useEffect(async () => {
         if (!user) return;
         if (user._id !== props.match.params.userId) onSetGigs(await onSetUser());
     }, [props.match.params.userId])
-
-
 
     async function onSetUser() {
         const userToSet = await userService.getById(match.params.userId)
@@ -42,9 +41,9 @@ function _UserProfile(props) {
     }
     if (!user) return <Loader></Loader>
     return (
-        <div className="profile-main-container equal-padding">
+        <div className="profile-main-container max-width-container equal-padding">
             <div className="profile-details-container">
-                <UserDetails user={user} />
+                <UserDetails loggedInUser={loggedInUser} user={user} />
                 {user.sellerInfo && <SellerDetails user={user} />}
             </div>
             {user.sellerInfo && <GigList gigs={gigs} />}
@@ -54,6 +53,7 @@ function _UserProfile(props) {
 
 function mapStateToProps(state) {
     return {
+        loggedInUser: state.userModule.user,
     }
 }
 

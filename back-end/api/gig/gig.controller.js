@@ -3,7 +3,7 @@ async function getGigs(req, res) {
 
   try {
     var { filterBy } = JSON.parse(req.query.params)
-    console.log('FILTERBY IN CONTROLLER', filterBy);
+    // console.log('FILTERBY IN CONTROLLER', filterBy);
     var gigs = await gigService.query(filterBy);
     res.send(gigs);
   } catch (err) {
@@ -36,7 +36,7 @@ async function removeGig(req, res) {
 
 async function updateGig(req, res) {
   const updatedGig = req.body;
-  console.log(updatedGig)
+  // console.log(updatedGig)
   try {
     const savedGig = await gigService.update(updatedGig);
     res.send(savedGig);
