@@ -1,7 +1,6 @@
 .home-reviews {
   margin-top: 20px;
   .home-reviews-content {
-   
   }
   .btn-by-idx {
     justify-content: center;
@@ -18,8 +17,8 @@
   .review {
     width: 100%;
     cursor: pointer;
-    max-height: 300px;
     word-wrap: break-word;
+    padding: 5px;
     .indicators {
       top: 50%;
       justify-content: space-between;
@@ -52,18 +51,29 @@
     .review-item {
       display: inline-flex;
       align-items: center;
+      flex-direction: column;
+      @include for-wide-header-layout {
+        flex-direction: row;
+      }
       height: 100%;
       color: #fff;
       overflow: hidden;
       position: relative;
+      padding: 10px 0px;
+      gap: 20px;
       img {
-        flex-grow: 1;
-        width: 50%;
-        height: 300px;
+        // width: 50%;
+        max-height: 250px;
+        // object-fit: cover;
+        // width: 278px;
+        border-radius: 5px;
+        @include for-normal-header-layout {
+          width: 400px;
+          height: 224px;
+        }
       }
       .review-content {
         flex-grow: 1;
-        height: 300px;
         white-space: pre;
         display: flex;
         flex-direction: column;
@@ -79,9 +89,13 @@
 
 .review-content {
   .wrap-text {
+    white-space: pre-wrap;
     height: 100%;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
   }
   h5,
   h4 {
@@ -90,19 +104,18 @@
   h5 {
     color: #7a7d85;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 25px;
   }
   h4 {
-    font-size: 18px;
-    color: rgb(3, 104, 246);
+    font-size: 22px;
+    color: rgb(24, 106, 214);
   }
   p {
     margin: 0;
     font-weight: 500;
-    color: #003912;
+    color: #363535;
     font-size: 24px;
     line-height: 36px;
-    display: block;
-    height: 100%;
+    font-family: roboto;
   }
 }
