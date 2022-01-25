@@ -143,28 +143,24 @@ class _Explore extends React.Component {
                                                                 <div className="input-wrapper flex column">
                                                                     <label htmlFor="min">Min:
                                                                     </label>
-                                                                </label>
-                                                            </label>
-                                                            <input type="text" name="min" onChange={this.handleBudget} placeholder="Any" />
+                                                                    <input type="text" name="min" onChange={this.handleBudget} placeholder="Any" />
+                                                                </div>
+                                                                <div className="input-wrapper flex column">
+                                                                    <label htmlFor="max">Max.
+                                                                    </label>
+                                                                    <input type="text" name="max" onChange={this.handleBudget} placeholder="Any" />
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div className="input-wrapper flex column">
-                                                            <label htmlFor="max">Max.
-                                                            </label>
-                                                        </label>
-                                                    </label>
-                                                    <input type="text" name="max" onChange={this.handleBudget} placeholder="Any" />
+                                                        <div className="budget-btns flex">
+                                                            <button className="close-btn" onClick={() => this.toggleBudget()}>close</button>
+                                                            <button className="btn" onClick={this.onApplayBudget}>Apply</button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className="budget-btns flex">
-                                            <button className="close-btn" onClick={() => this.toggleBudget()}>close</button>
-                                            <button className="btn" onClick={this.onApplayBudget}>Apply</button>
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
 
-                    </ThemeProvider>
+                                        </ThemeProvider>
                                     </FormControl>
                                 </div >
                             </div >
