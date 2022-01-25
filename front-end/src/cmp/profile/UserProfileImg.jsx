@@ -15,9 +15,11 @@ export function UserProfileImg({ user, isLink, closeMenu, toggleMenu, setIsOnlin
         setSockets();
         return () => {
             socketService.emit(SOCKET_EMIT_LEAVE, user._id)
+            socketService.off(SOCKET_EMIT_USER_ONLINE)
+            socketService.off(SOCKET_EMIT_USER_OFFLINE)
         }
 
-    }, [user])
+    }, [])
 
     const setSockets = () => {
 
