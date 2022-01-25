@@ -28,6 +28,13 @@ function connectSockets(http, session) {
       console.log("user joined room", room);
       socket.join(room);
     })
+    socket.on("join isConnected", (userId) => {
+      console.log("user joined room", userId);
+      socket.join(userId);
+      socket.userId = userId;
+      console.log('emmiting user id', userId);
+      socket.to(userId).emit(userId)
+    })
     socket.on("leave", (room) => {
       console.log("user left room", room);
       socket.leave(room);
@@ -36,14 +43,18 @@ function connectSockets(http, session) {
       socket.to(ownerId).emit('add-review', review)
     });
     socket.on("set-user-socket", (userId) => {
-      console.log("user logged in", userId);
       socket.userId = userId;
-      socket.to(userId).emit('user-online', true)
-
+      console.log("user logged in", socket.userId);
+      socket.to(userId).emit('user-online')
+    });
+    socket.on('user-online', (userId) => {
+      console.log("user reporting online", userId);
+      socket.userId = userId;
+      socket.to(userId).emit('user-online')
     });
     socket.on("unset-user-socket", () => {
       console.log("user logged out");
-      socket.to(socket.userId).emit('user-offline', false)
+      socket.to(socket.userId).emit('user-offline')
       delete socket.userId;
     });
   });
