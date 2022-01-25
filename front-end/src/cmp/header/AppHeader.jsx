@@ -22,7 +22,7 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
     var headerTransparent = "";
     var color = "";
     var sticky = "not-sticky";
-    var searchBar = "show-bar"
+    var searchBar = "show-bar";
 
     useEffect(() => {
         if (!user) return;
