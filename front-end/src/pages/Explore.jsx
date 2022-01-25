@@ -142,36 +142,32 @@ class _Explore extends React.Component {
                                                             <div className="price-filter flex">
                                                                 <div className="input-wrapper flex column">
                                                                     <label htmlFor="min">Min:
-<<<<<<< HEAD
                                                                     </label>
-=======
-                                                                     </label>
->>>>>>> c090a46b2d591b8019d3e7c0bb288832862efde2
-                                                                    <input type="text" name="min" onChange={this.handleBudget} placeholder="Any" />
-                                                                </div>
-                                                                <div className="input-wrapper flex column">
-                                                                    <label htmlFor="max">Max.
-<<<<<<< HEAD
-                                                                    </label>
-=======
-                                                                     </label>
->>>>>>> c090a46b2d591b8019d3e7c0bb288832862efde2
-                                                                    <input type="text" name="max" onChange={this.handleBudget} placeholder="Any" />
-                                                                </div>
-                                                            </div>
+                                                                </label>
+                                                            </label>
+                                                            <input type="text" name="min" onChange={this.handleBudget} placeholder="Any" />
                                                         </div>
-                                                        <div className="budget-btns flex">
-                                                            <button className="close-btn" onClick={() => this.toggleBudget()}>close</button>
-                                                            <button className="btn" onClick={this.onApplayBudget}>Apply</button>
-                                                        </div>
-                                                    </div>
+                                                        <div className="input-wrapper flex column">
+                                                            <label htmlFor="max">Max.
+                                                            </label>
+                                                        </label>
+                                                    </label>
+                                                    <input type="text" name="max" onChange={this.handleBudget} placeholder="Any" />
                                                 </div>
                                             </div>
-
-                                        </ThemeProvider>
-                                    </FormControl>
+                                        </div>
+                                        <div className="budget-btns flex">
+                                            <button className="close-btn" onClick={() => this.toggleBudget()}>close</button>
+                                            <button className="btn" onClick={this.onApplayBudget}>Apply</button>
+                                        </div>
                                 </div>
                             </div>
+                        </div>
+
+                    </ThemeProvider>
+                                    </FormControl>
+                                </div >
+                            </div >
                             <div className="inner-container">
                                 <div className="services-count">{gigs.length} services available</div>
                                 <div className="container">
@@ -198,7 +194,7 @@ class _Explore extends React.Component {
                                 </div>
                             </div>
                             <GigList gigs={gigs} onGoToDetails={this.onGoToDetails} />
-                        </section>
+                        </section >
                     </section >
                 }
             </React.Fragment>
