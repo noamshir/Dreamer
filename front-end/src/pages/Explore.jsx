@@ -162,8 +162,8 @@ class _Explore extends React.Component {
 
                                         </ThemeProvider>
                                     </FormControl>
-                                </div >
-                            </div >
+                                </div>
+                            </div>
                             <div className="inner-container">
                                 <div className="services-count">{gigs.length} services available</div>
                                 <div className="container">
