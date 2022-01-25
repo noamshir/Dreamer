@@ -1,9 +1,9 @@
 const gigService = require("./gig.service");
+const logger = require("../../services/logger.service");
 async function getGigs(req, res) {
-
   try {
-    var { filterBy } = JSON.parse(req.query.params)
-    // console.log('FILTERBY IN CONTROLLER', filterBy);
+    var { filterBy } = JSON.parse(req.query.params);
+    console.log("FILTERBY IN CONTROLLER", filterBy);
     var gigs = await gigService.query(filterBy);
     res.send(gigs);
   } catch (err) {
