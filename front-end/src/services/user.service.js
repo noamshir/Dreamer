@@ -54,10 +54,10 @@ async function signUp(userInfo) {
   }
   return user;
 }
-async function logout() {
+async function logout(user) {
   await httpService.post("auth/logout");
   sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, null);
-  socketService.emit(SOCKET_EMIT_LOGOUT);
+  socketService.emit(SOCKET_EMIT_LOGOUT, user._id);
   return Promise.resolve();
 }
 

@@ -28,6 +28,7 @@
     position: relative;
     margin-bottom: 30px;
     .container {
+      text-align: center;
       color: white;
       display: flex;
       position: absolute;
@@ -47,8 +48,12 @@
       padding: 15px 35px;
     }
     h2 {
-      font-size: 50px;
+      font-size: 34px;
       text-shadow: 0 0 6px #00000075;
+
+      @include for-narrow-layout {
+        font-size: 50px;
+      }
     }
     p {
       font-size: 24px;

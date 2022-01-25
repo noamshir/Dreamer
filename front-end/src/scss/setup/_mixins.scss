@@ -70,6 +70,14 @@
   }
 }
 
+// REVIEW MIXINS
+
+@mixin for-review-narrow-layout {
+  @media (min-width: $review-break-narrow) {
+    @content;
+  }
+}
+
 @mixin layoutWidth() {
   width: 100%;
   margin: auto;

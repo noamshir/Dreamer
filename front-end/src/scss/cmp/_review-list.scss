@@ -3,13 +3,22 @@
 
   .stats-container {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: stretch;
     gap: 30px;
-    flex-wrap: wrap;
+    // flex-wrap: wrap;
+    @include for-review-narrow-layout {
+      flex-direction: row;
+      align-items: center;
+    }
   }
 
   .left-side-container {
-    width: 48%;
+    width: 100%;
+
+    @include for-review-narrow-layout {
+      width: 48%;
+    }
   }
 
   .right-side-container {
@@ -27,6 +36,11 @@
       li {
         color: #95979d;
       }
+    }
+    width: 100%;
+
+    @include for-review-narrow-layout {
+      width: 45%;
     }
   }
   .line {

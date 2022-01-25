@@ -17,9 +17,9 @@ export function signIn(user) {
   };
 }
 
-export function logout() {
+export function logout(user) {
   return async (dispatch) => {
-    await userService.logout();
+    await userService.logout(user);
     const action = { type: "SET_USER", user: null };
     dispatch(action);
   };
