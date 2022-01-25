@@ -3,7 +3,6 @@
     font-family: roboto-bold;
     font-size: 0.9rem;
     color: $clr3;
-    margin-top: 30px;
   }
 
   h1 {
@@ -42,22 +41,57 @@
     font-family: work-sans;
 
     .sort-by,
-    label {
+    span {
       font-size: 16px;
       line-height: 120%;
       font-family: work-sans;
+      display: inline-block;
+      white-space: nowrap;
     }
-    label{
+    span {
       font-weight: 400;
     }
 
-    .sort-by {
-      border: none;
-      outline: none;
-      padding-inline-start: 4px;
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .select-wrapper {
+      fieldset {
+        outline: none;
+        border: none;
+      }
+    }
+    em,
+    div {
       font-weight: 700;
+    }
+  }
+  .select-wrapper {
+    div {
+      font-family: work-sans;
+    }
+    em {
+      font-family: work-sans;
+      font-style: normal;
       color: #222325;
-      cursor: pointer;
+    }
+  }
+
+  .filter-container {
+    em,div{
+      font-weight: 500;
+    }
+    .select-wrapper {
+      display: flex;
+      align-items: center;
+    }
+    span {
+      font-size: 16px;
+      line-height: 120%;
+      font-family: work-sans;
+      display: inline-block;
     }
   }
 }

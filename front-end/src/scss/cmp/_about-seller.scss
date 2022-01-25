@@ -39,9 +39,28 @@
     flex-wrap: wrap;
     line-height: 130%;
     padding-bottom: 24px;
+    position: relative;
     .user-img {
       height: 110px;
       width: 110px;
+    }
+    .online-status {
+      position: absolute;
+      right: 0;
+      color: $clr3;
+      font-size: 0.9rem;
+      border-radius: 2rem;
+      border: 1px solid $clr3;
+      padding: 2px 5px;
+      font-family: Arial, Helvetica, sans-serif;
+      &::before {
+        content: "•";
+        margin-inline: 4px;
+      }
+    }
+    .online-status.online {
+      color: $clr1;
+      border: 1px solid $clr1;
     }
   }
 

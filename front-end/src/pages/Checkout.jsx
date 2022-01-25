@@ -80,7 +80,7 @@ class _Checkout extends React.Component {
         }
         await this.props.addOrder(gig, user, owner)
         showSuccessMsg('Order saved, check it out in your profile!')
-        this.props.history.push(`/profile/${user._id}`)
+        this.props.history.push(`/dashboard/${user._id}`)
     }
 
     render() {
@@ -88,7 +88,6 @@ class _Checkout extends React.Component {
         if (!gig || !owner) return <React.Fragment></React.Fragment>
         return (
             <section className='checkout max-width-container equal-padding' >
-                <div style={{ height: '80px' }}></div>
                 <div className="left-side-container">
                     <div className="main-content-container">
                         <div className="img-container">

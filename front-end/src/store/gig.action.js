@@ -3,9 +3,9 @@ import { gigService } from "../services/gig.service.js";
 
 
 
-export function loadGigs(filterBy) {
+export function loadGigs(filterBy, sortBy = '') {
     return async (dispatch) => {
-        const gigs = await gigService.query(filterBy)
+        const gigs = await gigService.query({ ...filterBy, sortBy })
         const action = { type: 'SET_GIGS', gigs };
         dispatch(action)
     }
@@ -23,17 +23,15 @@ export function add(gig) {
 }
 export function onSetFilterBy(filterBy, field) {
     return (dispatch) => {
-        let action
-        if (field) action = { type: 'SET_FILTERBY_FIELD', filterBy: { field, filterBy } }
-        else action = { type: 'SET_FILTERBY', filterBy }
+        const action = { type: 'SET_FILTERBY_FIELD', field, value: filterBy[field] }
         dispatch(action)
         return Promise.resolve();
     }
 }
 
-export function setCategory(category) {
+export function setSort(value) {
     return (dispatch) => {
-        const action = { type: 'SET_CATEGORY', category }
+        const action = { type: 'SET_SORT', value }
         dispatch(action)
         return Promise.resolve();
     }

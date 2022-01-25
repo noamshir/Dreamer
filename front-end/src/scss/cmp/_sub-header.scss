@@ -38,6 +38,7 @@
       height: 100%;
       display: none;
       transition: .3s;
+      white-space: nowrap;
       &.medium {
         display: inline-block;
         height: 100%;

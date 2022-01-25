@@ -1,6 +1,7 @@
 
 
-export function BoardHeader({ switchTo, user }) {
+export function BoardHeader({ switchTo, user, switchToSeller, switchToUser }) {
+
     return <section className="board-header">
         <div className="board-content flex max-width-container equal-padding">
             <nav className="board-nav">
@@ -11,7 +12,10 @@ export function BoardHeader({ switchTo, user }) {
                 </ul>
             </nav>
             <div className="flex-grow-helper"></div>
-            {user.sellerInfo && <button className="btn">Switch to {switchTo}</button>}
+            {user.sellerInfo && <button className="btn" onClick={() => {
+                if (switchToSeller) switchToSeller(true);
+                else if (switchToUser) switchToUser(false);
+            }}>Switch to {switchTo}</button>}
         </div>
     </section>
 }

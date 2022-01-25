@@ -11,6 +11,10 @@
   }
   transition: all 0.8s ease;
   padding-top: 20px;
+  transform: translate(-100%);
+  &.open {
+    transform: translate(0, 0);
+  }
   .side-bar-content {
     margin: auto;
     width: 240px;

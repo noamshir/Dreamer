@@ -21,9 +21,11 @@
     width: 100%;
     color: #7a7d85;
     height: 100%;
+    white-space: nowrap;
     li {
       padding: 12px 10px;
       height: 100%;
+      transition: .3s box-shadow;
     &:first-child{
         padding-left: 0px;
         color: $clr5;

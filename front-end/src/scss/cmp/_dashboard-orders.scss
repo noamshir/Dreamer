@@ -1,0 +1,65 @@
+.orders-section {
+  width: 100%;
+  background-color: #fff;
+  .orders-header {
+    padding: 10px 0;
+    h1 {
+      text-align: center;
+      margin: 0;
+      font-size: 2rem;
+      font-family: work-sans;
+      color: #4a73e8;
+    }
+    border-bottom: 1px solid $clr4;
+  }
+  .orders-content {
+    padding: 10px 0;
+
+    .order-preview {
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      font-family: work-sans;
+      font-size: 1rem;
+      color: $clr2;
+      padding: 0 5px;
+      border-bottom: 1px solid $clr4;
+      h1,
+      h5 {
+        margin: 0;
+      }
+      .green {
+        color: $clr1;
+      }
+      .blue {
+        color: #4a73e8;
+      }
+      .red {
+        color: rgba(214, 16, 16, 0.902);
+      }
+      .user-img {
+        height: 30px;
+        width: 30px;
+      }
+      .user-info {
+        align-items: center;
+        gap: 5px;
+        h5 {
+          font-size: 1.2rem;
+          font-weight: 400;
+        }
+      }
+      .gig-info {
+        align-items: center;
+        gap: 10px;
+        img {
+          height: 30px;
+          width: 30px;
+          background-size: cover;
+          cursor: pointer;
+          border-radius: 4px;
+        }
+      }
+    }
+  }
+}

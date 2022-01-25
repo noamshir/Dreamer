@@ -60,7 +60,6 @@ function mapStateToProps(state) {
 
 
 const mapDispatchToProps = {
-    // saveSellerInfo,
     setDetails,
     setExplore,
     setHome,

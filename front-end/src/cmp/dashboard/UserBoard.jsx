@@ -3,10 +3,11 @@ import { BoardHeader } from "./BoardHeader"
 import { UserProfileImg } from "../profile/UserProfileImg"
 import { Logo } from "../Logo";
 import img from "../../svg/photo.jpg"
-function _UserBoard({ user }) {
+import { Orders } from "./Orders";
+function _UserBoard({ user,switchToSeller }) {
 
     return <section className="user-board">
-        <BoardHeader switchTo={"Seller"} user={user} />
+        <BoardHeader switchToSeller={switchToSeller} switchTo={"Seller"} user={user} />
         <div className="user-board-content max-width-container equal-padding flex">
             <aside className="user-aside flex">
                 <div className="small-user-profile flex">
@@ -28,7 +29,9 @@ function _UserBoard({ user }) {
                     <button className="btn">Join Us</button>
                 </div>
             </aside>
-            <main></main>
+            <main className="user-main">
+                <Orders user={user} type={"buyer"} />
+            </main>
         </div>
     </section>
 }

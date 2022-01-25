@@ -7,6 +7,7 @@ import { setProfile, setDetails, setHome, setExplore, setBecomeSeller } from "..
 
 function _DashBoard({ currUser, setDetails, setExplore, setBecomeSeller, setProfile, setHome, isProfile }) {
     const [user, setUser] = useState(currUser);
+    const [isInSeller, setIsSeller] = useState(false);
     useEffect(() => {
         onSetDashBoard();
         return () => {
@@ -21,10 +22,14 @@ function _DashBoard({ currUser, setDetails, setExplore, setBecomeSeller, setProf
         setDetails(false)
         setBecomeSeller(false)
     }
+
+    const switchDashboard = (isSeller) => {
+        setIsSeller(isSeller);
+    }
     return <section className="dashboard">
         <div className="dashboard-content">
-            {!user.sellerInfo && <UserBoard />}
-            {user.sellerInfo && <SellerBoard />}
+            {(!user.sellerInfo || (!isInSeller)) && <UserBoard switchToSeller={switchDashboard} />}
+            {user.sellerInfo && isInSeller && <SellerBoard switchToUser={switchDashboard} />}
         </div>
     </section>
 }

@@ -15,12 +15,13 @@ export function UserProfileImg({ loggedInUser, user, isLink, closeMenu, toggleMe
         if (loggedInUser?._id === user._id) {
             if (setIsOnline) setIsOnline(true);
             else setConnectedClass('connection-dot');
-        } else {
-            setSockets();
-            return () => {
-                socketService.emit(SOCKET_EMIT_LEAVE, user._id)
-            }
+
         }
+        setSockets();
+        return () => {
+            socketService.emit(SOCKET_EMIT_LEAVE, user._id)
+        }
+
     }, [user])
 
     const setSockets = () => {
