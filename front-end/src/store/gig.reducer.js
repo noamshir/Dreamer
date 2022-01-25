@@ -38,7 +38,6 @@ export function gigReducer(state = initialState, action) {
             break;
         case 'SET_FILTERBY_FIELD':
             newState = { ...state, filterBy: { ...state.filterBy, [action.field]: action.value } }
-            console.log('newState', newState);
             break;
         default:
     }
