@@ -24,12 +24,6 @@ function _DashBoard({ currUser, setDetails, setExplore, setBecomeSeller, setProf
     const switchDashboard = (isSeller) => {
         setIsSeller(isSeller);
     }
-
-    if (!user) {
-        console.log('push history');
-        history.push('/');
-        return <span></span>
-    }
     return <section className="dashboard">
         <div className="dashboard-content">
             {(!user.sellerInfo || (!isInSeller)) && <UserBoard switchToSeller={switchDashboard} />}
