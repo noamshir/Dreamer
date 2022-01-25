@@ -1,7 +1,16 @@
 const orderService = require("./order.service");
+const logger = require("../../services/logger.service");
+const ObjectId = require("mongodb").ObjectId;
+
 async function getOrders(req, res) {
   try {
-    var orders = await orderService.query(req.params);
+    var { filterBy } = JSON.parse(req.query.params);
+    console.log({ filterBy });
+    var orders = await orderService.query(filterBy);
+    orders = orders.map((order) => {
+      order.createdAt = ObjectId(order._id).getTimestamp();
+      return order;
+    });
     res.send(orders);
   } catch (err) {
     logger.error("Failed to get orders", err);
@@ -33,7 +42,7 @@ async function removeOrder(req, res) {
 
 async function updateOrder(req, res) {
   const updatedOrder = req.body;
-  console.log(updatedOrder)
+  console.log(updatedOrder);
   try {
     const savedOrder = orderService.update(updatedOrder);
     res.send(savedOrder);
@@ -46,12 +55,12 @@ async function updateOrder(req, res) {
 async function addOrder(req, res) {
   try {
     const order = req.body;
-    const addedOrder = await orderService.add(order)
-    console.log('order in controller', addedOrder);
-    res.json(addedOrder)
+    const addedOrder = await orderService.add(order);
+    console.log("order in controller", addedOrder);
+    res.json(addedOrder);
   } catch (err) {
-    logger.error('Failed to add order', err)
-    res.status(500).send({ err: 'Failed to add order' })
+    logger.error("Failed to add order", err);
+    res.status(500).send({ err: "Failed to add order" });
   }
 }
 
@@ -60,5 +69,5 @@ module.exports = {
   getById,
   removeOrder,
   updateOrder,
-  addOrder
+  addOrder,
 };

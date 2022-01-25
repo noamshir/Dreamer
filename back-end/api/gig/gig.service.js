@@ -57,7 +57,6 @@ async function update(gig) {
 }
 
 function _getSortedGigs(gigs, sortBy = 'best selling') {
-  // console.log('GIGS',gigs);
   switch (sortBy) {
     case 'title':
       return gigs.sort(function (a, b) {
@@ -70,7 +69,7 @@ function _getSortedGigs(gigs, sortBy = 'best selling') {
     case 'best selling':
       return gigs.sort(function (a, b) { return +b.owner.rate - +a.owner.rate });
     default:
-      return gigs
+      return gigs.sort(function (a, b) { return +b.owner.rate - +a.owner.rate });
   }
 }
 
@@ -88,6 +87,9 @@ function _buildCriteria(filterBy) {
 
   if (filterBy.title) {
     criteria["title"] = { $regex: filterBy.title }
+  }
+  if (filterBy.deliveryTime) {
+    criteria["daysToMake"] = { $lte: filterBy.deliveryTime }
   }
 
   return criteria

@@ -6,12 +6,15 @@ module.exports = {
   getById,
   remove,
   update,
-  add
+  add,
 };
 async function query({ userId, type }) {
   try {
+    console.log(type, userId);
+    const critiria = _critiria(type, userId);
+    console.log({ critiria });
     const collection = await dbService.getCollection("order");
-    const orders = await collection.find({}).toArray();
+    const orders = await collection.find(critiria).toArray();
     return orders;
   } catch (err) {
     logger.error(`erorr while finding orders`, err);
@@ -35,8 +38,7 @@ async function remove(id) {
     const collection = await dbService.getCollection("order");
     await collection.deleteOne({ _id: ObjectId(id) });
     return;
-  }
-  catch (err) {
+  } catch (err) {
     logger.error(`cannot remove order ${id}`, err);
     throw err;
   }
@@ -44,28 +46,36 @@ async function remove(id) {
 
 async function update(order) {
   try {
-    order._id = ObjectId(order._id)
-    const collection = await dbService.getCollection('order')
-    await collection.updateOne({ "_id": order._id }, { $set: { ...order } })
-    return order
+    order._id = ObjectId(order._id);
+    const collection = await dbService.getCollection("order");
+    await collection.updateOne({ _id: order._id }, { $set: { ...order } });
+    return order;
   } catch (err) {
-    logger.error(`cannot update order ${order._id}`, err)
-    throw err
+    logger.error(`cannot update order ${order._id}`, err);
+    throw err;
   }
 }
 
-
 async function add(order) {
-  order.createdAt = Date.now()
   // order.inStock = true
   // order.reviews = reviews
-
   try {
-    const collection = await dbService.getCollection('order')
-    await collection.insertOne(order)
-    return order
+    const collection = await dbService.getCollection("order");
+    await collection.insertOne(order);
+
+    return order;
   } catch (err) {
-    logger.error('cannot insert order', err)
-    throw err
+    logger.error("cannot insert order", err);
+    throw err;
   }
+}
+
+function _critiria(type, id) {
+  const critiria = {};
+  if (type === "buyer") {
+    critiria["buyer._id"] = id;
+  } else {
+    critiria["seller._id"] = id;
+  }
+  return critiria;
 }
