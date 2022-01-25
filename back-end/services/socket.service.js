@@ -45,12 +45,12 @@ function connectSockets(http, session) {
     socket.on("set-user-socket", (userId) => {
       socket.userId = userId;
       console.log("user logged in", socket.userId);
-      socket.to(userId).emit('user-online')
+      socket.to(userId).emit('user-online', userId)
     });
     socket.on('user-online', (userId) => {
       console.log("user reporting online", userId);
       socket.userId = userId;
-      socket.to(userId).emit('user-online')
+      socket.to(userId).emit('user-online', userId)
     });
     socket.on("unset-user-socket", () => {
       console.log("user logged out");
