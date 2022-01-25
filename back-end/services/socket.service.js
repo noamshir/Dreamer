@@ -52,9 +52,9 @@ function connectSockets(http, session) {
       socket.userId = userId;
       gIo.to(userId).emit('user-online', userId);
     });
-    socket.on("unset-user-socket", () => {
+    socket.on("unset-user-socket", (userId) => {
       console.log("user logged out");
-      socket.to(socket.userId).emit('user-offline')
+      gIo.to(userId).emit('user-offline', userId)
       delete socket.userId;
     });
   });
