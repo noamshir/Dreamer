@@ -1,45 +1,57 @@
 import React from "react";
 import { connect } from 'react-redux'
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-import { loadGigs, setCategory } from '../store/gig.action'
+import { loadGigs, setSort, onSetFilterBy } from '../store/gig.action'
 import { setHome, setExplore, setDetails, setBecomeSeller, setProfile } from '../store/scss.action.js';
 import { GigList } from "../cmp/GigList";
 import { Loader } from '../cmp/utils/Loader';
 
 
+const theme = createTheme({
+    components: {
+        MuiSelect: {
+            styleOverrides: {
+                select: {
+                    padding: ('8px 15px'),
+                    borderRadius: '0px'
+                },
+            },
+        },
+    },
+});
+
+
 class _Explore extends React.Component {
 
     state = {
-        sortBy: ''
     }
 
     componentDidMount() {
-        let urlParams = new URLSearchParams(this.props.location.search);
-        this.filterBy = {}
-        this.getFilterBy(urlParams)
+        if (!this.props.location.search) {
+            this.props.loadGigs({})
+        }
+        else {
+            this.getFilteredGigs()
+        }
         this.onSetExplore()
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.location.search !== this.props.location.search) {
-            let urlParams = new URLSearchParams(this.props.location.search);
-            this.filterBy = {}
-            this.getFilterBy(urlParams)
+        if (prevProps.filterBy !== this.props.filterBy || prevProps.location.search !== this.props.location.search) {
+            this.getFilteredGigs()
         }
     }
 
-    componentWillUnmount() {
-        this.props.setCategory('all')
+    getFilteredGigs = () => {
+        const { filterBy, sortBy } = this.props
+        this.props.loadGigs(filterBy, sortBy)
     }
 
-    getFilterBy = (urlParams) => {
-        if (urlParams.get('filterBy')) this.filterBy.category = urlParams.get('filterBy')
-        if (urlParams.get('title')) this.filterBy.title = urlParams.get('title')
-        if (this.filterBy.category) this.props.setCategory(this.filterBy.category)
-        else this.props.setCategory('all')
 
-        this.props.loadGigs(this.filterBy)
-    }
 
     onSetExplore = () => {
         if (this.props.isExplore) return;
@@ -51,12 +63,15 @@ class _Explore extends React.Component {
     }
 
     handleChange = ({ target }) => {
+        const { filterBy } = this.props
+        const value = target.value
+        this.props.setSort(value)
+        this.props.loadGigs(filterBy, value)
+    }
+    handleFilter = ({ target }) => {
         const field = target.name
         const value = target.value
-        this.filterBy.sortBy = value
-        this.setState(prevState => ({ ...prevState, [field]: value }), () => {
-            this.props.loadGigs(this.filterBy)
-        })
+        this.props.onSetFilterBy({ [field]: value }, field)
     }
 
     onGoToDetails = (gigId) => {
@@ -64,26 +79,62 @@ class _Explore extends React.Component {
     }
 
     render() {
-        const { gigs, category } = this.props
-        const { sortBy } = this.state
+        const { gigs, filterBy, sortBy } = this.props
         if (!gigs) return <Loader />
-        
+
         return (
             <React.Fragment>
                 {!gigs.length ? 'No Services Found For Your Search' :
                     <section className='explore'>
                         <section className="explore-main  max-width-container equal-padding">
-                            {category === 'all' ? <h1>All Categories</h1> : <h1>{category}</h1>}
+                            {filterBy.category === 'all' ? <h1>All Categories</h1> : <h1>{filterBy.category}</h1>}
+                            <div className="filter-container">
+                                <div className="select-wrapper">
+                                    <FormControl sx={{ m: 1, minWidth: 120 }}>
+                                        <ThemeProvider theme={theme}>
+                                            <Select
+                                                value={filterBy.deliveryTime}
+                                                name='deliveryTime'
+                                                onChange={this.handleFilter}
+                                                displayEmpty
+                                                className='delivery select'
+                                                inputProps={{ 'aria-label': 'Without label' }}
+                                            >
+                                                <MenuItem value=''>
+                                                    <em>Delivery Time</em>
+                                                </MenuItem>
+                                                <MenuItem value={1}>Express 24H</MenuItem>
+                                                <MenuItem value={3}>Up to 3 days</MenuItem>
+                                                <MenuItem value={7}>Up to 7 days</MenuItem>
+                                            </Select>
+                                        </ThemeProvider>
+                                    </FormControl>
+                                </div>
+                            </div>
                             <div className="inner-container">
                                 <div className="services-count">{gigs.length} services available</div>
-                                <label htmlFor="sort" className='sort-label'>
-                                    Sort by 
-                                    <select className='sort-by' name="sortBy" id="sort" value={sortBy} onChange={this.handleChange}>
-                                        <option value="best selling">Best Selling</option>
-                                        <option value="title">Title</option>
-                                        <option value="price">Price</option>
-                                    </select>
-                                </label>
+                                <div className="container">
+                                    <span className='sort-label'>
+                                        Sort by
+                                    </span>
+                                    <div className="select-wrapper">
+                                        <FormControl sx={{ m: 1, minWidth: 120 }}>
+                                            <Select
+                                                value={sortBy}
+                                                name='sortBy'
+                                                onChange={this.handleChange}
+                                                displayEmpty
+                                                inputProps={{ 'aria-label': 'Without label' }}
+                                            >
+                                                <MenuItem value="best selling">
+                                                    <em>Best Selling</em>
+                                                </MenuItem>
+                                                <MenuItem value={'title'}>Title</MenuItem>
+                                                <MenuItem value={'price'}>Price</MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                    </div>
+                                </div>
                             </div>
                             <GigList gigs={gigs} onGoToDetails={this.onGoToDetails} />
                         </section>
@@ -103,7 +154,7 @@ function mapStateToProps(state) {
         isHome: state.scssModule.isHome,
         isExplore: state.scssModule.isExplore,
         filterBy: state.gigModule.filterBy,
-        category: state.gigModule.category
+        sortBy: state.gigModule.sortBy
     }
 }
 
@@ -114,7 +165,8 @@ const mapDispatchToProps = {
     setDetails,
     setBecomeSeller,
     setProfile,
-    setCategory
+    onSetFilterBy,
+    setSort
 };
 
 

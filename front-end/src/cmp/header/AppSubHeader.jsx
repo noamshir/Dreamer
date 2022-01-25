@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 
 import { gigService } from '../../services/gig.service.js';
-import { loadGigs, setCategory } from '../../store/gig.action.js';
+import { loadGigs, onSetFilterBy } from '../../store/gig.action.js';
 
 function _AppSubHeader(props) {
     const [isWatched, setWatched] = useState('all')
@@ -22,10 +22,10 @@ function _AppSubHeader(props) {
     useEffect(async () => {
         var ans = await getCategories();
         setCategories(ans);
-        setWatched(props.category.toLowerCase())
+        setWatched(props.filterBy.category.toLowerCase())
         return () => {
         }
-    }, [props.category])
+    }, [props.filterBy.category])
 
     const getCategories = async () => {
         const categories = await gigService.getCategories();
@@ -34,10 +34,9 @@ function _AppSubHeader(props) {
 
     const onSetCategory = (category) => {
         if (!category) category = 'all'
-        setCategory(category)
-        category === 'all' ? props.loadGigs({}) : props.loadGigs({ category })
         setWatched(category)
-        props.history.push(`/explore?filterBy=${category}`)
+        props.onSetFilterBy({ category }, 'category')
+        props.history.push(`/explore?category=${category}`)
     }
 
     if (!categories.length) return <span></span>;
@@ -66,13 +65,13 @@ function mapStateToProps(state) {
         isExplore: state.scssModule.isExplore,
         isSearchBar: state.scssModule.isSearchBar,
         isProfile: state.scssModule.isProfile,
-        category: state.gigModule.category
+        filterBy: state.gigModule.filterBy
     }
 }
 
 const mapDispatchToProps = {
     loadGigs,
-    setCategory
+    onSetFilterBy
 };
 
 const _AppSubHeaderWithRouter = withRouter(_AppSubHeader)

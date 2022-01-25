@@ -88,7 +88,6 @@ class _Checkout extends React.Component {
         if (!gig || !owner) return <React.Fragment></React.Fragment>
         return (
             <section className='checkout max-width-container equal-padding' >
-                <div style={{ height: '80px' }}></div>
                 <div className="left-side-container">
                     <div className="main-content-container">
                         <div className="img-container">

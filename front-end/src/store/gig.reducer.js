@@ -3,9 +3,12 @@ const initialState = {
     category: 'all',
     filterBy: {
         txt: '',
+        deliveryTime: '',
+        budget: '',
         category: '',
         username: '',
-    }
+    },
+    sortBy: 'best selling'
 }
 
 export function gigReducer(state = initialState, action) {
@@ -30,11 +33,12 @@ export function gigReducer(state = initialState, action) {
         case 'SET_FILTERBY':
             newState = { ...state, filterBy: { ...action.filterBy } }
             break;
-        case 'SET_CATEGORY':
-            newState = { ...state, category: action.category }
+        case 'SET_SORT':
+            newState = { ...state, sortBy: action.value }
             break;
         case 'SET_FILTERBY_FIELD':
-            newState = { ...state, filterBy: { ...state.filterBy, [action.filterBy.field]: action.filterBy.value } }
+            newState = { ...state, filterBy: { ...state.filterBy, [action.field]: action.value } }
+            console.log('newState', newState);
             break;
         default:
     }

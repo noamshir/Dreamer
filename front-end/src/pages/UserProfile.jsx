@@ -54,14 +54,12 @@ function _UserProfile(props) {
 
 function mapStateToProps(state) {
     return {
-        // user: state.userModule.user,
     }
 }
 
 
 
 const mapDispatchToProps = {
-    // saveSellerInfo,
     setDetails,
     setExplore,
     setHome,
