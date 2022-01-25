@@ -32,7 +32,7 @@ export function UserDetails({ user, loggedInUser }) {
             </div>
             <div className="user-info-wrapper">
                 <div className="user-stats">
-                    {user.sellerInfo && <div className='origin'>
+                    {user.sellerInfo && <div className='origin-wrapper'>
                         <div><LocationOnIcon /> From</div>
                         <div className='origin'> {user.sellerInfo.origin}</div>
                     </div>}
