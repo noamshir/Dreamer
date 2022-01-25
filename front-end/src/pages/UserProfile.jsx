@@ -14,7 +14,7 @@ import { Loader } from '../cmp/utils/Loader';
 // import { initialService } from '../initials/initial.service';
 
 function _UserProfile(props) {
-    const { setHome, setExplore, setDetails, setProfile, match } = props
+    const { setHome, setExplore, setDetails, setProfile, match, loggedInUser } = props
     const [gigs, setGigs] = useState([]);
     const [user, setUser] = useState(null);
     useEffect(async () => {
@@ -43,7 +43,7 @@ function _UserProfile(props) {
     return (
         <div className="profile-main-container max-width-container equal-padding">
             <div className="profile-details-container">
-                <UserDetails user={user} />
+                <UserDetails loggedInUser={loggedInUser} user={user} />
                 {user.sellerInfo && <SellerDetails user={user} />}
             </div>
             {user.sellerInfo && <GigList gigs={gigs} />}
@@ -53,7 +53,7 @@ function _UserProfile(props) {
 
 function mapStateToProps(state) {
     return {
-        // user: state.userModule.user,
+        loggedInUser: state.userModule.user,
     }
 }
 

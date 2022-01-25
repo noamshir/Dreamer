@@ -17,12 +17,14 @@
         text-transform: capitalize;
     }
     .connection-dot {
-        width: 5%;
-        height: 5%;
+        width: 20%;
+        height: 20%;
+        border-radius: 50%;
         background-color: $clr1;
         position: absolute;
         top: 5%;
         right: 5%;
+        border: 1px solid white;
     }
 }
 
