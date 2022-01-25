@@ -15,6 +15,7 @@ import {
     SOCKET_EMIT_JOIN,
 } from "../../services/socket.service";
 
+import { showSuccessMsg } from '../../services/event-bus.service'
 function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpModal, openSignInModal, user, logout, openMenu }) {
     const [isProfileMenu, setMenu] = useState(false);
     var headerTransparent = "";
@@ -44,6 +45,7 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
 
     function onLogout() {
         logout()
+        showSuccessMsg("user logged out!");
     }
     window.addEventListener('click', (ev) => {
         if (ev.target.className !== "clean-list profile-scroll" && ev.target.className !== "spanclass" && ev.target.className !== "user-img") {
@@ -75,7 +77,7 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
                                         <li className="display-from-size-small"><button className={`clean-btn join-a ${color}`} onClick={() => openSignUpModal(true)}>Join</button></li>
                                     </React.Fragment> :
                                     <React.Fragment>
-                                        <li className="display-from-size-small">
+                                        <li className="display-from-size-small profile-container">
                                             <UserProfileImg user={user} isLink={false} toggleMenu={onToggleMenu} ></UserProfileImg>
                                             {isProfileMenu && <ProfileMenu onLogout={onLogout} user={user} closeMenu={onToggleMenu} />}
                                         </li>

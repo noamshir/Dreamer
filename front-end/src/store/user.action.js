@@ -13,6 +13,7 @@ export function signIn(user) {
     var loggedUser = await userService.login(user);
     const action = { type: "SET_USER", user: loggedUser };
     dispatch(action);
+    return loggedUser;
   };
 }
 

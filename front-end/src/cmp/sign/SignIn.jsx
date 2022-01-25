@@ -2,13 +2,21 @@ import { connect } from 'react-redux';
 import { useState } from 'react'
 import { signIn } from '../../store/user.action.js';
 import { toggleSignInModal, toggleJoinModal } from "../../store/scss.action"
+import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service';
+
 function _SignIn({ toggleSignInModal, signIn, toggleJoinModal }) {
 
     const [user, setUser] = useState({ username: "", password: "" });
 
     const handleSubmit = async (ev) => {
         ev.preventDefault();
-        await signIn(user);
+        const ans = await signIn(user);
+        if (ans) {
+            showSuccessMsg(`user ${ans.username} signed in`);
+        }
+        else {
+            showErrorMsg('failed to login...')
+        }
         toggleSignInModal(false);
     }
 

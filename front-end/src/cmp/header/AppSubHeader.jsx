@@ -49,8 +49,8 @@ function _AppSubHeader(props) {
                 }}><span className="categorie-nav">All</span></li>
                 {categories && categories.map((category, idx) => {
                     var className;
-                    if (idx >= 0 && idx < 5) className = `medium`;
-                    else if (idx >= 5 && idx < 8) className = 'large';
+                    if (idx >= 0 && idx < 4) className = `medium`;
+                    else if (idx >= 4 && idx < 7) className = 'large';
                     return <li key={idx} className={isWatched === category ? `${className} active` : className} onClick={() => {
                         onSetCategory(category)
                     }}><span className="categorie-nav">{category}</span></li>

@@ -38,35 +38,36 @@ export function UserProfileImg({ user, isLink, closeMenu, toggleMenu, setIsOnlin
 
     }
 
-
-    if (!isLink) {
+    export function UserProfileImg({ user, isLink, closeMenu, toggleMenu }) {
+        if (!isLink) {
+            return (
+                <div className="container-user-img" onClick={() => {
+                    if (toggleMenu) toggleMenu();
+                }}>
+                    {user.imgUrl ?
+                        <div className="user-img" style={{ backgroundImage: `url(${user.imgUrl})` }}>
+                            <div className={connectedClass}></div>
+                        </div>
+                        : <div className="user-img">
+                            <span className="spanclass">{user.fullname.charAt(0)}</span>
+                            <div className={connectedClass}></div>
+                        </div>}
+                </div>
+            )
+        }
         return (
-            <div className="container-user-img" onClick={() => {
-                if (toggleMenu) toggleMenu();
-            }}>
+            <Link onClick={() => {
+                if (closeMenu) closeMenu();
+            }} className="clean-link" to={`/profile/${user._id}`}>
                 {user.imgUrl ?
                     <div className="user-img" style={{ backgroundImage: `url(${user.imgUrl})` }}>
                         <div className={connectedClass}></div>
                     </div>
                     : <div className="user-img">
-                        <span className="spanclass">{user.fullname.charAt(0)}</span>
+                        <span>{user.fullname.charAt(0)}</span>
                         <div className={connectedClass}></div>
                     </div>}
-            </div>
+            </Link>
         )
     }
-    return (
-        <Link onClick={() => {
-            if (closeMenu) closeMenu();
-        }} className="clean-link" to={`/profile/${user._id}`}>
-            {user.imgUrl ?
-                <div className="user-img" style={{ backgroundImage: `url(${user.imgUrl})` }}>
-                    <div className={connectedClass}></div>
-                </div>
-                : <div className="user-img">
-                    <span>{user.fullname.charAt(0)}</span>
-                    <div className={connectedClass}></div>
-                </div>}
-        </Link>
-    )
 }
