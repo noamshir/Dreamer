@@ -7,7 +7,7 @@ import { setProfile, setDetails, setHome, setExplore, setBecomeSeller } from "..
 
 function _DashBoard({ currUser, setDetails, setExplore, setBecomeSeller, setProfile, setHome, isProfile }) {
     const [user, setUser] = useState(currUser);
-    const [isInSeller, setIsSeller] = useState(true);
+    const [isInSeller, setIsSeller] = useState(false);
     useEffect(() => {
         onSetDashBoard();
         return () => {

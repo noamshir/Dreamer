@@ -50,13 +50,11 @@ async function save(order) {
 async function fixOrder(gig, user, owner) {
   const order = {
     buyer: {
-      fullname: user.fullname,
       imgUrl: user.imgUrl,
       _id: user._id,
       username: user.username,
     },
     seller: {
-      fullname: owner.fullname,
       imgUrl: owner.imgUrl,
       _id: owner._id,
       username: owner.username,

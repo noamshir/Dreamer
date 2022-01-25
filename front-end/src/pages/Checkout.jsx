@@ -80,7 +80,7 @@ class _Checkout extends React.Component {
         }
         await this.props.addOrder(gig, user, owner)
         showSuccessMsg('Order saved, check it out in your profile!')
-        this.props.history.push(`/profile/${user._id}`)
+        this.props.history.push(`/dashboard/${user._id}`)
     }
 
     render() {
