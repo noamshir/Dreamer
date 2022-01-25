@@ -1,9 +1,9 @@
 import { connect } from "react-redux"
 import { BoardHeader } from "./BoardHeader"
 
-function _SellerBoard({ user }) {
+function _SellerBoard({ user,switchToUser }) {
     return <section className="seller-board">
-        <BoardHeader user={user} switchTo={"User"} />
+        <BoardHeader switchToUser={switchToUser} user={user} switchTo={"User"} />
     </section>
 }
 
