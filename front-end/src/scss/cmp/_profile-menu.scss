@@ -6,8 +6,7 @@
   border: 1px solid #dbdbdb;
   border-radius: 3px;
   font-weight: 400;
-  margin-top: 10px;
-  margin-right: $layoutPadding;
+  margin-top: 12px;
   min-width: 180px;
   padding: 5px 15px;
   .menu-pointer {
@@ -18,7 +17,7 @@
     height: 0;
     border: 10px solid transparent;
     border-top-width: 0;
-    border-bottom-color: rgba(0, 0, 0, 0.25);
+    border-bottom-color: #1dbf73;
     background: 0 0;
     transform: translateX(-50%);
     &::after {
@@ -54,4 +53,8 @@
       }
     }
   }
+}
+
+.profile-container{
+  position: relative;
 }

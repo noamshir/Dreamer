@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 
 export function UserProfileImg({ user, isLink, closeMenu, toggleMenu }) {
-
     if (!isLink) {
         return (
             <div className="container-user-img" onClick={() => {

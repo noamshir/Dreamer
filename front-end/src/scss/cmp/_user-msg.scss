@@ -1,17 +1,22 @@
 .user-msg {
-  background-color: #1dbf73;
   color: white;
   font-family: work-sans;
   padding: 15px 10px;
-  position: absolute;
-  top: 10%;
+  position: fixed;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
-
+  border-radius: 4px;
+  &.success {
+    background-color: $clr1;
+  }
+  &.danger {
+    background-color: rgb(229, 57, 57);
+  }
   button {
     position: absolute;
     top: 0;
-    left:0;
+    left: 0;
     background-color: #1dbf7300;
     color: white;
     border: none;

@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { userService } from '../../services/user.service'
 import { toggleSignInModal } from '../../store/scss.action';
-
+import { showSuccessMsg } from '../../services/event-bus.service';
 
 export class _RateStars extends React.Component {
     state = {
@@ -41,6 +41,7 @@ export class _RateStars extends React.Component {
         }
         const avgRate = this.sumRate()
         await userService.saveReview(avgRate, this.state.txt, user, owner)
+        showSuccessMsg("review added!");
         this.props.setReviewAdd(false)
         this.props.loadOwner(owner._id)
     }
