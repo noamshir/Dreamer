@@ -30,8 +30,13 @@
     li {
       padding: 12px 10px;
       height: 100%;
+<<<<<<< HEAD
       transition: 0.3s box-shadow;
       &:first-child {
+=======
+      transition: .3s box-shadow;
+    &:first-child{
+>>>>>>> c090a46b2d591b8019d3e7c0bb288832862efde2
         padding-left: 0px;
         color: $clr5;
       }

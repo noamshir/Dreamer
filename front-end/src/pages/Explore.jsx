@@ -142,12 +142,20 @@ class _Explore extends React.Component {
                                                             <div className="price-filter flex">
                                                                 <div className="input-wrapper flex column">
                                                                     <label htmlFor="min">Min:
+<<<<<<< HEAD
                                                                     </label>
+=======
+                                                                     </label>
+>>>>>>> c090a46b2d591b8019d3e7c0bb288832862efde2
                                                                     <input type="text" name="min" onChange={this.handleBudget} placeholder="Any" />
                                                                 </div>
                                                                 <div className="input-wrapper flex column">
                                                                     <label htmlFor="max">Max.
+<<<<<<< HEAD
                                                                     </label>
+=======
+                                                                     </label>
+>>>>>>> c090a46b2d591b8019d3e7c0bb288832862efde2
                                                                     <input type="text" name="max" onChange={this.handleBudget} placeholder="Any" />
                                                                 </div>
                                                             </div>
