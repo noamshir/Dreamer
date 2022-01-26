@@ -28,9 +28,6 @@
 
     .order-preview {
       width: 100%;
-      &.eighty {
-        width: 80%;
-      }
       flex-direction: column;
       .main {
         gap: 60px;
@@ -62,11 +59,9 @@
       }
       .green {
         background-color: $clr1;
+        cursor: text;
       }
 
-      .red {
-        background-color: rgba(214, 16, 16, 0.902);
-      }
       .user-img {
         height: 60px;
         width: 60px;
@@ -125,15 +120,27 @@
         border: 1px solid $clr1;
       }
       .button {
+        font-family: work-sans;
         &.outline {
           &:hover {
             background-color: rgb(238, 237, 237);
           }
         }
       }
+      .red {
+        border: tomato solid 1px;
+        color: tomato;
+        background-color:inherit;
+        cursor: text;
+      }
       .order-type {
         color: #abaeb6;
       }
+    }
+    .btn-wrapper{
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
     }
   }
 }

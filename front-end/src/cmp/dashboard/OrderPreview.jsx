@@ -29,6 +29,7 @@ function _OrderPreview(props) {
     }
 
     const setStatus = async (value) => {
+        if (props.order.orderStatus === 'rejected') return
         await props.onChangeStatus(props.order, value)
         props.loadOrders(props.user._id, props.type)
     }
