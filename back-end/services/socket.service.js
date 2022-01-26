@@ -42,9 +42,6 @@ function connectSockets(http, session) {
     socket.on("add-review", ({ review, ownerId }) => {
       socket.to(ownerId).emit('add-review', review)
     });
-<<<<<<< HEAD
-    socket.on('user-connected', (userId) => {
-=======
     socket.on('new room', room => {
       if (socket.myOrderRoom === room) return;
       if (socket.myOrderRoom) {
@@ -66,7 +63,6 @@ function connectSockets(http, session) {
       gIo.to(userId).emit('user-online', userId)
     });
     socket.on('user-online', (userId) => {
->>>>>>> cbed492fcc5a8d4a163fa81fb46a4d96dabebc50
       console.log("user reporting online", userId);
       socket.userId = userId;
       gIo.to(userId).emit('user-online', userId);

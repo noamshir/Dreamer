@@ -47,22 +47,15 @@ async function login(credentials) {
   }
 }
 async function signUp(userInfo) {
-<<<<<<< HEAD
-  const user = await httpService.post("auth/signup", userInfo);
-  if (user) {
-    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user));
-=======
   try {
     const user = await httpService.post("auth/signup", userInfo);
     if (user) {
       sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user));
-      socketService.emit(SOCKET_EMIT_LOGIN, user._id);
     }
     return user;
   } catch (err) {
     console.log("error in signUp", err);
     return false;
->>>>>>> cbed492fcc5a8d4a163fa81fb46a4d96dabebc50
   }
 }
 async function logout(user) {

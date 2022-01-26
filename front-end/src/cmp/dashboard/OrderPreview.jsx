@@ -8,19 +8,14 @@ import { socketService } from "../../services/socket.service";
 export function OrderPreview({ order, type, user, onChangeStatus }) {
     const showingType = (type === 'buyer') ? 'seller' : 'buyer';
     var statusClass;
-<<<<<<< HEAD
-    if (props.order.orderStatus === ('pending' || 'delivered')) statusClass = 'gray';
-    if (props.order.orderStatus === 'rejected') statusClass = 'deactivated red';
-    if (props.order.orderStatus === 'active') {
-        if (props.type === 'seller') statusClass = 'deactivated green'
-        else statusClass = 'green';
 
+    if (order.orderStatus === ('pending' || 'delivered')) statusClass = 'gray';
+    if (order.orderStatus === 'rejected') statusClass = 'deactivated red';
+    if (order.orderStatus === 'active') {
+        if (type === 'seller') statusClass = 'deactivated green'
+        else statusClass = 'green';
     }
-=======
-    if (order.orderStatus === ('pending' || 'delivered')) statusClass = 'outline';
-    if (order.orderStatus === 'rejected') statusClass = 'red';
-    if (order.orderStatus === 'active') statusClass = 'green';
->>>>>>> cbed492fcc5a8d4a163fa81fb46a4d96dabebc50
+
 
     const getStatus = () => {
         switch (order.orderStatus) {
@@ -44,12 +39,6 @@ export function OrderPreview({ order, type, user, onChangeStatus }) {
         socketService.emit('new status', order)
     }
 
-
-    // var date = new Date(order.createdAt)
-    // var month = date.getUTCMonth() + 1; //months from 1-12
-    // var day = date.getUTCDate();
-    // var year = date.getUTCFullYear();
-    // var createdAt = year + '/' + month + '/' + day;
     return (
         <section className={showingType === 'buyer' ? `order-preview flex eighty` : `order-preview flex`}>
             <div className="main flex">
@@ -82,17 +71,10 @@ export function OrderPreview({ order, type, user, onChangeStatus }) {
                             setStatus('active')
                         }}>{getStatus()}
                         </button>
-<<<<<<< HEAD
-                        {props.order.orderStatus === 'pending' && <button className={'button red'}
+                        {order.orderStatus === 'pending' && <button className={'button red'}
                             onClick={() => {
                                 setStatus('rejected')
                             }}>Reject
-=======
-                        {order.orderStatus === 'pending' && <button className={`status button ${statusClass}`
-                        } onClick={() => {
-                            setStatus('rejected')
-                        }}>Reject
->>>>>>> cbed492fcc5a8d4a163fa81fb46a4d96dabebc50
                         </button>}
                     </div>
                     :
@@ -101,16 +83,3 @@ export function OrderPreview({ order, type, user, onChangeStatus }) {
         </ section >
     )
 }
-
-
-// function mapStateToProps(state) {
-//     return {
-//     }
-// }
-
-// const mapDispatchToProps = {
-//     onChangeStatus,
-// };
-
-
-// export const OrderPreview = connect(mapStateToProps, mapDispatchToProps)(_OrderPreview)
