@@ -42,6 +42,21 @@ function connectSockets(http, session) {
     socket.on("add-review", ({ review, ownerId }) => {
       socket.to(ownerId).emit('add-review', review)
     });
+    socket.on('new room', room => {
+      if (socket.myOrderRoom === room) return;
+      if (socket.myOrderRoom) {
+        socket.leave(socket.myOrderRoom)
+      }
+      socket.join(room)
+      socket.myOrderRoom = room
+    })
+    socket.on('new order', (order) => {
+      socket.to(order.seller._id).emit('added order', order)
+    });
+    socket.on('new status', (order) => {
+      console.log('SOCKET ORDER', order.buyer);
+      socket.to(order.buyer._id).emit('changed status', order)
+    });
     socket.on("set-user-socket", (userId) => {
       socket.userId = userId;
       console.log("user logged in", socket.userId);

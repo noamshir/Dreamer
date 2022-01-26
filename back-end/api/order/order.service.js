@@ -10,10 +10,8 @@ module.exports = {
 };
 async function query({ userId, type }) {
   try {
-    console.log(type, userId);
     const critiria = _critiria(type, userId);
-    console.log({ critiria });
-    const collection = await dbService.getCollection("order");
+    const collection = await dbService.getCollection('order');
     const orders = await collection.find(critiria).toArray();
     return orders;
   } catch (err) {
