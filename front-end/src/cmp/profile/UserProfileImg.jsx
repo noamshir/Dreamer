@@ -12,7 +12,6 @@ export function UserProfileImg({ user, isLink, closeMenu, toggleMenu, setIsOnlin
     const [connectedClass, setConnectedClass] = useState('')
 
     useEffect(() => {
-        console.log("USE EFFECT")
 
         setSockets();
 
