@@ -16,16 +16,15 @@ export const orderService = {
   getById,
   save,
   remove,
-  createOrders,
   fixOrder,
+  changeStatus
 };
 
 async function query(userId, type) {
   //TODO - type means buyer or seller
   var filterBy = { userId, type };
-  return httpService.get("order", { params: { filterBy } });
-  // return storageService.query(STORAGE_KEY);
-  // return storageService.query(STORAGE_KEY, filterBy);
+  const orders = await httpService.get("order", { params: { filterBy } });
+  return orders
 }
 async function getById(orderId) {
   return httpService.get(`order/${orderId}`);
@@ -47,6 +46,12 @@ async function save(order) {
   }
 }
 
+async function changeStatus(order, value) {
+  order.orderStatus = value
+  const updatedOrder = await save(order)
+  return updatedOrder
+}
+
 async function fixOrder(gig, user, owner) {
   const order = {
     buyer: {
@@ -62,40 +67,40 @@ async function fixOrder(gig, user, owner) {
     gig: {
       _id: gig._id,
       title: gig.title,
+      daysToMake: gig.daysToMake,
       price: gig.price + gig.price / 3,
       img: gig.imgUrls[0],
     },
-    status: "pending",
+    orderStatus: 'pending',
   };
 
   return await save(order);
 }
 
-function createOrders() {
-  return [
-    {
-      _id: "o101",
-      createdAt: 9898989,
-      buyer: {
-        userId: "u107",
-        fullname: "Dwayne Loony",
-        imgUrl:
-          "https://media.istockphoto.com/photos/portrait-of-handsome-smiling-young-man-with-crossed-arms-picture-id1200677760?k=20&m=1200677760&s=612x612&w=0&h=JCqytPoHb6bQqU9bq6gsWT2EX1G5chlW5aNK81Kh4Lg=",
-      },
-      seller: {
-        _id: "u108",
-        fullname: "Baadur Lomidze",
-        imgUrl:
-          "https://media.istockphoto.com/photos/smiling-man-outdoors-in-the-city-picture-id1179420343?k=20&m=1179420343&s=612x612&w=0&h=G2UGMVSzAXGAQs3pFZpvWlHNRAzwPIWIVtSOxZHsEuc=",
-        rate: 5,
-      },
-      order: {
-        _id: "g101",
-        name: "I will design your logo",
-        price: 12,
-      },
-      status: "pending",
-    },
-  ];
-}
-createOrders();
+// function createOrders() {
+//   return [
+//     {
+//       _id: "o101",
+//       createdAt: 9898989,
+//       buyer: {
+//         userId: "u107",
+//         fullname: "Dwayne Loony",
+//         imgUrl:
+//           "https://media.istockphoto.com/photos/portrait-of-handsome-smiling-young-man-with-crossed-arms-picture-id1200677760?k=20&m=1200677760&s=612x612&w=0&h=JCqytPoHb6bQqU9bq6gsWT2EX1G5chlW5aNK81Kh4Lg=",
+//       },
+//       seller: {
+//         _id: "u108",
+//         fullname: "Baadur Lomidze",
+//         imgUrl:
+//           "https://media.istockphoto.com/photos/smiling-man-outdoors-in-the-city-picture-id1179420343?k=20&m=1179420343&s=612x612&w=0&h=G2UGMVSzAXGAQs3pFZpvWlHNRAzwPIWIVtSOxZHsEuc=",
+//         rate: 5,
+//       },
+//       order: {
+//         _id: "g101",
+//         name: "I will design your logo",
+//         price: 12,
+//       },
+//     },
+//   ];
+// }
+// createOrders();

@@ -42,7 +42,11 @@ function mapStateToProps({ userModule, scssModule }) {
 }
 
 const mapDispatchToProps = {
-    setBecomeSeller, setDetails, setExplore, setHome, setProfile
+    setBecomeSeller,
+    setDetails,
+    setExplore,
+    setHome,
+    setProfile
 }
 
 export const DashBoard = connect(mapStateToProps, mapDispatchToProps)(_DashBoard);

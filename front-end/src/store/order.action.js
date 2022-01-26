@@ -3,10 +3,10 @@ import { orderService } from "../services/order.service";
 
 
 
-export function loadOrders() {
+export function loadOrders(userId, type) {
     return async (dispatch) => {
-        const orders = await orderService.query()
-        const action = { type: 'SET_ORDERS', orders };
+        const userOrders = await orderService.query(userId, type);
+        const action = { type: 'SET_ORDERS', orders: userOrders };
         dispatch(action)
     }
 }
@@ -34,5 +34,14 @@ export function remove(orderId) {
         await orderService.remove(orderId)
         const action = { type: 'REMOVE_ORDER', orderId }
         dispatch(action)
+    }
+}
+
+export function onChangeStatus(order, value) {
+    return async (dispatch) => {
+        const savedOrder = await orderService.changeStatus(order, value)
+        const action = { type: 'UPDATE_ORDER', order: savedOrder };
+        dispatch(action)
+        return Promise.resolve(savedOrder)
     }
 }

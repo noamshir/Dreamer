@@ -16,7 +16,7 @@ export const gigService = {
   getCategories,
   getPopularCategories,
   getFeaturesByCategory,
-  isLikedByUser
+  isLikedByUser,
 };
 
 async function query(filterBy) {

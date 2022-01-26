@@ -30,7 +30,7 @@ function _UserBoard({ user,switchToSeller }) {
                 </div>
             </aside>
             <main className="user-main">
-                <Orders user={user} type={"buyer"} />
+                <Orders user={user} type={'buyer'} />
             </main>
         </div>
     </section>

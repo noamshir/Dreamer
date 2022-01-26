@@ -28,7 +28,6 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
         if (!user) return;
         socketService.emit(SOCKET_EMIT_JOIN, user._id)
         socketService.on(user._id, () => {
-            console.log('app header emits user id:', user._id);
             socketService.emit(SOCKET_EMIT_LOGIN, user._id);
         });
         return () => {
