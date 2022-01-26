@@ -1,10 +1,11 @@
-
 import { connect } from 'react-redux';
 import { useState } from 'react'
 import { signUp } from '../../store/user.action.js'
 import { toggleSignInModal, toggleJoinModal } from "../../store/scss.action"
 import { GoogleLogin } from 'react-google-login';
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js';
+import CloseIcon from '@mui/icons-material/Close';
+
 function _SignUp({ signUp, toggleSignInModal, toggleJoinModal }) {
 
     const [user, setUser] = useState({ fullname: "", username: "", password: "" });
@@ -46,7 +47,7 @@ function _SignUp({ signUp, toggleSignInModal, toggleJoinModal }) {
     }
     return (
         <section className="sign-modal">
-
+            <div className='btn-close-sign' onClick={() => toggleJoinModal(false)}><CloseIcon /></div>
             <div className="modal-content">
                 <header >
                     <h1 className="modal-title">Join dimerr</h1>
@@ -75,7 +76,7 @@ function _SignUp({ signUp, toggleSignInModal, toggleJoinModal }) {
                         <input required type="password" name="password" placeholder="Choose a Password" onChange={handleChange} className="user-input" />
                     </div>
                     <button className="continue-btn" type="submit">Continue</button>
-                    <p className="siginig-agree">By joining I agree to receive dreams from dimerr.</p>
+                    <p className="siginig-agree">By joining I agree to receive dimes from dimerr.</p>
                 </form>
             </div>
             <footer>
