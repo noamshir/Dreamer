@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { useState } from 'react'
-import { signIn, googleLogin } from '../../store/user.action.js';
+import { signIn, googleLogin,signUp} from '../../store/user.action.js';
 import { toggleSignInModal, toggleJoinModal } from "../../store/scss.action"
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service';
 import { GoogleLogin } from 'react-google-login';
@@ -41,7 +41,19 @@ function _SignIn({ toggleSignInModal, signIn, toggleJoinModal, googleLogin }) {
             showSuccessMsg(`${ans.username} logged successfuly`);
             toggleSignInModal();
         }
-        else showErrorMsg("Failed google login...");
+        else {
+            var tempUser = {
+                fullname: googleUser.name,
+                username: googleUser.email,
+                password: "secret",
+                imgUrl: googleUser.imageUrl,
+                googleId: googleUser.googleId
+            }
+            const joinedUser = await signUp(tempUser);
+            if (!joinedUser) showErrorMsg("Failed google login...");
+            showSuccessMsg(`${ans.username} logged successfuly`);
+            toggleSignInModal();
+        }
     }
     return (
         <section className="sign-modal">
