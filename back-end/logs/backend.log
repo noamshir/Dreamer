@@ -61,3 +61,6 @@
 25.1.2022, 20:00:48 - ERROR - Failed to get gigs | {"operationTime":{"$timestamp":"7057205281117175811"},"ok":0,"code":2,"codeName":"BadValue","$clusterTime":{"clusterTime":{"$timestamp":"7057205281117175811"},"signature":{"hash":"nsiqwsNJh+m9RYRO7+X6oVIoPRU=","keyId":{"low":2,"high":1632169518,"unsigned":false}}}}
 25.1.2022, 20:01:27 - ERROR - erorr while finding gigs | {"operationTime":{"$timestamp":"7057205444325933057"},"ok":0,"code":2,"codeName":"BadValue","$clusterTime":{"clusterTime":{"$timestamp":"7057205444325933057"},"signature":{"hash":"g/kM6hNJkCuLqYdpWktn7F4yTCc=","keyId":{"low":2,"high":1632169518,"unsigned":false}}}}
 25.1.2022, 20:01:27 - ERROR - Failed to get gigs | {"operationTime":{"$timestamp":"7057205444325933057"},"ok":0,"code":2,"codeName":"BadValue","$clusterTime":{"clusterTime":{"$timestamp":"7057205444325933057"},"signature":{"hash":"g/kM6hNJkCuLqYdpWktn7F4yTCc=","keyId":{"low":2,"high":1632169518,"unsigned":false}}}}
+26.1.2022, 18:31:34 - ERROR - Failed to get google user | {}
+26.1.2022, 18:32:42 - ERROR - Failed to get google user | {}
+26.1.2022, 18:35:38 - ERROR - Failed to get google user | {}
