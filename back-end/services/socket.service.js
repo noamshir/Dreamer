@@ -33,7 +33,7 @@ function connectSockets(http, session) {
       socket.join(userId);
       socket.userId = userId;
       console.log('emmiting user id', userId);
-      socket.to(userId).emit(userId)
+      gIo.to(userId).emit(userId)
     })
     socket.on("leave", (room) => {
       console.log("user left room", room);
@@ -45,16 +45,16 @@ function connectSockets(http, session) {
     socket.on("set-user-socket", (userId) => {
       socket.userId = userId;
       console.log("user logged in", socket.userId);
-      socket.to(userId).emit('user-online', userId)
+      gIo.to(userId).emit('user-online', userId)
     });
     socket.on('user-online', (userId) => {
       console.log("user reporting online", userId);
       socket.userId = userId;
-      socket.to(userId).emit('user-online', userId)
+      gIo.to(userId).emit('user-online', userId);
     });
-    socket.on("unset-user-socket", () => {
+    socket.on("unset-user-socket", (userId) => {
       console.log("user logged out");
-      socket.to(socket.userId).emit('user-offline')
+      gIo.to(userId).emit('user-offline', userId)
       delete socket.userId;
     });
   });

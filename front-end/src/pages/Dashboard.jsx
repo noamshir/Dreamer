@@ -1,18 +1,16 @@
 import { connect } from "react-redux";
 import { useState, useEffect } from 'react';
 import { UserBoard } from "../cmp/dashboard/UserBoard";
+import { Loader } from "../cmp/utils/Loader"
 import { SellerBoard } from "../cmp/dashboard/SellerBoard";
 import { setProfile, setDetails, setHome, setExplore, setBecomeSeller } from "../store/scss.action";
 
 
-function _DashBoard({ currUser, setDetails, setExplore, setBecomeSeller, setProfile, setHome, isProfile }) {
+function _DashBoard({ currUser, setDetails, setExplore, setBecomeSeller, setProfile, setHome, isProfile, history }) {
     const [user, setUser] = useState(currUser);
     const [isInSeller, setIsSeller] = useState(false);
     useEffect(() => {
         onSetDashBoard();
-        return () => {
-
-        }
     }, [])
     const onSetDashBoard = () => {
         if (isProfile) return;

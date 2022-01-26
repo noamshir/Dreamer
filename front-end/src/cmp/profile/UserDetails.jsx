@@ -13,7 +13,7 @@ import {
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PersonIcon from '@mui/icons-material/Person';
 
-export function UserDetails({ user, loggedInUser }) {
+export function UserDetails({ user }) {
 
     const [isOnline, setIsOnline] = useState(false);
 
@@ -26,7 +26,7 @@ export function UserDetails({ user, loggedInUser }) {
         <div className="user-details max-width-container equal-padding">
             <div className="user-stats-wrapper">
                 <span className={`online-status ${isOnline && 'online'}`}>{isOnline ? 'online' : 'offline'}</span>
-                <UserProfileImg setIsOnline={setIsOnline} loggedInUser={loggedInUser} user={user} isLink={false} />
+                <UserProfileImg setIsOnline={setIsOnline} user={user} isLink={false} />
                 <div className="fullname">{user.fullname}</div>
                 {user.sellerInfo && <UserStarRate gig={gig} owner={user} />}
             </div>

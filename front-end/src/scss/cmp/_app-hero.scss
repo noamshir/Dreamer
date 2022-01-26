@@ -76,13 +76,63 @@
         width: 700px;
     }
     .hero-content h1 {
-        // font-size: rem(40px);
+        display: none;
         width: 500px;
-
         font-size: 5vh;
         margin-block-start: rem(80px);
         margin-block-end: rem(15px);
+
+        @include for-narrow-layout {
+            display: block;
+            font-size: 36px;
+        }
+        @include for-wide-layout {
+            font-size: 44px;
+        }
     }
+
+    .hero-content {
+        margin-top: 100px;
+        width: 100%;
+        @include for-narrow-layout {
+            margin-top: 0;
+        }
+    }
+    .hero-content form {
+        flex-direction: column;
+        gap: 20px;
+        height: 110px;
+        max-width: 550px;
+        .search-bar,
+        .search-btn {
+            border-radius: 4px;
+        }
+
+        .search-icon {
+            top: 22%;
+        }
+
+        @include for-narrow-layout {
+            flex-direction: row;
+            height: 48px;
+            gap: 0;
+
+            .search-bar {
+                border-radius: 4px 0 0 4px;
+            }
+            .search-btn {
+                border-radius: 0 4px 4px 0;
+            }
+            .search-icon {
+                top: 50%;
+            }
+        }
+
+        @include for-wide-layout {
+            max-width: 650px;
+        }
+    }
+
     .hero-content i {
         font-weight: 400;
         font-family: lobster;
@@ -98,13 +148,10 @@
         }
         .hero-content h1 {
             width: 600px;
-
-            font-size: rem(42px);
             margin-block: rem(40px);
         }
     }
     @include for-extra-wide-layout {
-        // height: 680px;
         height: 80vh;
         .hero-content {
             width: 680px;

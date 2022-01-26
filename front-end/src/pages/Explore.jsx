@@ -190,7 +190,7 @@ class _Explore extends React.Component {
                                 </div>
                             </div>
                             <GigList gigs={gigs} onGoToDetails={this.onGoToDetails} />
-                        </section>
+                        </section >
                     </section >
                 }
             </React.Fragment>
