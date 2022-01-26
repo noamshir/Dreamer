@@ -101,7 +101,7 @@ class _BecomeSeller extends React.Component {
             <section className='become-seller'>
                 <div className="hero">
                     <video src={video} autoPlay loop className="become-seller-hero"></video>
-                    <div className="container">
+                    <div className="container equal-padding">
                         <h2>
                             Work Your Way
                         </h2>

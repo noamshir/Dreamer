@@ -31,24 +31,18 @@
   &.in-details {
     margin-bottom: 64px;
   }
-  @include for-normal-layout {
+  @include for-wide-layout {
     position: sticky;
     top: 70px;
     right: 32px;
+    min-width: 300px;
+
     &.in-details {
       display: none;
     }
-    position: sticky;
-    top: 70px;
-    right: 32px;
     &.aside {
       display: block;
     }
-    // max-width: 400px;
-    min-width: 265px;
-  }
-  @include for-wide-layout {
-    min-width: 340px;
   }
   @include for-extra-wide-layout {
     max-width: 400px;

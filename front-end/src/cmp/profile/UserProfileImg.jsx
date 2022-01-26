@@ -8,20 +8,18 @@ import {
     SOCKET_EMIT_LEAVE
 } from "../../services/socket.service";
 
-export function UserProfileImg({ loggedInUser, user, isLink, closeMenu, toggleMenu, setIsOnline = false }) {
+export function UserProfileImg({ user, isLink, closeMenu, toggleMenu, setIsOnline = false }) {
     const [connectedClass, setConnectedClass] = useState('')
     useEffect(() => {
         if (!user) return;
-        if (loggedInUser?._id === user._id) {
-            if (setIsOnline) setIsOnline(true);
-            else setConnectedClass('connection-dot');
-        } else {
-            setSockets();
-            return () => {
-                socketService.emit(SOCKET_EMIT_LEAVE, user._id)
-            }
+        setSockets();
+        return () => {
+            socketService.emit(SOCKET_EMIT_LEAVE, user._id)
+            socketService.off(SOCKET_EMIT_USER_ONLINE)
+            socketService.off(SOCKET_EMIT_USER_OFFLINE)
         }
-    }, [user])
+
+    }, [])
 
     const setSockets = () => {
 

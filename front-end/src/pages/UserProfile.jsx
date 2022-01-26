@@ -43,7 +43,7 @@ function _UserProfile(props) {
     return (
         <div className="profile-main-container max-width-container equal-padding">
             <div className="profile-details-container">
-                <UserDetails loggedInUser={loggedInUser} user={user} />
+                <UserDetails user={user} />
                 {user.sellerInfo && <SellerDetails user={user} />}
             </div>
             {user.sellerInfo && <GigList gigs={gigs} />}

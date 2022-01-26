@@ -28,6 +28,9 @@ const theme = createTheme({
 class _Explore extends React.Component {
 
     state = {
+        isBudgetOpen: false,
+        min: 0,
+        max: Infinity
     }
 
     componentDidMount() {
@@ -51,7 +54,11 @@ class _Explore extends React.Component {
         this.props.loadGigs(filterBy, sortBy)
     }
 
-
+    toggleBudget = () => {
+        var { isBudgetOpen } = this.state;
+        isBudgetOpen = !isBudgetOpen;
+        this.setState({ isBudgetOpen });
+    }
 
     onSetExplore = () => {
         if (this.props.isExplore) return;
@@ -60,6 +67,24 @@ class _Explore extends React.Component {
         this.props.setDetails(false);
         this.props.setProfile(false);
         this.props.setExplore(true);
+    }
+
+
+    handleBudget = ({ target }) => {
+        const field = target.name;
+        const value = +target.value
+        this.setState({ [field]: value })
+    }
+
+    onApplayBudget = () => {
+        const { min, max } = this.state;
+        const price = {
+            min,
+            max
+        }
+        const { filterBy } = this.props
+        filterBy.price = price;
+        this.props.onSetFilterBy({ ['price']: price }, 'price');
     }
 
     handleChange = ({ target }) => {
@@ -81,7 +106,7 @@ class _Explore extends React.Component {
     render() {
         const { gigs, filterBy, sortBy } = this.props
         if (!gigs) return <Loader />
-
+        var budgetClass = (this.state.isBudgetOpen) ? "open" : "";
         return (
             <React.Fragment>
                 {!gigs.length ? 'No Services Found For Your Search' :
@@ -92,21 +117,49 @@ class _Explore extends React.Component {
                                 <div className="select-wrapper">
                                     <FormControl sx={{ m: 1, minWidth: 120 }}>
                                         <ThemeProvider theme={theme}>
-                                            <Select
-                                                value={filterBy.deliveryTime}
-                                                name='deliveryTime'
-                                                onChange={this.handleFilter}
-                                                displayEmpty
-                                                className='delivery select'
-                                                inputProps={{ 'aria-label': 'Without label' }}
-                                            >
-                                                <MenuItem value=''>
-                                                    <em>Delivery Time</em>
-                                                </MenuItem>
-                                                <MenuItem value={1}>Express 24H</MenuItem>
-                                                <MenuItem value={3}>Up to 3 days</MenuItem>
-                                                <MenuItem value={7}>Up to 7 days</MenuItem>
-                                            </Select>
+                                            <div className="filters-div flex">
+                                                <Select
+                                                    value={filterBy.deliveryTime}
+                                                    name='deliveryTime'
+                                                    onChange={this.handleFilter}
+                                                    displayEmpty
+                                                    className='delivery select'
+                                                    inputProps={{ 'aria-label': 'Without label' }}
+                                                >
+                                                    <MenuItem value=''>
+                                                        <em>Delivery Time</em>
+                                                    </MenuItem>
+                                                    <MenuItem value={1}>Express 24H</MenuItem>
+                                                    <MenuItem value={3}>Up to 3 days</MenuItem>
+                                                    <MenuItem value={7}>Up to 7 days</MenuItem>
+                                                </Select>
+                                                <div className="budget-div">
+                                                    <div onClick={() => this.toggleBudget()} className="budget-select">
+                                                        Budget <span className={budgetClass}>^</span>
+                                                    </div>
+                                                    <div className={`budget-content ${budgetClass}`}>
+                                                        <div className="budget-filter">
+                                                            <div className="price-filter flex">
+                                                                <div className="input-wrapper flex column">
+                                                                    <label htmlFor="min">Min:
+                                                                    </label>
+                                                                    <input type="text" name="min" onChange={this.handleBudget} placeholder="Any" />
+                                                                </div>
+                                                                <div className="input-wrapper flex column">
+                                                                    <label htmlFor="max">Max.
+                                                                    </label>
+                                                                    <input type="text" name="max" onChange={this.handleBudget} placeholder="Any" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="budget-btns flex">
+                                                            <button className="close-btn" onClick={() => this.toggleBudget()}>close</button>
+                                                            <button className="btn" onClick={this.onApplayBudget}>Apply</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </ThemeProvider>
                                     </FormControl>
                                 </div>
@@ -137,7 +190,7 @@ class _Explore extends React.Component {
                                 </div>
                             </div>
                             <GigList gigs={gigs} onGoToDetails={this.onGoToDetails} />
-                        </section>
+                        </section >
                     </section >
                 }
             </React.Fragment>

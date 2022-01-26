@@ -32,8 +32,9 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
         });
         return () => {
             socketService.emit(SOCKET_EMIT_LEAVE, user._id)
+            socketService.off(user._id)
         }
-    }, [user])
+    }, [])
 
     if ((isHome || isBecomeSeller) && (!isScroll)) {
         headerTransparent = "header-transparent";
@@ -47,8 +48,9 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
         if (isSearchBar) searchBar = "show-bar"
     }
 
-    function onLogout() {
-        logout()
+    const onLogout = async () => {
+        console.log('user:', user);
+        await logout(user);
         showSuccessMsg("user logged out!");
     }
     window.addEventListener('click', (ev) => {
