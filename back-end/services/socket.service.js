@@ -50,6 +50,10 @@ function connectSockets(http, session) {
       socket.join(room)
       socket.myOrderRoom = room
     })
+
+    socket.on('user-connected', (userId) => {
+      gIo.to(userId).emit('user-online', userId)
+    });
     socket.on('new order', (order) => {
       socket.to(order.seller._id).emit('added order', order)
     });
