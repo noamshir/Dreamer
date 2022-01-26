@@ -65,8 +65,12 @@ export function UserProfileImg({ user, isLink, closeMenu, toggleMenu, setIsOnlin
                     <div className={connectedClass}></div>
                 </div>
                 : <div className="user-img">
+<<<<<<< HEAD
                     <span>{user.
                         username?.charAt(0)}</span>
+=======
+                    <span>{user.username?.charAt(0)}</span>
+>>>>>>> cbed492fcc5a8d4a163fa81fb46a4d96dabebc50
                     <div className={connectedClass}></div>
                 </div>}
         </Link>

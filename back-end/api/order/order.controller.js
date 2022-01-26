@@ -5,7 +5,6 @@ const ObjectId = require("mongodb").ObjectId;
 async function getOrders(req, res) {
   try {
     var { filterBy } = JSON.parse(req.query.params);
-    console.log({ filterBy });
     var orders = await orderService.query(filterBy);
     orders = orders.map((order) => {
       order.createdAt = ObjectId(order._id).getTimestamp();

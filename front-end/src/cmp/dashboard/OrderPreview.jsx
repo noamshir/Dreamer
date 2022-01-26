@@ -1,14 +1,14 @@
-import { connect } from 'react-redux'
 import { NavLink } from "react-router-dom";
-
-import { UserProfileImg } from "../profile/UserProfileImg"
-import { loadOrders, onChangeStatus } from '../../store/order.action'
 import React from 'react';
 
+import { UserProfileImg } from "../profile/UserProfileImg"
+import { socketService } from "../../services/socket.service";
 
-function _OrderPreview(props) {
-    const showingType = (props.type === 'buyer') ? 'seller' : 'buyer';
+
+export function OrderPreview({ order, type, user, onChangeStatus }) {
+    const showingType = (type === 'buyer') ? 'seller' : 'buyer';
     var statusClass;
+<<<<<<< HEAD
     if (props.order.orderStatus === ('pending' || 'delivered')) statusClass = 'gray';
     if (props.order.orderStatus === 'rejected') statusClass = 'deactivated red';
     if (props.order.orderStatus === 'active') {
@@ -16,9 +16,14 @@ function _OrderPreview(props) {
         else statusClass = 'green';
 
     }
+=======
+    if (order.orderStatus === ('pending' || 'delivered')) statusClass = 'outline';
+    if (order.orderStatus === 'rejected') statusClass = 'red';
+    if (order.orderStatus === 'active') statusClass = 'green';
+>>>>>>> cbed492fcc5a8d4a163fa81fb46a4d96dabebc50
 
     const getStatus = () => {
-        switch (props.order.orderStatus) {
+        switch (order.orderStatus) {
             case 'pending': {
                 return 'Approve'
             }
@@ -32,10 +37,11 @@ function _OrderPreview(props) {
 
     }
 
-    const setStatus = async (value) => {
-        if (props.order.orderStatus === 'rejected') return
-        await props.onChangeStatus(props.order, value)
-        props.loadOrders(props.user._id, props.type)
+    const setStatus = (value) => {
+        if (order.orderStatus === 'rejected' || order.orderStatus === 'active') return
+        order.orderStatus = value
+        onChangeStatus(order)
+        socketService.emit('new status', order)
     }
 
 
@@ -48,23 +54,23 @@ function _OrderPreview(props) {
         <section className={showingType === 'buyer' ? `order-preview flex eighty` : `order-preview flex`}>
             <div className="main flex">
                 <div className='inner flex'>
-                    <NavLink to={`/explore/${props.order.gig._id}`}>
+                    <NavLink to={`/explore/${order.gig._id}`}>
                         <div className='img-container'>
-                            <img src={props.order.gig.img} alt='img' />
+                            <img src={order.gig.img} alt='img' />
                         </div>
                     </NavLink>
                     <div className='user-info flex'>
-                        <h5>{props.order[showingType].username}</h5>
-                        <UserProfileImg isLink={true} user={props.order[showingType]} />
+                        <h5>{order[showingType].username}</h5>
+                        <UserProfileImg isLink={true} user={order[showingType]} />
                     </div>
                 </div>
                 <div className='gig-info flex'>
                     <span className='price'>Price</span>
-                    <span>{props.order.gig.price.toLocaleString("USA", { style: "currency", currency: "USD" })}</span>
+                    <span>{order.gig.price.toLocaleString("USA", { style: "currency", currency: "USD" })}</span>
                 </div>
                 <div className="delivery-container flex">
                     <span className='delivery-time'>Delivery Time</span>
-                    <span className='days'>{props.order.gig.daysToMake === 1 ? `${props.order.gig.daysToMake} day` : `${props.order.gig.daysToMake} days`}</span>
+                    <span className='days'>{order.gig.daysToMake === 1 ? `${order.gig.daysToMake} day` : `${order.gig.daysToMake} days`}</span>
                 </div>
             </div>
             <div className="status-container">
@@ -76,29 +82,35 @@ function _OrderPreview(props) {
                             setStatus('active')
                         }}>{getStatus()}
                         </button>
+<<<<<<< HEAD
                         {props.order.orderStatus === 'pending' && <button className={'button red'}
                             onClick={() => {
                                 setStatus('rejected')
                             }}>Reject
+=======
+                        {order.orderStatus === 'pending' && <button className={`status button ${statusClass}`
+                        } onClick={() => {
+                            setStatus('rejected')
+                        }}>Reject
+>>>>>>> cbed492fcc5a8d4a163fa81fb46a4d96dabebc50
                         </button>}
                     </div>
                     :
-                    <span className={`status ${statusClass}`}>{props.order.orderStatus}</span>}
+                    <span className={`status ${statusClass}`}>{order.orderStatus}</span>}
             </div>
         </ section >
     )
 }
 
 
-function mapStateToProps(state) {
-    return {
-    }
-}
+// function mapStateToProps(state) {
+//     return {
+//     }
+// }
 
-const mapDispatchToProps = {
-    onChangeStatus,
-    loadOrders
-};
+// const mapDispatchToProps = {
+//     onChangeStatus,
+// };
 
 
-export const OrderPreview = connect(mapStateToProps, mapDispatchToProps)(_OrderPreview)
+// export const OrderPreview = connect(mapStateToProps, mapDispatchToProps)(_OrderPreview)

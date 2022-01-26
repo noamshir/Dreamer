@@ -50,7 +50,6 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
     }
 
     const onLogout = async () => {
-        console.log('user:', user);
         await logout(user);
         showSuccessMsg("user logged out!");
     }

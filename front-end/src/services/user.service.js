@@ -6,7 +6,7 @@ import {
   socketService,
   SOCKET_EMIT_LOGIN,
   SOCKET_EMIT_LOGOUT,
-  SOCKET_EMIT_ADD_REVIEW
+  SOCKET_EMIT_ADD_REVIEW,
 } from "./socket.service.js";
 // var axios = Axios.create({
 //     withCredentials: true
@@ -31,6 +31,7 @@ export const userService = {
   getById,
   saveReview,
   saveSellerInfo,
+  getGoogleUser,
 };
 window.us = userService;
 
@@ -46,11 +47,23 @@ async function login(credentials) {
   }
 }
 async function signUp(userInfo) {
+<<<<<<< HEAD
   const user = await httpService.post("auth/signup", userInfo);
   if (user) {
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user));
+=======
+  try {
+    const user = await httpService.post("auth/signup", userInfo);
+    if (user) {
+      sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user));
+      socketService.emit(SOCKET_EMIT_LOGIN, user._id);
+    }
+    return user;
+  } catch (err) {
+    console.log("error in signUp", err);
+    return false;
+>>>>>>> cbed492fcc5a8d4a163fa81fb46a4d96dabebc50
   }
-  return user;
 }
 async function logout(user) {
   await httpService.post("auth/logout");
@@ -62,6 +75,15 @@ async function logout(user) {
 function getLoggedinUser() {
 
   return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN));
+}
+
+async function getGoogleUser(googleId) {
+  try {
+    const user = await httpService.get(`user/google/${googleId}`);
+    return user;
+  } catch (err) {
+    return false;
+  }
 }
 
 async function update(sellerInfo) {
