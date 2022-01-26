@@ -1,25 +1,24 @@
 * {
   box-sizing: border-box;
 }
-html,
-body {
-  width: 100%;
-  height: 100%;
-  margin: 0px;
-  padding: 0px;
-  overflow-x: hidden;
-}
+
 html {
   scroll-behavior: smooth;
+  // overflow-x: hidden;
 }
 
 body {
+  width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
   color: $clr5;
   position: relative;
   background-color: rgb(255, 255, 255);
-  overflow-x: hidden;
+  // overflow-x: hidden;
+  @include for-narrow-layout {
+    overflow-x: unset;
+  }
 }
 
 ul {

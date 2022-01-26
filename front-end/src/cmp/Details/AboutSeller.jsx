@@ -9,7 +9,7 @@ export function AboutSeller({ gig, getUserLevel, owner }) {
 
     if (!owner) return <React.Fragment></React.Fragment>
     return (
-        <div className='about-seller' id="AboutSeller">
+        <div className='about-seller inpage-nav' id="AboutSeller">
             <h2 className='about-seller-header'>About the Seller</h2>
             <div className="seller-info">
                 <UserProfileImg setIsOnline={setIsOnline} user={owner} isLink={true} />
