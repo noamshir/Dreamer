@@ -114,8 +114,8 @@ class _Explore extends React.Component {
                         <section className="explore-main  max-width-container equal-padding">
                             {filterBy.category === 'all' ? <h1>All Categories</h1> : <h1>{filterBy.category}</h1>}
                             <div className="filter-container">
-                                <div className="select-wrapper">
-                                    <FormControl sx={{ m: 1, minWidth: 120 }}>
+                                <div className="select-wrapper filters">
+                                    <FormControl sx={{ m: 1, minWidth: 120, margin: 0 }}>
                                         <ThemeProvider theme={theme}>
                                             <div className="filters-div flex">
                                                 <Select
@@ -162,6 +162,7 @@ class _Explore extends React.Component {
 
                                         </ThemeProvider>
                                     </FormControl>
+                                    <button className="clear-btn">Clear Filters</button>
                                 </div>
                             </div>
                             <div className="inner-container">

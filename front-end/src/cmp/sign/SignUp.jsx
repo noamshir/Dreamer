@@ -3,14 +3,17 @@ import { connect } from 'react-redux';
 import { useState } from 'react'
 import { signUp } from '../../store/user.action.js'
 import { toggleSignInModal, toggleJoinModal } from "../../store/scss.action"
-
+import { GoogleLogin } from 'react-google-login';
+import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js';
 function _SignUp({ signUp, toggleSignInModal, toggleJoinModal }) {
 
     const [user, setUser] = useState({ fullname: "", username: "", password: "" });
 
     const handleSubmit = async (ev) => {
         ev.preventDefault();
-        await signUp(user);
+        var ans = await signUp(user);
+        if (ans) showSuccessMsg(`${ans.username} joined successfuly!`)
+        else showErrorMsg(`Failed to Sign-up`)
         toggleJoinModal(false);
     }
 
@@ -24,6 +27,23 @@ function _SignUp({ signUp, toggleSignInModal, toggleJoinModal }) {
         toggleJoinModal(false);
         toggleSignInModal(true);
     }
+    const handleGoogleSignUp = async (response) => {
+        const googleUser = response.profileObj;
+        var user = {
+            fullname: googleUser.name,
+            username: googleUser.email,
+            password: "secret",
+            imgUrl: googleUser.imageUrl,
+            googleId: googleUser.googleId
+        }
+        const ans = await signUp(user);
+        if (ans) showSuccessMsg(`${ans.username} joined successfuly!`)
+        else showErrorMsg(`Failed to Sign-up`)
+        toggleJoinModal(false);
+    }
+    const handleError = (err) => {
+        console.log(err);
+    }
     return (
         <section className="sign-modal">
 
@@ -31,6 +51,19 @@ function _SignUp({ signUp, toggleSignInModal, toggleJoinModal }) {
                 <header >
                     <h1 className="modal-title">Join dimerr</h1>
                 </header>
+                <div className="social-tab">
+                    <GoogleLogin
+                        clientId="456063964515-eet79gl529lkfkqflgfagpb3jrojruih.apps.googleusercontent.com"
+                        onSuccess={handleGoogleSignUp}
+                        onFailure={handleError}
+                        // isSignedIn={true}
+                        cookiePolicy={'single_host_origin'}
+                        className="social-btn"
+                    ><p>Continue with Google</p></GoogleLogin >
+                    <div className="seperator">
+                        <span>OR</span>
+                    </div>
+                </div>
                 <form action="" className="sign-form" onSubmit={handleSubmit}>
                     <div className="form-input-div">
                         <input required type="text" name="fullname" placeholder="Enter your full name" onChange={handleChange} className="user-input" />

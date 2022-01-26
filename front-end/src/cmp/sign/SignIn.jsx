@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 import { useState } from 'react'
-import { signIn } from '../../store/user.action.js';
+import { signIn, googleLogin } from '../../store/user.action.js';
 import { toggleSignInModal, toggleJoinModal } from "../../store/scss.action"
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service';
+import { GoogleLogin } from 'react-google-login';
 
-function _SignIn({ toggleSignInModal, signIn, toggleJoinModal }) {
+function _SignIn({ toggleSignInModal, signIn, toggleJoinModal, googleLogin }) {
 
     const [user, setUser] = useState({ username: "", password: "" });
 
@@ -30,13 +31,37 @@ function _SignIn({ toggleSignInModal, signIn, toggleJoinModal }) {
         toggleSignInModal(false);
         toggleJoinModal(true);
     }
-
+    const responseGoogle = (response) => {
+        console.log(response);
+    }
+    const handleLogin = async (response) => {
+        const googleUser = response.profileObj;
+        const ans = await googleLogin(googleUser.googleId);
+        if (ans) {
+            showSuccessMsg(`${ans.username} logged successfuly`);
+            toggleSignInModal();
+        }
+        else showErrorMsg("Failed google login...");
+    }
     return (
         <section className="sign-modal">
             <div className="modal-content">
                 <header >
                     <h1 className="modal-title">Sign in to dimerr</h1>
                 </header>
+                <div className="social-tab">
+                    <GoogleLogin
+                        clientId="456063964515-eet79gl529lkfkqflgfagpb3jrojruih.apps.googleusercontent.com"
+                        onSuccess={handleLogin}
+                        onFailure={responseGoogle}
+                        // isSignedIn={true}
+                        cookiePolicy={'single_host_origin'}
+                        className="social-btn"
+                    ><p>Continue with Google</p></GoogleLogin >
+                    <div className="seperator">
+                        <span>OR</span>
+                    </div>
+                </div>
                 <form action="" className="sign-form" onSubmit={handleSubmit}>
                     <div className="form-input-div">
                         <input required type="text" name="username" placeholder="Choose a Username" onChange={handleChange} className="user-input" />
@@ -66,7 +91,8 @@ function mapStateToProps({ userModule }) {
 const mapDispatchToProps = {
     signIn,
     toggleSignInModal,
-    toggleJoinModal
+    toggleJoinModal,
+    googleLogin
 }
 
 export const SignIn = connect(mapStateToProps, mapDispatchToProps)(_SignIn)

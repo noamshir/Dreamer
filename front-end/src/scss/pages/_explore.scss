@@ -63,6 +63,12 @@
     left: 0;
     z-index: 8;
     background-color: #fff;
+    min-height: 60px;
+    border-bottom: 1px solid #95979d;
+    display: flex;
+    // display: flex;
+    // justify-content: space-between;
+    // align-items: center;
     em,
     div {
       font-weight: 500;
@@ -87,12 +93,13 @@
       .budget-select {
         cursor: pointer;
         line-height: 1.4375em;
+        height: 39px;
         border-radius: 4px;
         color: #222325;
         font-family: work-sans;
         font-style: normal;
         border: 1px solid #dadbdd;
-        padding: 8px 15px;
+        padding: 8px 10px;
         width: 120px;
         &:hover {
           border: 1px solid #222325;
@@ -169,6 +176,23 @@
           }
         }
       }
+    }
+  }
+}
+
+.filters {
+  justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  button {
+    &.clear-btn {
+      background-color: inherit;
+      border: 0;
+      color: #222325;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: Arial, Helvetica, sans-serif;
     }
   }
 }
