@@ -42,12 +42,7 @@ function connectSockets(http, session) {
     socket.on("add-review", ({ review, ownerId }) => {
       socket.to(ownerId).emit('add-review', review)
     });
-    socket.on("set-user-socket", (userId) => {
-      socket.userId = userId;
-      console.log("user logged in", socket.userId);
-      gIo.to(userId).emit('user-online', userId)
-    });
-    socket.on('user-online', (userId) => {
+    socket.on('user-connected', (userId) => {
       console.log("user reporting online", userId);
       socket.userId = userId;
       gIo.to(userId).emit('user-online', userId);
