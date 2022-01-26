@@ -9,9 +9,13 @@ import React from 'react';
 function _OrderPreview(props) {
     const showingType = (props.type === 'buyer') ? 'seller' : 'buyer';
     var statusClass;
-    if (props.order.orderStatus === ('pending' || 'delivered')) statusClass = 'outline';
-    if (props.order.orderStatus === 'rejected') statusClass = 'red';
-    if (props.order.orderStatus === 'active') statusClass = 'green';
+    if (props.order.orderStatus === ('pending' || 'delivered')) statusClass = 'gray';
+    if (props.order.orderStatus === 'rejected') statusClass = 'deactivated red';
+    if (props.order.orderStatus === 'active') {
+        if (props.type === 'seller') statusClass = 'deactivated green'
+        else statusClass = 'green';
+
+    }
 
     const getStatus = () => {
         switch (props.order.orderStatus) {
@@ -33,6 +37,8 @@ function _OrderPreview(props) {
         await props.onChangeStatus(props.order, value)
         props.loadOrders(props.user._id, props.type)
     }
+
+
     // var date = new Date(order.createdAt)
     // var month = date.getUTCMonth() + 1; //months from 1-12
     // var day = date.getUTCDate();
@@ -65,15 +71,15 @@ function _OrderPreview(props) {
                 <span className='order-type'>Order Status:</span>
                 {showingType === 'buyer' ?
                     <div className='btn-wrapper flex'>
-                        <button className={`status button ${statusClass}`
+                        <button className={`button ${getStatus() === 'Denied' ? 'red' : 'green'}`
                         } onClick={() => {
                             setStatus('active')
                         }}>{getStatus()}
                         </button>
-                        {props.order.orderStatus === 'pending' && <button className={`status button ${statusClass}`
-                        } onClick={() => {
-                            setStatus('rejected')
-                        }}>Reject
+                        {props.order.orderStatus === 'pending' && <button className={'button red'}
+                            onClick={() => {
+                                setStatus('rejected')
+                            }}>Reject
                         </button>}
                     </div>
                     :

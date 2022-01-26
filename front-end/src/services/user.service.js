@@ -39,7 +39,6 @@ async function login(credentials) {
     const user = await httpService.post("auth/login", credentials);
     if (user) {
       sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user));
-      socketService.emit(SOCKET_EMIT_LOGIN, user._id);
     }
     return user;
   } catch (err) {
@@ -50,7 +49,6 @@ async function signUp(userInfo) {
   const user = await httpService.post("auth/signup", userInfo);
   if (user) {
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user));
-    socketService.emit(SOCKET_EMIT_LOGIN, user._id);
   }
   return user;
 }
@@ -62,6 +60,7 @@ async function logout(user) {
 }
 
 function getLoggedinUser() {
+
   return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN));
 }
 

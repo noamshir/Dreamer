@@ -10,15 +10,19 @@ import {
 
 export function UserProfileImg({ user, isLink, closeMenu, toggleMenu, setIsOnline = false }) {
     const [connectedClass, setConnectedClass] = useState('')
+    // useEffect(() => {
+    //     // if (!user) return;
+    //     setSockets();
+    // }, [user])
     useEffect(() => {
-        if (!user) return;
+
         setSockets();
+
         return () => {
             socketService.emit(SOCKET_EMIT_LEAVE, user._id)
             socketService.off(SOCKET_EMIT_USER_ONLINE)
             socketService.off(SOCKET_EMIT_USER_OFFLINE)
         }
-
     }, [])
 
     const setSockets = () => {
@@ -27,9 +31,10 @@ export function UserProfileImg({ user, isLink, closeMenu, toggleMenu, setIsOnlin
             if (setIsOnline) setIsOnline(true);
             else if (user?._id === userId) setConnectedClass('connection-dot')
         })
-        socketService.on(SOCKET_EMIT_USER_OFFLINE, () => {
-            if (setIsOnline) setIsOnline(false);
-            else setConnectedClass('');
+        socketService.on(SOCKET_EMIT_USER_OFFLINE, (userId) => {
+
+            if (setIsOnline && user?._id === userId) setIsOnline(false);
+            else if (user?._id === userId) setConnectedClass('');
         })
 
         socketService.emit(SOCKET_EMIT_JOIN_IS_CONNECTED, user._id)
@@ -45,7 +50,7 @@ export function UserProfileImg({ user, isLink, closeMenu, toggleMenu, setIsOnlin
                         <div className={connectedClass}></div>
                     </div>
                     : <div className="user-img">
-                        <span className="spanclass">{user.fullname.charAt(0)}</span>
+                        <span className="spanclass">{user.username?.charAt(0)}</span>
                         <div className={connectedClass}></div>
                     </div>}
             </div>
@@ -60,7 +65,8 @@ export function UserProfileImg({ user, isLink, closeMenu, toggleMenu, setIsOnlin
                     <div className={connectedClass}></div>
                 </div>
                 : <div className="user-img">
-                    <span>{user.fullname.charAt(0)}</span>
+                    <span>{user.
+                        username?.charAt(0)}</span>
                     <div className={connectedClass}></div>
                 </div>}
         </Link>

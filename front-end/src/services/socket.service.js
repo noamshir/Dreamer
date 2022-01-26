@@ -8,6 +8,7 @@ export const SOCKET_EMIT_USER_ONLINE = 'user-online';
 export const SOCKET_EMIT_USER_WATCH = 'user-watch';
 export const SOCKET_EMIT_LOGIN = 'set-user-socket';
 export const SOCKET_EMIT_LOGOUT = 'unset-user-socket';
+export const SOCKET_EMIT_USER_CONNECTED = 'user-connected';
 export const SOCKET_EMIT_ADD_REVIEW = 'add-review'
 
 const baseUrl = (process.env.NODE_ENV === 'production') ? '' : '//localhost:3030'
