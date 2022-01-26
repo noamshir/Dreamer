@@ -9,6 +9,7 @@ import { addOrder } from '../store/order.action';
 import { showSuccessMsg } from "../services/event-bus.service";
 import { setExplore, setHome, setDetails, setBecomeSeller, setProfile } from '../store/scss.action';
 import { toggleSignInModal } from '../store/scss.action';
+import { socketService } from "../services/socket.service";
 
 
 
@@ -78,7 +79,8 @@ class _Checkout extends React.Component {
             this.props.toggleSignInModal(true);
             return;
         }
-        await this.props.addOrder(gig, user, owner)
+        const savedOrder = await this.props.addOrder(gig, user, owner)
+        socketService.emit('new order', savedOrder)
         showSuccessMsg('Order saved, check it out in your profile!')
         this.props.history.push(`/dashboard/${user._id}`)
     }

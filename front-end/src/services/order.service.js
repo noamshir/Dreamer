@@ -46,8 +46,7 @@ async function save(order) {
   }
 }
 
-async function changeStatus(order, value) {
-  order.orderStatus = value
+async function changeStatus(order) {
   const updatedOrder = await save(order)
   return updatedOrder
 }

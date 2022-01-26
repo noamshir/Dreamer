@@ -37,11 +37,23 @@ export function remove(orderId) {
     }
 }
 
-export function onChangeStatus(order, value) {
+export function onChangeStatus(order) {
     return async (dispatch) => {
-        const savedOrder = await orderService.changeStatus(order, value)
-        const action = { type: 'UPDATE_ORDER', order: savedOrder };
+        const action = { type: 'UPDATE_ORDER', order };
         dispatch(action)
-        return Promise.resolve(savedOrder)
+        try {
+            orderService.changeStatus(order)
+        }
+        catch (err) {
+            console.log('err', err);
+        }
     }
 }
+
+// export function socketAddOrder(order) {
+//     return async (dispatch) => {
+//         const action = { type: 'UPDATE_ORDER', order };
+//         dispatch(action)
+//         return Promise.resolve(order)
+//     }
+// }
