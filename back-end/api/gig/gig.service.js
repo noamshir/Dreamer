@@ -75,9 +75,7 @@ function _getSortedGigs(gigs, sortBy = "best selling") {
         return +b.owner.rate - +a.owner.rate;
       });
     default:
-      return gigs.sort(function (a, b) {
-        return +b.owner.rate - +a.owner.rate;
-      });
+      return gigs.sort(function (a, b) { return +b.owner.rate - +a.owner.rate });
   }
 }
 
