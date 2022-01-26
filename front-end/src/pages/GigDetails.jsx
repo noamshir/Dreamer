@@ -39,7 +39,6 @@ class _GigDetails extends React.Component {
     }
     componentWillUnmount() {
         socketService.emit(SOCKET_EMIT_LEAVE, this.props.match.params)
-
     }
 
     onSetDetails = () => {

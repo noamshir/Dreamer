@@ -57,10 +57,6 @@
       .inner {
         gap: 20px;
       }
-      .green {
-        background-color: $clr1;
-        cursor: text;
-      }
 
       .user-img {
         height: 60px;
@@ -105,7 +101,58 @@
         justify-content: center;
         display: flex;
         align-items: center;
-        color: white;
+        &.red {
+          border-bottom: 1px solid tomato;
+          color: tomato;
+        }
+        &.green {
+          border-bottom: 1px solid $clr1;
+          color: $clr1;
+        }
+        &.gray {
+          border-bottom: 1px solid $clr3;
+          color: $clr3;
+        }
+      }
+      // .outline {
+      //   background-color: inherit;
+      //   color: black;
+      //   border: 1px solid $clr1;
+      // }
+      // .gray {
+      //   background-color: inherit;
+      //   color: $clr3;
+      //   border-bottom: 1px solid $clr3;
+      // }
+      // .green {
+      //   background-color: $clr1;
+      //   cursor: text;
+      //   border-bottom: 1px solid $clr1;
+      // }
+      // .red {
+      //   border-bottom: tomato solid 1px;
+      //   color: tomato;
+      //   background-color: inherit;
+      //   cursor: text;
+      // }
+      .button {
+        background-color: #fff;
+        &.deactivated {
+          cursor: default;
+        }
+        &.gray {
+          border: 1px solid $clr3;
+          color: $clr3;
+        }
+        &.red {
+          border: 1px solid tomato;
+          color: tomato;
+        }
+        &.green {
+          border: 1px solid $clr1;
+          color: $clr1;
+        }
+        font-family: work-sans;
         height: 40px;
         width: 130px;
         font-weight: 500;
@@ -113,25 +160,11 @@
         border-radius: 5px;
         border: none;
         transition: 0.3s;
-      }
-      .outline {
-        background-color: inherit;
-        color: black;
-        border: 1px solid $clr1;
-      }
-      .button {
-        font-family: work-sans;
-        &.outline {
-          &:hover {
-            background-color: rgb(238, 237, 237);
-          }
-        }
-      }
-      .red {
-        border: tomato solid 1px;
-        color: tomato;
-        background-color: inherit;
-        cursor: text;
+        // &.outline {
+        //   &:hover {
+        //     background-color: rgb(238, 237, 237);
+        //   }
+        // }
       }
       .order-type {
         color: #abaeb6;

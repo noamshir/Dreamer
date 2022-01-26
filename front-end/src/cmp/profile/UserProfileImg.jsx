@@ -10,32 +10,39 @@ import {
 
 export function UserProfileImg({ user, isLink, closeMenu, toggleMenu, setIsOnline = false }) {
     const [connectedClass, setConnectedClass] = useState('')
+
     useEffect(() => {
-        if (!user) return;
+
         setSockets();
+
         return () => {
             socketService.emit(SOCKET_EMIT_LEAVE, user._id)
             socketService.off(SOCKET_EMIT_USER_ONLINE)
             socketService.off(SOCKET_EMIT_USER_OFFLINE)
         }
-
     }, [])
 
     const setSockets = () => {
-
+        console.log("I AM LISTENING")
         socketService.on(SOCKET_EMIT_USER_ONLINE, (userId) => {
+            console.log("connection:", userId);
             if (setIsOnline) setIsOnline(true);
             else if (user?._id === userId) setConnectedClass('connection-dot')
         })
-        socketService.on(SOCKET_EMIT_USER_OFFLINE, () => {
-            if (setIsOnline) setIsOnline(false);
-            else setConnectedClass('');
+        socketService.on(SOCKET_EMIT_USER_OFFLINE, (userId) => {
+            console.log("Disconnection:", userId);
+
+            if (setIsOnline && user?._id === userId) setIsOnline(false);
+            else if (user?._id === userId) setConnectedClass('');
         })
+        console.log("I EMITING")
 
         socketService.emit(SOCKET_EMIT_JOIN_IS_CONNECTED, user._id)
 
     }
     if (!isLink) {
+        console.log("RENDER PROFILE IMG")
+
         return (
             <div className="container-user-img" onClick={() => {
                 if (toggleMenu) toggleMenu();
@@ -45,7 +52,7 @@ export function UserProfileImg({ user, isLink, closeMenu, toggleMenu, setIsOnlin
                         <div className={connectedClass}></div>
                     </div>
                     : <div className="user-img">
-                        <span className="spanclass">{user.fullname.charAt(0)}</span>
+                        <span className="spanclass">{user.username?.charAt(0)}</span>
                         <div className={connectedClass}></div>
                     </div>}
             </div>
@@ -60,7 +67,7 @@ export function UserProfileImg({ user, isLink, closeMenu, toggleMenu, setIsOnlin
                     <div className={connectedClass}></div>
                 </div>
                 : <div className="user-img">
-                    <span>{user.fullname.charAt(0)}</span>
+                    <span>{user.username?.charAt(0)}</span>
                     <div className={connectedClass}></div>
                 </div>}
         </Link>

@@ -12,6 +12,7 @@ import { ProfileMenu } from './ProfileMenu.jsx';
 import {
     socketService,
     SOCKET_EMIT_LOGIN,
+    SOCKET_EMIT_USER_CONNECTED,
     SOCKET_EMIT_JOIN,
     SOCKET_EMIT_LEAVE,
 } from "../../services/socket.service";
@@ -28,13 +29,13 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
         if (!user) return;
         socketService.emit(SOCKET_EMIT_JOIN, user._id)
         socketService.on(user._id, () => {
-            socketService.emit(SOCKET_EMIT_LOGIN, user._id);
+            socketService.emit(SOCKET_EMIT_USER_CONNECTED, user._id);
         });
         return () => {
             socketService.emit(SOCKET_EMIT_LEAVE, user._id)
             socketService.off(user._id)
         }
-    }, [])
+    }, [user])
 
     if ((isHome || isBecomeSeller) && (!isScroll)) {
         headerTransparent = "header-transparent";
@@ -49,7 +50,6 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
     }
 
     const onLogout = async () => {
-        console.log('user:', user);
         await logout(user);
         showSuccessMsg("user logged out!");
     }
