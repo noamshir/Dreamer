@@ -17,7 +17,10 @@
     justify-content: space-between;
     align-items: center;
     font-family: work-sans;
-
+    @media (max-width: 430px) {
+      flex-direction: column;
+      margin-top: 30px;
+    }
     .sort-by,
     span {
       font-size: 16px;
@@ -34,11 +37,20 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      max-height: 150px;
     }
     .select-wrapper {
       fieldset {
         outline: none;
         border: none;
+      }
+      .sort-form {
+        padding: 0;
+        margin: 0;
+      }
+      .sort-by-select {
+        padding: 0;
+        margin: 0;
       }
     }
     em,
@@ -61,14 +73,11 @@
     position: sticky;
     top: 0;
     left: 0;
-    z-index: 8;
+    z-index: 11;
     background-color: #fff;
-    min-height: 60px;
-    border-bottom: 1px solid #95979d;
     display: flex;
-    // display: flex;
-    // justify-content: space-between;
-    // align-items: center;
+    padding: 10px 0;
+
     em,
     div {
       font-weight: 500;
@@ -84,16 +93,21 @@
       display: inline-block;
     }
   }
+  .MuiFormControl-root {
+    width: 100%;
+  }
   .filters-div {
-    align-items: center;
+    align-items: flex-end;
+    @media (max-width: 430px) {
+      justify-content: space-between;
+    }
     .budget-div {
       position: relative;
-
       margin: 0 6px;
       .budget-select {
         cursor: pointer;
         line-height: 1.4375em;
-        height: 39px;
+        height: 35px;
         border-radius: 4px;
         color: #222325;
         font-family: work-sans;
@@ -101,15 +115,20 @@
         border: 1px solid #dadbdd;
         padding: 8px 10px;
         width: 120px;
+        display: flex;
+        align-items: center;
         &:hover {
           border: 1px solid #222325;
         }
         transition: border-color 0.12s cubic-bezier(0.22, 0.61, 0.36, 1);
         span {
-          transform: rotate(-180deg);
-          transition: all 0.24s cubic-bezier(0.215, 0.61, 0.355, 1);
-          &.open {
+          &.arrow {
+            color: gray;
             transform: rotate(0deg);
+            transition: all 0.24s cubic-bezier(0.215, 0.61, 0.355, 1);
+            &.open {
+              transform: rotate(180deg);
+            }
           }
         }
       }
@@ -181,10 +200,13 @@
 }
 
 .filters {
-  justify-content: space-between;
   display: flex;
   justify-content: space-between;
   width: 100%;
+  @media (max-width: 430px) {
+    flex-direction: column;
+    gap: 10px;
+  }
   button {
     &.clear-btn {
       background-color: inherit;

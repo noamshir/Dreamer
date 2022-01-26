@@ -37,7 +37,7 @@
       padding: 12px 10px;
       height: 100%;
       display: none;
-      transition: .3s;
+      transition: 0.3s;
       white-space: nowrap;
       &.medium {
         display: inline-block;
@@ -67,7 +67,8 @@
       cursor: pointer;
     }
   }
-  .active {
-    box-shadow: inset 0px -4px 0px $clr1;
-  }
+  
+    .active {
+      box-shadow: inset 0px -4px 0px $clr1;
+    }
 }

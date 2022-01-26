@@ -5,7 +5,7 @@ import { toggleSignInModal, toggleJoinModal } from "../../store/scss.action"
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service';
 import { GoogleLogin } from 'react-google-login';
 
-function _SignIn({ toggleSignInModal, signIn, toggleJoinModal, googleLogin }) {
+function _SignIn({ toggleSignInModal, signIn, toggleJoinModal, googleLogin,signUp }) {
 
     const [user, setUser] = useState({ username: "", password: "" });
 
@@ -51,7 +51,7 @@ function _SignIn({ toggleSignInModal, signIn, toggleJoinModal, googleLogin }) {
             }
             const joinedUser = await signUp(tempUser);
             if (!joinedUser) showErrorMsg("Failed google login...");
-            showSuccessMsg(`${ans.username} logged successfuly`);
+            showSuccessMsg(`${tempUser.username} logged successfuly`);
             toggleSignInModal();
         }
     }
@@ -104,7 +104,8 @@ const mapDispatchToProps = {
     signIn,
     toggleSignInModal,
     toggleJoinModal,
-    googleLogin
+    googleLogin,
+    signUp
 }
 
 export const SignIn = connect(mapStateToProps, mapDispatchToProps)(_SignIn)
