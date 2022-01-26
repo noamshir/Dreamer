@@ -1,64 +1,138 @@
 .orders-section {
   width: 100%;
   background-color: #fff;
+
+  .order-item {
+    margin-bottom: 40px;
+    padding: 20px;
+    border: 1px solid #e4e5e7;
+    &.center {
+      justify-content: center;
+    }
+  }
+
   .orders-header {
     padding: 10px 0;
     h1 {
       text-align: center;
       margin: 0;
-      font-size: 2rem;
+      font-size: 1.5rem;
       font-family: work-sans;
-      color: #4a73e8;
+      color: $clr1;
+      text-transform: capitalize;
     }
-    border-bottom: 1px solid $clr4;
+    border: 1px solid $clr4;
   }
   .orders-content {
-    padding: 10px 0;
+    padding: 30px 20px;
 
     .order-preview {
-      align-items: center;
-      justify-content: space-between;
       width: 100%;
-      font-family: work-sans;
-      font-size: 1rem;
-      color: $clr2;
-      padding: 0 5px;
-      border-bottom: 1px solid $clr4;
+      &.eighty {
+        width: 80%;
+      }
+      flex-direction: column;
+      .main {
+        gap: 60px;
+        width: 100%;
+        font-family: work-sans;
+        font-size: 1rem;
+        color: $clr2;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #e4e5e7;
+        margin-bottom: 20px;
+      }
+      .img-container {
+        height: 100px;
+        width: 200px;
+        img {
+          border-radius: 5px;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
       h1,
       h5 {
         margin: 0;
       }
+
+      .inner {
+        gap: 20px;
+      }
       .green {
-        color: $clr1;
+        background-color: $clr1;
       }
-      .blue {
-        color: #4a73e8;
-      }
+
       .red {
-        color: rgba(214, 16, 16, 0.902);
+        background-color: rgba(214, 16, 16, 0.902);
       }
       .user-img {
-        height: 30px;
-        width: 30px;
+        height: 60px;
+        width: 60px;
       }
       .user-info {
+        flex-direction: column;
         align-items: center;
+        justify-content: center;
         gap: 5px;
         h5 {
-          font-size: 1.2rem;
-          font-weight: 400;
+          text-transform: capitalize;
+          font-size: 14px;
+          font-weight: 600;
+        }
+        a {
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
       }
-      .gig-info {
+      .gig-info,
+      .delivery-container {
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
         gap: 10px;
-        img {
-          height: 30px;
-          width: 30px;
-          background-size: cover;
-          cursor: pointer;
-          border-radius: 4px;
+        .price,
+        .delivery-time {
+          color: #abaeb6;
         }
+      }
+    }
+    .status-container {
+      font-family: work-sans;
+      padding: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .status {
+        text-transform: capitalize;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        color: white;
+        height: 40px;
+        width: 130px;
+        font-weight: 500;
+        padding: 0.8em 0.8em;
+        border-radius: 5px;
+        border: none;
+        transition: 0.3s;
+      }
+      .outline {
+        background-color: inherit;
+        color: black;
+        border: 1px solid $clr1;
+      }
+      .button {
+        &.outline {
+          &:hover {
+            background-color: rgb(238, 237, 237);
+          }
+        }
+      }
+      .order-type {
+        color: #abaeb6;
       }
     }
   }
