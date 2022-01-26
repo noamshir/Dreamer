@@ -54,7 +54,7 @@ async function update(gig) {
   }
 }
 
-function _getSortedGigs(gigs, sortBy = 'best selling') {
+function _getSortedGigs(gigs, sortBy = "best selling") {
   switch (sortBy) {
     case "title":
       return gigs.sort(function (a, b) {

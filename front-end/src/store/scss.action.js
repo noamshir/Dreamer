@@ -2,6 +2,7 @@ export function setHome(isHome) {
   return (dispatch) => {
     const action = { type: "SET_HOME", isHome };
     dispatch(action);
+    window.scrollTo(0, 0);
   };
 }
 
@@ -39,27 +40,23 @@ export function setSearchDisplay(isSearchBar) {
   };
 }
 
-export function setBecomeSeller(isBecomeSeller)
-{
+export function setBecomeSeller(isBecomeSeller) {
   return (dispatch) => {
     const action = { type: "setBecomeSeller", isBecomeSeller };
     dispatch(action);
   };
 }
 
-export function toggleSignInModal(isModalSign)
-{
+export function toggleSignInModal(isModalSign) {
   return (dispatch) => {
     const action = { type: "setSigninModal", isModalSign };
     dispatch(action);
   };
 }
 
-export function toggleJoinModal(isJoinModal)
-{
+export function toggleJoinModal(isJoinModal) {
   return (dispatch) => {
     const action = { type: "setJoinModal", isJoinModal };
     dispatch(action);
   };
 }
-

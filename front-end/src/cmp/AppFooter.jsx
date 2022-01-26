@@ -16,7 +16,7 @@ export function AppFooter() {
                     <small>© Dimerr International Ltd. 2022</small>
                 </div>
 
-                <ul className='clean-list'>
+                <ul className='social clean-list'>
                     <li>
                         <a className='clean-link' target="_blank" href="https://www.facebook.com/" >
                             <FacebookRoundedIcon />

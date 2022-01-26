@@ -9,6 +9,7 @@ module.exports = {
   remove,
   update,
   add,
+  getByGoogleId,
 };
 
 async function query() {
@@ -23,6 +24,19 @@ async function query() {
     return users;
   } catch (err) {
     logger.error("cannot find users", err);
+    throw err;
+  }
+}
+
+async function getByGoogleId(googleId) {
+  try {
+    const collection = await dbService.getCollection("user");
+    const user = await collection.findOne({ googleId: googleId });
+    delete user.password;
+    user.createdAt = ObjectId(user._id).getTimestamp();
+    return user;
+  } catch (err) {
+    logger.error(`while finding user ${userId}`, err);
     throw err;
   }
 }

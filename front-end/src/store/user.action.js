@@ -5,6 +5,20 @@ export function signUp(user) {
     var signedUpUser = await userService.signUp(user);
     const action = { type: "SET_USER", user: signedUpUser };
     dispatch(action);
+    return signedUpUser;
+  };
+}
+
+export function googleLogin(googleId) {
+  return async (dispatch) => {
+    try {
+      var loggedGoogleUser = await userService.getGoogleUser(googleId);
+      const action = { type: "SET_USER", user: loggedGoogleUser };
+      dispatch(action);
+      return loggedGoogleUser;
+    } catch (err) {
+      return false;
+    }
   };
 }
 
@@ -27,7 +41,7 @@ export function logout(user) {
 
 export function saveSellerInfo(sellerInfo) {
   return async (dispatch) => {
-    const updatedUser = await userService.saveSellerInfo(sellerInfo)
+    const updatedUser = await userService.saveSellerInfo(sellerInfo);
     const action = { type: "SET_USER", user: updatedUser };
     dispatch(action);
   };
