@@ -4,6 +4,9 @@
     font-size: 0.9rem;
     color: $clr3;
   }
+  .category-headline{
+    text-transform: capitalize;
+  }
 
   h1 {
     font-family: roboto-bold;
@@ -61,6 +64,9 @@
   .select-wrapper {
     div {
       font-family: work-sans;
+      svg{
+        transition: .3s all;
+      }
     }
     em {
       font-family: work-sans;
@@ -81,6 +87,9 @@
     em,
     div {
       font-weight: 500;
+      svg{
+        transition: .3s all;
+      }
     }
     .select-wrapper {
       display: flex;
@@ -209,6 +218,9 @@
   }
   button {
     &.clear-btn {
+      padding:0;
+      display: flex;
+      justify-content: flex-end;
       background-color: inherit;
       border: 0;
       color: #222325;

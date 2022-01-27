@@ -117,11 +117,9 @@ class _Explore extends React.Component {
         if (!gigs) return <Loader />
         var budgetClass = (this.state.isBudgetOpen) ? "open" : "";
         return (
-            <React.Fragment>
-                {!gigs.length ? 'No Services Found For Your Search' :
                     <section className='explore'>
                         <section className="explore-main  max-width-container equal-padding">
-                            {filterBy.category === 'all' ? <h1>All Categories</h1> : <h1>{filterBy.category}</h1>}
+                            <h1 className="category-headline"> {filterBy.category === 'all' ? 'All Categories' : filterBy.category}</h1>
                             <div className="filter-container">
                                 <div className="select-wrapper filters">
                                     <FormControl sx={{ minWidth: 120, margin: 0 }}>
@@ -151,12 +149,12 @@ class _Explore extends React.Component {
                                                             <div className="price-filter flex">
                                                                 <div className="input-wrapper flex column">
                                                                     <label htmlFor="min">Min:
-                                                                     </label>
+                                                                    </label>
                                                                     <input type="text" name="min" onChange={this.handleBudget} placeholder="Any" value={this.state.min} />
                                                                 </div>
                                                                 <div className="input-wrapper flex column">
                                                                     <label htmlFor="max">Max.
-                                                                     </label>
+                                                                    </label>
                                                                     <input type="text" name="max" onChange={this.handleBudget} placeholder="Any" value={this.state.max} />
                                                                 </div>
                                                             </div>
@@ -203,8 +201,6 @@ class _Explore extends React.Component {
                             <GigList gigs={gigs} onGoToDetails={this.onGoToDetails} />
                         </section >
                     </section >
-                }
-            </React.Fragment>
         )
     }
 }

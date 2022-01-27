@@ -50,11 +50,10 @@
         }
       }
     }
-    & li:first-child {
+    & li:first-child,
+    li:last-child {
       color: $clr5;
-    }
-    & li:last-child {
-      padding-right: 10px;
+      padding: 12px 0;
     }
     & li:hover {
       box-shadow: inset 0px -4px 0px $clr1;
@@ -67,8 +66,8 @@
       cursor: pointer;
     }
   }
-  
-    .active {
-      box-shadow: inset 0px -4px 0px $clr1;
-    }
+
+  .active {
+    box-shadow: inset 0px -4px 0px $clr1;
+  }
 }
