@@ -5,7 +5,7 @@ const initialState = {
     txt: "",
     deliveryTime: "",
     budget: "",
-    category: "",
+    category: "all",
     username: "",
   },
   sortBy: "best selling",
@@ -57,6 +57,7 @@ export function gigReducer(state = initialState, action) {
           category: "all",
           username: "",
         },
+        cacategory: "all",
       };
       break;
     default:
