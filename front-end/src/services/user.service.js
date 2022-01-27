@@ -72,8 +72,9 @@ function getLoggedinUser() {
 async function getGoogleUser(googleId) {
   try {
     const user = await httpService.get(`user/google/${googleId}`);
-    if (user)
+    if (user) {
       sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user));
+    }
     return user;
   } catch (err) {
     return false;

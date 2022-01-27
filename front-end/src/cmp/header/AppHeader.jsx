@@ -66,6 +66,12 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
         var flag = !isProfileMenu;
         setMenu(flag);
     }
+    if (user) {
+        socketService.on("find-user", (userid) => {
+            if (user._id === userid) socketService.emit("user-connection", userid);
+        })
+        socketService.emit("set-user-socket", user._id);
+    }
     return <section className={`main-header ${sticky}`}>
         <div id="Header">
             <header className={`header-package dimerr-header ${headerTransparent} logged-out-homepage-header`}>
