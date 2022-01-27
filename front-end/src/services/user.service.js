@@ -66,13 +66,14 @@ async function logout(user) {
 }
 
 function getLoggedinUser() {
-
   return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN));
 }
 
 async function getGoogleUser(googleId) {
   try {
     const user = await httpService.get(`user/google/${googleId}`);
+    if (user)
+      sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user));
     return user;
   } catch (err) {
     return false;
