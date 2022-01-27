@@ -6,7 +6,7 @@ import { UserProfileImg } from '../profile/UserProfileImg'
 export function DetailsHeader({ gig, getUserLevel, owner }) {
 
     return (
-        <div className='details-header' id='Overview'>
+        <div className='details-header inpage-nav' id='Overview'>
             <h1>{gig.title}</h1>
             <div className="owner-info">
                 <UserProfileImg user={owner} isLink={true} />

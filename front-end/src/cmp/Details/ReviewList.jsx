@@ -22,7 +22,7 @@ export function ReviewList({ owner, gig, loadOwner }) {
     }
 
     return (
-        <section className='review-section' id='Reviews'>
+        <section className='review-section inpage-nav' id='Reviews'>
             <div className="stats-container">
                 <div className='left-side-container'>
                     <div className='review-header'>

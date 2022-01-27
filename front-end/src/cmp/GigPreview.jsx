@@ -58,7 +58,7 @@ function _GigPreview({ gig, onGoToDetails, user, setLikedGig }) {
         <section className='gig-preview'>
             <div className="gig-img">
                 <Carousel onGoToDetails={onGoToDetails} gig={gig}>
-                    {gig.imgUrls.map((imgUrl, idx) => <CarouselItem key={idx} imgUrl={imgUrl}></CarouselItem>)}
+                    {gig.imgUrls.slice(0, 5).map((imgUrl, idx) => <CarouselItem key={idx} imgUrl={imgUrl}></CarouselItem>)}
                 </Carousel>
             </div>
             <div className="owner-info">

@@ -30,8 +30,8 @@
     li {
       padding: 12px 10px;
       height: 100%;
-      transition: .3s box-shadow;
-    &:first-child{
+      transition: 0.3s box-shadow;
+      &:first-child {
         padding-left: 0px;
         color: $clr5;
       }
@@ -44,6 +44,10 @@
       }
     }
   }
+}
+
+.inpage-nav {
+  scroll-margin-top: em(50px);
 }
 
 .like-header {
