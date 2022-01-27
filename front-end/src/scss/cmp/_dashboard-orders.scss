@@ -2,9 +2,26 @@
   width: 100%;
   background-color: #fff;
 
+  .second-line {
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+
+    @include for-normal-layout {
+      justify-content: flex-start;
+      flex-direction: row;
+    }
+
+    @include for-normal-header-layout {
+      justify-content: flex-start;
+      flex-direction: row;
+      gap: 60px;
+    }
+  }
+
   .order-item {
     margin-bottom: 40px;
-    padding: 20px;
+    padding: 10px;
     border: 1px solid #e4e5e7;
     &.center {
       justify-content: center;
@@ -21,7 +38,6 @@
       color: $clr1;
       text-transform: capitalize;
     }
-    border: 1px solid $clr4;
   }
   .orders-content {
     padding: 30px 20px;
@@ -30,7 +46,7 @@
       width: 100%;
       flex-direction: column;
       .main {
-        gap: 60px;
+        gap: 20px;
         width: 100%;
         font-family: work-sans;
         font-size: 1rem;
@@ -38,10 +54,27 @@
         padding-bottom: 20px;
         border-bottom: 1px solid #e4e5e7;
         margin-bottom: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        @include for-order-wide-layout {
+          justify-content: flex-start;
+        }
+        @include for-normal-layout {
+          flex-wrap: initial;
+        }
+        @include for-normal-header-layout {
+          gap: 60px;
+        }
       }
       .img-container {
-        height: 100px;
-        width: 200px;
+        height: 50px;
+        width: 100px;
+
+        @include for-normal-header-layout {
+          height: 100px;
+          width: 200px;
+        }
         img {
           border-radius: 5px;
           width: 100%;
@@ -56,6 +89,11 @@
 
       .inner {
         gap: 20px;
+        flex-direction: column-reverse;
+
+        @include for-normal-layout {
+          flex-direction: row;
+        }
       }
 
       .user-img {
@@ -87,6 +125,7 @@
         .price,
         .delivery-time {
           color: #abaeb6;
+          white-space: nowrap;
         }
       }
     }
@@ -94,8 +133,16 @@
       font-family: work-sans;
       padding: 10px 0;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      
+      @include for-narrow-layout{
+        justify-content: space-between;
+        gap: 0px;
+
+      }
       .status {
         text-transform: capitalize;
         justify-content: center;
@@ -114,27 +161,6 @@
           color: $clr3;
         }
       }
-      // .outline {
-      //   background-color: inherit;
-      //   color: black;
-      //   border: 1px solid $clr1;
-      // }
-      // .gray {
-      //   background-color: inherit;
-      //   color: $clr3;
-      //   border-bottom: 1px solid $clr3;
-      // }
-      // .green {
-      //   background-color: $clr1;
-      //   cursor: text;
-      //   border-bottom: 1px solid $clr1;
-      // }
-      // .red {
-      //   border-bottom: tomato solid 1px;
-      //   color: tomato;
-      //   background-color: inherit;
-      //   cursor: text;
-      // }
       .button {
         background-color: #fff;
         &.deactivated {
@@ -160,11 +186,6 @@
         border-radius: 5px;
         border: none;
         transition: 0.3s;
-        // &.outline {
-        //   &:hover {
-        //     background-color: rgb(238, 237, 237);
-        //   }
-        // }
       }
       .order-type {
         color: #abaeb6;

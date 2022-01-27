@@ -78,6 +78,14 @@
   }
 }
 
+//Order mixins
+
+@mixin for-order-wide-layout {
+  @media (min-width: $order-break-wide) {
+    @content;
+  }
+}
+
 @mixin layoutWidth() {
   width: 100%;
   margin: auto;
