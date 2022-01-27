@@ -1,12 +1,10 @@
 import { Link } from 'react-router-dom'
-import { SellerStats } from './SellerStats'
 
-export function SellerDetails({ user, showSellerStats }) {
+export function SellerStats({ user }) {
 
-    if (!showSellerStats)
-        return (
-            <div className="seller-details-container">
-                {user.sellerInfo.sellerDesc && <div className="description-wrapper">
+    return (
+        <div className="seller-stats-container">
+            {/* {user.sellerInfo.sellerDesc && <div className="description-wrapper">
                     <h2>Description</h2>
                     <p className="description">{user.sellerInfo.sellerDesc}</p>
                 </div>}
@@ -18,10 +16,7 @@ export function SellerDetails({ user, showSellerStats }) {
                         })}
                     </ul>
                 </div>
-                }
-            </div>
-        )
-    return (
-        <SellerStats />
+                } */}
+        </div>
     )
 }

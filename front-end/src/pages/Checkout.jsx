@@ -128,7 +128,7 @@ class _Checkout extends React.Component {
                                 <span> {gig.price.toLocaleString("USA", { style: "currency", currency: "USD" })}</span>
                             </li>
                             <li>Service Fee
-                                <span> {(gig.price / 3).toLocaleString("USA", { style: "currency", currency: "USD" })}</span>
+                                <span> {(gig.price * 0.05).toLocaleString("USA", { style: "currency", currency: "USD" })}</span>
                             </li>
                             <li className='bold'>
                                 Total
