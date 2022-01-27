@@ -17,7 +17,7 @@ export function BoardHeader({ switchTo, user, switchToSeller, switchToUser }) {
                 </ul>
             </nav>
             <div className="flex-grow-helper"></div>
-            {user.sellerInfo && <button className="btn" onClick={() => {
+            {user.sellerInfo && <button className="btn-switch-user-view" onClick={() => {
                 if (switchToSeller) switchToSeller(true);
                 else if (switchToUser) switchToUser(false);
             }}>Switch to {switchTo}</button>}

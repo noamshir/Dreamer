@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { BoardHeader } from "./BoardHeader"
 import { UserProfileImg } from "../profile/UserProfileImg"
+import { UserInfoCard } from "../profile/UserInfoCard"
 import { Logo } from "../Logo";
 import img from "../../svg/photo.jpg"
 import { Orders } from "./Orders";
@@ -8,8 +9,8 @@ function _UserBoard({ user, switchToSeller }) {
 
     return <section className="user-board">
         <BoardHeader switchToSeller={switchToSeller} switchTo={"Seller"} user={user} />
-        <div className="user-board-content max-width-container equal-padding flex">
-            <aside className="user-aside flex">
+        <div className="user-board-content max-width-container equal-padding">
+            {/* <aside className="user-aside flex">
                 <div className="small-user-profile flex">
                     <UserProfileImg user={user} isLink={true} />
                     <div className="profile-actions">
@@ -28,8 +29,9 @@ function _UserBoard({ user, switchToSeller }) {
                     <img src={img} alt="" />
                     <button className="btn">Join Us</button>
                 </div>
-            </aside>
+            </aside> */}
             <main className="user-main">
+                <UserInfoCard showSellerStats={false} user={user} />
                 <Orders user={user} type={'buyer'} />
             </main>
         </div>
