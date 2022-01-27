@@ -1,6 +1,6 @@
 .home-reviews {
   margin-top: 20px;
-  .btn-by-idx {
+  .carousel-btn-container {
     justify-content: center;
     button {
       border-radius: 50%;
@@ -16,7 +16,6 @@
     width: 100%;
     cursor: pointer;
     word-wrap: break-word;
-    padding: 5px;
     .indicators {
       z-index: 5;
       top: 50%;
@@ -61,7 +60,7 @@
       color: #fff;
       overflow: hidden;
       position: relative;
-      padding: 10px 0px;
+      padding: 32px 0;
       gap: 20px;
       img {
         width: 90%;

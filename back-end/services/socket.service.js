@@ -27,54 +27,67 @@ function connectSockets(http, session) {
     socket.on("join", (room) => {
       console.log("user joined room", room);
       socket.join(room);
-    })
+    });
     socket.on("join isConnected", (userId) => {
       console.log("user joined room", userId);
       socket.join(userId);
       socket.userId = userId;
-      console.log('emmiting user id', userId);
-      gIo.to(userId).emit(userId)
-    })
+      console.log("emmiting user id", userId);
+      gIo.to(userId).emit(userId);
+    });
     socket.on("leave", (room) => {
       console.log("user left room", room);
       socket.leave(room);
-    })
-    socket.on("add-review", ({ review, ownerId }) => {
-      socket.to(ownerId).emit('add-review', review)
     });
-    socket.on('new room', room => {
+    socket.on("add-review", ({ review, ownerId }) => {
+      socket.to(ownerId).emit("add-review", review);
+    });
+    socket.on("new room", (room) => {
       if (socket.myOrderRoom === room) return;
       if (socket.myOrderRoom) {
-        socket.leave(socket.myOrderRoom)
+        socket.leave(socket.myOrderRoom);
       }
-      socket.join(room)
-      socket.myOrderRoom = room
-    })
+      socket.join(room);
+      socket.myOrderRoom = room;
+    });
 
-    socket.on('user-connected', (userId) => {
-      gIo.to(userId).emit('user-online', userId)
+    socket.on("user-connected", (userId) => {
+      console.log("user online", userId);
+      gIo.to(userId).emit("user-online", userId);
     });
-    socket.on('new order', (order) => {
-      socket.to(order.seller._id).emit('added order', order)
+    socket.on("new order", (order) => {
+      socket.to(order.seller._id).emit("added order", order);
     });
-    socket.on('new status', (order) => {
-      console.log('SOCKET ORDER', order.buyer);
-      socket.to(order.buyer._id).emit('changed status', order)
+    socket.on("new status", (order) => {
+      console.log("SOCKET ORDER", order.buyer);
+      socket.to(order.buyer._id).emit("changed status", order);
     });
+    socket.on('new status msg', (order) => {
+      const msg = order.orderStatus === 'rejected' ? 'Your Order has been cancelled...' : 'Your Order is now in progress!'
+      const isSuccess = order.orderStatus === 'rejected' ? false : true
+      socket.to(order.buyer._id).emit('order status', { msg, isSuccess })
+    })
     socket.on("set-user-socket", (userId) => {
       socket.userId = userId;
       console.log("user logged in", socket.userId);
-      gIo.to(userId).emit('user-online', userId)
+      gIo.to(userId).emit("user-online", userId);
     });
-    socket.on('user-online', (userId) => {
+    socket.on("user-online", (userId) => {
       console.log("user reporting online", userId);
       socket.userId = userId;
-      gIo.to(userId).emit('user-online', userId);
+      gIo.to(userId).emit("user-online", userId);
     });
     socket.on("unset-user-socket", (userId) => {
       console.log("user logged out");
-      gIo.to(userId).emit('user-offline', userId)
       delete socket.userId;
+      gIo.emit("user-offline", userId);
+    });
+    socket.on("isUserConnected", async (userId) => {
+      const userSocket = await _getUserSocket(userId);
+      if (userSocket) gIo.emit("user-connection", userId);
+      else{
+        gIo.emit("find-user", userId);
+      }
     });
   });
 }
@@ -110,16 +123,16 @@ function connectSockets(http, session) {
 //   }
 // }
 
-// async function _getUserSocket(userId) {
-//   const sockets = await _getAllSockets();
-//   const socket = sockets.find((s) => s.userId == userId);
-//   return socket;
-// }
-// async function _getAllSockets() {
-//   // return all Socket instances
-//   const sockets = await gIo.fetchSockets();
-//   return sockets;
-// }
+async function _getUserSocket(userId) {
+  const sockets = await _getAllSockets();
+  const socket = sockets.find((s) => s.userId == userId);
+  return socket;
+}
+async function _getAllSockets() {
+  // return all Socket instances
+  const sockets = await gIo.fetchSockets();
+  return sockets;
+}
 
 // async function _printSockets() {
 //   const sockets = await _getAllSockets();

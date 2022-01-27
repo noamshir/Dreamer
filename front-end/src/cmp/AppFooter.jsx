@@ -9,8 +9,8 @@ export function AppFooter() {
 
 
     return (
-        <section className='app-footer max-width-container equal-padding'>
-            <div className="main-info">
+        <section className='app-footer'>
+            <div className="main-info max-width-container equal-padding">
                 <div className="logo-small-container">
                     <h2>dimerr<span>®</span></h2>
                     <small>© Dimerr International Ltd. 2022</small>

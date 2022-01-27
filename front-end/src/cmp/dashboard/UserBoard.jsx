@@ -1,12 +1,13 @@
 import { connect } from "react-redux";
+
+import img from "../../svg/photo.jpg"
 import { BoardHeader } from "./BoardHeader"
 import { UserProfileImg } from "../profile/UserProfileImg"
 import { UserInfoCard } from "../profile/UserInfoCard"
 import { Logo } from "../Logo";
-import img from "../../svg/photo.jpg"
 import { Orders } from "./Orders";
-function _UserBoard({ user, switchToSeller }) {
 
+function _UserBoard({ user, switchToSeller }) {
     return <section className="user-board">
         <BoardHeader switchToSeller={switchToSeller} switchTo={"Seller"} user={user} />
         <div className="user-board-content max-width-container equal-padding">

@@ -40,6 +40,7 @@ export function OrderPreview({ order, type, user, onChangeStatus }) {
         order.orderStatus = value
         onChangeStatus(order)
         socketService.emit('new status', order)
+        socketService.emit('new status msg', order)
     }
 
     return (

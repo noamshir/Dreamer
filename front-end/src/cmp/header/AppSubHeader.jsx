@@ -22,7 +22,7 @@ function _AppSubHeader(props) {
     useEffect(async () => {
         var ans = await getCategories();
         setCategories(ans);
-        if (props.isExplore) setWatched(props.filterBy.category.toLowerCase())
+        if (props.isExplore || props.filterBy.category.toLowerCase() === 'all') setWatched(props.filterBy.category.toLowerCase())
         return () => {
         }
     }, [props.filterBy.category])

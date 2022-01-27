@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import { useState } from 'react'
 import { GoogleLogin } from 'react-google-login';
 import CloseIcon from '@mui/icons-material/Close';
-
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js';
 import { toggleSignInModal, toggleJoinModal } from "../../store/scss.action"
 import { signUp, googleLogin } from '../../store/user.action.js'
@@ -31,6 +30,7 @@ function _SignUp({ signUp, toggleSignInModal, toggleJoinModal, googleLogin }) {
     }
     const handleGoogleSignUp = async (response) => {
         const googleUser = response.profileObj;
+        console.log(googleUser)
         const ans = await googleLogin(googleUser.googleId);
         if (ans) {
             showSuccessMsg(`${ans.username} logged successfuly`);
@@ -44,6 +44,7 @@ function _SignUp({ signUp, toggleSignInModal, toggleJoinModal, googleLogin }) {
                 imgUrl: googleUser.imageUrl,
                 googleId: googleUser.googleId
             }
+            console.log({tempUser})
             const joinedUser = await signUp(tempUser);
             if (!joinedUser) showErrorMsg("Failed google login...");
             showSuccessMsg(`${tempUser.username} logged successfuly`);

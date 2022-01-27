@@ -63,4 +63,15 @@
 25.1.2022, 20:01:27 - ERROR - Failed to get gigs | {"operationTime":{"$timestamp":"7057205444325933057"},"ok":0,"code":2,"codeName":"BadValue","$clusterTime":{"clusterTime":{"$timestamp":"7057205444325933057"},"signature":{"hash":"g/kM6hNJkCuLqYdpWktn7F4yTCc=","keyId":{"low":2,"high":1632169518,"unsigned":false}}}}
 26/01/2022, 18:20:02 - ERROR - Failed to get google user | {}
 26/01/2022, 18:20:15 - ERROR - Failed to get google user | {}
+<<<<<<< HEAD
 27/01/2022, 17:57:00 - ERROR - Failed to get google user | {}
+=======
+26.1.2022, 18:40:35 - ERROR - Failed to get google user | {}
+27.1.2022, 9:03:33 - ERROR - Failed to get google user | {}
+27/01/2022, 17:54:50 - ERROR - Failed to get google user | {}
+27.1.2022, 17:42:36 - ERROR - Failed to get google user | {}
+27.1.2022, 17:47:26 - ERROR - Failed to get google user | {}
+27.1.2022, 17:48:52 - ERROR - Failed to get google user | {}
+27.1.2022, 17:50:07 - ERROR - Failed to get google user | {}
+27.1.2022, 17:51:34 - ERROR - Failed to get google user | {}
+>>>>>>> 463d42cffa1916f0295ad17b1219497109329577

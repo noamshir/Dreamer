@@ -1,12 +1,18 @@
 .home-page-info {
-  padding: 64px 24px;
   background-color: #f1fdf7;
-  font-family: work-sans;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10%;
+  .container {
+    padding-top: 64px;
+    padding-bottom: 64px;
+    font-family: work-sans;
+    display: flex;
+    flex-direction: column;
+    @include for-wide-layout{
+    flex-direction: row;
+    }
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+  }
 
   .left-side-container,
   .right-side-container {

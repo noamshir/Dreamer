@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { SellerStats } from ''
+import { SellerStats } from './SellerStats'
 
 export function SellerDetails({ user, showSellerStats }) {
 

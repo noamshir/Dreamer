@@ -111,7 +111,7 @@ class _BecomeSeller extends React.Component {
                         <a className='btn clean-link' href="#form">Become a Seller</a>
                     </div>
                 </div>
-                <form className='seller-form  max-width-container equal-padding' onSubmit={this.submit} id='form'>
+                <form className='seller-form in-become-seller-nav  max-width-container equal-padding' onSubmit={this.submit} id='form'>
                     <h2>Personal Info</h2>
                     <p className='title'>Tell us a bit about yourself. This information will appear on your public profile, so that potential buyers can get to know you better.</p>
 

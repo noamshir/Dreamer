@@ -2,10 +2,14 @@ import { userService } from "../services/user.service.js";
 
 export function signUp(user) {
   return async (dispatch) => {
-    var signedUpUser = await userService.signUp(user);
-    const action = { type: "SET_USER", user: signedUpUser };
-    dispatch(action);
-    return signedUpUser;
+    try {
+      var signedUpUser = await userService.signUp(user);
+      const action = { type: "SET_USER", user: signedUpUser };
+      dispatch(action);
+      return signedUpUser;
+    } catch (err) {
+      console.log('err', err)
+    }
   };
 }
 
@@ -24,25 +28,37 @@ export function googleLogin(googleId) {
 
 export function signIn(user) {
   return async (dispatch) => {
-    var loggedUser = await userService.login(user);
-    const action = { type: "SET_USER", user: loggedUser };
-    dispatch(action);
-    return loggedUser;
+    try {
+      var loggedUser = await userService.login(user);
+      const action = { type: "SET_USER", user: loggedUser };
+      dispatch(action);
+      return loggedUser;
+    } catch (err) {
+      console.log('err', err)
+    }
   };
 }
 
 export function logout(user) {
   return async (dispatch) => {
-    await userService.logout(user);
-    const action = { type: "SET_USER", user: null };
-    dispatch(action);
+    try {
+      await userService.logout(user);
+      const action = { type: "SET_USER", user: null };
+      dispatch(action);
+    } catch (err) {
+      console.log('err', err)
+    }
   };
 }
 
 export function saveSellerInfo(sellerInfo) {
   return async (dispatch) => {
-    const updatedUser = await userService.saveSellerInfo(sellerInfo);
-    const action = { type: "SET_USER", user: updatedUser };
-    dispatch(action);
+    try {
+      const updatedUser = await userService.saveSellerInfo(sellerInfo);
+      const action = { type: "SET_USER", user: updatedUser };
+      dispatch(action);
+    } catch (err) {
+      console.log('err', err)
+    }
   };
 }

@@ -2,13 +2,18 @@ import React from "react";
 import { connect } from 'react-redux'
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
+import FilterListIcon from '@mui/icons-material/FilterList';
 import Select from '@mui/material/Select';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import CloseIcon from '@mui/icons-material/Close';
+import { Link } from "react-router-dom";
+
 import { loadGigs, setSort, onSetFilterBy, clearFilters } from '../store/gig.action'
 import { setHome, setExplore, setDetails, setBecomeSeller, setProfile } from '../store/scss.action.js';
 import { GigList } from "../cmp/GigList";
 import { Loader } from '../cmp/utils/Loader';
+import img from '../assets/img/couldnt-found.jpg'
 
 
 const theme = createTheme({
@@ -17,7 +22,7 @@ const theme = createTheme({
             styleOverrides: {
                 select: {
                     padding: ('8px 15px'),
-                    borderRadius: '0px'
+                    borderRadius: '0px',
                 },
             },
         },
@@ -30,7 +35,8 @@ class _Explore extends React.Component {
     state = {
         isBudgetOpen: false,
         min: "",
-        max: ""
+        max: "",
+        isFilterModalOpen: false
     }
 
     componentDidMount() {
@@ -49,6 +55,9 @@ class _Explore extends React.Component {
         }
     }
 
+    componentWillUnmount() {
+        this.props.clearFilters();
+    }
     getFilteredGigs = () => {
         const { filterBy, sortBy } = this.props
         this.props.loadGigs(filterBy, sortBy)
@@ -79,7 +88,7 @@ class _Explore extends React.Component {
     onApplayBudget = () => {
         var { min, max } = this.state;
         if (!min) min = 0;
-        if (!max) max = Infinity
+        if (!max) max = 100000000 //mongo has problems with Infinity!
         const price = {
             min,
             max
@@ -87,6 +96,7 @@ class _Explore extends React.Component {
         const { filterBy } = this.props
         filterBy.price = price;
         this.props.onSetFilterBy({ ['price']: price }, 'price');
+        this.setState(prevState => ({ ...prevState, isBudgetOpen: false }))
     }
 
     handleChange = ({ target }) => {
@@ -114,19 +124,31 @@ class _Explore extends React.Component {
 
     render() {
         const { gigs, filterBy, sortBy } = this.props
+        console.log(filterBy.category);
+        const { isFilterModalOpen } = this.state;
+        var filtersClass = (isFilterModalOpen) ? "open" : "close";
         if (!gigs) return <Loader />
         var budgetClass = (this.state.isBudgetOpen) ? "open" : "";
         return (
             <React.Fragment>
-                {!gigs.length ? 'No Services Found For Your Search' :
+                {!gigs.length ?
+                    <div className='no-gigs-modal'>
+                        <div className='img-container'>
+                            <img src={img} alt='img' />
+                        </div>
+                        <h2>No Services Found For Your Search</h2>
+                        <button className='btn' onClick={this.onClearFilters}>Explore gigs</button>
+                    </div>
+                    :
                     <section className='explore'>
+                        <div className={`main-screen ${filtersClass}`}></div>
                         <section className="explore-main  max-width-container equal-padding">
-                            {filterBy.category === 'all' ? <h1>All Categories</h1> : <h1>{filterBy.category}</h1>}
-                            <div className="filter-container">
+                            <h1 className="category-headline"> {filterBy.category === 'all' ? 'All Categories' : filterBy.category}</h1>
+                            <div className={`filter-container ${filtersClass}`}>
                                 <div className="select-wrapper filters">
                                     <FormControl sx={{ minWidth: 120, margin: 0 }}>
                                         <ThemeProvider theme={theme}>
-                                            <div className="filters-div flex">
+                                            <div className={`filters-div flex`}>
                                                 <Select
                                                     value={filterBy.deliveryTime}
                                                     name='deliveryTime'
@@ -151,12 +173,12 @@ class _Explore extends React.Component {
                                                             <div className="price-filter flex">
                                                                 <div className="input-wrapper flex column">
                                                                     <label htmlFor="min">Min:
-                                                                     </label>
+                                                                    </label>
                                                                     <input type="text" name="min" onChange={this.handleBudget} placeholder="Any" value={this.state.min} />
                                                                 </div>
                                                                 <div className="input-wrapper flex column">
                                                                     <label htmlFor="max">Max.
-                                                                     </label>
+                                                                    </label>
                                                                     <input type="text" name="max" onChange={this.handleBudget} placeholder="Any" value={this.state.max} />
                                                                 </div>
                                                             </div>
@@ -168,11 +190,17 @@ class _Explore extends React.Component {
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </ThemeProvider>
                                     </FormControl>
-                                    <button className="clear-btn" onClick={() => this.onClearFilters()}>Clear Filters</button>
+                                    <div className="action-btns">
+                                        <button className="clear-btn" onClick={() => this.onClearFilters()}>Clear Filters</button>
+                                        <button className="btn applay-filters" onClick={() => this.setState({ isFilterModalOpen: false })}>Apply</button>
+                                    </div>
                                 </div>
+                            </div>
+                            <div className="responsive-btns">
+                                <button onClick={() => { this.setState({ isFilterModalOpen: true }) }} className="btn-filter-modal"><FilterListIcon />Filters</button>
+                                {/* <button className="btn-filter-modal"><FilterListIcon />Sort By</button> */}
                             </div>
                             <div className="inner-container">
                                 <div className="services-count">{gigs.length} services available</div>
@@ -201,9 +229,9 @@ class _Explore extends React.Component {
                                 </div>
                             </div>
                             <GigList gigs={gigs} onGoToDetails={this.onGoToDetails} />
+                            {isFilterModalOpen && <button onClick={() => this.setState({ isFilterModalOpen: false })} className="close-modal"><CloseIcon /></button>}
                         </section >
-                    </section >
-                }
+                    </section >}
             </React.Fragment>
         )
     }
