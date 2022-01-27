@@ -1,11 +1,16 @@
-
+import WidgetsIcon from '@mui/icons-material/Widgets';
+import { useState } from 'react';
 
 export function BoardHeader({ switchTo, user, switchToSeller, switchToUser }) {
+    const [classNav, setClass] = useState(false)
 
     return <section className="board-header">
         <div className="board-content flex max-width-container equal-padding">
             <nav className="board-nav">
-                <ul className="flex clean-list">
+                <div className="hamburger" onClick={() => {
+                    setClass(!classNav)
+                }}><WidgetsIcon /></div>
+                <ul className={classNav ? "flex clean-list open" : "flex clean-list"}>
                     <li>Dashboard</li>
                     <li>Analytics</li>
                     <li>Messeges</li>

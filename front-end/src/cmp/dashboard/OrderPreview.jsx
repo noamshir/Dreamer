@@ -53,13 +53,15 @@ export function OrderPreview({ order, type, user, onChangeStatus }) {
                         <UserProfileImg isLink={true} user={order[showingType]} />
                     </div>
                 </div>
-                <div className='gig-info flex'>
-                    <span className='price'>Price</span>
-                    <span>{order.gig.price.toLocaleString("USA", { style: "currency", currency: "USD" })}</span>
-                </div>
-                <div className="delivery-container flex">
-                    <span className='delivery-time'>Delivery Time</span>
-                    <span className='days'>{order.gig.daysToMake === 1 ? `${order.gig.daysToMake} day` : `${order.gig.daysToMake} days`}</span>
+                <div className="second-line flex">
+                    <div className='gig-info flex'>
+                        <span className='price'>Price</span>
+                        <span>{order.gig.price.toLocaleString("USA", { style: "currency", currency: "USD" })}</span>
+                    </div>
+                    <div className="delivery-container flex">
+                        <span className='delivery-time'>Delivery Time</span>
+                        <span className='days'>{order.gig.daysToMake === 1 ? `${order.gig.daysToMake} day` : `${order.gig.daysToMake} days`}</span>
+                    </div>
                 </div>
             </div>
             <div className="status-container">
