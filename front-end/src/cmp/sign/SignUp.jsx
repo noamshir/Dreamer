@@ -4,6 +4,8 @@ import { signUp,googleLogin } from '../../store/user.action.js'
 import { toggleSignInModal, toggleJoinModal } from "../../store/scss.action"
 import { GoogleLogin } from 'react-google-login';
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js';
+import CloseIcon from '@mui/icons-material/Close';
+
 function _SignUp({ signUp, toggleSignInModal, toggleJoinModal,googleLogin }) {
 
     const [user, setUser] = useState({ fullname: "", username: "", password: "" });
