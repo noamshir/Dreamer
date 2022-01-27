@@ -22,7 +22,7 @@ function _AppSubHeader(props) {
     useEffect(async () => {
         var ans = await getCategories();
         setCategories(ans);
-        setWatched(props.filterBy.category.toLowerCase())
+        if (props.isExplore) setWatched(props.filterBy.category.toLowerCase())
         return () => {
         }
     }, [props.filterBy.category])
@@ -38,19 +38,18 @@ function _AppSubHeader(props) {
         props.onSetFilterBy({ category }, 'category')
         props.history.push(`/explore?category=${category}`)
     }
-
     if (!categories.length) return <span></span>;
     return <header className={`sub-header ${sticky} ${display}`}>
         <nav className={`sub-header-content max-width-container equal-padding flex`}>
             <ul className="categories flex clean-list">
-                <li className={isWatched === 'all' ? `medium active` : 'medium'} onClick={() => {
+                <li className={(isWatched === 'all' && props.isExplore) ? `medium active` : 'medium'} onClick={() => {
                     onSetCategory()
                 }}><span className="categorie-nav">All</span></li>
                 {categories && categories.map((category, idx) => {
                     var className;
                     if (idx >= 0 && idx < 4) className = `medium`;
                     else if (idx >= 4 && idx < 7) className = 'large';
-                    return <li key={idx} className={isWatched === category ? `${className} active` : className} onClick={() => {
+                    return <li key={idx} className={(isWatched === category && props.isExplore) ? `${className} active` : className} onClick={() => {
                         onSetCategory(category)
                     }}><span className="categorie-nav">{category}</span></li>
                 })}

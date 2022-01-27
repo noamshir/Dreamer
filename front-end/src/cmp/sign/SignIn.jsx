@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import { useState } from 'react'
-import { signIn, googleLogin } from '../../store/user.action.js';
+import { signIn, googleLogin,signUp} from '../../store/user.action.js';
 import { toggleSignInModal, toggleJoinModal } from "../../store/scss.action"
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service';
 import { GoogleLogin } from 'react-google-login';
+import CloseIcon from '@mui/icons-material/Close';
 
-function _SignIn({ toggleSignInModal, signIn, toggleJoinModal, googleLogin }) {
+function _SignIn({ toggleSignInModal, signIn, toggleJoinModal, googleLogin,signUp }) {
 
     const [user, setUser] = useState({ username: "", password: "" });
 
@@ -41,10 +42,23 @@ function _SignIn({ toggleSignInModal, signIn, toggleJoinModal, googleLogin }) {
             showSuccessMsg(`${ans.username} logged successfuly`);
             toggleSignInModal();
         }
-        else showErrorMsg("Failed google login...");
+        else {
+            var tempUser = {
+                fullname: googleUser.name,
+                username: googleUser.email,
+                password: "secret",
+                imgUrl: googleUser.imageUrl,
+                googleId: googleUser.googleId
+            }
+            const joinedUser = await signUp(tempUser);
+            if (!joinedUser) showErrorMsg("Failed google login...");
+            showSuccessMsg(`${tempUser.username} logged successfuly`);
+            toggleSignInModal();
+        }
     }
     return (
         <section className="sign-modal">
+            <div className='btn-close-sign' onClick={() => toggleSignInModal(false)}><CloseIcon /></div>
             <div className="modal-content">
                 <header >
                     <h1 className="modal-title">Sign in to dimerr</h1>
@@ -79,7 +93,7 @@ function _SignIn({ toggleSignInModal, signIn, toggleJoinModal, googleLogin }) {
                 </div>
             </footer>
 
-        </section>
+        </section >
     )
 }
 
@@ -92,7 +106,8 @@ const mapDispatchToProps = {
     signIn,
     toggleSignInModal,
     toggleJoinModal,
-    googleLogin
+    googleLogin,
+    signUp
 }
 
 export const SignIn = connect(mapStateToProps, mapDispatchToProps)(_SignIn)

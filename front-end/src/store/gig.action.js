@@ -25,7 +25,15 @@ export function onSetFilterBy(filterBy, field) {
     return (dispatch) => {
         const action = { type: 'SET_FILTERBY_FIELD', field, value: filterBy[field] }
         dispatch(action)
-        return Promise.resolve();
+        // return Promise.resolve();
+    }
+}
+
+export function clearFilters()
+{
+    return (dispatch) => {
+        const action = { type: 'CLEAR_FILTERBY'}
+        dispatch(action)
     }
 }
 
@@ -33,7 +41,7 @@ export function setSort(value) {
     return (dispatch) => {
         const action = { type: 'SET_SORT', value }
         dispatch(action)
-        return Promise.resolve();
+        // return Promise.resolve();
     }
 }
 

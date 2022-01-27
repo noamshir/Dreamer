@@ -4,8 +4,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-
-import { loadGigs, setSort, onSetFilterBy } from '../store/gig.action'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { loadGigs, setSort, onSetFilterBy, clearFilters } from '../store/gig.action'
 import { setHome, setExplore, setDetails, setBecomeSeller, setProfile } from '../store/scss.action.js';
 import { GigList } from "../cmp/GigList";
 import { Loader } from '../cmp/utils/Loader';
@@ -29,8 +29,8 @@ class _Explore extends React.Component {
 
     state = {
         isBudgetOpen: false,
-        min: 0,
-        max: Infinity
+        min: "",
+        max: ""
     }
 
     componentDidMount() {
@@ -77,7 +77,9 @@ class _Explore extends React.Component {
     }
 
     onApplayBudget = () => {
-        const { min, max } = this.state;
+        var { min, max } = this.state;
+        if (!min) min = 0;
+        if (!max) max = Infinity
         const price = {
             min,
             max
@@ -103,6 +105,13 @@ class _Explore extends React.Component {
         this.props.history.push(`/explore/${gigId}`)
     }
 
+    onClearFilters = async () => {
+        this.props.clearFilters();
+        const { filterBy } = this.props
+        await this.props.loadGigs(filterBy, {})
+        this.setState({ min: "", max: "", isBudgetOpen: false })
+    }
+
     render() {
         const { gigs, filterBy, sortBy } = this.props
         if (!gigs) return <Loader />
@@ -115,7 +124,7 @@ class _Explore extends React.Component {
                             {filterBy.category === 'all' ? <h1>All Categories</h1> : <h1>{filterBy.category}</h1>}
                             <div className="filter-container">
                                 <div className="select-wrapper filters">
-                                    <FormControl sx={{ m: 1, minWidth: 120, margin: 0 }}>
+                                    <FormControl sx={{ minWidth: 120, margin: 0 }}>
                                         <ThemeProvider theme={theme}>
                                             <div className="filters-div flex">
                                                 <Select
@@ -135,7 +144,7 @@ class _Explore extends React.Component {
                                                 </Select>
                                                 <div className="budget-div">
                                                     <div onClick={() => this.toggleBudget()} className="budget-select">
-                                                        Budget <span className={budgetClass}>^</span>
+                                                        <span className="text">Budget</span>  <span className={`arrow ${budgetClass}`}><ArrowDropDownIcon /></span>
                                                     </div>
                                                     <div className={`budget-content ${budgetClass}`}>
                                                         <div className="budget-filter">
@@ -143,12 +152,12 @@ class _Explore extends React.Component {
                                                                 <div className="input-wrapper flex column">
                                                                     <label htmlFor="min">Min:
                                                                      </label>
-                                                                    <input type="text" name="min" onChange={this.handleBudget} placeholder="Any" />
+                                                                    <input type="text" name="min" onChange={this.handleBudget} placeholder="Any" value={this.state.min} />
                                                                 </div>
                                                                 <div className="input-wrapper flex column">
                                                                     <label htmlFor="max">Max.
                                                                      </label>
-                                                                    <input type="text" name="max" onChange={this.handleBudget} placeholder="Any" />
+                                                                    <input type="text" name="max" onChange={this.handleBudget} placeholder="Any" value={this.state.max} />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -162,7 +171,7 @@ class _Explore extends React.Component {
 
                                         </ThemeProvider>
                                     </FormControl>
-                                    <button className="clear-btn">Clear Filters</button>
+                                    <button className="clear-btn" onClick={() => this.onClearFilters()}>Clear Filters</button>
                                 </div>
                             </div>
                             <div className="inner-container">
@@ -172,10 +181,11 @@ class _Explore extends React.Component {
                                         Sort by
                                     </span>
                                     <div className="select-wrapper">
-                                        <FormControl sx={{ m: 1, minWidth: 120 }}>
+                                        <FormControl className="sort-form" sx={{ minWidth: 120 }}>
                                             <Select
                                                 value={sortBy}
                                                 name='sortBy'
+                                                className="sort-by-select"
                                                 onChange={this.handleChange}
                                                 displayEmpty
                                                 inputProps={{ 'aria-label': 'Without label' }}
@@ -220,7 +230,8 @@ const mapDispatchToProps = {
     setBecomeSeller,
     setProfile,
     onSetFilterBy,
-    setSort
+    setSort,
+    clearFilters
 };
 
 

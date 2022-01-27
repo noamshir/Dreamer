@@ -7,7 +7,7 @@ export function AboutGig({ gig }) {
 
 
     return (
-        <div className='about-gig' id="AboutThisGig">
+        <div className='about-gig inpage-nav' id="AboutThisGig">
             <h2>About this gig</h2>
 
             <p className='gig-desc'>
