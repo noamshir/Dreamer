@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { SellerStats } from './SellerStats'
+import { SellerStats } from '../dashboard/SellerStats'
 
 export function SellerDetails({ user, showSellerStats }) {
 
@@ -21,6 +21,7 @@ export function SellerDetails({ user, showSellerStats }) {
                 }
             </div>
         )
+
     return (
         <SellerStats />
     )

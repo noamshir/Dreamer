@@ -12,7 +12,6 @@ export function UserProfileImg({ user, isLink, closeMenu, toggleMenu, setIsOnlin
     const [connectedClass, setConnectedClass] = useState('')
 
     useEffect(() => {
-        console.log("did mount...");
         setSockets();
         return () => {
             socketService.off(SOCKET_EMIT_USER_ONLINE)
@@ -21,16 +20,13 @@ export function UserProfileImg({ user, isLink, closeMenu, toggleMenu, setIsOnlin
     }, [])
 
     const setSockets = () => {
-        console.log(user._id, "is listening")
         socketService.emit('isUserConnected', user._id)
         socketService.on(SOCKET_EMIT_USER_OFFLINE, (userId) => {
-            console.log("user loged out...", user)
             if (setIsOnline && user?._id === userId) setIsOnline(false);
             else if (user?._id === userId) setConnectedClass('');
         })
         // socketService.emit(SOCKET_EMIT_JOIN_IS_CONNECTED, user._id)
         socketService.on('user-connection', (id) => {
-            console.log(user);
             if (id === user._id) {
                 if (setIsOnline) setIsOnline(true);
                 setConnectedClass('connection-dot')
@@ -44,7 +40,6 @@ export function UserProfileImg({ user, isLink, closeMenu, toggleMenu, setIsOnlin
         })
     }
     socketService.on(SOCKET_EMIT_USER_OFFLINE, (userId) => {
-        console.log("user loged outside of func...", user)
         if (setIsOnline && user?._id === userId) setIsOnline(false);
         else if (user?._id === userId) setConnectedClass('');
     })

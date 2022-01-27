@@ -43,7 +43,6 @@ class _Orders extends React.Component {
     render() {
 
         const { user } = this.props
-        console.log('user:', user);
         const { orders } = this.state
         if (!orders) return <React.Fragment></React.Fragment>
         return (
