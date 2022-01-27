@@ -17,7 +17,7 @@ import {
     SOCKET_EMIT_LEAVE,
 } from "../../services/socket.service";
 
-import { showSuccessMsg } from '../../services/event-bus.service'
+import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
 function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpModal, openSignInModal, user, logout, openMenu }) {
     const [isProfileMenu, setMenu] = useState(false);
     var headerTransparent = "";
@@ -31,9 +31,11 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
         socketService.on(user._id, () => {
             socketService.emit(SOCKET_EMIT_USER_CONNECTED, user._id);
         });
+        socketService.on('order status', onShowMsg)
         return () => {
             socketService.emit(SOCKET_EMIT_LEAVE, user._id)
             socketService.off(user._id)
+            socketService.off('order status')
         }
     }, [user])
 
@@ -48,7 +50,9 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
         searchBar = ""
         if (isSearchBar) searchBar = "show-bar"
     }
-
+    const onShowMsg = ({ msg, isSuccess }) => {
+        isSuccess ? showSuccessMsg(msg) : showErrorMsg(msg)
+    }
     const onLogout = async () => {
         await logout(user);
         showSuccessMsg("user logged out!");
@@ -84,7 +88,7 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
                                     </React.Fragment> :
                                     <React.Fragment>
                                         <li className="display-from-size-small profile-container">
-                                            <UserProfileImg user={user} isLink={false} toggleMenu={onToggleMenu} ></UserProfileImg>
+                                            <UserProfileImg user={user} isLink={false} toggleMenu={onToggleMenu} dotClass='dot-bottom' ></UserProfileImg>
                                             {isProfileMenu && <ProfileMenu onLogout={onLogout} user={user} closeMenu={onToggleMenu} />}
                                         </li>
                                     </React.Fragment>

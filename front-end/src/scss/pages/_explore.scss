@@ -350,3 +350,19 @@
     }
   }
 }
+.no-gigs-modal {
+  display: flex;
+  height: 80vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: work-sans;
+  color: #404145;
+  .img-container {
+    height: 55vh;
+    img {
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}

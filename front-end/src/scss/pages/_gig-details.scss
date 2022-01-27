@@ -36,13 +36,16 @@
     top: 70px;
     right: 32px;
     min-width: 300px;
-
+    
     &.in-details {
       display: none;
     }
     &.aside {
       display: block;
     }
+  }
+  @include for-order-wide-layout{
+    min-width: 400px;
   }
   @include for-extra-wide-layout {
     max-width: 400px;
@@ -54,6 +57,9 @@
 
   .order-title {
     font-size: 1.1rem;
+    @include for-wide-layout {
+      width: 25ch;
+    }
   }
   .order-subtitle {
     font-size: 1rem;
@@ -157,7 +163,7 @@
     transform: scale(1.04);
   }
 
-  .btn-by-idx {
+  .carousel-btn-container {
     display: flex;
     align-items: center;
     justify-content: center;

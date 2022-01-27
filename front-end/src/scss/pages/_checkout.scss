@@ -7,11 +7,11 @@
   @include for-normal-layout {
     gap: 40px;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-evenly;
   }
 
   @include for-order-wide-layout {
-    gap: 0px;
+    gap: 60px;
   }
   .bold {
     font-weight: 700;
@@ -24,21 +24,12 @@
   }
 
   .right-side-container {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-
-    @include for-normal-layout {
-      width: 40%;
-    }
     .order-modal {
-      width: 100%;
       margin-bottom: 50px;
 
       @include for-normal-layout {
         margin-bottom: 0;
-        max-width: 340px;
+        width: 300px;
         top: 0;
       }
     }

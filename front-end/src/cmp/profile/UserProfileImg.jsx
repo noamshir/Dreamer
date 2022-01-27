@@ -8,7 +8,7 @@ import {
     SOCKET_EMIT_LEAVE
 } from "../../services/socket.service";
 
-export function UserProfileImg({ user, isLink, closeMenu, toggleMenu, setIsOnline = false }) {
+export function UserProfileImg({ user, isLink, closeMenu, toggleMenu, setIsOnline = false, dotClass }) {
     const [connectedClass, setConnectedClass] = useState('')
 
     useEffect(() => {
@@ -32,7 +32,6 @@ export function UserProfileImg({ user, isLink, closeMenu, toggleMenu, setIsOnlin
             else if (user?._id === userId) setConnectedClass('');
         })
         socketService.emit(SOCKET_EMIT_JOIN_IS_CONNECTED, user._id)
-
     }
     if (!isLink) {
         return (
@@ -41,11 +40,11 @@ export function UserProfileImg({ user, isLink, closeMenu, toggleMenu, setIsOnlin
             }}>
                 {user.imgUrl ?
                     <div className="user-img" style={{ backgroundImage: `url(${user.imgUrl})` }}>
-                        <div className={connectedClass}></div>
+                        <div className={`${connectedClass} ${dotClass}`}></div>
                     </div>
                     : <div className="user-img">
                         <span className="spanclass">{user.username?.charAt(0)}</span>
-                        <div className={connectedClass}></div>
+                        <div className={`${connectedClass} ${dotClass}`}></div>
                     </div>}
             </div>
         )

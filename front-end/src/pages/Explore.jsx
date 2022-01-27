@@ -6,11 +6,14 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import Select from '@mui/material/Select';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import CloseIcon from '@mui/icons-material/Close';
+import { Link } from "react-router-dom";
+
 import { loadGigs, setSort, onSetFilterBy, clearFilters } from '../store/gig.action'
 import { setHome, setExplore, setDetails, setBecomeSeller, setProfile } from '../store/scss.action.js';
 import { GigList } from "../cmp/GigList";
 import { Loader } from '../cmp/utils/Loader';
-import CloseIcon from '@mui/icons-material/Close';
+import img from '../assets/img/couldnt-found.jpg'
 
 
 const theme = createTheme({
@@ -127,98 +130,109 @@ class _Explore extends React.Component {
         if (!gigs) return <Loader />
         var budgetClass = (this.state.isBudgetOpen) ? "open" : "";
         return (
-            <section className='explore'>
-                <div className={`main-screen ${filtersClass}`}></div>
-                <section className="explore-main  max-width-container equal-padding">
-                    <h1 className="category-headline"> {filterBy.category === 'all' ? 'All Categories' : filterBy.category}</h1>
-                    <div className={`filter-container ${filtersClass}`}>
-                        <div className="select-wrapper filters">
-                            <FormControl sx={{ minWidth: 120, margin: 0 }}>
-                                <ThemeProvider theme={theme}>
-                                    <div className={`filters-div flex`}>
-                                        <Select
-                                            value={filterBy.deliveryTime}
-                                            name='deliveryTime'
-                                            onChange={this.handleFilter}
-                                            displayEmpty
-                                            className='delivery select'
-                                            inputProps={{ 'aria-label': 'Without label' }}
-                                        >
-                                            <MenuItem value=''>
-                                                <em>Delivery Time</em>
-                                            </MenuItem>
-                                            <MenuItem value={1}>Express 24H</MenuItem>
-                                            <MenuItem value={3}>Up to 3 days</MenuItem>
-                                            <MenuItem value={7}>Up to 7 days</MenuItem>
-                                        </Select>
-                                        <div className="budget-div">
-                                            <div onClick={() => this.toggleBudget()} className="budget-select">
-                                                <span className="text">Budget</span>  <span className={`arrow ${budgetClass}`}><ArrowDropDownIcon /></span>
-                                            </div>
-                                            <div className={`budget-content ${budgetClass}`}>
-                                                <div className="budget-filter">
-                                                    <div className="price-filter flex">
-                                                        <div className="input-wrapper flex column">
-                                                            <label htmlFor="min">Min:
-                                                            </label>
-                                                            <input type="text" name="min" onChange={this.handleBudget} placeholder="Any" value={this.state.min} />
+            <React.Fragment>
+                {!gigs.length ?
+                    <div className='no-gigs-modal'>
+                        <div className='img-container'>
+                            <img src={img} alt='img' />
+                        </div>
+                        <h2>No Services Found For Your Search</h2>
+                        <button className='btn' onClick={this.onClearFilters}>Explore gigs</button>
+                    </div>
+                    :
+                    <section className='explore'>
+                        <div className={`main-screen ${filtersClass}`}></div>
+                        <section className="explore-main  max-width-container equal-padding">
+                            <h1 className="category-headline"> {filterBy.category === 'all' ? 'All Categories' : filterBy.category}</h1>
+                            <div className={`filter-container ${filtersClass}`}>
+                                <div className="select-wrapper filters">
+                                    <FormControl sx={{ minWidth: 120, margin: 0 }}>
+                                        <ThemeProvider theme={theme}>
+                                            <div className={`filters-div flex`}>
+                                                <Select
+                                                    value={filterBy.deliveryTime}
+                                                    name='deliveryTime'
+                                                    onChange={this.handleFilter}
+                                                    displayEmpty
+                                                    className='delivery select'
+                                                    inputProps={{ 'aria-label': 'Without label' }}
+                                                >
+                                                    <MenuItem value=''>
+                                                        <em>Delivery Time</em>
+                                                    </MenuItem>
+                                                    <MenuItem value={1}>Express 24H</MenuItem>
+                                                    <MenuItem value={3}>Up to 3 days</MenuItem>
+                                                    <MenuItem value={7}>Up to 7 days</MenuItem>
+                                                </Select>
+                                                <div className="budget-div">
+                                                    <div onClick={() => this.toggleBudget()} className="budget-select">
+                                                        <span className="text">Budget</span>  <span className={`arrow ${budgetClass}`}><ArrowDropDownIcon /></span>
+                                                    </div>
+                                                    <div className={`budget-content ${budgetClass}`}>
+                                                        <div className="budget-filter">
+                                                            <div className="price-filter flex">
+                                                                <div className="input-wrapper flex column">
+                                                                    <label htmlFor="min">Min:
+                                                                    </label>
+                                                                    <input type="text" name="min" onChange={this.handleBudget} placeholder="Any" value={this.state.min} />
+                                                                </div>
+                                                                <div className="input-wrapper flex column">
+                                                                    <label htmlFor="max">Max.
+                                                                    </label>
+                                                                    <input type="text" name="max" onChange={this.handleBudget} placeholder="Any" value={this.state.max} />
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div className="input-wrapper flex column">
-                                                            <label htmlFor="max">Max.
-                                                            </label>
-                                                            <input type="text" name="max" onChange={this.handleBudget} placeholder="Any" value={this.state.max} />
+                                                        <div className="budget-btns flex">
+                                                            <button className="close-btn" onClick={() => this.toggleBudget()}>close</button>
+                                                            <button className="btn" onClick={this.onApplayBudget}>Apply</button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="budget-btns flex">
-                                                    <button className="close-btn" onClick={() => this.toggleBudget()}>close</button>
-                                                    <button className="btn" onClick={this.onApplayBudget}>Apply</button>
-                                                </div>
                                             </div>
-                                        </div>
+                                        </ThemeProvider>
+                                    </FormControl>
+                                    <div className="action-btns">
+                                        <button className="clear-btn" onClick={() => this.onClearFilters()}>Clear Filters</button>
+                                        <button className="btn applay-filters" onClick={() => this.setState({ isFilterModalOpen: false })}>Apply</button>
                                     </div>
-                                </ThemeProvider>
-                            </FormControl>
-                            <div className="action-btns">
-                                <button className="clear-btn" onClick={() => this.onClearFilters()}>Clear Filters</button>
-                                <button className="btn applay-filters" onClick={() => this.setState({ isFilterModalOpen: false })}>Apply</button>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div className="responsive-btns">
-                        <button onClick={() => { this.setState({ isFilterModalOpen: true }) }} className="btn-filter-modal"><FilterListIcon />Filters</button>
-                        {/* <button className="btn-filter-modal"><FilterListIcon />Sort By</button> */}
-                    </div>
-                    <div className="inner-container">
-                        <div className="services-count">{gigs.length} services available</div>
-                        <div className="container">
-                            <span className='sort-label'>
-                                Sort by
-                            </span>
-                            <div className="select-wrapper">
-                                <FormControl className="sort-form" sx={{ minWidth: 120 }}>
-                                    <Select
-                                        value={sortBy}
-                                        name='sortBy'
-                                        className="sort-by-select"
-                                        onChange={this.handleChange}
-                                        displayEmpty
-                                        inputProps={{ 'aria-label': 'Without label' }}
-                                    >
-                                        <MenuItem value="best selling">
-                                            <em>Best Selling</em>
-                                        </MenuItem>
-                                        <MenuItem value={'title'}>Title</MenuItem>
-                                        <MenuItem value={'price'}>Price</MenuItem>
-                                    </Select>
-                                </FormControl>
+                            <div className="responsive-btns">
+                                <button onClick={() => { this.setState({ isFilterModalOpen: true }) }} className="btn-filter-modal"><FilterListIcon />Filters</button>
+                                {/* <button className="btn-filter-modal"><FilterListIcon />Sort By</button> */}
                             </div>
-                        </div>
-                    </div>
-                    <GigList gigs={gigs} onGoToDetails={this.onGoToDetails} />
-                    {isFilterModalOpen && <button onClick={() => this.setState({ isFilterModalOpen: false })} className="close-modal"><CloseIcon /></button>}
-                </section >
-            </section >
+                            <div className="inner-container">
+                                <div className="services-count">{gigs.length} services available</div>
+                                <div className="container">
+                                    <span className='sort-label'>
+                                        Sort by
+                                    </span>
+                                    <div className="select-wrapper">
+                                        <FormControl className="sort-form" sx={{ minWidth: 120 }}>
+                                            <Select
+                                                value={sortBy}
+                                                name='sortBy'
+                                                className="sort-by-select"
+                                                onChange={this.handleChange}
+                                                displayEmpty
+                                                inputProps={{ 'aria-label': 'Without label' }}
+                                            >
+                                                <MenuItem value="best selling">
+                                                    <em>Best Selling</em>
+                                                </MenuItem>
+                                                <MenuItem value={'title'}>Title</MenuItem>
+                                                <MenuItem value={'price'}>Price</MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                    </div>
+                                </div>
+                            </div>
+                            <GigList gigs={gigs} onGoToDetails={this.onGoToDetails} />
+                            {isFilterModalOpen && <button onClick={() => this.setState({ isFilterModalOpen: false })} className="close-modal"><CloseIcon /></button>}
+                        </section >
+                    </section >}
+            </React.Fragment>
         )
     }
 }
