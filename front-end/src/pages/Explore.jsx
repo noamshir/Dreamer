@@ -187,7 +187,6 @@ class _Explore extends React.Component {
                     </div>
                     <div className="responsive-btns">
                         <button onClick={() => { this.setState({ isFilterModalOpen: true }) }} className="btn-filter-modal"><FilterListIcon />Filters</button>
-                        {/* <button className="btn-filter-modal"><FilterListIcon />Sort By</button> */}
                     </div>
                     <div className="inner-container">
                         <div className="services-count">{gigs.length} services available</div>
