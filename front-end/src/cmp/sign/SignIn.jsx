@@ -58,9 +58,7 @@ function _SignIn({ toggleSignInModal, signIn, toggleJoinModal, googleLogin,signU
     }
     return (
         <section className="sign-modal">
-            <div className='btn-close-sign' onClick={() => toggleSignInModal(false)}>
-                <CloseIcon />
-                </div>
+            <div className='btn-close-sign' onClick={() => toggleSignInModal(false)}><CloseIcon /></div>
             <div className="modal-content">
                 <header >
                     <h1 className="modal-title">Sign in to dimerr</h1>
