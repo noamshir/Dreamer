@@ -120,7 +120,7 @@
       .delivery-container {
         flex-direction: column;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
         gap: 10px;
         .price,
         .delivery-time {
@@ -137,11 +137,10 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 10px;
-      
-      @include for-narrow-layout{
+
+      @include for-narrow-layout {
         justify-content: space-between;
         gap: 0px;
-
       }
       .status {
         text-transform: capitalize;
