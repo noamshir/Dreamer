@@ -5,35 +5,51 @@ import { orderService } from "../services/order.service";
 
 export function loadOrders(userId, type) {
     return async (dispatch) => {
-        const userOrders = await orderService.query(userId, type);
-        const action = { type: 'SET_ORDERS', orders: userOrders };
-        dispatch(action)
+        try {
+            const userOrders = await orderService.query(userId, type);
+            const action = { type: 'SET_ORDERS', orders: userOrders };
+            dispatch(action)
+        } catch (err) {
+            console.log('err', err)
+        }
     }
 }
 
 export function addOrder(gig, user, owner) {
     return async (dispatch) => {
-        const savedOrder = await orderService.fixOrder(gig, user, owner)
-        const action = { type: 'ADD_ORDER', order: savedOrder }
-        dispatch(action)
-        return Promise.resolve(savedOrder)
+        try {
+            const savedOrder = await orderService.saveOrder(gig, user, owner)
+            const action = { type: 'ADD_ORDER', order: savedOrder }
+            dispatch(action)
+            return savedOrder
+        } catch (err) {
+            console.log('err', err)
+        }
     }
 }
 
 export function updateOrder(order) {
     return async (dispatch) => {
-        const savedOrder = await orderService.save(order)
-        const action = { type: 'UPDATE_ORDER', order: savedOrder };
-        dispatch(action)
-        return Promise.resolve(savedOrder)
+        try {
+            const savedOrder = await orderService.save(order)
+            const action = { type: 'UPDATE_ORDER', order: savedOrder };
+            dispatch(action)
+            return savedOrder
+        } catch (err) {
+            console.log('err', err)
+        }
     }
 }
 
 export function remove(orderId) {
     return async (dispatch) => {
-        await orderService.remove(orderId)
-        const action = { type: 'REMOVE_ORDER', orderId }
-        dispatch(action)
+        try {
+            await orderService.remove(orderId)
+            const action = { type: 'REMOVE_ORDER', orderId }
+            dispatch(action)
+        } catch (err) {
+            console.log('err', err)
+        }
     }
 }
 

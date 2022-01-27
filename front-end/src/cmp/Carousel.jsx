@@ -60,7 +60,7 @@ export function Carousel({ gig, onGoToDetails, isDetails, children }) {
                     })}
                 </div>
             </div>
-            <div className="btn-by-idx">
+            <div className="carousel-btn-container">
                 {React.Children.map(children, (child, index) => {
                     return (
                         <button

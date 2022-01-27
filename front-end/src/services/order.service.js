@@ -16,7 +16,7 @@ export const orderService = {
   getById,
   save,
   remove,
-  fixOrder,
+  saveOrder,
   changeStatus
 };
 
@@ -51,7 +51,7 @@ async function changeStatus(order) {
   return updatedOrder
 }
 
-async function fixOrder(gig, user, owner) {
+async function saveOrder(gig, user, owner) {
   const order = {
     buyer: {
       imgUrl: user.imgUrl,
