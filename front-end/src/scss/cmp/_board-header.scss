@@ -39,27 +39,26 @@
       }
       li {
         cursor: pointer;
+        font-family: work-sans;
         height: 100%;
         padding: 5px;
         display: flex;
         align-items: center;
         &:hover {
-          box-shadow: inset 0px -1px 0px $clr1;
-        }
-        @include for-normal-header-layout {
-          &:hover {
-            box-shadow: inset 0px -4px 0px $clr1;
-          }
+          color: $clr1;
         }
       }
       &.open {
         display: flex;
         position: absolute;
         top: 100%;
-        left: 0px;
+        // left: 0px;
         background-color: white;
         border: 1px solid #dbd7d7;
         flex-direction: column;
+        li{
+          padding: 10px;
+        }
       }
     }
   }

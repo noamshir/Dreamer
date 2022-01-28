@@ -32,10 +32,12 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
             socketService.emit(SOCKET_EMIT_USER_CONNECTED, user._id);
         });
         socketService.on('order status', onShowMsg)
+        socketService.on('order received', onShowMsg)
         return () => {
             socketService.emit(SOCKET_EMIT_LEAVE, user._id)
             socketService.off(user._id)
             socketService.off('order status')
+            socketService.off('order received')
         }
     }, [user])
 
@@ -50,7 +52,7 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
         searchBar = ""
         if (isSearchBar) searchBar = "show-bar"
     }
-    const onShowMsg = ({ msg, isSuccess }) => {
+    const onShowMsg = ({ msg, isSuccess = true }) => {
         isSuccess ? showSuccessMsg(msg) : showErrorMsg(msg)
     }
     const onLogout = async () => {
