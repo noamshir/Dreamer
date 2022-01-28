@@ -67,7 +67,7 @@ async function saveOrder(gig, user, owner) {
       _id: gig._id,
       title: gig.title,
       daysToMake: gig.daysToMake,
-      price: gig.price + gig.price / 3,
+      price: (gig.price + gig.price * 0.05),
       img: gig.imgUrls[0],
     },
     orderStatus: 'pending',

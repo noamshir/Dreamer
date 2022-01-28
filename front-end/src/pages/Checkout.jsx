@@ -132,7 +132,7 @@ class _Checkout extends React.Component {
                             </li>
                             <li className='bold'>
                                 Total
-                                <span> {(gig.price + (gig.price / 3)).toLocaleString("USA", { style: "currency", currency: "USD" })}</span>
+                                <span> {(gig.price + (gig.price * 0.05)).toLocaleString("USA", { style: "currency", currency: "USD" })}</span>
                             </li>
                             <li> Delivery Time
                                 <div className="li-inner-container">

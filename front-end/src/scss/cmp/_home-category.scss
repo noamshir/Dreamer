@@ -2,7 +2,10 @@
   h1 {
     color: $clr2;
     font-family: roboto-bold;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    @include for-narrow-layout {
+      font-size: 2rem;
+    }
   }
 }
 .proffesional-services {
@@ -33,9 +36,9 @@
     width: 100%;
     height: 250px;
     position: relative;
-    
+
     @include for-home-category-narrow-layout {
-        height: 345px;
+      height: 345px;
     }
     span.on-click {
       border-radius: 4px;
