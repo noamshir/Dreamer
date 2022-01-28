@@ -1,7 +1,8 @@
 .review-preview {
-  padding: 52px;
+  padding: 44px;
+  padding-inline-start: 54px;
   position: relative;
-  border-top: 1px solid #dadbdd;
+  border-top: 1px solid $clr6;
 
   .reviewer-info {
     display: flex;
@@ -41,7 +42,7 @@
     gap: 10px;
 
     .reviewer-origin {
-      color: #62646a;
+      color: $clr5;
       font-size: 14px;
     }
   }
@@ -54,10 +55,11 @@
   }
 
   .review-desc {
-    padding: 8px 0;
+    // padding: 8px 0;
     p {
+      margin-bottom: 0px;
       line-height: 22px;
-      color: #404145;
+      color: $clr2;
       font-weight: 400;
       font-size: 14px;
       word-wrap: break-word;

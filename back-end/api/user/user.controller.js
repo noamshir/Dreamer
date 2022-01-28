@@ -45,6 +45,7 @@ async function updateUser(req, res) {
 async function getGoogleUser(req, res) {
   try {
     const user = await userService.getByGoogleId(req.params.id);
+    if (user) req.session.user = user;
     res.send(user);
   } catch (err) {
     logger.error("Failed to get google user", err);

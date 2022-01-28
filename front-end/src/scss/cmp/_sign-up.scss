@@ -52,7 +52,7 @@
     header {
       padding: 32px 0 0;
       .modal-title {
-        color: #404145;
+        color: $clr2;
         font-weight: 700;
       }
     }
@@ -68,7 +68,7 @@
           font-size: 1rem;
           font-weight: 600;
           font-family: Arial, Helvetica, sans-serif;
-          color: #62646a;
+          color: $clr5;
           @media (max-width: 300px) {
             font-size: rem(12px);
           }
@@ -83,13 +83,13 @@
           padding: 0 8px;
           line-height: 24px;
           background-color: #fff;
-          color: #62646a;
+          color: $clr5;
         }
       }
     }
   }
   footer {
-    border-top: 1px solid #dadbdd;
+    border-top: 1px solid $clr6;
     border-radius: 0 0 4px 4px;
     padding: 15px;
     text-align: center;
@@ -123,7 +123,7 @@ form {
     input {
       font-size: 16px;
       line-height: 24px;
-      color: #404145;
+      color: $clr2;
       border: 1px solid #c5c6c9;
       width: 100%;
       padding: 8px 12px;
@@ -136,7 +136,7 @@ form {
       }
     }
     .siginig-agree {
-      color: #62646a;
+      color: $clr5;
       padding-top: 20px;
       margin: 0;
       outline: 0;
