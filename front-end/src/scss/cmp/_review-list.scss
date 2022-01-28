@@ -35,6 +35,9 @@
       justify-content: center;
       li {
         color: #95979d;
+        @media (max-width: 350px) {
+          font-size: rem(12px);
+        }
       }
     }
     width: 100%;
@@ -89,6 +92,10 @@
   }
   .add-review-btn {
     width: 45%;
+    @media (max-width: 350px) {
+      white-space: nowrap;
+      width: 100%;
+    }
     padding: 7px;
     cursor: pointer;
     background-color: inherit;
