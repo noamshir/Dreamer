@@ -20,7 +20,6 @@ function _UserProfileImg({ user, isLink, closeMenu, toggleMenu, setIsOnline = fa
     const setSockets = () => {
         socketService.emit('isUserConnected', user._id)
         socketService.on(SOCKET_EMIT_USER_OFFLINE, (userId) => {
-            console.log("user loged out...", user)
             if (setIsOnline && user?._id === userId) setIsOnline(false);
             else if (user?._id === userId) setConnectedClass('');
         })
@@ -40,7 +39,6 @@ function _UserProfileImg({ user, isLink, closeMenu, toggleMenu, setIsOnline = fa
         })
     }
     socketService.on(SOCKET_EMIT_USER_OFFLINE, (userId) => {
-        console.log("user loged outside of func...", user)
         if (setIsOnline && user?._id === userId) setIsOnline(false);
         else if (user?._id === userId) setConnectedClass('');
     })
