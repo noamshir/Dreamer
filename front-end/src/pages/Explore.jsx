@@ -135,7 +135,6 @@ class _Explore extends React.Component {
     }
     render() {
         const { gigs, filterBy, sortBy } = this.props
-        console.log(filterBy.category);
         const { isFilterModalOpen } = this.state;
         var filtersClass = (isFilterModalOpen) ? "open" : "close";
         if (!gigs) return <Loader />
@@ -143,7 +142,7 @@ class _Explore extends React.Component {
         return (
             <React.Fragment>
                 {!gigs.length ?
-                    <div className='no-gigs-modal'>
+                    <div className='no-gigs-modal max-width-container equal-padding'>
                         <div className='img-container'>
                             <img src={img} alt='img' />
                         </div>

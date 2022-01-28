@@ -30,20 +30,21 @@ export function _HomeCategory(props) {
             }}>
                 <span className="on-click"></span>
                 <div className="category-container">
-                    <div className="subtitle">Brand your business </div>
+                    <div className="subtitle"> Capture your audience</div>
                     <div className="title">{popularCategories[0]}</div>
                 </div>
-                <img src="https://res.cloudinary.com/drdfrwt1d/image/upload/v1642781888/logo-starbucks_w8plcz.jpg" />
+                <img src="https://res.cloudinary.com/drdfrwt1d/image/upload/v1642781888/video-explainer_gjzhjs.jpg" />
             </div>
             <div className='img-container' onClick={() => {
                 onSetFilter(popularCategories[1])
             }}>
                 <span className="on-click"></span>
                 <div className="category-container">
-                    <div className="subtitle">Level up your site</div>
+                    <div className="subtitle">Color your dreams</div>
                     <div className="title">{popularCategories[1]}</div>
                 </div>
-                <img src="https://res.cloudinary.com/drdfrwt1d/image/upload/v1642781889/wordpress_dofxal.jpg" />
+                
+                <img src="https://res.cloudinary.com/ben2423/image/upload/v1643373743/old-fashioned-steam-train-crossing-the-mountain-bridge-vector-id165959348_oo3saj.jpg" />
             </div>
             <div className='img-container' onClick={() => {
                 onSetFilter(popularCategories[2])
@@ -55,7 +56,7 @@ export function _HomeCategory(props) {
                     <div className="title">{popularCategories[2]}</div>
                 </div>
 
-                <img src="https://res.cloudinary.com/drdfrwt1d/image/upload/v1642781889/voice-over_ilnzmy.jpg" />
+                <img src="https://res.cloudinary.com/drdfrwt1d/image/upload/v1642781888/social-media_ihqmul.jpg" />
             </div>
             <div className='img-container' onClick={() => {
                 onSetFilter(popularCategories[3])
@@ -63,11 +64,13 @@ export function _HomeCategory(props) {
                 <span className="on-click"></span>
                 <div className="category-container">
 
-                    <div className="subtitle">Capture your audience</div>
+                    <div className="subtitle">
+                    Brand your business
+                        </div>
                     <div className="title">{popularCategories[3]}</div>
                 </div>
-
-                <img src="https://res.cloudinary.com/drdfrwt1d/image/upload/v1642781888/video-explainer_gjzhjs.jpg" />
+                
+                <img src="https://res.cloudinary.com/drdfrwt1d/image/upload/v1642781888/logo-starbucks_w8plcz.jpg" />
             </div>
             <div className='img-container' onClick={() => {
                 onSetFilter(popularCategories[4])
@@ -75,11 +78,13 @@ export function _HomeCategory(props) {
                 <span className="on-click"></span>
                 <div className="category-container">
 
-                    <div className="subtitle">Extend your reach</div>
+                    <div className="subtitle">
+                    Level up your site
+                        </div>
                     <div className="title">{popularCategories[4]}</div>
                 </div>
-
-                <img src="https://res.cloudinary.com/drdfrwt1d/image/upload/v1642781888/social-media_ihqmul.jpg" />
+                
+                <img src="https://res.cloudinary.com/drdfrwt1d/image/upload/v1642781889/wordpress_dofxal.jpg" />
             </div>
         </div>
     </div >
