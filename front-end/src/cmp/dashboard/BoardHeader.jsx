@@ -11,9 +11,15 @@ export function BoardHeader({ switchTo, user, switchToSeller, switchToUser }) {
                     setClass(!classNav)
                 }}><WidgetsIcon /></div>
                 <ul className={classNav ? "flex clean-list open" : "flex clean-list"}>
-                    <li>Dashboard</li>
-                    <li>Analytics</li>
-                    <li>Messeges</li>
+                    <li onClick={() => {
+                        setClass(false)
+                    }}>Dashboard</li>
+                    <li onClick={() => {
+                        setClass(false)
+                    }}>Analytics</li>
+                    <li onClick={() => {
+                        setClass(false)
+                    }}>Messeges</li>
                 </ul>
             </nav>
             <div className="flex-grow-helper"></div>

@@ -35,6 +35,8 @@ class _Orders extends React.Component {
         socketService.emit('join-order-channel', this.props.user._id);
     }
     onAddOrder = (order) => {
+        const { type } = this.props
+        if (type === 'buyer') return
         this.setState(prevState => ({ orders: [...prevState.orders, order] }))
     }
 

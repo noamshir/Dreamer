@@ -81,6 +81,7 @@ class _Checkout extends React.Component {
         }
         const savedOrder = await this.props.addOrder(gig, user, owner)
         socketService.emit('new order', savedOrder)
+        socketService.emit('new order msg', savedOrder)
         showSuccessMsg('Order saved, check it out in your profile!')
         this.props.history.push(`/dashboard/${user._id}`)
     }

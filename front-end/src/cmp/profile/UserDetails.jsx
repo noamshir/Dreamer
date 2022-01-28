@@ -17,8 +17,11 @@ export function UserDetails({ user }) {
 
     const [isOnline, setIsOnline] = useState(false);
 
+    
     var { createdAt } = user
     createdAt = new Date(user.createdAt)
+    console.log('user in details:', user);
+    console.log('created at:', createdAt);
     var month = createdAt.toLocaleString('default', { month: 'short' })
     var year = createdAt.getFullYear();
     const gig = { owner: { rate: user.sellerInfo?.rate } }
@@ -38,7 +41,7 @@ export function UserDetails({ user }) {
                     </div>}
                     <div className='member-since'>
                         <div><PersonIcon /> Member since</div>
-                        <div className='date'>{month} {year}</div>
+                        <div className='date'>{`${month} ${year}`}</div>
                     </div>
                 </div>
             </div>

@@ -37,7 +37,7 @@ function _SellerStats({ user, orders }) {
                 <div className='stats-bar-container'>
                     <div className='stats-bar' style={completionStyle}></div>
                 </div>
-                <div className='stats-precent'>{completionRate}%</div>
+                <div className='stats-precent'>{completionRate ? completionRate : 100}%</div>
 
             </div>
             <div className='seller-performance'>
