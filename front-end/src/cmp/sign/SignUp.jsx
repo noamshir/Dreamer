@@ -63,7 +63,7 @@ function _SignUp({ signUp, toggleSignInModal, toggleJoinModal, googleLogin }) {
                 </header>
                 <div className="social-tab">
                     <GoogleLogin
-                        clientId="456063964515-eet79gl529lkfkqflgfagpb3jrojruih.apps.googleusercontent.com"
+                        clientId="949130738538-r2nfg2q6h4sdlto1n4iiqifmsg24bunc.apps.googleusercontent.com"
                         onSuccess={handleGoogleSignUp}
                         onFailure={handleError}
                         // isSignedIn={true}

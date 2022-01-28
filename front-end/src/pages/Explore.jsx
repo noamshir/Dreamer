@@ -168,12 +168,12 @@ class _Explore extends React.Component {
                                                     className='delivery select'
                                                     inputProps={{ 'aria-label': 'Without label' }}
                                                 >
-                                                    <MenuItem value=''>
+                                                    <MenuItem value='' className="select-item">
                                                         <em>Delivery Time</em>
                                                     </MenuItem>
-                                                    <MenuItem value={1}>Express 24H</MenuItem>
-                                                    <MenuItem value={3}>Up to 3 days</MenuItem>
-                                                    <MenuItem value={7}>Up to 7 days</MenuItem>
+                                                    <MenuItem className="select-item" value={1}>Express 24H</MenuItem>
+                                                    <MenuItem className="select-item" value={3}>Up to 3 days</MenuItem>
+                                                    <MenuItem className="select-item" value={7}>Up to 7 days</MenuItem>
                                                 </Select>
                                                 <div className="budget-div">
                                                     <div onClick={() => this.toggleBudget()} className="budget-select">

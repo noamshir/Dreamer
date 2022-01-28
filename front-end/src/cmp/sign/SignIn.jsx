@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import { useState } from 'react'
-import { signIn, googleLogin,signUp} from '../../store/user.action.js';
+import { signIn, googleLogin, signUp } from '../../store/user.action.js';
 import { toggleSignInModal, toggleJoinModal } from "../../store/scss.action"
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service';
 import { GoogleLogin } from 'react-google-login';
 import CloseIcon from '@mui/icons-material/Close';
 
-function _SignIn({ toggleSignInModal, signIn, toggleJoinModal, googleLogin,signUp }) {
+function _SignIn({ toggleSignInModal, signIn, toggleJoinModal, googleLogin, signUp }) {
 
     const [user, setUser] = useState({ username: "", password: "" });
 
@@ -65,7 +65,7 @@ function _SignIn({ toggleSignInModal, signIn, toggleJoinModal, googleLogin,signU
                 </header>
                 <div className="social-tab">
                     <GoogleLogin
-                        clientId="456063964515-eet79gl529lkfkqflgfagpb3jrojruih.apps.googleusercontent.com"
+                        clientId="949130738538-r2nfg2q6h4sdlto1n4iiqifmsg24bunc.apps.googleusercontent.com"
                         onSuccess={handleLogin}
                         onFailure={responseGoogle}
                         // isSignedIn={true}
