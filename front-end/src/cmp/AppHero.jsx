@@ -15,11 +15,8 @@ export function AppHero(props) {
 
     useEffect(() => {
         const intervalId = setInterval(() => {
-            if (backIdx === 4) { backIdx = 1; console.log('backIdx', backIdx) }
-            else {
-                backIdx++
-                console.log('backIdx', backIdx)
-            }
+            if (backIdx === 4) backIdx = 1
+            else backIdx++
             _switchBackClass(backIdx, setBack1, setBack2, setBack3, setBack4, setBgcStyle)
 
         }, 7000)

@@ -14,7 +14,7 @@
             justify-content: flex-end;
             pointer-events: none;
             opacity: 0;
-            transition: 0.5s;
+            transition: 1s;
 
             &.active {
                 opacity: 1;
@@ -46,7 +46,7 @@
     align-items: center;
     font-family: roboto-bold;
     height: 40vh;
-    transition: 0.5s;
+    transition: 1s;
 
     .hero-content {
         width: 700px;
@@ -190,6 +190,8 @@
             right: 0;
             bottom: 0px;
             opacity: 0;
+            transition: 1s;
+
             &.active {
                 opacity: 1;
             }
