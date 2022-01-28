@@ -61,7 +61,7 @@ function _SignUp({ signUp, toggleSignInModal, toggleJoinModal, googleLogin }) {
                 </header>
                 <div className="social-tab">
                     <GoogleLogin
-                        clientId="456063964515-eet79gl529lkfkqflgfagpb3jrojruih.apps.googleusercontent.com"
+                        clientId="949130738538-r2nfg2q6h4sdlto1n4iiqifmsg24bunc.apps.googleusercontent.com"
                         onSuccess={handleGoogleSignUp}
                         onFailure={handleError}
                         // isSignedIn={true}
@@ -74,13 +74,13 @@ function _SignUp({ signUp, toggleSignInModal, toggleJoinModal, googleLogin }) {
                 </div>
                 <form action="" className="sign-form" onSubmit={handleSubmit}>
                     <div className="form-input-div">
-                        <input required type="text" name="fullname" placeholder="Enter your full name" onChange={handleChange} className="user-input" />
+                        <input required autocomplete="off" type="text" name="fullname" placeholder="Enter your full name" onChange={handleChange} className="user-input" />
                     </div>
                     <div className="form-input-div">
-                        <input required type="text" name="username" placeholder="Choose a Username" onChange={handleChange} className="user-input" />
+                        <input required autocomplete="off" type="text" name="username" placeholder="Choose a Username" onChange={handleChange} className="user-input" />
                     </div>
                     <div className="form-input-div">
-                        <input required type="password" name="password" placeholder="Choose a Password" onChange={handleChange} className="user-input" />
+                        <input required autocomplete="off" type="password" name="password" placeholder="Choose a Password" onChange={handleChange} className="user-input" />
                     </div>
                     <button className="continue-btn" type="submit">Continue</button>
                     <p className="siginig-agree">By joining I agree to receive dimes from dimerr.</p>

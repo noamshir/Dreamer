@@ -102,9 +102,7 @@
 
 .details-main-container {
   margin-right: 0;
-  @media (max-width: 320px) {
-    width: 100%;
-  }
+  width: 100%;
   @include for-normal-layout {
     margin-right: 5%;
   }
