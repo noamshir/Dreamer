@@ -50,7 +50,7 @@ class _Explore extends React.Component {
         window.addEventListener('click', (ev) => {
             var budgetSelect = document.getElementsByClassName('budget-select')[0];
             var budgetFilter = document.getElementsByClassName('budget-content')[0];
-            if (!((ev.target === budgetSelect || budgetSelect.contains(ev.target)) || (ev.target === budgetFilter || budgetFilter.contains(ev.target)))) {
+            if (!((ev.target === budgetSelect || budgetSelect?.contains(ev.target)) || (ev.target === budgetFilter || budgetFilter?.contains(ev.target)))) {
                 var { isBudgetOpen } = this.state;
                 if (isBudgetOpen) isBudgetOpen = !isBudgetOpen;
                 this.setState({ isBudgetOpen });

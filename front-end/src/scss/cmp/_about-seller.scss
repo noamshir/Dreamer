@@ -1,6 +1,6 @@
 .about-seller {
   &-header {
-    color: #404145;
+    color: $clr2;
     padding-bottom: 25px;
     font-size: 20px;
     line-height: 28px;
@@ -11,13 +11,13 @@
     align-items: center;
     width: 100%;
     flex-wrap: wrap;
-    border: 1px solid #dadbdd;
+    border: 1px solid $clr6;
     padding: 24px;
     margin-bottom: 64px;
 
     .seller-desc {
       padding-top: 15px;
-      border-top: 1px solid #dadbdd;
+      border-top: 1px solid $clr6;
     }
 
     .card {
@@ -27,7 +27,7 @@
       gap: 5px;
       padding-bottom: 20px;
       & > *:first-child {
-        color: #82858c;
+        color: $clr8;
         font-weight: 500;
         line-height: 1.6875em;
       }

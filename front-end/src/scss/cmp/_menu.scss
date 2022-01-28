@@ -21,7 +21,7 @@
     height: 100%;
     header {
       padding-bottom: 20px;
-      h5{
+      h5 {
         margin: 0;
         max-width: 150px;
         overflow-x: hidden;
@@ -36,7 +36,7 @@
       .user-content {
         align-items: center;
         gap: 20px;
-        color: #404145;
+        color: $clr2;
         font-weight: 700;
         font-size: 1.3rem;
         font-family: sans-serif;

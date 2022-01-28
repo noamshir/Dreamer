@@ -48,7 +48,7 @@
       :nth-child(3) {
         padding-top: 20px;
         @include for-narrow-layout {
-        padding-top: 30px;
+          padding-top: 30px;
         }
         border-top: 1px solid #ddd;
       }
@@ -151,7 +151,7 @@
   }
 
   .price {
-    color: #62646a;
+    color: $clr5;
     font-weight: 500;
   }
 
@@ -163,7 +163,7 @@
 
     h2 {
       line-height: 140%;
-      color: #404145;
+      color: $clr2;
       font-weight: 700;
       font-family: Arial, Helvetica, sans-serif;
     }

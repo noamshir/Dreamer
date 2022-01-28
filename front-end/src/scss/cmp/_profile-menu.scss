@@ -17,7 +17,7 @@
     height: 0;
     border: 10px solid transparent;
     border-top-width: 0;
-    border-bottom-color: #1dbf73;
+    border-bottom-color: $clr1;
     background: 0 0;
     transform: translateX(-50%);
     &::after {
@@ -47,15 +47,15 @@
         width: 100%;
         border-top: 1px solid rgb(187, 184, 184);
         cursor: pointer;
-        padding:10px 0;
+        padding: 10px 0;
       }
-      &:hover{
-          color: $clr1;
+      &:hover {
+        color: $clr1;
       }
     }
   }
 }
 
-.profile-container{
+.profile-container {
   position: relative;
 }

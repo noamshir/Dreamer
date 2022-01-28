@@ -1,11 +1,11 @@
 .user-board {
-  background-color: #eeeeee;
+  background-color: $clr7;
   min-height: 80vh;
 }
 
 .user-board-content {
   .user-main {
-    margin-top: 20px;
+    padding-block: 20px;
     align-items: flex-start;
     display: flex;
     gap: 20px;
@@ -18,7 +18,19 @@
     }
   }
   .user-details {
+    width: 300px;
     background-color: #fff;
+    .user-img {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 15px;
+    }
+    .user-stats-wrapper {
+      padding-bottom: 15px;
+    }
+    .user-info-wrapper {
+      padding-top: 15px;
+    }
   }
   .seller-details-container {
     background-color: #fff;
