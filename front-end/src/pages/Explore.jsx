@@ -47,6 +47,15 @@ class _Explore extends React.Component {
             this.getFilteredGigs()
         }
         this.onSetExplore()
+        window.addEventListener('click', (ev) => {
+            var budgetSelect = document.getElementsByClassName('budget-select')[0];
+            var budgetFilter = document.getElementsByClassName('budget-content')[0];
+            if (!((ev.target === budgetSelect || budgetSelect.contains(ev.target)) || (ev.target === budgetFilter || budgetFilter.contains(ev.target)))) {
+                var { isBudgetOpen } = this.state;
+                if (isBudgetOpen) isBudgetOpen = !isBudgetOpen;
+                this.setState({ isBudgetOpen });
+            }
+        })
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -83,6 +92,9 @@ class _Explore extends React.Component {
         const field = target.name;
         const value = +target.value
         this.setState({ [field]: value })
+    }
+    onClearBudget = () => {
+        this.setState((prevState) => ({ ...prevState, min: "", max: "" }))
     }
 
     onApplayBudget = () => {
@@ -121,7 +133,6 @@ class _Explore extends React.Component {
         await this.props.loadGigs(filterBy, {})
         this.setState({ min: "", max: "", isBudgetOpen: false })
     }
-
     render() {
         const { gigs, filterBy, sortBy } = this.props
         console.log(filterBy.category);
@@ -184,7 +195,7 @@ class _Explore extends React.Component {
                                                             </div>
                                                         </div>
                                                         <div className="budget-btns flex">
-                                                            <button className="close-btn" onClick={() => this.toggleBudget()}>close</button>
+                                                            <button className="close-btn" onClick={this.onClearBudget}>clear</button>
                                                             <button className="btn" onClick={this.onApplayBudget}>Apply</button>
                                                         </div>
                                                     </div>
