@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
     socketService,
     SOCKET_EMIT_USER_ONLINE,
     SOCKET_EMIT_USER_OFFLINE,
-    SOCKET_EMIT_JOIN_IS_CONNECTED,
-    SOCKET_EMIT_LEAVE
 } from "../../services/socket.service";
-
-export function UserProfileImg({ user, isLink, closeMenu, toggleMenu, setIsOnline = false, dotClass }) {
+function _UserProfileImg({ user, isLink, closeMenu, toggleMenu, setIsOnline = false, dotClass, myUser }) {
     const [connectedClass, setConnectedClass] = useState('')
 
     useEffect(() => {
@@ -25,11 +23,12 @@ export function UserProfileImg({ user, isLink, closeMenu, toggleMenu, setIsOnlin
             if (setIsOnline && user?._id === userId) setIsOnline(false);
             else if (user?._id === userId) setConnectedClass('');
         })
-        // socketService.emit(SOCKET_EMIT_JOIN_IS_CONNECTED, user._id)
         socketService.on('user-connection', (id) => {
             if (id === user._id) {
                 if (setIsOnline) setIsOnline(true);
-                setConnectedClass('connection-dot')
+                else {
+                    setConnectedClass('connection-dot')
+                }
             }
         })
         socketService.on("find-user", (id) => {
@@ -43,6 +42,7 @@ export function UserProfileImg({ user, isLink, closeMenu, toggleMenu, setIsOnlin
         if (setIsOnline && user?._id === userId) setIsOnline(false);
         else if (user?._id === userId) setConnectedClass('');
     })
+
     if (!isLink) {
         return (
             <div className="container-user-img" onClick={() => {
@@ -74,3 +74,11 @@ export function UserProfileImg({ user, isLink, closeMenu, toggleMenu, setIsOnlin
         </Link>
     )
 }
+
+function mapStateToProps({ userModule }) {
+    return {
+        myUser: userModule.user
+    }
+}
+
+export const UserProfileImg = connect(mapStateToProps)(_UserProfileImg);
