@@ -10,7 +10,6 @@ function _SellerStats({ user, orders }) {
     const deliveredStyle = { width: `${deliveredRate}%` }
     const completionRate = Math.round(100 * _getCompletionRate(orders));
     const completionStyle = { width: `${completionRate}%` }
-    console.log(completionStyle);
     const date = new Date(Date.now());
     const month = date.toLocaleString('default', { month: 'long' })
 

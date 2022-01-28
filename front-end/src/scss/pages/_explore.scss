@@ -376,9 +376,15 @@
     text-align: center;
   }
   .img-container {
-    height: 55vh;
+    height: 35vh;
+    width: 100%;
+    @include for-review-narrow-layout {
+      height: 55vh;
+      width: 400px;
+    }
     img {
       height: 100%;
+      width: 100%;
       object-fit: cover;
     }
   }

@@ -3,30 +3,29 @@ import { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 
 import { UserBoard } from "../cmp/dashboard/UserBoard";
-import { Loader } from "../cmp/utils/Loader"
 import { SellerBoard } from "../cmp/dashboard/SellerBoard";
 import { setProfile, setDetails, setHome, setExplore, setBecomeSeller } from "../store/scss.action";
 
 
-function _DashBoard({ currUser, setDetails, setExplore, setBecomeSeller, setProfile, setHome, isProfile }, ...props) {
-    const [user, setUser] = useState(currUser);
+function _DashBoard(props) {
+    const [user, setUser] = useState(props.currUser);
     const [isInSeller, setIsSeller] = useState(false);
     useEffect(() => {
         onSetDashBoard();
     }, [])
     const onSetDashBoard = () => {
-        if (isProfile) return;
-        setProfile(true)
-        setHome(false)
-        setExplore(false)
-        setDetails(false)
-        setBecomeSeller(false)
+        if (props.isProfile) return;
+        props.setProfile(true)
+        props.setHome(false)
+        props.setExplore(false)
+        props.setDetails(false)
+        props.setBecomeSeller(false)
     }
 
     const switchDashboard = (isSeller) => {
         setIsSeller(isSeller);
     }
-    if (!currUser) return <Loader />
+    if (!props.currUser) return props.history.push('/explore')
     return <section className="dashboard">
         <div className="dashboard-content">
             {(!user.sellerInfo || (!isInSeller)) && <UserBoard switchToSeller={switchDashboard} />}
