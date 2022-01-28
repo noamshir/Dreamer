@@ -63,6 +63,16 @@
       }
     }
   }
+  .btn-switch-user-view {
+    color: $clr1;
+    background-color: white;
+    border: none;
+    font-family: work-sans;
+    font-size: 1rem;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
   .flex-grow-helper {
     flex-grow: 5;
   }

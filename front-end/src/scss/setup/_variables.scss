@@ -28,7 +28,8 @@ $header-break-large-screen: 1564px;
 $review-break-narrow: 580px;
 
 //Order-breakpoint
-$order-break-wide: 1000px;
+$order-break-wide: 1080px;
+$order-break-normal: 910px;
 
 $padded-break-narrow: $break-narrow + $layoutPadding * 2;
 $padded-break-normal: $break-normal + $layoutPadding * 2;

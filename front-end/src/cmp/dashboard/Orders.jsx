@@ -41,18 +41,23 @@ class _Orders extends React.Component {
     }
 
     render() {
+
+        const { user } = this.props
+        console.log('user:', user);
         const { orders } = this.state
         if (!orders) return <React.Fragment></React.Fragment>
         return (
-            <div className="orders-section max-width-container equal-padding">
-                <header className="orders-header">
-                    <h1>{this.props.user.username}'s orders</h1>
-                </header>
+
+            < div className="orders-section" >
                 <main className="orders-content">
                     <OrdersList onChangeStatus={this.props.onChangeStatus} type={this.props.type} orders={orders} loadOrders={this.props.loadOrders} user={this.props.user} />
                 </main>
-            </div>
+            </div >
+
         )
+        {/* <header className="orders-header">
+                    <h1>{user.fullname}'s orders</h1>
+                </header> */}
     }
 }
 

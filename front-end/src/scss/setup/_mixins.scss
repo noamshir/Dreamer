@@ -80,6 +80,11 @@
 
 //Order mixins
 
+@mixin for-order-normal-layout {
+  @media (min-width: $order-break-normal) {
+    @content;
+  }
+}
 @mixin for-order-wide-layout {
   @media (min-width: $order-break-wide) {
     @content;

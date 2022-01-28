@@ -1,11 +1,17 @@
 import { connect } from "react-redux"
 import { BoardHeader } from "./BoardHeader"
 import { Orders } from "./Orders";
+import { UserInfoCard } from "../profile/UserInfoCard";
 
 function _SellerBoard({ user, switchToUser }) {
     return <section className="seller-board">
-        <BoardHeader switchToUser={switchToUser} user={user} switchTo={"User"} />
-        <Orders user={user} type={'seller'}/>
+        <BoardHeader switchToUser={switchToUser} user={user} switchTo={"Buyer"} />
+        <div className="user-board-content max-width-container equal-padding">
+            <main className="user-main">
+                <UserInfoCard showSellerStats={true} user={user} />
+                <Orders user={user} type={'seller'} />
+            </main>
+        </div>
     </section>
 }
 

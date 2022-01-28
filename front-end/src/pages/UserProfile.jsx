@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import { userService } from '../services/user.service';
 import { gigService } from '../services/gig.service';
 // import { saveSellerInfo } from '../store/user.action'
-import { UserDetails } from '../cmp/profile/UserDetails'
-import { SellerDetails } from '../cmp/profile/SellerDetails'
+import { UserInfoCard } from '../cmp/profile/UserInfoCard'
+
 import { GigList } from '../cmp/GigList'
 import { withRouter } from 'react-router-dom';
 import { setHome, setExplore, setDetails, setProfile } from '../store/scss.action.js';
@@ -42,10 +42,7 @@ function _UserProfile(props) {
     if (!user) return <Loader></Loader>
     return (
         <div className="profile-main-container max-width-container equal-padding">
-            <div className="profile-details-container">
-                <UserDetails user={user} />
-                {user.sellerInfo && <SellerDetails user={user} />}
-            </div>
+            <UserInfoCard user={user} />
             {user.sellerInfo && <GigList gigs={gigs} />}
         </div>
     )
