@@ -8,7 +8,6 @@
 @import "./basics/base.scss";
 @import "./basics/helpers.scss";
 @import "./basics/layouts.scss";
-@import "./basics/animations.scss";
 @import "./cmp/user-star-rate.scss";
 
 // PAGES
@@ -49,3 +48,4 @@
 @import "./cmp/board-header";
 @import "./cmp/user-board.scss";
 @import "./cmp/dashboard-orders.scss";
+@import "./cmp/dashboard/seller-stats.scss";

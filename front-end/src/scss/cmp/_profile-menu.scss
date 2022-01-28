@@ -41,12 +41,13 @@
     li {
       padding: 5px 0;
       color: #74767e;
-      font-weight: 500;
-      font-family: roboto;
+      font-weight: 400;
+      font-family: Arial, Helvetica, sans-serif;
       &.logout {
         width: 100%;
         border-top: 1px solid rgb(187, 184, 184);
         cursor: pointer;
+        padding:10px 0;
       }
       &:hover{
           color: $clr1;

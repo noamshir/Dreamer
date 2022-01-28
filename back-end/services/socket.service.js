@@ -42,13 +42,13 @@ function connectSockets(http, session) {
     socket.on("add-review", ({ review, ownerId }) => {
       socket.to(ownerId).emit("add-review", review);
     });
-    socket.on("new room", (room) => {
-      if (socket.myOrderRoom === room) return;
-      if (socket.myOrderRoom) {
-        socket.leave(socket.myOrderRoom);
+    socket.on("join-order-channel", (userId) => {
+      if (socket.orderChannel === userId) return;
+      if (socket.orderChannel) {
+        socket.leave(socket.orderChannel);
       }
-      socket.join(room);
-      socket.myOrderRoom = room;
+      socket.join(userId);
+      socket.orderChannel = userId;
     });
 
     socket.on("user-connected", (userId) => {
@@ -85,7 +85,7 @@ function connectSockets(http, session) {
     socket.on("isUserConnected", async (userId) => {
       const userSocket = await _getUserSocket(userId);
       if (userSocket) gIo.emit("user-connection", userId);
-      else{
+      else {
         gIo.emit("find-user", userId);
       }
     });

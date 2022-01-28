@@ -2,62 +2,60 @@ import { connect } from 'react-redux'
 import React from 'react';
 
 import { OrdersList } from "./OrdersList"
+import { Loader } from "../utils/Loader"
 import { loadOrders, onChangeStatus } from '../../store/order.action';
 import { socketService } from '../../services/socket.service';
 
 class _Orders extends React.Component {
 
     state = {
-        room: '',
         orders: null
     }
 
-    async componentDidMount() {
-        await this.props.loadOrders(this.props.user._id, this.props.type)
-        socketService.setup()
-        socketService.on('added order', this.onAddOrder)
-        socketService.on('changed status', this.onUpdateOrder)
-        this.setState(prevState => ({ ...prevState, room: this.props.user._id }), () => {
-            socketService.emit('new room', this.state.room);
-        })
-        this.setState(prevState => ({ ...prevState, orders: this.props.orders }))
+    componentDidMount() {
+        this.loadOrders();
+        this.setSocket();
     }
 
     componentWillUnmount() {
         socketService.off('added order')
         socketService.off('changed status')
+        socketService.emit('leave', this.props.user._id);
     }
 
+    loadOrders = async () => {
+        await this.props.loadOrders(this.props.user._id, this.props.type);
+        this.setState({ orders: this.props.orders });
+    }
 
+    setSocket = () => {
+        socketService.setup()
+        socketService.on('added order', this.onAddOrder)
+        socketService.on('changed status', this.onUpdateOrder)
+        socketService.emit('join-order-channel', this.props.user._id);
+    }
     onAddOrder = (order) => {
-        this.setState(prevState => ({ ...prevState, orders: [...this.state.orders, order] }))
+        this.setState(prevState => ({ orders: [...prevState.orders, order] }))
     }
 
-    onUpdateOrder = (order) => {
+    onUpdateOrder = (updatedOrder) => {
         const { orders } = this.state
-        let ordersCopy = [...orders]
-        ordersCopy = ordersCopy.map(currOrder => currOrder._id === order._id ? order : currOrder)
-        this.setState(prevState => ({ ...prevState, orders: ordersCopy }))
+        const updatedOrders = orders.map(order => order._id === updatedOrder._id ? updatedOrder : order)
+        this.setState({ orders: updatedOrders })
     }
 
     render() {
 
-        const { user } = this.props
-        console.log('user:', user);
         const { orders } = this.state
-        if (!orders) return <React.Fragment></React.Fragment>
+        if (!orders) return <Loader />
         return (
-
             < div className="orders-section" >
                 <main className="orders-content">
-                    <OrdersList onChangeStatus={this.props.onChangeStatus} type={this.props.type} orders={orders} loadOrders={this.props.loadOrders} user={this.props.user} />
+                    {!orders.length && <h3>No Orders Yet...</h3>}
+                    {orders.length > 0 && <OrdersList onChangeStatus={this.props.onChangeStatus} type={this.props.type} orders={orders} loadOrders={this.props.loadOrders} user={this.props.user} />}
                 </main>
             </div >
-
         )
-        {/* <header className="orders-header">
-                    <h1>{user.fullname}'s orders</h1>
-                </header> */}
     }
 }
 
