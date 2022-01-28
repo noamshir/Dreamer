@@ -2,8 +2,11 @@
   position: relative;
   z-index: 10;
   h1 {
-    color: #404145;
+    color: $clr2;
     padding-bottom: 16px;
+    @media (max-width: 400px) {
+      font-size: 1.4rem;
+    }
   }
   .owner-info {
     display: flex;

@@ -57,7 +57,6 @@
           }
           .applay-filters {
             display: inline-block;
-            margin-right: 15px;
             font-size: 1rem;
           }
         }
@@ -66,7 +65,6 @@
         flex-direction: column-reverse;
         justify-content: center;
         align-items: center;
-        width: 95%;
         gap: 20px;
         .budget-div {
           width: 100%;
@@ -249,7 +247,7 @@
         color: #222325;
         font-family: work-sans;
         font-style: normal;
-        border: 1px solid #dadbdd;
+        border: 1px solid $clr6;
         padding: 8px 10px;
         width: 120px;
         display: flex;
@@ -274,20 +272,19 @@
         z-index: 100;
         opacity: 0;
         pointer-events: none;
-        transition: all 0.24s cubic-bezier(0.215, 0.61, 0.355, 1),
-          opacity 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+        transition: all 0.24s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
         &.open {
           opacity: 1;
           pointer-events: all;
         }
-        border: 1px solid #dadbdd;
+        border: 1px solid $clr6;
         line-height: 22px;
         font-size: 14px;
         top: 100%;
         margin-top: 10px;
         border-radius: 4px;
         background-color: #fff;
-        color: #62646a;
+        color: $clr5;
         box-shadow: 0 12px 18px 0.2;
         .budget-filter {
           padding: 12px 24px;
@@ -301,14 +298,14 @@
               margin-bottom: 4px;
               font-size: 1rem;
               line-height: 24px;
-              color: #62646a;
+              color: $clr5;
               font-weight: 600;
             }
             input {
               height: 40px;
               width: 120px;
               border: 1px solid #c5c6c9;
-              color: #404145;
+              color: $clr2;
               padding: 8px 12px;
               &:focus {
                 outline: none;
@@ -371,7 +368,7 @@
   justify-content: center;
   align-items: center;
   font-family: work-sans;
-  color: #404145;
+  color: $clr2;
   h2 {
     text-align: center;
   }
