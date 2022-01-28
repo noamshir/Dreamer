@@ -8,8 +8,8 @@ function _SellerStats({ user, orders }) {
     const responseStyle = { width: `${responseRate}%` }
     const deliveredRate = utilService.getRandomIntInclusive(85, 100)
     const deliveredStyle = { width: `${deliveredRate}%` }
-    const completionRate = _getCompletionRate(orders);
-    const completionStyle = { width: `${completionRate * 100}%` }
+    const completionRate = Math.round(100 * _getCompletionRate(orders));
+    const completionStyle = { width: `${completionRate}%` }
     console.log(completionStyle);
     const date = new Date(Date.now());
     const month = date.toLocaleString('default', { month: 'long' })
@@ -38,7 +38,7 @@ function _SellerStats({ user, orders }) {
                 <div className='stats-bar-container'>
                     <div className='stats-bar' style={completionStyle}></div>
                 </div>
-                <div className='stats-precent'>{completionRate * 100}%</div>
+                <div className='stats-precent'>{completionRate}%</div>
 
             </div>
             <div className='seller-performance'>
