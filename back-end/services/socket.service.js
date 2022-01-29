@@ -46,10 +46,8 @@ function connectSockets(http, session) {
     });
     socket.on("new order", ({ savedOrder, notification }) => {
       console.log('order:', savedOrder);
-      console.log('notification:', notification);
       socket.to(savedOrder.seller._id).emit('added order', savedOrder);
       socket.to(savedOrder.seller._id).emit('order received', notification)
-      console.log('notification:', notification);
     });
     socket.on("new status", ({ order, notification }) => {
       socket.to(order.buyer._id).emit("changed status", order);

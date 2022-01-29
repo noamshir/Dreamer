@@ -2,7 +2,7 @@ const initialState = {
   gigs: null,
   category: "all",
   filterBy: {
-    txt: "",
+    title: "",
     deliveryTime: "",
     budget: "",
     category: "all",
@@ -51,7 +51,7 @@ export function gigReducer(state = initialState, action) {
       newState = {
         ...state,
         filterBy: {
-          txt: "",
+          title: "",
           deliveryTime: "",
           budget: "",
           category: "all",

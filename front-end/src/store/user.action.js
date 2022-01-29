@@ -17,8 +17,8 @@ export function googleLogin(googleId) {
   return async (dispatch) => {
     try {
       var loggedGoogleUser = await userService.getGoogleUser(googleId);
-      const action = { type: "SET_USER", user: loggedGoogleUser };
-      dispatch(action);
+      const actionUser = { type: "SET_USER", user: loggedGoogleUser };
+      dispatch(actionUser);
       return loggedGoogleUser;
     } catch (err) {
       return false;
@@ -66,7 +66,21 @@ export function saveSellerInfo(sellerInfo) {
 export function setMsg(msg) {
   return (dispatch) => {
     console.log('action msg:', msg);
-    const action = { type: "SET_MSG", msg };
+    const actionMsg = { type: "SET_MSG", msg };
+    // const actionNotification = { type: "ADD_NOTIFICATION", notification: msg };
+    dispatch(actionMsg);
+  };
+}
+
+export function addNotification(user, notification) {
+  return async (dispatch) => {
+    const { _id, username } = notification.sender
+    notification.sender = { _id, username }
+    if (!user.notifications) user.notifications = [notification]
+    else user.notifications.unshift(notification)
+    const updatedUser = await userService.saveUser(user)
+    console.log('updatedUser:', updatedUser);
+    const action = { type: "SET_USER", user: updatedUser };
     dispatch(action);
   };
 }
