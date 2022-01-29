@@ -35,34 +35,130 @@
     font-size: 24px;
   }
 }
-.isa_info,
-.isa_success,
-.isa_warning,
-.isa_error {
-  margin: 10px 0px;
-  padding: 12px;
+
+.msg-screen {
+  position: fixed;
+  pointer-events: auto;
+  z-index: 9990;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(87, 80, 80, 0.35);
+  .modal-msg {
+    h1,
+    h2,
+    h5 {
+      margin: 0;
+      text-align: center;
+    }
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    // width: 50%;
+    // height: 33vh;
+    background-color: #fff;
+    border-radius: 4px;
+    z-index: 9999;
+    font-family: work-sans;
+    padding: 15px;
+    min-width: 280px;
+    @media (max-width: 400px) {
+      padding: 12px;
+    }
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .msg-header {
+      h1 {
+        font-family: lobster;
+        font-size: rem(40px);
+        padding: 15px 0;
+        white-space: nowrap;
+        @media (max-width: 400px) {
+          font-size: rem(35px);
+        }
+      }
+    }
+    .msg-txt {
+      padding: 10px 0;
+      white-space: nowrap;
+      color: $clr2;
+      @media (max-width: 400px) {
+        font-size: rem(20px);
+        white-space: pre-wrap;
+      }
+    }
+    .btn {
+      font-family: work-sans;
+    }
+    .close-modal {
+      position: fixed;
+      top: 0;
+      right: 0;
+      color: $clr2;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background-color: inherit;
+      font-size: 1.5rem;
+      padding-right: 10px;
+      padding-top: 10px;
+    }
+    .lower-text {
+      padding: 15px 0;
+      justify-content: center;
+      h5 {
+        font-size: rem(18px);
+        @media (max-width: 400px) {
+          font-size: rem(15px);
+        }
+      }
+    }
+    &.new-order {
+      .msg-header {
+        h1 {
+          color: $clr1;
+        }
+      }
+      .lower-text {
+        @media (max-width: 400px) {
+          flex-direction: column;
+        }
+        .dime-signs{
+          justify-content: center;
+          .dime-sign {
+            animation-name: spin;
+            animation-duration: 3000ms;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            color: $clr1;
+          }
+        }
+        
+      }
+    }
+    &.order-rejected {
+      .msg-header {
+        h1 {
+          color: rgb(230, 8, 8);
+        }
+      }
+      .btn {
+        background-color: rgb(230, 8, 8);
+        &:hover {
+          background-color: rgb(202, 14, 14);
+        }
+      }
+    }
+  }
 }
-.isa_info {
-  color: #00529b;
-  background-color: #bde5f8;
-}
-.isa_success {
-  color: #4f8a10;
-  background-color: #dff2bf;
-}
-.isa_warning {
-  color: #9f6000;
-  background-color: #feefb3;
-}
-.isa_error {
-  color: #d8000c;
-  background-color: #ffd2d2;
-}
-.isa_info i,
-.isa_success i,
-.isa_warning i,
-.isa_error i {
-  margin: 10px 22px;
-  font-size: 2em;
-  vertical-align: middle;
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
