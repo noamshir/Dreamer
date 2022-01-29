@@ -92,6 +92,10 @@
     }
     .btn {
       font-family: work-sans;
+      width: 100%;
+    }
+    .modal-link{
+      width: 100%;
     }
     .close-modal {
       position: fixed;
@@ -109,6 +113,11 @@
     .lower-text {
       padding: 15px 0;
       justify-content: center;
+      @media (max-width: 400px) {
+        flex-direction: column;
+        gap: 10px;
+        // align-items: center;
+      }
       h5 {
         font-size: rem(18px);
         @media (max-width: 400px) {
@@ -126,7 +135,7 @@
         @media (max-width: 400px) {
           flex-direction: column;
         }
-        .dime-signs{
+        .dime-signs {
           justify-content: center;
           .dime-sign {
             animation-name: spin;
@@ -136,10 +145,9 @@
             color: $clr1;
           }
         }
-        
       }
     }
-    &.order-rejected {
+    &.rejected {
       .msg-header {
         h1 {
           color: rgb(230, 8, 8);
@@ -150,6 +158,27 @@
         &:hover {
           background-color: rgb(202, 14, 14);
         }
+      }
+      .rejected-icon {
+        color: rgb(230, 8, 8);
+        font-size: rem(25px);
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+    }
+    &.active {
+      .msg-header {
+        h1 {
+          color: $clr1;
+        }
+      }
+      .check-icon {
+        color: $clr1;
+        font-size: rem(25px);
+        width: 100%;
+        display: flex;
+        justify-content: center;
       }
     }
   }

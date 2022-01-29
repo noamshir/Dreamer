@@ -86,11 +86,20 @@ class _Checkout extends React.Component {
             sender: user,
             txt: '',
             type: 'new-order',
-            createdAt: Date.now()
+            createdAt: Date.now(),
+            msg: this.createMsg()
         }
         socketService.emit('new order', { savedOrder, notification })
         showSuccessMsg('Order saved, check it out in your profile!')
         this.props.history.push(`/dashboard/${user._id}`)
+    }
+    createMsg = () => {
+        var msg = {}
+        const { user } = this.props
+        msg.title = "Received new order!"
+        msg.content = `${user.username} hired your services`
+        msg.subHeader = "Time to make some dimes..."
+        return msg;
     }
 
     render() {

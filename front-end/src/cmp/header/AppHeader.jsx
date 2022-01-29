@@ -31,8 +31,13 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
         socketService.on(user._id, () => {
             socketService.emit(SOCKET_EMIT_USER_CONNECTED, user._id);
         });
-        socketService.on('order status', (msg) => setMsg(msg))
-        socketService.on('order received', (msg) => setMsg(msg))
+        socketService.on('order status', (msg) => {
+            setMsg(msg)
+        }
+        )
+        socketService.on('order received', (msg) => {
+            if (msg.sender._id !== user._id) setMsg(msg)
+        })
         socketService.on('add-review-msg', (msg) => setMsg(msg))
         return () => {
             socketService.emit(SOCKET_EMIT_LEAVE, user._id)
