@@ -11,19 +11,7 @@ function connectSockets(http, session) {
     socket.on("disconnect", (socket) => {
       console.log("Someone disconnected");
     });
-    socket.on("chat toy", (toyId) => {
-      if (socket.myToyId === toyId) return;
-      if (socket.myToyId) {
-        socket.leave(socket.myToyId);
-      }
-      socket.join(toyId);
-      socket.myToyId = toyId;
-    });
-    socket.on("chat newMsg", (msg) => {
-      console.log("Emitting Chat msg", msg);
-      // emits only to sockets in the same room
-      gIo.to(socket.myToyId).emit("chat addMsg", msg);
-    });
+
     socket.on("join", (room) => {
       console.log("user joined room", room);
       socket.join(room);
@@ -39,8 +27,9 @@ function connectSockets(http, session) {
       console.log("user left room", room);
       socket.leave(room);
     });
-    socket.on("add-review", ({ review, ownerId }) => {
+    socket.on("add-review", ({ review, ownerId, notification }) => {
       socket.to(ownerId).emit("add-review", review);
+      socket.to(ownerId).emit("add-review-msg", notification);
     });
     socket.on("join-order-channel", (userId) => {
       if (socket.orderChannel === userId) return;
@@ -55,18 +44,21 @@ function connectSockets(http, session) {
       console.log("user online", userId);
       gIo.to(userId).emit("user-online", userId);
     });
-    socket.on("new order", (order) => {
-      socket.to(order.seller._id).emit("added order", order);
+    socket.on("new order", ({ savedOrder, notification }) => {
+      console.log('order:', savedOrder);
+      console.log('notification:', notification);
+      socket.to(savedOrder.seller._id).emit('added order', savedOrder);
+      socket.to(savedOrder.seller._id).emit('order received', notification)
+      console.log('notification:', notification);
     });
-    socket.on("new status", (order) => {
-      console.log("SOCKET ORDER", order.buyer);
+    socket.on("new status", ({ order, notification }) => {
       socket.to(order.buyer._id).emit("changed status", order);
+      socket.to(order.buyer._id).emit('order status', notification)
     });
-    socket.on('new status msg', (order) => {
-      const msg = order.orderStatus === 'rejected' ? 'Your Order has been cancelled...' : 'Your Order is now in progress!'
-      const isSuccess = order.orderStatus === 'rejected' ? false : true
-      socket.to(order.buyer._id).emit('order status', { msg, isSuccess })
-    })
+    // socket.on('new status msg', (order) => {
+    //   const msg = order.orderStatus === 'rejected' ? 'Your Order has been cancelled...' : 'Your Order is now in progress!'
+    //   const isSuccess = order.orderStatus === 'rejected' ? false : true
+    // })
     socket.on("set-user-socket", (userId) => {
       socket.userId = userId;
       console.log("user logged in", socket.userId);
