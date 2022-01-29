@@ -5,14 +5,12 @@ import { userReducer } from "./user.reducer.js";
 import { gigReducer } from "./gig.reducer.js";
 import { orderReducer } from "./order.reducer.js";
 import { scssReducer } from "./scss.reducer.js";
-import { notificationReducer } from "./notification.reducer.js";
 
 const rootReducer = combineReducers({
   userModule: userReducer,
   gigModule: gigReducer,
   orderModule: orderReducer,
   scssModule: scssReducer,
-  notificationModule: notificationReducer,
 });
 
 

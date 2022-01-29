@@ -62,3 +62,11 @@ export function saveSellerInfo(sellerInfo) {
     }
   };
 }
+
+export function setMsg(msg) {
+  return (dispatch) => {
+    console.log('action msg:', msg);
+    const action = { type: "SET_MSG", msg };
+    dispatch(action);
+  };
+}

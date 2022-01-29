@@ -1,40 +1,51 @@
 import React from 'react'
+import { setMsg } from '../store/user.action';
+import { connect } from "react-redux"
+import { useEffect } from "react"
 
-import { eventBusService } from '../services/event-bus.service'
 
+function _UserMsg({ msg, setMsg }) {
+  var timeoutId
 
-export class UserMsg extends React.Component {
+  useEffect(() => {
+    if (!msg) return;
+    clearTimeout(timeoutId)
+    timeoutId = setTimeout(() => {
+      setMsg('');
+    }, 2500)
+    console.log('msg:', msg);
 
-  removeEvent;
+    return () => {
+      clearTimeout(timeoutId)
+    }
+  }, [msg])
 
-  state = {
-    msg: null
+  if (!msg) {
+    clearTimeout(timeoutId)
+    return <span></span>
   }
 
-  componentDidMount() {
-    // Here we listen to the event that we emited, its important to remove the listener 
-    this.removeEvent = eventBusService.on('show-user-msg', (msg) => {
-      this.setState({ msg })
-      setTimeout(()=>{
-        this.setState({ msg : null })
-      }, 2500)
-    })
-  }
+  const msgClass = msg.type || ''
+  console.log('msg:', msg);
 
-  componentWillUnmount() {
-    this.removeEvent()
-  }
+  return (
+    <section className={'user-msg ' + msgClass}>
+      <h1>message</h1>
+    </section>
+  )
+}
 
-  render() {
-    if (!this.state.msg) return <span></span>
-    const msgClass = this.state.msg.type || ''
-    return (
-      <section className={'user-msg ' + msgClass}>
-        <button onClick={() => {
-          this.setState({ msg: null })
-        }}>x</button>
-        {this.state.msg.txt}
-      </section>
-    )
+
+
+function mapStateToProps(state) {
+  return {
+    msg: state.userModule.msg
   }
 }
+
+const mapDispatchToProps = {
+  setMsg
+};
+
+
+export const UserMsg = connect(mapStateToProps, mapDispatchToProps)(_UserMsg)

@@ -10,8 +10,7 @@ import { showSuccessMsg } from "../services/event-bus.service";
 import { setExplore, setHome, setDetails, setBecomeSeller, setProfile } from '../store/scss.action';
 import { toggleSignInModal } from '../store/scss.action';
 import { socketService } from "../services/socket.service";
-
-
+import { utilService } from "../services/util.service";
 
 class _Checkout extends React.Component {
     state = {
@@ -80,8 +79,16 @@ class _Checkout extends React.Component {
             return;
         }
         const savedOrder = await this.props.addOrder(gig, user, owner)
-        socketService.emit('new order', savedOrder)
-        socketService.emit('new order msg', savedOrder)
+        console.log('savedOrder:', savedOrder);
+
+        const notification = {
+            _id: utilService.makeId(8),
+            sender: user,
+            txt: '',
+            type: 'new-order',
+            createdAt: Date.now()
+        }
+        socketService.emit('new order', { savedOrder, notification })
         showSuccessMsg('Order saved, check it out in your profile!')
         this.props.history.push(`/dashboard/${user._id}`)
     }
