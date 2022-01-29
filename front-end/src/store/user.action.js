@@ -74,6 +74,8 @@ export function setMsg(msg) {
 
 export function addNotification(user, notification) {
   return async (dispatch) => {
+    const { _id, username } = notification.sender
+    notification.sender = { _id, username }
     if (!user.notifications) user.notifications = [notification]
     else user.notifications.unshift(notification)
     const updatedUser = await userService.saveUser(user)

@@ -15,7 +15,7 @@ function _UserMsg({ notification, setMsg }) {
     clearTimeout(timeoutId)
     timeoutId = setTimeout(() => {
       setMsg('');
-    }, 555555000)
+    }, 6000)
     console.log('msg:', notification);
 
     return () => {
