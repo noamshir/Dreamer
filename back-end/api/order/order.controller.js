@@ -41,7 +41,6 @@ async function removeOrder(req, res) {
 
 async function updateOrder(req, res) {
   const updatedOrder = req.body;
-  console.log(updatedOrder);
   try {
     const savedOrder = orderService.update(updatedOrder);
     res.send(savedOrder);
@@ -55,7 +54,6 @@ async function addOrder(req, res) {
   try {
     const order = req.body;
     const addedOrder = await orderService.add(order);
-    console.log("order in controller", addedOrder);
     res.json(addedOrder);
   } catch (err) {
     logger.error("Failed to add order", err);

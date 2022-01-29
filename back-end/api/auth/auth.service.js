@@ -11,7 +11,6 @@ async function login(username, password) {
 }
 
 async function signUp(user) {
-  // console.log('password', await bcrypt.hash("mia", 10))
   try {
     const saltRounds = 10;
     const exsitUser = await userService.getByUsername(user.username);
