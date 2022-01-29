@@ -22,6 +22,25 @@
       }
     }
   }
+  .messages {
+    position: relative;
+    margin-inline-end: 10px;
+    .icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+    .notification-dot {
+      position: absolute;
+      background-color: red;
+      top: 0%;
+      right: 5%;
+      height: 5px;
+      width: 5px;
+      border-radius: 50%;
+    }
+  }
 }
 
 .logged-out-homepage-header {
@@ -205,4 +224,12 @@
 
 .display-from-size-large {
   display: none;
+}
+
+.notification-screen{
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1;
 }

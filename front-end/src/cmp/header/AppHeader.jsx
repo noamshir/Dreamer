@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux'
+import NotificationsIcon from '@mui/icons-material/Notifications';
 import { SearchBar } from '../SearchBar.jsx';
 import { UserProfileImg } from '../profile/UserProfileImg';
 import { Logo } from '../Logo.jsx';
 import { logout, setMsg } from '../../store/user.action'
 import { toggleJoinModal, toggleSignInModal } from '../../store/scss.action.js';
 import { ProfileMenu } from './ProfileMenu.jsx';
+import { NotificationMenu } from './NotificationMenu.jsx';
 
 import {
     socketService,
@@ -17,9 +19,10 @@ import {
     SOCKET_EMIT_LEAVE,
 } from "../../services/socket.service";
 
-import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
+
 function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpModal, openSignInModal, user, logout, openMenu, setMsg }) {
     const [isProfileMenu, setMenu] = useState(false);
+    const [isNotificationMenu, setNotificationMenu] = useState(false);
     var headerTransparent = "";
     var color = "";
     var sticky = "not-sticky";
@@ -67,6 +70,10 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
         var flag = !isProfileMenu;
         setMenu(flag);
     }
+
+    const toggleNotificationModal = () => {
+        setNotificationMenu(!isNotificationMenu)
+    }
     if (user) {
         socketService.on("find-user", (userid) => {
             if (user._id === userid) socketService.emit("user-connection", userid);
@@ -94,6 +101,13 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
                                         <li className="display-from-size-small"><button className={`clean-btn join-a ${color}`} onClick={() => openSignUpModal(true)}>Join</button></li>
                                     </React.Fragment> :
                                     <React.Fragment>
+                                        <li className='messages'>
+                                            <div className="icon" onClick={toggleNotificationModal}>
+                                                {user?.notifications?.length && <div className='notification-dot'></div>}
+                                                <NotificationsIcon />
+                                            </div>
+                                            {isNotificationMenu && <NotificationMenu user={user} setNotificationMenu={setNotificationMenu}/>}
+                                        </li>
                                         <li className="display-from-size-small profile-container">
                                             <UserProfileImg user={user} isLink={false} toggleMenu={onToggleMenu} dotClass='dot-bottom' ></UserProfileImg>
                                             {isProfileMenu && <ProfileMenu onLogout={onLogout} user={user} closeMenu={onToggleMenu} />}
@@ -107,6 +121,9 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
             </header>
 
         </div>
+        {isNotificationMenu && <div className='notification-screen' onClick={() => {
+            setNotificationMenu(false)
+        }}> </div>}
     </section>
 
 }
