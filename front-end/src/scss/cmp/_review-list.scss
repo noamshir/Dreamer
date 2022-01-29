@@ -35,9 +35,11 @@
       justify-content: center;
       li {
         color: #95979d;
-        @media (max-width: 350px) {
-          font-size: rem(12px);
-        }
+
+        font-size: rem(14px);
+        // @include for-normal-layout {
+        //   font-size: rem(14px);
+        // }
       }
     }
     width: 100%;

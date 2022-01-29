@@ -12,7 +12,7 @@ const session = expressSession({
   cookie: { secure: false },
 });
 
-app.use(express.static("public"));
+// app.use(express.static("public"));
 app.use(express.json());
 app.use(session);
 

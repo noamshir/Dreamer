@@ -1,13 +1,27 @@
 import { connect } from "react-redux";
+import React, { useState, useEffect } from 'react'
 
-import img from "../../svg/photo.jpg"
+
 import { BoardHeader } from "./BoardHeader"
-import { UserProfileImg } from "../profile/UserProfileImg"
 import { UserInfoCard } from "../profile/UserInfoCard"
-import { Logo } from "../Logo";
 import { Orders } from "./Orders";
+import { userService } from "../../services/user.service";
 
-function _UserBoard({ user, switchToSeller }) {
+function _UserBoard({ user: currUser, switchToSeller }) {
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        if (!currUser) return;
+        onSetUser()
+    }, [currUser._id])
+
+    async function onSetUser() {
+        const userToSet = await userService.getById(currUser._id)
+        setUser(userToSet);
+        return userToSet;
+    }
+
+    if (!user) return <React.Fragment></React.Fragment>;
     return <section className="user-board">
         <BoardHeader switchToSeller={switchToSeller} switchTo={"Seller"} user={user} />
         <div className="user-board-content max-width-container equal-padding">

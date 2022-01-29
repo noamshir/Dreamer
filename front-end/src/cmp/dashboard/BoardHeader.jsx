@@ -1,4 +1,4 @@
-import WidgetsIcon from '@mui/icons-material/Widgets';
+import AppsIcon from '@mui/icons-material/Apps';
 import { useState } from 'react';
 
 export function BoardHeader({ switchTo, user, switchToSeller, switchToUser }) {
@@ -9,11 +9,17 @@ export function BoardHeader({ switchTo, user, switchToSeller, switchToUser }) {
             <nav className="board-nav">
                 <div className="hamburger" onClick={() => {
                     setClass(!classNav)
-                }}><WidgetsIcon /></div>
+                }}><AppsIcon /></div>
                 <ul className={classNav ? "flex clean-list open" : "flex clean-list"}>
-                    <li>Dashboard</li>
-                    <li>Analytics</li>
-                    <li>Messeges</li>
+                    <li onClick={() => {
+                        setClass(false)
+                    }}>Dashboard</li>
+                    <li onClick={() => {
+                        setClass(false)
+                    }}>Analytics</li>
+                    <li onClick={() => {
+                        setClass(false)
+                    }}>Messeges</li>
                 </ul>
             </nav>
             <div className="flex-grow-helper"></div>

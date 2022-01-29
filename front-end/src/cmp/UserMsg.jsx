@@ -1,32 +1,34 @@
 import React from 'react'
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
-import { eventBusService } from '../services/event-bus.service'
 import CloseIcon from '@mui/icons-material/Close';
+import { setMsg } from '../store/user.action';
+import { connect } from "react-redux"
+import { useEffect } from "react"
 
 
-export class UserMsg extends React.Component {
+function _UserMsg({ msg, setMsg }) {
+  var timeoutId
+  useEffect(() => {
+    if (!msg) return;
+    clearTimeout(timeoutId)
+    timeoutId = setTimeout(() => {
+      setMsg('');
+    }, 2500)
+    console.log('msg:', msg);
 
-  removeEvent;
+    return () => {
+      clearTimeout(timeoutId)
+    }
+  }, [msg])
 
-  state = {
-    msg: null
+  if (!msg) {
+    clearTimeout(timeoutId)
+    return <span></span>
   }
 
-  componentDidMount() {
-    // Here we listen to the event that we emited, its important to remove the listener 
-    this.removeEvent = eventBusService.on('show-user-msg', (msg) => {
-      this.setState({ msg })
-      setTimeout(() => {
-        this.setState({ msg: null })
-      }, 2500)
-    })
-  }
+  const msgType = msg.type || ''
+  console.log('msg:', msg);
 
-  componentWillUnmount() {
-    this.removeEvent()
-  }
-
-  render() {
     // if (!this.state.msg) return <span></span>
     // const msgClass = this.state.msg.type || ''
     return (
@@ -83,5 +85,17 @@ export class UserMsg extends React.Component {
         </section>
       </div>
     )
+    }
+
+function mapStateToProps(state) {
+  return {
+    msg: state.userModule.msg
   }
 }
+
+const mapDispatchToProps = {
+  setMsg
+};
+
+
+export const UserMsg = connect(mapStateToProps, mapDispatchToProps)(_UserMsg)

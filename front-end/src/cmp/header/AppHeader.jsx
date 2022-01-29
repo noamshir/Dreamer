@@ -5,8 +5,8 @@ import { connect } from 'react-redux'
 import { SearchBar } from '../SearchBar.jsx';
 import { UserProfileImg } from '../profile/UserProfileImg';
 import { Logo } from '../Logo.jsx';
-import { logout } from '../../store/user.action'
-import { setProfile, toggleJoinModal, toggleSignInModal } from '../../store/scss.action.js';
+import { logout, setMsg } from '../../store/user.action'
+import { toggleJoinModal, toggleSignInModal } from '../../store/scss.action.js';
 import { ProfileMenu } from './ProfileMenu.jsx';
 
 import {
@@ -18,7 +18,7 @@ import {
 } from "../../services/socket.service";
 
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
-function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpModal, openSignInModal, user, logout, openMenu }) {
+function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpModal, openSignInModal, user, logout, openMenu, setMsg }) {
     const [isProfileMenu, setMenu] = useState(false);
     var headerTransparent = "";
     var color = "";
@@ -31,11 +31,14 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
         socketService.on(user._id, () => {
             socketService.emit(SOCKET_EMIT_USER_CONNECTED, user._id);
         });
-        socketService.on('order status', onShowMsg)
+        socketService.on('order status', (msg) => setMsg(msg))
+        socketService.on('order received', (msg) => setMsg(msg))
+        socketService.on('add-review-msg', (msg) => setMsg(msg))
         return () => {
             socketService.emit(SOCKET_EMIT_LEAVE, user._id)
             socketService.off(user._id)
             socketService.off('order status')
+            socketService.off('order received')
         }
     }, [user])
 
@@ -50,12 +53,10 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
         searchBar = ""
         if (isSearchBar) searchBar = "show-bar"
     }
-    const onShowMsg = ({ msg, isSuccess }) => {
-        isSuccess ? showSuccessMsg(msg) : showErrorMsg(msg)
-    }
+
     const onLogout = async () => {
         await logout(user);
-        showSuccessMsg("user logged out!");
+        // showSuccessMsg("user logged out!");
     }
     window.addEventListener('click', (ev) => {
         if (ev.target.className !== "clean-list profile-scroll" && ev.target.className !== "spanclass" && ev.target.className !== "user-img") {
@@ -123,6 +124,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
     logout,
+    setMsg,
     openSignInModal: toggleSignInModal,
     openSignUpModal: toggleJoinModal
 };

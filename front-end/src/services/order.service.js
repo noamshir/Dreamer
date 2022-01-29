@@ -40,6 +40,7 @@ async function save(order) {
     return httpService.put(`order/${order._id}`, order);
     // return storageService.put(STORAGE_KEY, order);
   } else {
+    console.log('order:', order);
     return httpService.post("order", order);
     // const user = userService.getLoggedinUser()
     // order.owner = user;
@@ -67,7 +68,7 @@ async function saveOrder(gig, user, owner) {
       _id: gig._id,
       title: gig.title,
       daysToMake: gig.daysToMake,
-      price: gig.price + gig.price / 3,
+      price: (gig.price + gig.price * 0.05),
       img: gig.imgUrls[0],
     },
     orderStatus: 'pending',

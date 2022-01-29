@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { useState } from 'react'
 import { signIn, googleLogin, signUp } from '../../store/user.action.js';
 import { toggleSignInModal, toggleJoinModal } from "../../store/scss.action"
-import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service';
+// import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service';
 import { GoogleLogin } from 'react-google-login';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -13,12 +13,12 @@ function _SignIn({ toggleSignInModal, signIn, toggleJoinModal, googleLogin, sign
     const handleSubmit = async (ev) => {
         ev.preventDefault();
         const ans = await signIn(user);
-        if (ans) {
-            showSuccessMsg(`user ${ans.username} signed in`);
-        }
-        else {
-            showErrorMsg('failed to login...')
-        }
+        // if (ans) {
+        //     showSuccessMsg(`user ${ans.username} signed in`);
+        // }
+        // else {
+        //     showErrorMsg('failed to login...')
+        // }
         toggleSignInModal(false);
     }
 
@@ -39,7 +39,7 @@ function _SignIn({ toggleSignInModal, signIn, toggleJoinModal, googleLogin, sign
         const googleUser = response.profileObj;
         const ans = await googleLogin(googleUser.googleId);
         if (ans) {
-            showSuccessMsg(`${ans.username} logged successfuly`);
+            // showSuccessMsg(`${ans.username} logged successfuly`);
             toggleSignInModal();
         }
         else {
@@ -51,8 +51,8 @@ function _SignIn({ toggleSignInModal, signIn, toggleJoinModal, googleLogin, sign
                 googleId: googleUser.googleId
             }
             const joinedUser = await signUp(tempUser);
-            if (!joinedUser) showErrorMsg("Failed google login...");
-            showSuccessMsg(`${tempUser.username} logged successfuly`);
+            // if (!joinedUser) showErrorMsg("Failed google login...");
+            // showSuccessMsg(`${tempUser.username} logged successfuly`);
             toggleSignInModal();
         }
     }
@@ -78,7 +78,7 @@ function _SignIn({ toggleSignInModal, signIn, toggleJoinModal, googleLogin, sign
                 </div>
                 <form action="" className="sign-form" onSubmit={handleSubmit}>
                     <div className="form-input-div">
-                        <input required type="text" name="username" placeholder="Choose a Username" onChange={handleChange} className="user-input" />
+                        <input required autoComplete="off" type="text" name="username" placeholder="Choose a Username" onChange={handleChange} className="user-input" />
                     </div>
                     <div className="form-input-div">
                         <input required type="password" name="password" placeholder="Choose a Password" onChange={handleChange} className="user-input" />

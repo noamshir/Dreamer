@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { useState } from 'react'
 import { GoogleLogin } from 'react-google-login';
 import CloseIcon from '@mui/icons-material/Close';
-import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js';
+// import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js';
 import { toggleSignInModal, toggleJoinModal } from "../../store/scss.action"
 import { signUp, googleLogin } from '../../store/user.action.js'
 
@@ -13,8 +13,8 @@ function _SignUp({ signUp, toggleSignInModal, toggleJoinModal, googleLogin }) {
     const handleSubmit = async (ev) => {
         ev.preventDefault();
         var ans = await signUp(user);
-        if (ans) showSuccessMsg(`${ans.username} joined successfuly!`)
-        else showErrorMsg(`Failed to Sign-up`)
+        // if (ans) showSuccessMsg(`${ans.username} joined successfuly!`)
+        // else showErrorMsg(`Failed to Sign-up`)
         toggleJoinModal(false);
     }
 
@@ -32,7 +32,7 @@ function _SignUp({ signUp, toggleSignInModal, toggleJoinModal, googleLogin }) {
         const googleUser = response.profileObj;
         const ans = await googleLogin(googleUser.googleId);
         if (ans) {
-            showSuccessMsg(`${ans.username} logged successfuly`);
+            // showSuccessMsg(`${ans.username} logged successfuly`);
             toggleJoinModal();
         }
         else {
@@ -44,8 +44,8 @@ function _SignUp({ signUp, toggleSignInModal, toggleJoinModal, googleLogin }) {
                 googleId: googleUser.googleId
             }
             const joinedUser = await signUp(tempUser);
-            if (!joinedUser) showErrorMsg("Failed google login...");
-            showSuccessMsg(`${tempUser.username} logged successfuly`);
+            // if (!joinedUser) showErrorMsg("Failed google login...");
+            // showSuccessMsg(`${tempUser.username} logged successfuly`);
             toggleJoinModal();
         }
     }
@@ -74,13 +74,13 @@ function _SignUp({ signUp, toggleSignInModal, toggleJoinModal, googleLogin }) {
                 </div>
                 <form action="" className="sign-form" onSubmit={handleSubmit}>
                     <div className="form-input-div">
-                        <input required type="text" name="fullname" placeholder="Enter your full name" onChange={handleChange} className="user-input" />
+                        <input required autoComplete="off" type="text" name="fullname" placeholder="Enter your full name" onChange={handleChange} className="user-input" />
                     </div>
                     <div className="form-input-div">
-                        <input required type="text" name="username" placeholder="Choose a Username" onChange={handleChange} className="user-input" />
+                        <input required autoComplete="off" type="text" name="username" placeholder="Choose a Username" onChange={handleChange} className="user-input" />
                     </div>
                     <div className="form-input-div">
-                        <input required type="password" name="password" placeholder="Choose a Password" onChange={handleChange} className="user-input" />
+                        <input required autoComplete="off" type="password" name="password" placeholder="Choose a Password" onChange={handleChange} className="user-input" />
                     </div>
                     <button className="continue-btn" type="submit">Continue</button>
                     <p className="siginig-agree">By joining I agree to receive dimes from dimerr.</p>

@@ -3,7 +3,7 @@ import React from 'react';
 
 import { UserProfileImg } from "../profile/UserProfileImg"
 import { socketService } from "../../services/socket.service";
-
+import { utilService } from "../../services/util.service";
 
 export function OrderPreview({ order, type, user, onChangeStatus }) {
     const showingType = (type === 'buyer') ? 'seller' : 'buyer';
@@ -39,8 +39,14 @@ export function OrderPreview({ order, type, user, onChangeStatus }) {
         if (order.orderStatus === 'rejected' || order.orderStatus === 'active') return
         order.orderStatus = value
         onChangeStatus(order)
-        socketService.emit('new status', order)
-        socketService.emit('new status msg', order)
+        const notification = {
+            _id: utilService.makeId(8),
+            sender: user,
+            txt: '',
+            type: order.orderStatus,
+            createdAt: Date.now()
+        }
+        socketService.emit('new status', { order, notification })
     }
 
     return (
