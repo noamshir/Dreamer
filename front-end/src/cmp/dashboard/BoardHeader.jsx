@@ -16,7 +16,7 @@ export function BoardHeader({ switchTo, user, switchToSeller, switchToUser }) {
                     }}>Dashboard</li>
                     <li onClick={() => {
                         setClass(false)
-                    }}>Analytics</li>
+                    }}>Notification</li>
                     <li onClick={() => {
                         setClass(false)
                     }}>Messeges</li>

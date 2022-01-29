@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import { withRouter } from 'react-router-dom';
 
@@ -7,7 +7,9 @@ import { onSetFilterBy } from '../store/gig.action'
 
 function _SearchBar(props) {
     const [txt, setTxt] = useState('');
-
+    // useEffect(() => {
+    //     if (!txt) setTxt(props.search);
+    // }, [props.search])
     const handleChange = ({ target }) => {
         const { value } = target
         setTxt(value);
@@ -17,7 +19,6 @@ function _SearchBar(props) {
         props.onSetFilterBy({ title: txt }, 'title');
         props.history.push(`/explore?title=${txt}`)
     }
-
     return (
         <React.Fragment>
             <form
@@ -38,9 +39,9 @@ function _SearchBar(props) {
     )
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({ gigModule }) {
     return {
-        
+        search: gigModule.filterBy.title
     }
 }
 

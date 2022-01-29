@@ -42,11 +42,25 @@ export function OrderPreview({ order, type, user, onChangeStatus }) {
         const notification = {
             _id: utilService.makeId(8),
             sender: user,
-            txt: '',
             type: order.orderStatus,
-            createdAt: Date.now()
+            createdAt: Date.now(),
+            msg: createMsg(order.orderStatus)
         }
         socketService.emit('new status', { order, notification })
+    }
+    const createMsg = (status) => {
+        var msg = {}
+        if (status === "active") {
+            msg.title = "Order approved!"
+            msg.content = "The seller approved your order"
+            msg.subHeader = "You can now view it in the dashboard"
+        }
+        else if (status === "rejected") {
+            msg.title = "Order was rejected!"
+            msg.content = "The seller rejected your order"
+            msg.subHeader = "Dont worry! we have many other gigs for you"
+        }
+        return msg;
     }
 
     return (
