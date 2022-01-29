@@ -4,7 +4,6 @@ import { httpService } from "./http.service.js";
 import { utilService } from "./util.service.js";
 import {
   socketService,
-  SOCKET_EMIT_LOGIN,
   SOCKET_EMIT_LOGOUT,
   SOCKET_EMIT_ADD_REVIEW,
 } from "./socket.service.js";
@@ -108,6 +107,7 @@ async function getUsers() {
 }
 
 async function getById(userId) {
+  console.log('userId:', userId);
   const user = await httpService.get(`user/${userId}`);
   // return user
   // const user = await storageService.get(STORAGE_KEY, userId)
@@ -146,8 +146,7 @@ async function saveUser(user) {
     // return storageService.put(STORAGE_KEY, user);
   } else {
     return httpService.post('user', user)
-    // const user = userService.getLoggedinUser()
-    // gig.owner = user;
+    // const user = await httpService.post("auth/signup", userInfo);
     // return storageService.post(STORAGE_KEY, user);
   }
 }

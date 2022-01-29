@@ -35,6 +35,7 @@ async function updateUser(req, res) {
   try {
     const user = req.body;
     const savedUser = await userService.update(user);
+    // req.session.user = savedUser;
     res.send(savedUser);
   } catch (err) {
     logger.error("Failed to update user", err);

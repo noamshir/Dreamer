@@ -6,7 +6,6 @@ import { UserStarRate } from "../cmp/Details/UserStarRate";
 import { gigService } from "../services/gig.service";
 import { userService } from "../services/user.service";
 import { addOrder } from '../store/order.action';
-import { showSuccessMsg } from "../services/event-bus.service";
 import { setExplore, setHome, setDetails, setBecomeSeller, setProfile } from '../store/scss.action';
 import { toggleSignInModal } from '../store/scss.action';
 import { socketService } from "../services/socket.service";
@@ -90,7 +89,6 @@ class _Checkout extends React.Component {
             msg: this.createMsg()
         }
         socketService.emit('new order', { savedOrder, notification })
-        showSuccessMsg('Order saved, check it out in your profile!')
         this.props.history.push(`/dashboard/${user._id}`)
     }
     createMsg = () => {

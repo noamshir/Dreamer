@@ -3,6 +3,7 @@ import { userService } from "../services/user.service";
 const initialState = {
   user: userService.getLoggedinUser(),
   msg: '',
+  notifications: [],
 };
 
 export function userReducer(state = initialState, action) {
@@ -12,9 +13,10 @@ export function userReducer(state = initialState, action) {
       newState = { ...state, user: action.user };
       break;
     case "SET_MSG":
-      console.log('reducer msg:', action.msg);
-
       newState = { ...state, msg: action.msg };
+      break;
+    case "ADD_NOTIFICATION":
+      newState = { ...state, notifications: [action.notification, ...this.state.notifications] }
       break;
   }
   return newState;

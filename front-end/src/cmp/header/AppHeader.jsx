@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { SearchBar } from '../SearchBar.jsx';
 import { UserProfileImg } from '../profile/UserProfileImg';
 import { Logo } from '../Logo.jsx';
-import { logout, setMsg } from '../../store/user.action'
+import { logout, setMsg, addNotification } from '../../store/user.action'
 import { toggleJoinModal, toggleSignInModal } from '../../store/scss.action.js';
 import { ProfileMenu } from './ProfileMenu.jsx';
 
@@ -16,7 +16,7 @@ import {
     SOCKET_EMIT_LEAVE,
 } from "../../services/socket.service";
 
-function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpModal, openSignInModal, user, logout, openMenu, setMsg }) {
+function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpModal, openSignInModal, user, logout, openMenu, setMsg, addNotification }) {
     const [isProfileMenu, setMenu] = useState(false);
     var headerTransparent = "";
     var color = "";
@@ -29,14 +29,9 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
         socketService.on(user._id, () => {
             socketService.emit(SOCKET_EMIT_USER_CONNECTED, user._id);
         });
-        socketService.on('order status', (msg) => {
-            setMsg(msg)
-        }
-        )
-        socketService.on('order received', (msg) => {
-            if (msg.sender._id !== user._id) setMsg(msg)
-        })
-        socketService.on('add-review-msg', (msg) => setMsg(msg))
+        socketService.on('order status', (msg) => onShowMsg(msg))
+        socketService.on('order received', (msg) => onShowMsg(msg))
+        socketService.on('add-review-msg', (msg) => onShowMsg(msg))
         return () => {
             socketService.emit(SOCKET_EMIT_LEAVE, user._id)
             socketService.off(user._id)
@@ -56,7 +51,12 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
         searchBar = ""
         if (isSearchBar) searchBar = "show-bar"
     }
-
+    const onShowMsg = (msg) => {
+        if (msg.sender._id === user._id) return;
+        setMsg(msg);
+        console.log('onshowmsg:', msg);
+        addNotification(user, msg);
+    }
     const onLogout = async () => {
         await logout(user);
         // showSuccessMsg("user logged out!");
@@ -74,6 +74,8 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
         socketService.on("find-user", (userid) => {
             if (user._id === userid) socketService.emit("user-connection", userid);
         })
+        console.log('user:', user);
+
         socketService.emit("set-user-socket", user._id);
     }
     return <section className={`main-header ${sticky}`}>
@@ -128,6 +130,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
     logout,
     setMsg,
+    addNotification,
     openSignInModal: toggleSignInModal,
     openSignUpModal: toggleJoinModal
 };

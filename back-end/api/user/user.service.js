@@ -84,6 +84,7 @@ async function update(user) {
     const collection = await dbService.getCollection("user");
     await collection.updateOne({ _id: id }, { $set: { ...user } });
     user.createdAt = ObjectId(user._id).getTimestamp();
+    user._id = id;
     return user;
   } catch (err) {
     logger.error(`cannot update user ${user._id}`, err);
