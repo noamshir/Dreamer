@@ -11,13 +11,11 @@ import { ProfileMenu } from './ProfileMenu.jsx';
 
 import {
     socketService,
-    SOCKET_EMIT_LOGIN,
     SOCKET_EMIT_USER_CONNECTED,
     SOCKET_EMIT_JOIN,
     SOCKET_EMIT_LEAVE,
 } from "../../services/socket.service";
 
-import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
 function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpModal, openSignInModal, user, logout, openMenu, setMsg }) {
     const [isProfileMenu, setMenu] = useState(false);
     var headerTransparent = "";
