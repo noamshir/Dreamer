@@ -53,10 +53,6 @@ function connectSockets(http, session) {
       socket.to(order.buyer._id).emit("changed status", order);
       socket.to(order.buyer._id).emit('order status', notification)
     });
-    // socket.on('new status msg', (order) => {
-    //   const msg = order.orderStatus === 'rejected' ? 'Your Order has been cancelled...' : 'Your Order is now in progress!'
-    //   const isSuccess = order.orderStatus === 'rejected' ? false : true
-    // })
     socket.on("set-user-socket", (userId) => {
       socket.userId = userId;
       console.log("user logged in", socket.userId);
