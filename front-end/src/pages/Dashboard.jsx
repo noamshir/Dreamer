@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { UserBoard } from "../cmp/dashboard/UserBoard";
 import { SellerBoard } from "../cmp/dashboard/SellerBoard";
 import { setProfile, setDetails, setHome, setExplore, setBecomeSeller } from "../store/scss.action";
+import { Loader } from "../cmp/utils/Loader";
 
 
 function _DashBoard(props) {
@@ -25,7 +26,11 @@ function _DashBoard(props) {
     const switchDashboard = (isSeller) => {
         setIsSeller(isSeller);
     }
-    if (!props.currUser) return props.history.push('/explore')
+    if (!props.currUser)
+    {
+        props.history.push('/explore')
+        return <Loader />
+    }
     return <section className="dashboard">
         <div className="dashboard-content">
             {(!user.sellerInfo || (!isInSeller)) && <UserBoard switchToSeller={switchDashboard} />}
