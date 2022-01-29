@@ -15,7 +15,7 @@ function _UserMsg({ notification, setMsg }) {
     clearTimeout(timeoutId)
     timeoutId = setTimeout(() => {
       setMsg('');
-    }, 5000)
+    }, 555555000)
     console.log('msg:', notification);
 
     return () => {
@@ -40,7 +40,7 @@ function _UserMsg({ notification, setMsg }) {
         <h2 className="msg-txt">
           {msg.content}
         </h2>
-        <div className="lower-text flex">
+        <div className="lower-text">
           <h5>{msg.subHeader}</h5>
           {(notification.type === "new-order") && <div className="dime-signs flex"> <MonetizationOnIcon className="dime-sign" /><MonetizationOnIcon className="dime-sign" /><MonetizationOnIcon className="dime-sign" /></div>}
           {(notification.type === "active") && <CheckCircleIcon className="check-icon" />}
