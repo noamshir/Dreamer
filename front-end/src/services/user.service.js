@@ -121,7 +121,6 @@ async function saveReview(rate, txt, user, owner) {
       imgUrl: user.imgUrl || null,
     },
   };
-  owner.reviews = [...owner.reviews, review];
   const notification = {
     _id: utilService.makeId(8),
     sender: user,
@@ -130,13 +129,15 @@ async function saveReview(rate, txt, user, owner) {
     createdAt: Date.now(),
     msg: createMsg(review.by),
   };
-  socketService.emit(SOCKET_EMIT_ADD_REVIEW, {
+  owner.reviews = [...owner.reviews, review];
+  if (!owner.notifications) owner.notifications = [];
+  owner.notifications = [...owner.notifications, notification];
+  const updatedOwner = await saveUser(owner);
+  socketService.emit("new-review", {
     review,
-    ownerId: owner._id,
+    ownerId: updatedOwner._id,
     notification,
   });
-  const updatedOwner = await saveUser(owner);
-  console.log({updatedOwner})
   return updatedOwner;
 }
 
@@ -162,4 +163,3 @@ async function saveSellerInfo(sellerInfo) {
   });
   return await update(sellerInfo);
 }
-
