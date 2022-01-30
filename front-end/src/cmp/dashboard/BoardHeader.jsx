@@ -19,7 +19,7 @@ export function BoardHeader({ switchTo, user, switchToSeller, switchToUser }) {
                     }}>Notification</li>
                     <li onClick={() => {
                         setClass(false)
-                    }}>Messeges</li>
+                    }}>Messages</li>
                 </ul>
             </nav>
             <div className="flex-grow-helper"></div>
