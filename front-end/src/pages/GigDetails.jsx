@@ -16,11 +16,11 @@ import {
     SOCKET_EMIT_LEAVE,
     SOCKET_EMIT_ADD_REVIEW
 } from '../services/socket.service'
-
 import { onSetFilterBy } from '../store/gig.action'
 import { setHome, setExplore, setDetails, setBecomeSeller, setProfile } from '../store/scss.action.js';
 import { GigHeader } from '../cmp/header/GigHeader'
 import { Loader } from '../cmp/utils/Loader'
+import { setMsg } from '../store/user.action'
 
 
 
@@ -52,8 +52,9 @@ class _GigDetails extends React.Component {
 
     setSockets = () => {
         socketService.emit(SOCKET_EMIT_JOIN, this.state.owner._id)
-        socketService.on(SOCKET_EMIT_ADD_REVIEW, (review) => {
+        socketService.on(SOCKET_EMIT_ADD_REVIEW, ({ review, ownerId}) => {
             var { owner } = this.state;
+            if (ownerId !== owner._id) return;
             owner.reviews = [...owner.reviews, review];
             this.setState({ owner });
         })
@@ -120,6 +121,7 @@ const mapDispatchToProps = {
     setHome,
     setBecomeSeller,
     setProfile,
+    setMsg
 }
 
 export const GigDetails = connect(mapStateToProps, mapDispatchToProps)(_GigDetails)

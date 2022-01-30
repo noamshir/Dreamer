@@ -15,10 +15,6 @@ export function loadOrders(userId, type) {
     }
 }
 
-
-
-
-
 export function addOrder(gig, user, owner) {
     return async (dispatch) => {
         try {

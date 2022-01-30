@@ -14,6 +14,8 @@ function _UserProfileImg({ user, isLink, closeMenu, toggleMenu, setIsOnline = fa
         return () => {
             socketService.off(SOCKET_EMIT_USER_ONLINE)
             socketService.off(SOCKET_EMIT_USER_OFFLINE)
+            socketService.off('find-user')
+            socketService.off('user-connection')
         }
     }, [])
 

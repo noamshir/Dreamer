@@ -7,7 +7,6 @@ import { loadOrders, onChangeStatus } from '../../store/order.action';
 import { socketService } from '../../services/socket.service';
 
 class _Orders extends React.Component {
-
     state = {
         orders: null
     }
@@ -39,7 +38,6 @@ class _Orders extends React.Component {
         setOrdersAmount(this.state.orders.length);
     }
     setSocket = () => {
-        socketService.setup()
         socketService.on('added order', this.onAddOrder)
         socketService.on('changed status', this.onUpdateOrder)
         socketService.emit('join-order-channel', this.props.user._id);

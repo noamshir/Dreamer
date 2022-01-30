@@ -21,7 +21,7 @@ export function NotificationMenu({ user,setNotificationMenu }) {
                 <div className='no-notifications-msg'>
                     <NotificationsOffOutlinedIcon />
                     <h4>No Notifications</h4>
-                    <span>Browse our amazing catalog of Gigs or offer your talent on Fiverr.</span>
+                    <span>Browse our amazing catalog of Gigs or offer your talent on Dimerr.</span>
 
                 </div>
             }
