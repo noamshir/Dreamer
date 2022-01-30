@@ -7,68 +7,55 @@ function connectSockets(http, session) {
     },
   });
   gIo.on("connection", (socket) => {
-    console.log("New socket", socket.id);
-    socket.on("disconnect", (socket) => {
-      console.log("Someone disconnected");
-    });
+    socket.on("disconnect", (socket) => {});
 
     socket.on("join", (room) => {
-      console.log("user joined room", room);
       socket.join(room);
     });
-    socket.on("join isConnected", (userId) => {
-      console.log("user joined room", userId);
-      socket.join(userId);
-      socket.userId = userId;
-      console.log("emmiting user id", userId);
-      gIo.to(userId).emit(userId);
+    socket.on("join isConnected", (id) => {
+      socket.join(id);
+      socket.userId = id;
+      gIo.to(id).emit(id);
     });
     socket.on("leave", (room) => {
-      console.log("user left room", room);
       socket.leave(room);
     });
-    socket.on("add-review", ({ review, ownerId, notification }) => {
-      socket.to(ownerId).emit("add-review", review);
-      socket.to(ownerId).emit("add-review-msg", notification);
+    socket.on("new-review", ({ review, ownerId, notification }) => {
+      socket.to(ownerId).emit("add-review", { review, ownerId, notification });
+      socket.to(ownerId).emit("add-review-msg", { notification, ownerId });
     });
     socket.on("join-order-channel", (userId) => {
-      if (socket.orderChannel === userId) return;
-      if (socket.orderChannel) {
-        socket.leave(socket.orderChannel);
-      }
+      // if (socket.orderChannel === userId) return;
+      // if (socket.orderChannel) {
+      //   socket.leave(socket.orderChannel);
+      // }
       socket.join(userId);
       socket.orderChannel = userId;
     });
 
     socket.on("user-connected", (userId) => {
-      console.log("user online", userId);
       gIo.to(userId).emit("user-online", userId);
     });
     socket.on("new order", ({ savedOrder, notification }) => {
-      console.log('order:', savedOrder);
-      socket.to(savedOrder.seller._id).emit('added order', savedOrder);
-      socket.to(savedOrder.seller._id).emit('order received', notification)
+      console.log("new order", notification);
+      socket.to(savedOrder.seller._id).emit("added order", savedOrder);
+      socket.to(savedOrder.seller._id).emit("order received", notification);
+      // socket.leave(savedOrder.seller._id);
     });
     socket.on("new status", ({ order, notification }) => {
       socket.to(order.buyer._id).emit("changed status", order);
-      socket.to(order.buyer._id).emit('order status', notification)
+      socket.to(order.buyer._id).emit("order status", notification);
     });
-    // socket.on('new status msg', (order) => {
-    //   const msg = order.orderStatus === 'rejected' ? 'Your Order has been cancelled...' : 'Your Order is now in progress!'
-    //   const isSuccess = order.orderStatus === 'rejected' ? false : true
-    // })
     socket.on("set-user-socket", (userId) => {
       socket.userId = userId;
-      console.log("user logged in", socket.userId);
       gIo.to(userId).emit("user-online", userId);
     });
     socket.on("user-online", (userId) => {
-      console.log("user reporting online", userId);
       socket.userId = userId;
       gIo.to(userId).emit("user-online", userId);
     });
     socket.on("unset-user-socket", (userId) => {
-      console.log("user logged out");
+      console.log("noam dissconected", userId);
       delete socket.userId;
       gIo.emit("user-offline", userId);
     });
@@ -82,37 +69,6 @@ function connectSockets(http, session) {
   });
 }
 
-// function emitTo({ type, data, label }) {
-//   if (label) gIo.to("watching:" + label).emit(type, data);
-//   else gIo.emit(type, data);
-// }
-
-// async function emitToUser({ type, data, userId }) {
-//   logger.debug("Emiting to user socket: " + userId);
-//   const socket = await _getUserSocket(userId);
-//   if (socket) socket.emit(type, data);
-//   else {
-//     console.log("User socket not found");
-//     _printSockets();
-//   }
-// }
-
-// async function broadcast({ type, data, room = null, userId }) {
-//   console.log("BROADCASTING", JSON.stringify(arguments));
-//   const excludedSocket = await _getUserSocket(userId);
-//   if (!excludedSocket) {
-//     // logger.debug('Shouldnt happen, socket not found')
-//     // _printSockets();
-//     return;
-//   }
-//   logger.debug("broadcast to all but user: ", userId);
-//   if (room) {
-//     excludedSocket.broadcast.to(room).emit(type, data);
-//   } else {
-//     excludedSocket.broadcast.emit(type, data);
-//   }
-// }
-
 async function _getUserSocket(userId) {
   const sockets = await _getAllSockets();
   const socket = sockets.find((s) => s.userId == userId);
@@ -123,23 +79,6 @@ async function _getAllSockets() {
   const sockets = await gIo.fetchSockets();
   return sockets;
 }
-
-// async function _printSockets() {
-//   const sockets = await _getAllSockets();
-//   console.log(`Sockets: (count: ${sockets.length}):`);
-//   sockets.forEach(_printSocket);
-// }
-// function _printSocket(socket) {
-//   console.log(`Socket - socketId: ${socket.id} userId: ${socket.userId}`);
-// }
-
-// module.exports = {
-//   connectSockets,
-//   emitTo,
-//   emitToUser,
-//   broadcast,
-// };
-
 module.exports = {
   connectSockets,
 };

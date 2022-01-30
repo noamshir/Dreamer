@@ -17,7 +17,6 @@ async function signUp(user) {
     const saltRounds = 10;
     const exsitUser = await userService.getByUsername(user.username);
     if (exsitUser) {
-      console.log("username taken", exsitUser);
       return Promise.reject("username taken");
     }
     const hash = await bcrypt.hash(user.password, saltRounds);
@@ -27,7 +26,6 @@ async function signUp(user) {
     delete addedUser.password;
     return addedUser;
   } catch (err) {
-    console.log("error while signing up: ", err);
     throw err;
   }
 }
