@@ -25,23 +25,30 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
     var color = "";
     var sticky = "not-sticky";
     var searchBar = "show-bar";
-
     useEffect(() => {
         if (!user) return;
         socketService.emit(SOCKET_EMIT_JOIN, user._id)
+        turnOnSockets();
+        return () => {
+            socketService.emit(SOCKET_EMIT_LEAVE, user._id)
+            turnOffSockets();
+        }
+    }, [user])
+
+    const turnOffSockets = () => {
+        socketService.off(user._id)
+        socketService.off('order status')
+        socketService.off('order received')
+    }
+
+    const turnOnSockets = () => {
         socketService.on(user._id, () => {
             socketService.emit(SOCKET_EMIT_USER_CONNECTED, user._id);
         });
         socketService.on('order status', (msg) => onShowMsg(msg))
         socketService.on('order received', (msg) => onShowMsg(msg))
         socketService.on('add-review-msg', (msg) => onShowMsg(msg))
-        return () => {
-            socketService.emit(SOCKET_EMIT_LEAVE, user._id)
-            socketService.off(user._id)
-            socketService.off('order status')
-            socketService.off('order received')
-        }
-    }, [user])
+    }
 
     if ((isHome || isBecomeSeller) && (!isScroll)) {
         headerTransparent = "header-transparent";
@@ -55,12 +62,15 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
         if (isSearchBar) searchBar = "show-bar"
     }
     const onShowMsg = (msg) => {
+        console.log(user, msg);
         if (msg.sender._id === user._id) return;
         setMsg(msg);
         addNotification(user, msg);
     }
     const onLogout = async () => {
         await logout(user);
+        turnOffSockets();
+        turnOnSockets();
     }
     window.addEventListener('click', (ev) => {
         if (ev.target.className !== "clean-list profile-scroll" && ev.target.className !== "spanclass" && ev.target.className !== "user-img") {
@@ -107,7 +117,7 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
                                                 {user?.notifications?.length && <div className='notification-dot'></div>}
                                                 <NotificationsIcon />
                                             </div>
-                                            {isNotificationMenu && <NotificationMenu user={user} setNotificationMenu={setNotificationMenu}/>}
+                                            {isNotificationMenu && <NotificationMenu user={user} setNotificationMenu={setNotificationMenu} />}
                                         </li>
                                         <li className="display-from-size-small profile-container">
                                             <UserProfileImg user={user} isLink={false} toggleMenu={onToggleMenu} dotClass='dot-bottom' ></UserProfileImg>

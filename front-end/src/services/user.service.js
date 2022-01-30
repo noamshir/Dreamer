@@ -130,7 +130,7 @@ async function saveReview(rate, txt, user, owner) {
     createdAt: Date.now(),
     msg: createMsg(review.by),
   };
-  socketService.emit(SOCKET_EMIT_ADD_REVIEW, {
+  socketService.emit("new-review", {
     review,
     ownerId: owner._id,
     notification,

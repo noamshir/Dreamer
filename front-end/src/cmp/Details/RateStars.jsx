@@ -3,7 +3,6 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { userService } from '../../services/user.service'
 import { toggleSignInModal } from '../../store/scss.action';
-// import { showSuccessMsg } from '../../services/event-bus.service';
 
 export class _RateStars extends React.Component {
     state = {
@@ -14,8 +13,6 @@ export class _RateStars extends React.Component {
         },
         txt: ''
     }
-
-
     changeRating = (newRating, name) => {
         this.setState(prevState => ({ ratings: { ...prevState.ratings, [name]: newRating } }))
     }
@@ -40,11 +37,10 @@ export class _RateStars extends React.Component {
             return;
         }
         const avgRate = this.sumRate()
-        await userService.saveReview(avgRate, this.state.txt, user, owner)
+        const newOwner = await userService.saveReview(avgRate, this.state.txt, user, owner)
         this.props.setReviewAdd(false)
-        this.props.loadOwner(owner._id)
+        this.props.loadOwner(newOwner._id)
     }
-
     render() {
         const { ratings, txt } = this.state
         return (
