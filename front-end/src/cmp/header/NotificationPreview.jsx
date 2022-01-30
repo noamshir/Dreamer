@@ -9,10 +9,11 @@ export function NotificationPreview({ notification, user, setNotificationMenu })
         }} to={`/dashboard/${user._id}`}>
             <div className="notification">
                 <div className="notification-info">
-                    <img src={Bell} alt="" /> 
+                    <img src={Bell} alt="" />
                     <div className="paragraph">
                         <div>Found out about a <span className='type'>
-                            {notification.type}
+                            {notification.type === 'rejected' || notification.type === 'active' ?
+                                `status ${notification.type}` : `${notification.type}`}
                         </span>
                         </div>
                         <div>That was made by <span className='username'>{notification.sender.username}</span></div>
