@@ -24,8 +24,8 @@ function connectSockets(http, session) {
       socket.leave(room);
     });
     socket.on("new-review", ({ review, ownerId, notification }) => {
-      gIo.to(ownerId).emit("add-review", review);
-      gIo.to(ownerId).emit("add-review-msg", notification);
+      socket.to(ownerId).emit("add-review", {review,ownerId});
+      socket.to(ownerId).emit("add-review-msg", notification);
     });
     socket.on("join-order-channel", (userId) => {
       if (socket.orderChannel === userId) return;
