@@ -38,6 +38,7 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
         socketService.off('order status')
         socketService.off('order received')
         socketService.off('add-review-msg')
+        socketService.off('find-user')
         socketService.emit(SOCKET_EMIT_LEAVE, user._id)
     }
 

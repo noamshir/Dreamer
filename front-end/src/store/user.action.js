@@ -37,6 +37,7 @@ export function signIn(user) {
   return async (dispatch) => {
     try {
       var loggedUser = await userService.login(user);
+      console.log({ loggedUser });
       const action = { type: "SET_USER", user: loggedUser };
       dispatch(action);
       return loggedUser;
@@ -72,9 +73,7 @@ export function saveSellerInfo(sellerInfo) {
 
 export function setMsg(msg) {
   return (dispatch) => {
-    console.log("action msg:", msg);
     const actionMsg = { type: "SET_MSG", msg };
-    // const actionNotification = { type: "ADD_NOTIFICATION", notification: msg };
     dispatch(actionMsg);
   };
 }
@@ -86,6 +85,7 @@ export function addNotification(user, notification) {
     if (!user.notifications) user.notifications = [notification];
     else user.notifications.unshift(notification);
     const updatedUser = await userService.saveUser(user);
+    console.log("user", user);
     const action = { type: "SET_USER", user: updatedUser };
     dispatch(action);
   };

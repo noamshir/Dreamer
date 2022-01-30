@@ -78,8 +78,6 @@ class _Checkout extends React.Component {
             return;
         }
         const savedOrder = await this.props.addOrder(gig, user, owner)
-        console.log('savedOrder:', savedOrder);
-
         const notification = {
             _id: utilService.makeId(8),
             sender: user,
