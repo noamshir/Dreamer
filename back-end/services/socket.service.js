@@ -28,6 +28,7 @@ function connectSockets(http, session) {
       socket.leave(room);
     });
     socket.on("add-review", ({ review, ownerId, notification }) => {
+      console.log({review})
       socket.to(ownerId).emit("add-review", review);
       socket.to(ownerId).emit("add-review-msg", notification);
     });
