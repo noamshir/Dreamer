@@ -24,8 +24,8 @@ function connectSockets(http, session) {
       socket.leave(room);
     });
     socket.on("new-review", ({ review, ownerId, notification }) => {
-      socket.to(ownerId).emit("add-review", {review,ownerId});
-      socket.to(ownerId).emit("add-review-msg", notification);
+      socket.to(ownerId).emit("add-review", {review,ownerId,notification});
+      socket.to(ownerId).emit("add-review-msg", {notification,ownerId});
     });
     socket.on("join-order-channel", (userId) => {
       if (socket.orderChannel === userId) return;
@@ -72,36 +72,6 @@ function connectSockets(http, session) {
   });
 }
 
-// function emitTo({ type, data, label }) {
-//   if (label) gIo.to("watching:" + label).emit(type, data);
-//   else gIo.emit(type, data);
-// }
-
-// async function emitToUser({ type, data, userId }) {
-//   logger.debug("Emiting to user socket: " + userId);
-//   const socket = await _getUserSocket(userId);
-//   if (socket) socket.emit(type, data);
-//   else {
-//     console.log("User socket not found");
-//     _printSockets();
-//   }
-// }
-
-// async function broadcast({ type, data, room = null, userId }) {
-//   console.log("BROADCASTING", JSON.stringify(arguments));
-//   const excludedSocket = await _getUserSocket(userId);
-//   if (!excludedSocket) {
-//     // logger.debug('Shouldnt happen, socket not found')
-//     // _printSockets();
-//     return;
-//   }
-//   logger.debug("broadcast to all but user: ", userId);
-//   if (room) {
-//     excludedSocket.broadcast.to(room).emit(type, data);
-//   } else {
-//     excludedSocket.broadcast.emit(type, data);
-//   }
-// }
 
 async function _getUserSocket(userId) {
   const sockets = await _getAllSockets();
@@ -113,23 +83,6 @@ async function _getAllSockets() {
   const sockets = await gIo.fetchSockets();
   return sockets;
 }
-
-// async function _printSockets() {
-//   const sockets = await _getAllSockets();
-//   console.log(`Sockets: (count: ${sockets.length}):`);
-//   sockets.forEach(_printSocket);
-// }
-// function _printSocket(socket) {
-//   console.log(`Socket - socketId: ${socket.id} userId: ${socket.userId}`);
-// }
-
-// module.exports = {
-//   connectSockets,
-//   emitTo,
-//   emitToUser,
-//   broadcast,
-// };
-
 module.exports = {
   connectSockets,
 };
