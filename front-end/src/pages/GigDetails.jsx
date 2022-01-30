@@ -52,9 +52,10 @@ class _GigDetails extends React.Component {
 
     setSockets = () => {
         socketService.emit(SOCKET_EMIT_JOIN, this.state.owner._id)
-        socketService.on(SOCKET_EMIT_ADD_REVIEW, (review) => {
+        socketService.on(SOCKET_EMIT_ADD_REVIEW, ({ review, ownerId }) => {
             var { owner } = this.state;
-            console.log({owner});
+            console.log(ownerId, owner._id);
+            if (ownerId !== owner._id) return;
             owner.reviews = [...owner.reviews, review];
             this.setState({ owner });
         })

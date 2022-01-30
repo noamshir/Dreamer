@@ -1,4 +1,4 @@
-import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
+import Bell from '../../svg/bell-icon.svg'
 import { Link } from 'react-router-dom';
 
 export function NotificationPreview({ notification, user, setNotificationMenu }) {
@@ -9,7 +9,7 @@ export function NotificationPreview({ notification, user, setNotificationMenu })
         }} to={`/dashboard/${user._id}`}>
             <div className="notification">
                 <div className="notification-info">
-                    <NotificationsOutlinedIcon />
+                    <img src={Bell} alt="" /> 
                     <div className="paragraph">
                         <div>Found out about a <span className='type'>
                             {notification.type}

@@ -130,13 +130,12 @@ async function saveReview(rate, txt, user, owner) {
     createdAt: Date.now(),
     msg: createMsg(review.by),
   };
+  const updatedOwner = await saveUser(owner);
   socketService.emit("new-review", {
     review,
-    ownerId: owner._id,
+    ownerId: updatedOwner._id,
     notification,
   });
-  const updatedOwner = await saveUser(owner);
-  console.log({updatedOwner})
   return updatedOwner;
 }
 

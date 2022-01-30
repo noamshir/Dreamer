@@ -47,7 +47,7 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
         });
         socketService.on('order status', (msg) => onShowMsg(msg))
         socketService.on('order received', (msg) => onShowMsg(msg))
-        socketService.on('add-review-msg', (msg) => onShowMsg(msg))
+        socketService.on('add-review-msg', (msg) => console.log(msg))
     }
 
     if ((isHome || isBecomeSeller) && (!isScroll)) {
@@ -62,7 +62,6 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
         if (isSearchBar) searchBar = "show-bar"
     }
     const onShowMsg = (msg) => {
-        console.log(user, msg);
         if (msg.sender._id === user._id) return;
         setMsg(msg);
         addNotification(user, msg);
@@ -112,7 +111,7 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
                                         <li className="display-from-size-small"><button className={`clean-btn join-a ${color}`} onClick={() => openSignUpModal(true)}>Join</button></li>
                                     </React.Fragment> :
                                     <React.Fragment>
-                                        <li className='messages'>
+                                        <li className='messages display-from-size-medium'>
                                             <div className="icon" onClick={toggleNotificationModal}>
                                                 {user?.notifications?.length && <div className='notification-dot'></div>}
                                                 <NotificationsIcon />
