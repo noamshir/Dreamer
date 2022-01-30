@@ -105,7 +105,7 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
                         <button className={`btn-nav ${color}`} onClick={() => openMenu()}><MenuIcon className="menu-icon"></MenuIcon></button>
                         <NavLink to="/" className={`dimerr-logo ${color} clean-link`}> <Logo /> </NavLink>
                         <div className={`dimerr-header-search-animated ${searchBar}`}>
-                            <SearchBar placeholder="Try Logo..." />
+                            <SearchBar placeholder="Find Services" />
                         </div>
                         <nav className={`dimerr-nav ${color} dimerr-nav-right flex`}>
                             <div className="nav-helper"></div>

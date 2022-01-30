@@ -10,7 +10,7 @@
   }
   .rate-wrapper {
     padding: 8px 12px;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
   }
   h5 {
     margin: 0;
@@ -98,6 +98,7 @@
     .like {
       color: lighten($clr3, 20%);
       transition: color 0.3s;
+      display: flex;
 
       &.active {
         color: rgba(218, 95, 95, 0.829);

@@ -247,7 +247,7 @@
         height: 35px;
         border-radius: 4px;
         color: #222325;
-        font-family: work-sans;
+        font-family: arial;
         font-style: normal;
         border: 1px solid $clr6;
         padding: 5px 10px 8px 10px;
@@ -274,8 +274,7 @@
         z-index: 100;
         opacity: 0;
         pointer-events: none;
-        transition: all 0.24s cubic-bezier(0.215, 0.61, 0.355, 1),
-          opacity 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+        transition: all 0.24s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
         &.open {
           opacity: 1;
           pointer-events: all;

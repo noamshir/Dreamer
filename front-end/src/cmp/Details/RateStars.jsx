@@ -88,7 +88,7 @@ export class _RateStars extends React.Component {
                     <h3>Give Your Honest Opinion (Optional)</h3>
                     <textarea name="txt" value={txt} onChange={this.handleChange} placeholder={`Are you satisfied with the result? Would you use the seller\'s services again?`}></textarea>
                 </div>
-                <button type='submit'>Add</button>
+                <button type='submit' className="btn">Add</button>
             </form>
         );
     }
