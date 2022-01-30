@@ -8,7 +8,6 @@ import { Logo } from '../Logo.jsx';
 import { logout, setMsg, addNotification } from '../../store/user.action'
 import { toggleJoinModal, toggleSignInModal } from '../../store/scss.action.js';
 import { ProfileMenu } from './ProfileMenu.jsx';
-
 import {
     socketService,
     SOCKET_EMIT_USER_CONNECTED,
@@ -54,7 +53,6 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
     const onShowMsg = (msg) => {
         if (msg.sender._id === user._id) return;
         setMsg(msg);
-        console.log('onshowmsg:', msg);
         addNotification(user, msg);
     }
     const onLogout = async () => {

@@ -7,9 +7,6 @@ import {
   SOCKET_EMIT_LOGOUT,
   SOCKET_EMIT_ADD_REVIEW,
 } from "./socket.service.js";
-// var axios = Axios.create({
-//     withCredentials: true
-// })
 
 const STORAGE_KEY = "user_db";
 const STORAGE_KEY_LOGGEDIN = "loggedinUser";
@@ -107,10 +104,8 @@ async function getUsers() {
 }
 
 async function getById(userId) {
-  console.log('userId:', userId);
+  console.log("userId:", userId);
   const user = await httpService.get(`user/${userId}`);
-  // return user
-  // const user = await storageService.get(STORAGE_KEY, userId)
   return user;
 }
 
@@ -131,23 +126,33 @@ async function saveReview(rate, txt, user, owner) {
   const notification = {
     _id: utilService.makeId(8),
     sender: user,
-    txt: '',
-    type: 'review-added',
-    createdAt: Date.now()
-  }
-  socketService.emit(SOCKET_EMIT_ADD_REVIEW, { review, ownerId: owner._id, notification });
+    txt: "",
+    type: "review-added",
+    createdAt: Date.now(),
+    msg: createMsg(review.by),
+  };
+  socketService.emit(SOCKET_EMIT_ADD_REVIEW, {
+    review,
+    ownerId: owner._id,
+    notification,
+  });
   const updatedOwner = await saveUser(owner);
   return updatedOwner;
+}
+
+function createMsg(by) {
+  return {
+    title: "Review Added",
+    content: `${by.fullname} added a review on one of your gigs`,
+    subHeader: "Head to your profile and check it out!",
+  };
 }
 
 async function saveUser(user) {
   if (user._id) {
     return httpService.put(`user/${user._id}`, user);
-    // return storageService.put(STORAGE_KEY, user);
   } else {
-    return httpService.post('user', user)
-    // const user = await httpService.post("auth/signup", userInfo);
-    // return storageService.post(STORAGE_KEY, user);
+    return httpService.post("user", user);
   }
 }
 
@@ -158,6 +163,3 @@ async function saveSellerInfo(sellerInfo) {
   return await update(sellerInfo);
 }
 
-// async function loadUsers() {
-//     storageService.query(STORAGE_KEY)
-// }

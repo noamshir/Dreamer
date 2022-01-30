@@ -47,7 +47,8 @@ function _UserMsg({ notification, setMsg }) {
           {(notification.type === "rejected") && <CancelIcon className="rejected-icon" />}
         </div>
         {(notification.type === "new-order") && <NavLink className="clean-list modal-link" to={`/dashboard/${notification.sender._id}`}> <button onClick={() => setMsg('')} className="btn">View Order</button> </NavLink>}
-        {(notification.type !== "new-order") && <NavLink className="clean-list modal-link" to="/explore"><button onClick={() => setMsg('')} className="btn">Explore Gigs</button></NavLink>}
+        {(notification.type !== "new-order" && notification.type !== "review-added") && <NavLink className="clean-list modal-link" to="/explore"><button onClick={() => setMsg('')} className="btn">Explore Gigs</button></NavLink>}
+        {(notification.type === "review-added") && <NavLink className="clean-list modal-link" to={`/dashboard/${notification.sender._id}`}><button onClick={() => setMsg('')} className="btn">My Reviews</button></NavLink>}
       </section>
     </div>
   )

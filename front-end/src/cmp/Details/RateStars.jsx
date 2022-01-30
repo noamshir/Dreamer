@@ -42,7 +42,6 @@ export class _RateStars extends React.Component {
         const avgRate = this.sumRate()
         await userService.saveReview(avgRate, this.state.txt, user, owner)
 
-        // showSuccessMsg("review added!");
         this.props.setReviewAdd(false)
         this.props.loadOwner(owner._id)
     }
