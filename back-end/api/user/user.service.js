@@ -80,7 +80,6 @@ async function update(user) {
   try {
     var id = ObjectId(user._id);
     delete user._id;
-    console.log(user);
     const collection = await dbService.getCollection("user");
     await collection.updateOne({ _id: id }, { $set: { ...user } });
     user.createdAt = ObjectId(user._id).getTimestamp();
