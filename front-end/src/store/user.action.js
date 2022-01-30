@@ -8,8 +8,15 @@ export function signUp(user) {
       dispatch(action);
       return signedUpUser;
     } catch (err) {
-      console.log('err', err)
+      console.log("err", err);
     }
+  };
+}
+
+export function setUser(user) {
+  return (dispatch) => {
+    const action = { type: "SET_USER", user: user };
+    dispatch(action);
   };
 }
 
@@ -34,7 +41,7 @@ export function signIn(user) {
       dispatch(action);
       return loggedUser;
     } catch (err) {
-      console.log('err', err)
+      console.log("err", err);
     }
   };
 }
@@ -46,7 +53,7 @@ export function logout(user) {
       const action = { type: "SET_USER", user: null };
       dispatch(action);
     } catch (err) {
-      console.log('err', err)
+      console.log("err", err);
     }
   };
 }
@@ -58,14 +65,14 @@ export function saveSellerInfo(sellerInfo) {
       const action = { type: "SET_USER", user: updatedUser };
       dispatch(action);
     } catch (err) {
-      console.log('err', err)
+      console.log("err", err);
     }
   };
 }
 
 export function setMsg(msg) {
   return (dispatch) => {
-    console.log('action msg:', msg);
+    console.log("action msg:", msg);
     const actionMsg = { type: "SET_MSG", msg };
     // const actionNotification = { type: "ADD_NOTIFICATION", notification: msg };
     dispatch(actionMsg);
@@ -74,12 +81,11 @@ export function setMsg(msg) {
 
 export function addNotification(user, notification) {
   return async (dispatch) => {
-    const { _id, username } = notification.sender
-    notification.sender = { _id, username }
-    if (!user.notifications) user.notifications = [notification]
-    else user.notifications.unshift(notification)
-    const updatedUser = await userService.saveUser(user)
-    console.log('updatedUser:', updatedUser);
+    const { _id, username } = notification.sender;
+    notification.sender = { _id, username };
+    if (!user.notifications) user.notifications = [notification];
+    else user.notifications.unshift(notification);
+    const updatedUser = await userService.saveUser(user);
     const action = { type: "SET_USER", user: updatedUser };
     dispatch(action);
   };
