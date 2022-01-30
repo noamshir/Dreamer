@@ -7,30 +7,25 @@ function connectSockets(http, session) {
     },
   });
   gIo.on("connection", (socket) => {
-    console.log("New socket", socket.id);
     socket.on("disconnect", (socket) => {
       console.log("Someone disconnected");
     });
 
     socket.on("join", (room) => {
-      console.log("user joined room", room);
       socket.join(room);
     });
-    socket.on("join isConnected", (userId) => {
-      console.log("user joined room", userId);
-      socket.join(userId);
-      socket.userId = userId;
-      console.log("emmiting user id", userId);
-      gIo.to(userId).emit(userId);
+    socket.on("join isConnected", (id) => {
+      socket.join(id);
+      socket.userId = id;
+      gIo.to(id).emit(id);
     });
     socket.on("leave", (room) => {
       console.log("user left room", room);
       socket.leave(room);
     });
-    socket.on("add-review", ({ review, ownerId, notification }) => {
-      console.log({review})
-      socket.to(ownerId).emit("add-review", review);
-      socket.to(ownerId).emit("add-review-msg", notification);
+    socket.on("new-review", ({ review, ownerId, notification }) => {
+      gIo.to(ownerId).emit("add-review", review);
+      gIo.to(ownerId).emit("add-review-msg", notification);
     });
     socket.on("join-order-channel", (userId) => {
       if (socket.orderChannel === userId) return;
@@ -46,17 +41,16 @@ function connectSockets(http, session) {
       gIo.to(userId).emit("user-online", userId);
     });
     socket.on("new order", ({ savedOrder, notification }) => {
-      console.log('order:', savedOrder);
-      socket.to(savedOrder.seller._id).emit('added order', savedOrder);
-      socket.to(savedOrder.seller._id).emit('order received', notification)
+      console.log("order:", savedOrder);
+      socket.to(savedOrder.seller._id).emit("added order", savedOrder);
+      socket.to(savedOrder.seller._id).emit("order received", notification);
     });
     socket.on("new status", ({ order, notification }) => {
       socket.to(order.buyer._id).emit("changed status", order);
-      socket.to(order.buyer._id).emit('order status', notification)
+      socket.to(order.buyer._id).emit("order status", notification);
     });
     socket.on("set-user-socket", (userId) => {
       socket.userId = userId;
-      console.log("user logged in", socket.userId);
       gIo.to(userId).emit("user-online", userId);
     });
     socket.on("user-online", (userId) => {
@@ -65,7 +59,6 @@ function connectSockets(http, session) {
       gIo.to(userId).emit("user-online", userId);
     });
     socket.on("unset-user-socket", (userId) => {
-      console.log("user logged out");
       delete socket.userId;
       gIo.emit("user-offline", userId);
     });
