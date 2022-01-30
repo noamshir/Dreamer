@@ -56,8 +56,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    // width: 50%;
-    // height: 33vh;
     background-color: #fff;
     border-radius: 4px;
     z-index: 9999;
@@ -116,7 +114,6 @@
       @media (max-width: 400px) {
         flex-direction: column;
         gap: 10px;
-        // align-items: center;
       }
       h5 {
         font-size: rem(18px);
@@ -179,6 +176,16 @@
         width: 100%;
         display: flex;
         justify-content: center;
+      }
+    }
+    &.review-added {
+      .msg-header {
+        h1 {
+          color: $clr1;
+        }
+      }
+      .msg-txt {
+        white-space: pre-wrap;
       }
     }
   }
