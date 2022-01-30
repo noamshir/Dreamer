@@ -35,7 +35,6 @@ async function removeGig(req, res) {
 
 async function updateGig(req, res) {
   const updatedGig = req.body;
-  // console.log(updatedGig)
   try {
     const savedGig = await gigService.update(updatedGig);
     res.send(savedGig);

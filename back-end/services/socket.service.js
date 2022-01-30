@@ -7,9 +7,7 @@ function connectSockets(http, session) {
     },
   });
   gIo.on("connection", (socket) => {
-    socket.on("disconnect", (socket) => {
-      console.log("Someone disconnected");
-    });
+    socket.on("disconnect", (socket) => {});
 
     socket.on("join", (room) => {
       socket.join(room);
@@ -20,30 +18,29 @@ function connectSockets(http, session) {
       gIo.to(id).emit(id);
     });
     socket.on("leave", (room) => {
-      console.log("user left room", room);
       socket.leave(room);
     });
     socket.on("new-review", ({ review, ownerId, notification }) => {
-      socket.to(ownerId).emit("add-review", {review,ownerId,notification});
-      socket.to(ownerId).emit("add-review-msg", {notification,ownerId});
+      socket.to(ownerId).emit("add-review", { review, ownerId, notification });
+      socket.to(ownerId).emit("add-review-msg", { notification, ownerId });
     });
     socket.on("join-order-channel", (userId) => {
-      if (socket.orderChannel === userId) return;
-      if (socket.orderChannel) {
-        socket.leave(socket.orderChannel);
-      }
+      // if (socket.orderChannel === userId) return;
+      // if (socket.orderChannel) {
+      //   socket.leave(socket.orderChannel);
+      // }
       socket.join(userId);
       socket.orderChannel = userId;
     });
 
     socket.on("user-connected", (userId) => {
-      console.log("user online", userId);
       gIo.to(userId).emit("user-online", userId);
     });
     socket.on("new order", ({ savedOrder, notification }) => {
-      console.log("order:", savedOrder);
+      console.log("new order", notification);
       socket.to(savedOrder.seller._id).emit("added order", savedOrder);
       socket.to(savedOrder.seller._id).emit("order received", notification);
+      // socket.leave(savedOrder.seller._id);
     });
     socket.on("new status", ({ order, notification }) => {
       socket.to(order.buyer._id).emit("changed status", order);
@@ -54,11 +51,11 @@ function connectSockets(http, session) {
       gIo.to(userId).emit("user-online", userId);
     });
     socket.on("user-online", (userId) => {
-      console.log("user reporting online", userId);
       socket.userId = userId;
       gIo.to(userId).emit("user-online", userId);
     });
     socket.on("unset-user-socket", (userId) => {
+      console.log("noam dissconected", userId);
       delete socket.userId;
       gIo.emit("user-offline", userId);
     });
@@ -71,7 +68,6 @@ function connectSockets(http, session) {
     });
   });
 }
-
 
 async function _getUserSocket(userId) {
   const sockets = await _getAllSockets();
