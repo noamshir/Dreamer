@@ -13,7 +13,7 @@ export function BoardHeader({ switchTo, user, switchToSeller, switchToUser }) {
                 <ul className={classNav ? "flex clean-list open" : "flex clean-list"}>
                     <li onClick={() => {
                         setClass(false)
-                    }}>Dashboard</li>
+                    }}>Orders</li>
                     <li onClick={() => {
                         setClass(false)
                     }}>Notification</li>

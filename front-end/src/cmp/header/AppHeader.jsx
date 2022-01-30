@@ -93,7 +93,7 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
                         <button className={`btn-nav ${color}`} onClick={() => openMenu()}><MenuIcon className="menu-icon"></MenuIcon></button>
                         <NavLink to="/" className={`dimerr-logo ${color} clean-link`}> <Logo /> </NavLink>
                         <div className={`dimerr-header-search-animated ${searchBar}`}>
-                            <SearchBar placeholder="Try Logo..." />
+                            <SearchBar placeholder="Find Services" />
                         </div>
                         <nav className={`dimerr-nav ${color} dimerr-nav-right flex`}>
                             <div className="nav-helper"></div>
@@ -111,7 +111,7 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
                                                 {user?.notifications?.length && <div className='notification-dot'></div>}
                                                 <NotificationsIcon />
                                             </div>
-                                            {isNotificationMenu && <NotificationMenu user={user} setNotificationMenu={setNotificationMenu}/>}
+                                            {isNotificationMenu && <NotificationMenu user={user} setNotificationMenu={setNotificationMenu} />}
                                         </li>
                                         <li className="display-from-size-small profile-container">
                                             <UserProfileImg user={user} isLink={false} toggleMenu={onToggleMenu} dotClass='dot-bottom' ></UserProfileImg>

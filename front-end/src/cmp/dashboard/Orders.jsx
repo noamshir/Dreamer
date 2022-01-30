@@ -24,10 +24,20 @@ class _Orders extends React.Component {
     }
 
     loadOrders = async () => {
+        const { type } = this.props
+        if (type === 'seller') {
+        }
+
         await this.props.loadOrders(this.props.user._id, this.props.type);
-        this.setState({ orders: this.props.orders });
+        this.setState({ orders: this.props.orders }, () => this.updateOrderHeader());
     }
 
+    updateOrderHeader() {
+        const { type } = this.props
+        if (type === 'buyer') return
+        const { setOrdersAmount } = this.props;
+        setOrdersAmount(this.state.orders.length);
+    }
     setSocket = () => {
         socketService.setup()
         socketService.on('added order', this.onAddOrder)
@@ -35,9 +45,9 @@ class _Orders extends React.Component {
         socketService.emit('join-order-channel', this.props.user._id);
     }
     onAddOrder = (order) => {
-        const { type } = this.props
+        const { type, setOrdersAmount } = this.props
         if (type === 'buyer') return
-        this.setState(prevState => ({ orders: [...prevState.orders, order] }))
+        this.setState(prevState => ({ orders: [...prevState.orders, order] }), () => this.updateOrderHeader())
     }
 
     onUpdateOrder = (updatedOrder) => {

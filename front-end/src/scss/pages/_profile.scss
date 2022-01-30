@@ -1,21 +1,21 @@
-.profile-main-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    min-height: 75vh;
-    padding-block: 32px;
+.profile-back-container {
     background-color: #fff;
     @include for-wide-header-layout {
         background-color: $clr7;
     }
+}
+
+.profile-main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-height: 84vh;
+    padding-block: 32px;
 
     .gig-list {
         padding-top: 0;
         flex-grow: 2;
         grid-auto-rows: 400px;
-        // @include for-wide-header-layout {
-        //     margin-inline-start: 20px;
-        // }
         .gig-preview {
             background-color: white;
         }
@@ -67,6 +67,7 @@
     .online-status.online {
         color: $clr1;
         border: 1px solid $clr1;
+        padding-inline-end: 10px;
     }
     .user-img {
         height: 150px;

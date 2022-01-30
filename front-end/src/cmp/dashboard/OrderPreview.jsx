@@ -62,12 +62,22 @@ export function OrderPreview({ order, type, user, onChangeStatus }) {
         }
         return msg;
     }
+    const formatDate = () => {
+        var { createdAt } = order
+        createdAt = new Date(createdAt)
+        var month = createdAt.toLocaleString('default', { month: 'short' })
+        var year = createdAt.getFullYear();
+        var hours = createdAt.getHours();
+        var minutes = createdAt.getMinutes();
+        if (hours < 10) hours = `0${hours}`;
+        if (minutes < 10) minutes = `0${minutes}`;
+        var formatedDate = `${hours}:${minutes} ${month} ${year}`
+        return formatedDate;
+    }
 
     return (
         <section className={showingType === 'buyer' ? `order-preview flex eighty` : `order-preview flex`}>
-            {/* <div className="main flex"> */}
             <div className="main">
-                {/* <div className='inner flex'> */}
                 <NavLink className="gig-img" to={`/explore/${order.gig._id}`}>
                     <div className='img-container'>
                         <img src={order.gig.img} alt='img' />
@@ -77,8 +87,6 @@ export function OrderPreview({ order, type, user, onChangeStatus }) {
                     <h5>{slicedUsername}</h5>
                     <UserProfileImg isLink={true} user={order[showingType]} />
                 </div>
-                {/* </div> */}
-                {/* <div className="second-line flex"> */}
                 <div className='gig-info flex'>
                     <span className='price'>Price</span>
                     <span>{order.gig.price.toLocaleString("USA", { style: "currency", currency: "USD" })}</span>
@@ -87,7 +95,10 @@ export function OrderPreview({ order, type, user, onChangeStatus }) {
                     <span className='delivery-time'>Delivery Time</span>
                     <span className='days'>{order.gig.daysToMake === 1 ? `${order.gig.daysToMake} day` : `${order.gig.daysToMake} days`}</span>
                 </div>
-                {/* </div> */}
+                <div className="order-date flex">
+                    <span className='title'>Issued At</span>
+                    <span className='date'>{formatDate()}</span>
+                </div>
             </div>
             <div className="status-container">
                 <span className='order-type'>Order Status:</span>
