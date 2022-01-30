@@ -7,7 +7,6 @@ import { loadOrders, onChangeStatus } from '../../store/order.action';
 import { socketService } from '../../services/socket.service';
 
 class _Orders extends React.Component {
-
     state = {
         orders: null
     }

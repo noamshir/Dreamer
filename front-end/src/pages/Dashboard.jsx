@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
 import { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
-
 import { UserBoard } from "../cmp/dashboard/UserBoard";
 import { SellerBoard } from "../cmp/dashboard/SellerBoard";
 import { setProfile, setDetails, setHome, setExplore, setBecomeSeller } from "../store/scss.action";
@@ -51,7 +50,7 @@ const mapDispatchToProps = {
     setDetails,
     setExplore,
     setHome,
-    setProfile
+    setProfile,
 }
 
 const _DashBoardWithRouter = withRouter(_DashBoard)

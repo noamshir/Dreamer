@@ -104,7 +104,6 @@ async function getUsers() {
 }
 
 async function getById(userId) {
-  console.log("userId:", userId);
   const user = await httpService.get(`user/${userId}`);
   return user;
 }
@@ -137,6 +136,7 @@ async function saveReview(rate, txt, user, owner) {
     notification,
   });
   const updatedOwner = await saveUser(owner);
+  console.log({updatedOwner})
   return updatedOwner;
 }
 

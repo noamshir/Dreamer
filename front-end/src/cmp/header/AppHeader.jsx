@@ -61,7 +61,6 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
     }
     const onLogout = async () => {
         await logout(user);
-        // showSuccessMsg("user logged out!");
     }
     window.addEventListener('click', (ev) => {
         if (ev.target.className !== "clean-list profile-scroll" && ev.target.className !== "spanclass" && ev.target.className !== "user-img") {
@@ -80,8 +79,6 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
         socketService.on("find-user", (userid) => {
             if (user._id === userid) socketService.emit("user-connection", userid);
         })
-        console.log('user:', user);
-
         socketService.emit("set-user-socket", user._id);
     }
     return <section className={`main-header ${sticky}`}>

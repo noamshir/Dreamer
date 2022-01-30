@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 
 export function NotificationPreview({ notification, user, setNotificationMenu }) {
 
-
-    console.log('notification', notification);
     return (
         <Link className='notification-link clean-link' onClick={() => {
             setNotificationMenu(false)
