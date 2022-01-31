@@ -32,15 +32,12 @@ function connectSockets(http, session) {
       socket.join(userId);
       socket.orderChannel = userId;
     });
-
     socket.on("user-connected", (userId) => {
       gIo.to(userId).emit("user-online", userId);
     });
     socket.on("new order", ({ savedOrder, notification }) => {
-      console.log("new order", notification);
       socket.to(savedOrder.seller._id).emit("added order", savedOrder);
       socket.to(savedOrder.seller._id).emit("order received", notification);
-      // socket.leave(savedOrder.seller._id);
     });
     socket.on("new status", ({ order, notification }) => {
       socket.to(order.buyer._id).emit("changed status", order);
@@ -75,7 +72,6 @@ async function _getUserSocket(userId) {
   return socket;
 }
 async function _getAllSockets() {
-  // return all Socket instances
   const sockets = await gIo.fetchSockets();
   return sockets;
 }

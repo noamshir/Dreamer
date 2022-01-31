@@ -6,15 +6,16 @@ export function NotificationPreview({ notification, user, setNotificationMenu })
     return (
         <Link className='notification-link clean-link' onClick={() => {
             setNotificationMenu(false)
-        }} to={`/dashboard/${user._id}`}>
+        }} to={notification.type === 'review' ? `/explore/${notification.gigId}` : `/dashboard/${user._id}`}>
             <div className="notification">
                 <div className="notification-info">
                     <img src={Bell} alt="" />
                     <div className="paragraph">
-                        <div>Found out about a <span className='type'>
-                            {notification.type === 'rejected' || notification.type === 'active' ?
-                                `status ${notification.type}` : `${notification.type}`}
-                        </span>
+                        <div>{notification.type === 'rejected' || notification.type === 'active' ?
+                            'Check out an order with status' :
+                            'Check out a'}
+                            <span className='type'> {notification.type}
+                            </span>
                         </div>
                         <div>That was made by <span className='username'>{notification.sender.username}</span></div>
                     </div>

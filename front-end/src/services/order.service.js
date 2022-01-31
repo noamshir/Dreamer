@@ -40,7 +40,6 @@ async function save(order) {
     return httpService.put(`order/${order._id}`, order);
     // return storageService.put(STORAGE_KEY, order);
   } else {
-    console.log('order:', order);
     return httpService.post("order", order);
     // const user = userService.getLoggedinUser()
     // order.owner = user;

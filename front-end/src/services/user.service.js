@@ -108,7 +108,7 @@ async function getById(userId) {
   return user;
 }
 
-async function saveReview(rate, txt, user, owner) {
+async function saveReview(rate, txt, user, gigId, owner) {
   const review = {
     _id: utilService.makeId(),
     txt,
@@ -125,8 +125,9 @@ async function saveReview(rate, txt, user, owner) {
     _id: utilService.makeId(8),
     sender: user,
     txt: "",
-    type: "review-added",
+    type: "review",
     createdAt: Date.now(),
+    gigId,
     msg: createMsg(review.by),
   };
   owner.reviews = [...owner.reviews, review];
