@@ -62,13 +62,67 @@
       &.sign {
         cursor: pointer;
       }
-      &:hover {
-        color: $clr5;
-      }
       &.notification {
         // display: block;
         @include for-normal-header-layout {
           display: none;
+        }
+      }
+      .notification-link-wrapper {
+        position: relative;
+        cursor: pointer;
+
+        .notification-dot {
+          position: absolute;
+          background-color: tomato;
+          top: 0%;
+          right: 50%;
+          height: 5px;
+          width: 5px;
+          border-radius: 50%;
+        }
+      }
+      &:hover {
+        color: $clr5;
+        &.category-item {
+          color: #95979d;
+        }
+      }
+    }
+    .categories-item {
+      overflow: hidden;
+      &.open {
+        overflow: unset;
+      }
+      .accordion-title {
+        &:hover {
+          color: $clr2;
+        }
+      }
+      text-align: left;
+      cursor: pointer;
+      .categories-content {
+        overflow: inherit;
+        margin: 5px;
+        padding: 0 20px;
+        transition: transform 0.4s ease-out;
+
+        &.open {
+          height: auto;
+          transform: scaleY(1);
+          transform-origin: top;
+        }
+        &.close {
+          height: 0px;
+          transform: scaleY(0);
+        }
+        ul {
+          li {
+            padding: 7px 0;
+            &:hover {
+              color: $clr2;
+            }
+          }
         }
       }
     }

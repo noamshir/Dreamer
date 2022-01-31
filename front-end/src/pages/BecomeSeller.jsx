@@ -88,7 +88,7 @@ class _BecomeSeller extends React.Component {
         })
             .then(res => res.json())
             .then(res => {
-                this.setState(prevState => ({ sellerInfo: { ...prevState.sellerInfo, imgUrl: res.url } }), () => { console.log('rrrr', this.state); })
+                this.setState(prevState => ({ sellerInfo: { ...prevState.sellerInfo, imgUrl: res.url } }))
             })
             .catch(err => console.error(err))
     }
