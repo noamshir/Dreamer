@@ -65,6 +65,12 @@
       &:hover {
         color: $clr5;
       }
+      &.notification {
+        // display: block;
+        @include for-normal-header-layout {
+          display: none;
+        }
+      }
     }
   }
 }

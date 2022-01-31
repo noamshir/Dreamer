@@ -1,9 +1,12 @@
+import { useState } from "react"
 import { connect } from "react-redux"
 import { NavLink } from "react-router-dom"
 import { toggleJoinModal, toggleSignInModal } from "../store/scss.action";
 import { UserProfileImg } from "./profile/UserProfileImg";
 
-function _Menu({ user, closeMenu, toggleJoinModal, toggleSignInModal, menuOpen }) {
+function _Menu({ user, closeMenu, toggleJoinModal, toggleSignInModal, menuOpen, setNotificationMenu }) {
+
+    // const [isNotificationMenu, setNotificationMenu] = useState(false);
 
     const openJoin = () => {
         closeMenu();
@@ -13,6 +16,13 @@ function _Menu({ user, closeMenu, toggleJoinModal, toggleSignInModal, menuOpen }
         closeMenu();
         toggleSignInModal(true);
     }
+
+    // const toggleNotificationModal = () => {
+    //     setNotificationMenu(!isNotificationMenu)
+    //     console.log('isNotificationMenu:', isNotificationMenu);
+
+    // }
+
     const classname = (menuOpen) ? "open" : "";
     return <section className={`side-Bar ${classname}`}>
         <div className="side-bar-content">
@@ -30,6 +40,7 @@ function _Menu({ user, closeMenu, toggleJoinModal, toggleSignInModal, menuOpen }
                     <li className="menu-item"><NavLink onClick={() => closeMenu()} className="clean-link" to="/">Home</NavLink></li>
                     <li className="menu-item"><NavLink onClick={() => closeMenu()} className="clean-link" to="/explore">Explore</NavLink></li>
                     {!user?.sellerInfo && <li className="menu-item"><NavLink onClick={() => closeMenu()} className="clean-link" to="/becomeSeller">Become a Seller</NavLink></li>}
+                    {user && <li className="menu-item notification"><div onClick={() => { closeMenu(); setNotificationMenu(user) }}>Notifications</div></li>}
                 </ul>
             </nav>
         </div>

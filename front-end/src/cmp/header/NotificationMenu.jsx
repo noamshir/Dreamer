@@ -1,11 +1,12 @@
 import React from "react";
 import NotificationsOffOutlinedIcon from '@mui/icons-material/NotificationsOffOutlined';
 import CampaignRoundedIcon from '@mui/icons-material/CampaignRounded';
+import CloseIcon from '@mui/icons-material/Close';
 
 import { NotificationList } from "./NotificationList";
 
 
-export function NotificationMenu({ user,setNotificationMenu }) {
+export function NotificationMenu({ user, setNotificationMenu }) {
 
     return (
         <div className='notification-menu'>
@@ -13,6 +14,7 @@ export function NotificationMenu({ user,setNotificationMenu }) {
                 <CampaignRoundedIcon />
                 <h4>Notifications</h4>
                 <span>{user?.notifications?.length ? `(${user?.notifications?.length})` : `(0)`}</span>
+                <CloseIcon className="close-modal" onClick={() => setNotificationMenu(false)} />
             </header>
             {user?.notifications ?
                 <div className="main-container">
