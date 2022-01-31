@@ -16,7 +16,6 @@ class _Orders extends React.Component {
         this.loadOrders();
         this.setSocket();
     }
-
     componentWillUnmount() {
         socketService.off('added order')
         socketService.off('changed status')

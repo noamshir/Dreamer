@@ -8,7 +8,7 @@ import { connect } from "react-redux"
 import { useEffect } from "react"
 import { NavLink } from 'react-router-dom';
 
-function _UserMsg({ notification, setMsg }) {
+function _UserMsg({ notification, setMsg, user }) {
   var timeoutId
   useEffect(() => {
     if (!notification) return;
@@ -16,8 +16,6 @@ function _UserMsg({ notification, setMsg }) {
     timeoutId = setTimeout(() => {
       setMsg('');
     }, 3000)
-    console.log('msg:', notification);
-
     return () => {
       clearTimeout(timeoutId)
     }
@@ -40,15 +38,9 @@ function _UserMsg({ notification, setMsg }) {
         <h2 className="msg-txt">
           {msg.content}
         </h2>
-        <div className="lower-text">
-          <h5>{msg.subHeader}</h5>
-          {(notification.type === "new-order") && <div className="dime-signs flex"> <MonetizationOnIcon className="dime-sign" /><MonetizationOnIcon className="dime-sign" /><MonetizationOnIcon className="dime-sign" /></div>}
-          {(notification.type === "active") && <CheckCircleIcon className="check-icon" />}
-          {(notification.type === "rejected") && <CancelIcon className="rejected-icon" />}
-        </div>
         {(notification.type === "new-order") && <NavLink className="clean-list modal-link" to={`/dashboard/${notification.sender._id}`}> <button onClick={() => setMsg('')} className="btn">View Order</button> </NavLink>}
         {(notification.type !== "new-order" && notification.type !== "review-added") && <NavLink className="clean-list modal-link" to="/explore"><button onClick={() => setMsg('')} className="btn">Explore Gigs</button></NavLink>}
-        {(notification.type === "review-added") && <NavLink className="clean-list modal-link" to={`/dashboard/${notification.sender._id}`}><button onClick={() => setMsg('')} className="btn">My Reviews</button></NavLink>}
+        {(notification.type === "review-added") && <NavLink className="clean-list modal-link" to={`/profile/${user._id}`}><button onClick={() => setMsg('')} className="btn">My Reviews</button></NavLink>}
       </section>
     </div>
   )
@@ -56,7 +48,8 @@ function _UserMsg({ notification, setMsg }) {
 
 function mapStateToProps(state) {
   return {
-    notification: state.userModule.msg
+    notification: state.userModule.msg,
+    user: state.userModule.user
   }
 }
 
