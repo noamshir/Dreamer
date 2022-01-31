@@ -3,6 +3,7 @@ import React from 'react';
 
 import { OrdersList } from "./OrdersList"
 import { Loader } from "../utils/Loader"
+import { EmptyOrders } from "../utils/EmptyOrders"
 import { loadOrders, onChangeStatus } from '../../store/order.action';
 import { socketService } from '../../services/socket.service';
 
@@ -22,20 +23,29 @@ class _Orders extends React.Component {
     }
 
     loadOrders = async () => {
+        const { type } = this.props
+        if (type === 'seller') {
+        }
+
         await this.props.loadOrders(this.props.user._id, this.props.type);
-        this.setState({ orders: this.props.orders });
+        this.setState({ orders: this.props.orders }, () => this.updateOrderHeader());
     }
 
+    updateOrderHeader() {
+        const { type } = this.props
+        if (type === 'buyer') return
+        const { setOrdersAmount } = this.props;
+        setOrdersAmount(this.state.orders.length);
+    }
     setSocket = () => {
         socketService.on('added order', this.onAddOrder)
         socketService.on('changed status', this.onUpdateOrder)
         socketService.emit('join-order-channel', this.props.user._id);
     }
     onAddOrder = (order) => {
-        const { type } = this.props
-        console.log("add order", type);
+        const { type, setOrdersAmount } = this.props
         if (type === 'buyer') return
-        this.setState(prevState => ({ orders: [...prevState.orders, order] }))
+        this.setState(prevState => ({ orders: [...prevState.orders, order] }), () => this.updateOrderHeader())
     }
 
     onUpdateOrder = (updatedOrder) => {
@@ -51,7 +61,7 @@ class _Orders extends React.Component {
         return (
             < div className="orders-section" >
                 <main className="orders-content">
-                    {!orders.length && <h3>No Orders Yet...</h3>}
+                    {!orders.length && <EmptyOrders />}
                     {orders.length > 0 && <OrdersList onChangeStatus={this.props.onChangeStatus} type={this.props.type} orders={orders} loadOrders={this.props.loadOrders} user={this.props.user} />}
                 </main>
             </div >

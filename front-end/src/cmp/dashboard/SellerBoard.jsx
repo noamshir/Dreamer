@@ -7,8 +7,10 @@ import { BoardHeader } from "./BoardHeader"
 import { Orders } from "./Orders";
 import { UserInfoCard } from "../profile/UserInfoCard";
 
-function _SellerBoard({ user:currUser, switchToUser }) {
+function _SellerBoard({ user: currUser, switchToUser }) {
     const [user, setUser] = useState(null);
+    const [ordersAmount, setOrdersAmount] = useState(0);
+    const [ordersSum, setOrdersSum] = useState(0);
 
     useEffect(() => {
         if (!currUser) return;
@@ -27,7 +29,10 @@ function _SellerBoard({ user:currUser, switchToUser }) {
         <div className="user-board-content max-width-container equal-padding">
             <main className="user-main">
                 <UserInfoCard showSellerStats={true} user={user} />
-                <Orders user={user} type={'seller'} />
+                <div className="seller-orders-containr">
+                    <div className="order-count-header">{user.username}'s Orders - <span>{ordersAmount}</span> </div>
+                    <Orders setOrdersAmount={setOrdersAmount} user={user} type={'seller'} />
+                </div>
             </main>
         </div>
     </section>

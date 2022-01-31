@@ -9,7 +9,7 @@ function _SellerStats({ user, orders }) {
     const deliveredRate = utilService.getRandomIntInclusive(85, 100)
     const deliveredStyle = { width: `${deliveredRate}%` }
     const completionRate = Math.round(100 * _getCompletionRate(orders));
-    const completionStyle = { width: `${completionRate}%` }
+    const completionStyle = completionRate ? { width: `${completionRate}%` } : { width: `100%` }
     const date = new Date(Date.now());
     const month = date.toLocaleString('default', { month: 'long' })
 

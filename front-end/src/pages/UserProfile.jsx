@@ -38,9 +38,11 @@ function _UserProfile(props) {
     }
     if (!user) return <Loader></Loader>
     return (
-        <div className="profile-main-container max-width-container equal-padding">
-            <UserInfoCard user={user} />
-            {user.sellerInfo && <GigList gigs={gigs} />}
+        <div className="profile-back-container">
+            <div className="profile-main-container max-width-container equal-padding">
+                <UserInfoCard user={user} />
+                {user.sellerInfo && <GigList gigs={gigs} />}
+            </div>
         </div>
     )
 }

@@ -58,7 +58,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    // background-color: rgb(0, 56, 19);
     background-color: #fff;
     border-radius: 4px;
     z-index: 9999;
@@ -139,6 +138,16 @@
       }
     }
     &.review-added {
+      .msg-txt {
+        white-space: pre-wrap;
+      }
+    }
+    &.review-added {
+      .msg-header {
+        h1 {
+          color: $clr1;
+        }
+      }
       .msg-txt {
         white-space: pre-wrap;
       }

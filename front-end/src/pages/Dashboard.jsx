@@ -9,7 +9,7 @@ import { Loader } from "../cmp/utils/Loader";
 
 function _DashBoard(props) {
     const [user, setUser] = useState(props.currUser);
-    const [isInSeller, setIsSeller] = useState(false);
+    const [isInSeller, setIsSeller] = useState(true);
     useEffect(() => {
         onSetDashBoard();
     }, [])
@@ -25,15 +25,14 @@ function _DashBoard(props) {
     const switchDashboard = (isSeller) => {
         setIsSeller(isSeller);
     }
-    if (!props.currUser)
-    {
+    if (!props.currUser) {
         props.history.push('/explore')
         return <Loader />
     }
     return <section className="dashboard">
         <div className="dashboard-content">
-            {(!user.sellerInfo || (!isInSeller)) && <UserBoard switchToSeller={switchDashboard} />}
-            {user.sellerInfo && isInSeller && <SellerBoard switchToUser={switchDashboard} />}
+            {(!user.sellerInfo || (!isInSeller)) ? <UserBoard switchToSeller={switchDashboard} /> : <SellerBoard switchToUser={switchDashboard} />}
+            {/* // {user.sellerInfo && isInSeller && <SellerBoard switchToUser={switchDashboard} />} */}
         </div>
     </section>
 }
