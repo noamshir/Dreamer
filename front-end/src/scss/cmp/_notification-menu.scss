@@ -116,6 +116,7 @@
     }
     .type,
     .username {
+      text-transform: capitalize;
       font-weight: 600;
     }
     .date {

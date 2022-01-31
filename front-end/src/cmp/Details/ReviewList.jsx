@@ -67,7 +67,7 @@ export function ReviewList({ owner, gig, loadOwner }) {
             <button onClick={() => {
                 setReviewAdd(!isToggleReviewAdd)
             }} className='add-review-btn'>{isToggleReviewAdd ? 'Close' : 'Add Review'}</button>
-            {isToggleReviewAdd && <ReviewAdd owner={owner} loadOwner={loadOwner} setReviewAdd={setReviewAdd}/>}
+            {isToggleReviewAdd && <ReviewAdd owner={owner} loadOwner={loadOwner} gigId={gig._id} setReviewAdd={setReviewAdd}/>}
 
             <div className="list-of-reviews">
                 {owner.reviews.map(review => <ReviewPreview key={review._id} review={review} />)}
