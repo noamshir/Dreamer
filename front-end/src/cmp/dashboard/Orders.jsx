@@ -3,6 +3,7 @@ import React from 'react';
 
 import { OrdersList } from "./OrdersList"
 import { Loader } from "../utils/Loader"
+import { EmptyOrders } from "../utils/EmptyOrders"
 import { loadOrders, onChangeStatus } from '../../store/order.action';
 import { socketService } from '../../services/socket.service';
 
@@ -61,7 +62,7 @@ class _Orders extends React.Component {
         return (
             < div className="orders-section" >
                 <main className="orders-content">
-                    {!orders.length && <h3>No Orders Yet...</h3>}
+                    {!orders.length && <EmptyOrders />}
                     {orders.length > 0 && <OrdersList onChangeStatus={this.props.onChangeStatus} type={this.props.type} orders={orders} loadOrders={this.props.loadOrders} user={this.props.user} />}
                 </main>
             </div >

@@ -25,6 +25,7 @@
 
 .orders-section {
   width: 100%;
+  min-height: 83vh;
   .second-line {
     flex-direction: column;
     justify-content: center;
@@ -285,5 +286,32 @@
     gap: 10px;
     align-items: center;
     justify-content: center;
+  }
+  .empty-orders-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    h3 {
+      margin: 0 auto;
+      color: $clr2;
+    }
+  }
+  .empty-orders {
+    margin-inline: auto;
+    margin-top: 100px;
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 80%;
+      height: 80%;
+      object-fit: contain;
+    }
   }
 }

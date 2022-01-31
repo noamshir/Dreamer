@@ -2,9 +2,7 @@
     overflow-x: hidden;
     margin-bottom: 10vh;
     position: relative;
-    // @include for-normal-layout {
-    //     background-color: #003813 ;
-    // }
+
     .background-images {
         width: 50%;
         right: 0;
@@ -52,8 +50,20 @@
     height: 40vh;
     transition: 1s;
 
+    .static-background {
+        position: absolute;
+        width: 100vw;
+        height: 100%;
+        background-color: #003813;
+        @include for-normal-layout {
+            width: 0;
+            height: 0;
+        }
+    }
+
     .hero-content {
         width: 700px;
+        z-index: 5;
     }
     .hero-content h1 {
         display: none;
