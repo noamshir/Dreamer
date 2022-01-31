@@ -31,14 +31,23 @@
       align-items: center;
       cursor: pointer;
     }
+  }
+  .notification-dot {
+    position: absolute;
+    background-color: tomato;
+    top: 0%;
+    right: 20%;
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+  }
+  .btn-nav-wrapper {
+    position: relative;
     .notification-dot {
-      position: absolute;
-      background-color: tomato;
-      top: 0%;
-      right: 20%;
-      height: 5px;
-      width: 5px;
-      border-radius: 50%;
+      right: 30%;
+      @include for-normal-header-layout {
+        display: none;
+      }
     }
   }
 }
@@ -76,6 +85,8 @@
           height: 30px;
           margin-left: -20px;
         }
+      }
+      & > .notification-dot {
       }
     }
 

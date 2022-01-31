@@ -102,7 +102,10 @@ function _AppHeader({ isHome, isBecomeSeller, isScroll, isSearchBar, openSignUpM
             <header className={`header-package dimerr-header ${headerTransparent} logged-out-homepage-header`}>
                 <div className="header-row-wrapper">
                     <div className="header-row max-width-container equal-padding row-main flex">
-                        <button className={`btn-nav ${color}`} onClick={() => openMenu()}><MenuIcon className="menu-icon"></MenuIcon></button>
+                        <div className="btn-nav-wrapper">
+                            {user?.notifications?.length && <div className='notification-dot'></div>}
+                            <button className={`btn-nav ${color}`} onClick={() => openMenu()}><MenuIcon className="menu-icon"></MenuIcon></button>
+                        </div>
                         <NavLink to="/" className={`dimerr-logo ${color} clean-link`}> <Logo /> </NavLink>
                         <div className={`dimerr-header-search-animated ${searchBar}`}>
                             <SearchBar placeholder="Find Services" />

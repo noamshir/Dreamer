@@ -71,6 +71,20 @@
           display: none;
         }
       }
+      .notification-link-wrapper {
+        position: relative;
+        cursor: pointer;
+
+        .notification-dot {
+          position: absolute;
+          background-color: tomato;
+          top: 0%;
+          right: 50%;
+          height: 5px;
+          width: 5px;
+          border-radius: 50%;
+        }
+      }
     }
   }
 }
