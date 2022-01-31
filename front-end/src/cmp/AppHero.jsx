@@ -47,6 +47,8 @@ export function AppHero(props) {
                     <SearchBar placeholder='Try "designing business logo"' />
                     <HeroPopularCategory />
                 </div>
+                <div className="static-background"></div>
+
                 <div className="seller-name">
                     <span className={`seller ${backClass1}`}>Elton, <span className='seller-skill'>Programmer</span></span>
                     <span className={`seller ${backClass2}`}>Cabra, <span className='seller-skill'>Tattoo Artist</span></span>
