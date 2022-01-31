@@ -45,6 +45,7 @@ class _Orders extends React.Component {
     onAddOrder = (order) => {
         const { type, setOrdersAmount } = this.props
         if (type === 'buyer') return
+        order.createdAt = Date.now()
         this.setState(prevState => ({ orders: [...prevState.orders, order] }), () => this.updateOrderHeader())
     }
 

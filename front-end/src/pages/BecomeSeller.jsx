@@ -54,7 +54,6 @@ class _BecomeSeller extends React.Component {
 
     makeOptions = async () => {
         const categories = await gigService.getCategories()
-        console.log('categories', categories);
         var arr = []
         categories.forEach(skill => {
             arr.push({ value: skill, label: skill })
@@ -98,7 +97,6 @@ class _BecomeSeller extends React.Component {
     render() {
         if (!this.state.options) return <Loader />
         const { sellerInfo, isImgInside } = this.state
-        console.log('options!', this.state.options);
         return (
             <section className='become-seller'>
                 <div className="hero">

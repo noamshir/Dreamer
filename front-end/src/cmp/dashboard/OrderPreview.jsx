@@ -29,7 +29,7 @@ export function OrderPreview({ order, type, user, onChangeStatus }) {
                 return 'Active'
             }
             case 'rejected': {
-                return 'Denied'
+                return 'Rejected'
             }
         }
 
@@ -104,7 +104,7 @@ export function OrderPreview({ order, type, user, onChangeStatus }) {
                 <span className='order-type'>Order Status:</span>
                 {showingType === 'buyer' ?
                     <div className='btn-wrapper flex'>
-                        <button className={`button ${getStatus() === 'Denied' ? 'red' : 'green'}`
+                        <button className={`button ${getStatus() === 'Rejected' ? 'red' : 'green'}`
                         } onClick={() => {
                             setStatus('active')
                         }}>{getStatus()}
