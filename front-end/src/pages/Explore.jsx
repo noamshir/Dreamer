@@ -7,7 +7,6 @@ import Select from '@mui/material/Select';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import CloseIcon from '@mui/icons-material/Close';
-import { Link } from "react-router-dom";
 
 import { loadGigs, setSort, onSetFilterBy, clearFilters } from '../store/gig.action'
 import { setHome, setExplore, setDetails, setBecomeSeller, setProfile } from '../store/scss.action.js';
@@ -210,7 +209,6 @@ class _Explore extends React.Component {
                             </div>
                             <div className="responsive-btns">
                                 <button onClick={() => { this.setState({ isFilterModalOpen: true }) }} className="btn-filter-modal"><FilterListIcon />Filters</button>
-                                {/* <button className="btn-filter-modal"><FilterListIcon />Sort By</button> */}
                             </div>
                             <div className="inner-container">
                                 <div className="services-count">{gigs.length} services available</div>

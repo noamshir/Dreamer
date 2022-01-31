@@ -58,6 +58,7 @@
           .applay-filters {
             display: inline-block;
             font-size: 1rem;
+            padding: 0.5em 0.8em;
           }
         }
       }
@@ -213,7 +214,8 @@
     em,
     div {
       font-weight: 500;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: work-sans;
+      color: #222325;
       font-style: normal;
       svg {
         transition: 0.3s all;
@@ -249,8 +251,8 @@
         color: #222325;
         font-family: arial;
         font-style: normal;
-        border: 1px solid $clr6;
-        padding: 5px 10px 8px 10px;
+        border: 1px solid #c4c4c4;
+        padding: 5px 10px 8px 15px;
         width: 120px;
         display: flex;
         align-items: center;
@@ -262,6 +264,8 @@
           &.arrow {
             color: gray;
             transform: rotate(0deg);
+            display: flex;
+            align-items: center;
             transition: all 0.24s cubic-bezier(0.215, 0.61, 0.355, 1);
             &.open {
               transform: rotate(180deg);
@@ -274,7 +278,8 @@
         z-index: 100;
         opacity: 0;
         pointer-events: none;
-        transition: all 0.24s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+        transition: all 0.24s cubic-bezier(0.215, 0.61, 0.355, 1),
+          opacity 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
         &.open {
           opacity: 1;
           pointer-events: all;
@@ -386,11 +391,5 @@
       width: 100%;
       object-fit: cover;
     }
-  }
-}
-.delivery {
-  .select-item {
-    font-family: Arial, Helvetica, sans-serif;
-    font-style: normal;
   }
 }
