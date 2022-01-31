@@ -10,10 +10,13 @@ import { connect } from 'react-redux';
 import { setScroll, setSearchDisplay, toggleJoinModal, toggleSignInModal } from './store/scss.action.js';
 import { Menu } from './cmp/Menu.jsx';
 import { UserMsg } from './cmp/UserMsg.jsx';
+import { NotificationMenu } from "./cmp/header/NotificationMenu";
 class _App extends React.Component {
 
     state = {
-        isMenuOpen: false
+        isMenuOpen: false,
+        isNotificationMenu: false,
+        notificationUser: null,
     }
 
     componentDidMount() {
@@ -42,7 +45,14 @@ class _App extends React.Component {
         this.setState({ isMenuOpen });
     }
 
+    setNotificationMenu = () => {
+        this.setState(prevState => {
+            return { ...prevState, isNotificationMenu: !prevState.isNotificationMenu }
+        })
+    }
+
     render() {
+        const { user } = this.props
         const { isMenuOpen } = this.state;
         return (
             <div className="main-wrapper">
@@ -51,7 +61,7 @@ class _App extends React.Component {
                 {isMenuOpen && <div onClick={this.toggleMenu} className="main-screen"></div>}
                 <AppHeader openMenu={this.toggleMenu} />
                 {!this.props.isBecomeSeller && <AppSubHeader />}
-                <Menu closeMenu={this.toggleMenu} menuOpen={isMenuOpen} />
+                <Menu closeMenu={this.toggleMenu} menuOpen={isMenuOpen} setNotificationMenu={this.setNotificationMenu} />
                 <main className="main-content">
                     <Switch>
                         {routes.map(route => <Route key={route.path} exact component={route.component} path={route.path} />)}
@@ -61,13 +71,15 @@ class _App extends React.Component {
                 <UserMsg />
                 {this.props.isJoinModal && <SignUp />}
                 {this.props.isModalSign && <SignIn />}
+                {this.state.isNotificationMenu && <div className="notification-full-page"><NotificationMenu user={user} setNotificationMenu={this.setNotificationMenu} /></div>}
             </div>
         )
     }
 }
 
-function mapStateToProps({ scssModule }) {
+function mapStateToProps({ userModule, scssModule }) {
     return {
+        user: userModule.user,
         isBecomeSeller: scssModule.isBecomeSeller,
         isJoinModal: scssModule.isJoinModal,
         isModalSign: scssModule.isModalSign

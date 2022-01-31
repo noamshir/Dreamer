@@ -82,7 +82,7 @@ class _Checkout extends React.Component {
             _id: utilService.makeId(8),
             sender: user,
             txt: '',
-            type: 'new-order',
+            type: 'new order',
             createdAt: Date.now(),
             msg: this.createMsg()
         }

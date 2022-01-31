@@ -31,13 +31,13 @@ export class _RateStars extends React.Component {
 
     submit = async (ev) => {
         ev.preventDefault()
-        const { user, owner } = this.props
+        const { user, owner, gigId } = this.props
         if (!user) {
             this.props.toggleSignInModal(true);
             return;
         }
         const avgRate = this.sumRate()
-        const newOwner = await userService.saveReview(avgRate, this.state.txt, user, owner)
+        const newOwner = await userService.saveReview(avgRate, this.state.txt, user, gigId, owner)
         this.props.setReviewAdd(false)
         this.props.loadOwner(newOwner._id)
     }

@@ -5,7 +5,7 @@ import { UserProfileImg } from "./profile/UserProfileImg";
 import { useState, useEffect } from 'react';
 import { gigService } from "../services/gig.service";
 import { onSetFilterBy } from "../store/gig.action";
-function _Menu({ user, closeMenu, toggleJoinModal, toggleSignInModal, menuOpen, onSetFilterBy }) {
+function _Menu({ user, closeMenu, toggleJoinModal, toggleSignInModal, menuOpen, onSetFilterBy, setNotificationMenu }) {
     const [isCategoriesOpen, setAccordion] = useState(false)
     const [categories, setCategories] = useState([])
     useEffect(async () => {
@@ -44,10 +44,16 @@ function _Menu({ user, closeMenu, toggleJoinModal, toggleSignInModal, menuOpen, 
             <nav className="menu-nav">
                 <ul className="clean-list">
                     {!user && <li onClick={() => openSignIn()} className="menu-item sign">Sign in</li>}
-                    <li key="1" className="menu-item"><NavLink onClick={() => closeMenu()} className="clean-link" to="/">Home</NavLink></li>
-                    <li key="2" className="menu-item"><NavLink onClick={() => closeMenu()} className="clean-link" to="/explore">Explore</NavLink></li>
+                    <li className="menu-item"><NavLink onClick={() => closeMenu()} className="clean-link" to="/">Home</NavLink></li>
+                    <li className="menu-item"><NavLink onClick={() => closeMenu()} className="clean-link" to="/explore">Explore</NavLink></li>
                     {!user?.sellerInfo && <li className="menu-item"><NavLink onClick={() => closeMenu()} className="clean-link" to="/becomeSeller">Become a Seller</NavLink></li>}
-                    <li key="3" className="menu-item category-item">
+                    {user && <li className="menu-item notification">
+                        <div className="notification-link-wrapper">
+                            {user?.notifications?.length && <div className='notification-dot'></div>}
+                            <div onClick={() => { closeMenu(); setNotificationMenu(user) }}>Notifications</div>
+                        </div>
+                    </li>}
+                    <li className="menu-item category-item">
                         <article className={`categories-item ${categoriesClass}`}>
                             <div onClick={toggleCategories} className="accordion-title">Categories</div>
                             <div className={`categories-content ${categoriesClass}`}>
