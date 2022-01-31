@@ -64,6 +64,47 @@
       }
       &:hover {
         color: $clr5;
+        &.category-item {
+          color: #95979d;
+        }
+      }
+    }
+    .categories-item {
+      overflow: hidden;
+      &.open {
+        overflow: unset;
+      }
+      .accordion-title {
+        &:hover {
+          color: $clr2;
+        }
+      }
+      text-align: left;
+      padding-bottom: 20px;
+      cursor: pointer;
+      .categories-content {
+        overflow: inherit;
+        margin: 5px;
+        padding: 0 20px;
+        transition: transform 0.4s ease-out;
+
+        &.open {
+          height: auto;
+          transform: scaleY(1);
+          transform-origin: top;
+        }
+        &.close {
+          height: 0px;
+          transform: scaleY(0);
+        }
+        ul {
+          li {
+            padding: 7px 0;
+            &:hover {
+              color: $clr2;
+            }
+          }
+        }
       }
     }
   }
