@@ -17,7 +17,6 @@ body {
   color: $clr5;
   position: relative;
   background-color: rgb(255, 255, 255);
-  // overflow-x: hidden;
   @include for-narrow-layout {
     overflow-x: unset;
   }

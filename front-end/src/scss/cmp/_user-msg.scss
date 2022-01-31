@@ -51,16 +51,18 @@
     h5 {
       margin: 0;
       text-align: center;
+      color: $clr2;
+      font-family: roboto-bold;
     }
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    // background-color: rgb(0, 56, 19);
     background-color: #fff;
     border-radius: 4px;
     z-index: 9999;
-    font-family: work-sans;
-    padding: 15px;
+    padding: 20px;
     min-width: 280px;
     @media (max-width: 400px) {
       padding: 12px;
@@ -70,19 +72,18 @@
     justify-content: space-between;
     .msg-header {
       h1 {
-        font-family: lobster;
         font-size: rem(40px);
-        padding: 15px 0;
+        padding: 10px 0;
         white-space: nowrap;
         @media (max-width: 400px) {
-          font-size: rem(35px);
+          font-size: rem(32px);
         }
       }
     }
     .msg-txt {
-      padding: 10px 0;
+      padding-top: 12px;
+      padding-bottom: 15px;
       white-space: nowrap;
-      color: $clr2;
       @media (max-width: 400px) {
         font-size: rem(20px);
         white-space: pre-wrap;
@@ -92,18 +93,18 @@
       font-family: work-sans;
       width: 100%;
     }
-    .modal-link{
+    .modal-link {
       width: 100%;
     }
     .close-modal {
       position: fixed;
-      top: 0;
-      right: 0;
+      top: -6px;
+      right: -6px;
       color: $clr2;
       margin: 0;
       padding: 0;
       border: 0;
-      background-color: inherit;
+      background-color: transparent;
       font-size: 1.5rem;
       padding-right: 10px;
       padding-top: 10px;
@@ -123,67 +124,21 @@
       }
     }
     &.new-order {
-      .msg-header {
-        h1 {
-          color: $clr1;
-        }
-      }
       .lower-text {
         @media (max-width: 400px) {
           flex-direction: column;
         }
-        .dime-signs {
-          justify-content: center;
-          .dime-sign {
-            animation-name: spin;
-            animation-duration: 3000ms;
-            animation-iteration-count: infinite;
-            animation-timing-function: linear;
-            color: $clr1;
-          }
-        }
       }
     }
     &.rejected {
-      .msg-header {
-        h1 {
-          color: rgb(230, 8, 8);
-        }
-      }
       .btn {
         background-color: rgb(230, 8, 8);
         &:hover {
           background-color: rgb(202, 14, 14);
         }
       }
-      .rejected-icon {
-        color: rgb(230, 8, 8);
-        font-size: rem(25px);
-        width: 100%;
-        display: flex;
-        justify-content: center;
-      }
-    }
-    &.active {
-      .msg-header {
-        h1 {
-          color: $clr1;
-        }
-      }
-      .check-icon {
-        color: $clr1;
-        font-size: rem(25px);
-        width: 100%;
-        display: flex;
-        justify-content: center;
-      }
     }
     &.review-added {
-      .msg-header {
-        h1 {
-          color: $clr1;
-        }
-      }
       .msg-txt {
         white-space: pre-wrap;
       }
